@@ -1,0 +1,2415 @@
+﻿{
+    "_meta":  {
+                  "schema_version":  "1.0",
+                  "description":  "CPU specification library for Innodisk Product Selector. Keyed by normalized processor_model (no 簧 ??symbols). Populated from Intel ARK, NXP product pages, and manual entries. Run parser/ark_fetcher.py to update.",
+                  "sources":  [
+                                  "intel_ark",
+                                  "nxp_web",
+                                  "manual_estimate"
+                              ],
+                  "last_updated":  "2026-05-29",
+                  "total_entries":  34
+              },
+    "Intel Atom X6425E":  {
+                              "meta":  {
+                                           "ark_id":  218472,
+                                           "ark_url":  "https://ark.intel.com/content/www/us/en/ark/products/218472/intel-atom-x6425e-processor.html",
+                                           "source":  "intel_ark",
+                                           "needs_verification":  false,
+                                           "last_fetched":  "2026-05-28"
+                                       },
+                              "identity":  {
+                                               "processor_model":  "Intel Atom X6425E",
+                                               "processor_series":  "Elkhart Lake",
+                                               "platform_brand":  "Intel",
+                                               "launch_date":  "Q3 2021",
+                                               "lithography":  "10nm",
+                                               "socket":  "FCBGA1264",
+                                               "market_segment":  "Embedded"
+                                           },
+                              "cores":  {
+                                            "cpu_cores":  4,
+                                            "cpu_p_cores":  null,
+                                            "cpu_e_cores":  null,
+                                            "threads":  4,
+                                            "base_freq_p_ghz":  1.8,
+                                            "base_freq_e_ghz":  null,
+                                            "max_turbo_ghz":  3.0
+                                        },
+                              "power":  {
+                                            "tdp_watt":  12.0,
+                                            "max_turbo_watt":  null,
+                                            "min_assured_watt":  6.5
+                                        },
+                              "memory":  {
+                                             "type":  [
+                                                          "DDR4",
+                                                          "LPDDR4"
+                                                      ],
+                                             "max_speed_mhz":  3200,
+                                             "max_capacity_gb":  32,
+                                             "channels":  2,
+                                             "ecc_support":  true
+                                         },
+                              "pcie":  {
+                                           "revision":  "3.0",
+                                           "max_lanes":  12,
+                                           "configs":  "1x8+2x2+1x1"
+                                       },
+                              "graphics":  {
+                                               "model":  "Intel UHD Graphics",
+                                               "eu_count":  32,
+                                               "max_freq_mhz":  500,
+                                               "display_support":  3
+                                           },
+                              "ai":  {
+                                         "ai_tops":  null,
+                                         "npu_model":  null
+                                     },
+                              "cache":  {
+                                            "l2_mb":  1.5,
+                                            "l3_mb":  4.5
+                                        },
+                              "features":  [
+                                               "AVX2",
+                                               "TSX",
+                                               "VT-x",
+                                               "VT-d",
+                                               "ECC",
+                                               "Wide Temperature"
+                                           ]
+                          },
+    "Intel Celeron J6412":  {
+                                "meta":  {
+                                             "ark_id":  208854,
+                                             "ark_url":  "https://ark.intel.com/content/www/us/en/ark/products/208854/intel-celeron-processor-j6412.html",
+                                             "source":  "intel_ark",
+                                             "needs_verification":  false,
+                                             "last_fetched":  "2026-05-28"
+                                         },
+                                "identity":  {
+                                                 "processor_model":  "Intel Celeron J6412",
+                                                 "processor_series":  "Elkhart Lake",
+                                                 "platform_brand":  "Intel",
+                                                 "launch_date":  "Q1 2021",
+                                                 "lithography":  "10nm",
+                                                 "socket":  "FCBGA1264",
+                                                 "market_segment":  "Embedded"
+                                             },
+                                "cores":  {
+                                              "cpu_cores":  4,
+                                              "cpu_p_cores":  null,
+                                              "cpu_e_cores":  null,
+                                              "threads":  4,
+                                              "base_freq_p_ghz":  2.0,
+                                              "base_freq_e_ghz":  null,
+                                              "max_turbo_ghz":  2.6
+                                          },
+                                "power":  {
+                                              "tdp_watt":  10.0,
+                                              "max_turbo_watt":  null,
+                                              "min_assured_watt":  6.5
+                                          },
+                                "memory":  {
+                                               "type":  [
+                                                            "DDR4",
+                                                            "LPDDR4"
+                                                        ],
+                                               "max_speed_mhz":  2933,
+                                               "max_capacity_gb":  32,
+                                               "channels":  2,
+                                               "ecc_support":  false
+                                           },
+                                "pcie":  {
+                                             "revision":  "3.0",
+                                             "max_lanes":  9,
+                                             "configs":  "1x4+4x1"
+                                         },
+                                "graphics":  {
+                                                 "model":  "Intel UHD Graphics 32EU",
+                                                 "eu_count":  32,
+                                                 "max_freq_mhz":  400,
+                                                 "display_support":  3
+                                             },
+                                "ai":  {
+                                           "ai_tops":  null,
+                                           "npu_model":  null
+                                       },
+                                "cache":  {
+                                              "l2_mb":  1.5,
+                                              "l3_mb":  4.0
+                                          },
+                                "features":  [
+                                                 "VT-x",
+                                                 "VT-d"
+                                             ]
+                            },
+    "Intel Atom x7213RE":  {
+                               "meta":  {
+                                            "ark_id":  null,
+                                            "ark_url":  "https://ark.intel.com/content/www/us/en/ark/products/search.html?q=x7213RE",
+                                            "source":  "manual_estimate",
+                                            "needs_verification":  true,
+                                            "last_fetched":  "2026-05-28",
+                                            "notes":  "Industrial RE-series Elkhart Lake. x7213RE is Rugged-Enhanced 2-core variant for robotics/industrial control."
+                                        },
+                               "identity":  {
+                                                "processor_model":  "Intel Atom x7213RE",
+                                                "processor_series":  "Elkhart Lake",
+                                                "platform_brand":  "Intel",
+                                                "launch_date":  "Q3 2022",
+                                                "lithography":  "10nm",
+                                                "socket":  "FCBGA1264",
+                                                "market_segment":  "Industrial"
+                                            },
+                               "cores":  {
+                                             "cpu_cores":  2,
+                                             "cpu_p_cores":  null,
+                                             "cpu_e_cores":  null,
+                                             "threads":  4,
+                                             "base_freq_p_ghz":  1.4,
+                                             "base_freq_e_ghz":  null,
+                                             "max_turbo_ghz":  2.4
+                                         },
+                               "power":  {
+                                             "tdp_watt":  4.5,
+                                             "max_turbo_watt":  null,
+                                             "min_assured_watt":  4.5
+                                         },
+                               "memory":  {
+                                              "type":  [
+                                                           "LPDDR4"
+                                                       ],
+                                              "max_speed_mhz":  4266,
+                                              "max_capacity_gb":  16,
+                                              "channels":  2,
+                                              "ecc_support":  true
+                                          },
+                               "pcie":  {
+                                            "revision":  "3.0",
+                                            "max_lanes":  9,
+                                            "configs":  "1x4+4x1"
+                                        },
+                               "graphics":  {
+                                                "model":  "Intel UHD Graphics",
+                                                "eu_count":  16,
+                                                "max_freq_mhz":  400,
+                                                "display_support":  2
+                                            },
+                               "ai":  {
+                                          "ai_tops":  null,
+                                          "npu_model":  null
+                                      },
+                               "cache":  {
+                                             "l2_mb":  1.5,
+                                             "l3_mb":  2.0
+                                         },
+                               "features":  [
+                                                "ECC",
+                                                "Wide Temperature",
+                                                "VT-x",
+                                                "VT-d",
+                                                "TSN"
+                                            ]
+                           },
+    "Intel Core i7-1365URE":  {
+                                  "meta":  {
+                                               "ark_id":  null,
+                                               "ark_url":  null,
+                                               "source":  "manual_estimate",
+                                               "needs_verification":  true,
+                                               "last_fetched":  "2026-05-28",
+                                               "notes":  "Likely Raptor Lake-U embedded/rugged variant. May be i7-1365UE with RE suffix for robotics-enhanced. Verify exact ARK entry."
+                                           },
+                                  "identity":  {
+                                                   "processor_model":  "Intel Core i7-1365URE",
+                                                   "processor_series":  "Raptor Lake",
+                                                   "platform_brand":  "Intel",
+                                                   "launch_date":  "Q4 2022",
+                                                   "lithography":  "Intel 7",
+                                                   "socket":  "BGA",
+                                                   "market_segment":  "Embedded"
+                                               },
+                                  "cores":  {
+                                                "cpu_cores":  10,
+                                                "cpu_p_cores":  2,
+                                                "cpu_e_cores":  8,
+                                                "threads":  12,
+                                                "base_freq_p_ghz":  1.8,
+                                                "base_freq_e_ghz":  1.3,
+                                                "max_turbo_ghz":  5.2
+                                            },
+                                  "power":  {
+                                                "tdp_watt":  15.0,
+                                                "max_turbo_watt":  55.0,
+                                                "min_assured_watt":  9.0
+                                            },
+                                  "memory":  {
+                                                 "type":  [
+                                                              "DDR4",
+                                                              "DDR5",
+                                                              "LPDDR4",
+                                                              "LPDDR5"
+                                                          ],
+                                                 "max_speed_mhz":  4800,
+                                                 "max_capacity_gb":  64,
+                                                 "channels":  2,
+                                                 "ecc_support":  true
+                                             },
+                                  "pcie":  {
+                                               "revision":  "5.0",
+                                               "max_lanes":  20,
+                                               "configs":  "1x16+1x4 or 2x8+1x4"
+                                           },
+                                  "graphics":  {
+                                                   "model":  "Intel Iris Xe Graphics",
+                                                   "eu_count":  96,
+                                                   "max_freq_mhz":  1300,
+                                                   "display_support":  4
+                                               },
+                                  "ai":  {
+                                             "ai_tops":  null,
+                                             "npu_model":  null
+                                         },
+                                  "cache":  {
+                                                "l2_mb":  12.5,
+                                                "l3_mb":  12.0
+                                            },
+                                  "features":  [
+                                                   "AVX2",
+                                                   "VT-x",
+                                                   "VT-d",
+                                                   "ECC",
+                                                   "vPro"
+                                               ]
+                              },
+    "Intel Celeron 7305E":  {
+                                "meta":  {
+                                             "ark_id":  null,
+                                             "ark_url":  null,
+                                             "source":  "manual_estimate",
+                                             "needs_verification":  true,
+                                             "last_fetched":  "2026-05-28",
+                                             "notes":  "Alder Lake-P embedded Celeron. 15W TDP. Celeron 7305 = 1P+4E = 5 cores, HT disabled (threads=cores). Previous estimate of 10C was wrong (Core i5/i7 level). Verify exact frequencies via ARK."
+                                         },
+                                "identity":  {
+                                                 "processor_model":  "Intel Celeron 7305E",
+                                                 "processor_series":  "Alder Lake",
+                                                 "platform_brand":  "Intel",
+                                                 "launch_date":  "2022",
+                                                 "lithography":  "Intel 7",
+                                                 "socket":  "BGA",
+                                                 "market_segment":  "Embedded"
+                                             },
+                                "cores":  {
+                                              "cpu_cores":  5,
+                                              "cpu_p_cores":  1,
+                                              "cpu_e_cores":  4,
+                                              "threads":  5,
+                                              "base_freq_p_ghz":  1.1,
+                                              "base_freq_e_ghz":  0.9,
+                                              "max_turbo_ghz":  4.4
+                                          },
+                                "power":  {
+                                              "tdp_watt":  15.0,
+                                              "max_turbo_watt":  null,
+                                              "min_assured_watt":  9.0
+                                          },
+                                "memory":  {
+                                               "type":  [
+                                                            "DDR4",
+                                                            "DDR5",
+                                                            "LPDDR4",
+                                                            "LPDDR5"
+                                                        ],
+                                               "max_speed_mhz":  4800,
+                                               "max_capacity_gb":  64,
+                                               "channels":  2,
+                                               "ecc_support":  false
+                                           },
+                                "pcie":  {
+                                             "revision":  "4.0",
+                                             "max_lanes":  16,
+                                             "configs":  "1x16 or 2x8"
+                                         },
+                                "graphics":  {
+                                                 "model":  "Intel UHD Graphics",
+                                                 "eu_count":  32,
+                                                 "max_freq_mhz":  1050,
+                                                 "display_support":  4
+                                             },
+                                "ai":  {
+                                           "ai_tops":  null,
+                                           "npu_model":  null
+                                       },
+                                "cache":  {
+                                              "l2_mb":  6.5,
+                                              "l3_mb":  12.0
+                                          },
+                                "features":  [
+                                                 "VT-x",
+                                                 "VT-d"
+                                             ]
+                            },
+    "Intel Processor U300E":  {
+                                  "meta":  {
+                                               "ark_id":  null,
+                                               "ark_url":  null,
+                                               "source":  "manual_estimate",
+                                               "needs_verification":  true,
+                                               "last_fetched":  "2026-05-28",
+                                               "notes":  "Alder Lake-N based low-power embedded processor. ARK SKU 233393. NOT a Celeron ??product line is \u0027Intel Processor\u0027 (separate branding from Core/Celeron). Used in ASBC-3150 and similar AIoT SBCs. Verify frequencies via ARK."
+                                           },
+                                  "identity":  {
+                                                   "processor_model":  "Intel Processor U300E",
+                                                   "processor_series":  "Alder Lake-N",
+                                                   "platform_brand":  "Intel",
+                                                   "launch_date":  "2023",
+                                                   "lithography":  "Intel 7",
+                                                   "socket":  "BGA",
+                                                   "market_segment":  "Embedded"
+                                               },
+                                  "cores":  {
+                                                "cpu_cores":  4,
+                                                "cpu_p_cores":  null,
+                                                "cpu_e_cores":  null,
+                                                "threads":  4,
+                                                "base_freq_p_ghz":  0.9,
+                                                "base_freq_e_ghz":  null,
+                                                "max_turbo_ghz":  3.3
+                                            },
+                                  "power":  {
+                                                "tdp_watt":  15.0,
+                                                "max_turbo_watt":  null,
+                                                "min_assured_watt":  6.0
+                                            },
+                                  "memory":  {
+                                                 "type":  [
+                                                              "DDR4",
+                                                              "LPDDR4"
+                                                          ],
+                                                 "max_speed_mhz":  3200,
+                                                 "max_capacity_gb":  32,
+                                                 "channels":  2,
+                                                 "ecc_support":  false
+                                             },
+                                  "pcie":  {
+                                               "revision":  "3.0",
+                                               "max_lanes":  9,
+                                               "configs":  "1x4+4x1"
+                                           },
+                                  "graphics":  {
+                                                   "model":  "Intel UHD Graphics",
+                                                   "eu_count":  24,
+                                                   "max_freq_mhz":  750,
+                                                   "display_support":  3
+                                               },
+                                  "ai":  {
+                                             "ai_tops":  null,
+                                             "npu_model":  null
+                                         },
+                                  "cache":  {
+                                                "l2_mb":  1.5,
+                                                "l3_mb":  6.0
+                                            },
+                                  "features":  [
+                                                   "VT-x"
+                                               ]
+                              },
+    "Intel Core i7-13700E":  {
+                                 "meta":  {
+                                              "ark_id":  232141,
+                                              "ark_url":  "https://ark.intel.com/content/www/us/en/ark/products/232141/intel-core-i7-13700e-processor.html",
+                                              "source":  "intel_ark",
+                                              "needs_verification":  false,
+                                              "last_fetched":  "2026-05-28"
+                                          },
+                                 "identity":  {
+                                                  "processor_model":  "Intel Core i7-13700E",
+                                                  "processor_series":  "Raptor Lake",
+                                                  "platform_brand":  "Intel",
+                                                  "launch_date":  "Q1 2023",
+                                                  "lithography":  "Intel 7",
+                                                  "socket":  "FCLGA1700",
+                                                  "market_segment":  "Embedded"
+                                              },
+                                 "cores":  {
+                                               "cpu_cores":  16,
+                                               "cpu_p_cores":  8,
+                                               "cpu_e_cores":  8,
+                                               "threads":  24,
+                                               "base_freq_p_ghz":  2.1,
+                                               "base_freq_e_ghz":  1.5,
+                                               "max_turbo_ghz":  5.2
+                                           },
+                                 "power":  {
+                                               "tdp_watt":  65.0,
+                                               "max_turbo_watt":  219.0,
+                                               "min_assured_watt":  35.0
+                                           },
+                                 "memory":  {
+                                                "type":  [
+                                                             "DDR4",
+                                                             "DDR5"
+                                                         ],
+                                                "max_speed_mhz":  4800,
+                                                "max_capacity_gb":  128,
+                                                "channels":  2,
+                                                "ecc_support":  true
+                                            },
+                                 "pcie":  {
+                                              "revision":  "5.0",
+                                              "max_lanes":  20,
+                                              "configs":  "1x16+1x4 or 2x8+1x4"
+                                          },
+                                 "graphics":  {
+                                                  "model":  "Intel UHD Graphics 770",
+                                                  "eu_count":  32,
+                                                  "max_freq_mhz":  1550,
+                                                  "display_support":  4
+                                              },
+                                 "ai":  {
+                                            "ai_tops":  null,
+                                            "npu_model":  null
+                                        },
+                                 "cache":  {
+                                               "l2_mb":  24.0,
+                                               "l3_mb":  30.0
+                                           },
+                                 "features":  [
+                                                  "AVX2",
+                                                  "VT-x",
+                                                  "VT-d",
+                                                  "ECC",
+                                                  "TSX",
+                                                  "vPro"
+                                              ]
+                             },
+    "Intel Core i7-13800HE":  {
+                                  "meta":  {
+                                               "ark_id":  null,
+                                               "ark_url":  null,
+                                               "source":  "manual_estimate",
+                                               "needs_verification":  true,
+                                               "last_fetched":  "2026-05-28",
+                                               "notes":  "HE suffix not standard. May be OEM/semi-custom variant of i7-13800H (14C, 6P+8E, 45W) or i7-13850HX. Verify with Innodisk datasheet or ARK search. APEX-P200 uses this chip."
+                                           },
+                                  "identity":  {
+                                                   "processor_model":  "Intel Core i7-13800HE",
+                                                   "processor_series":  "Raptor Lake",
+                                                   "platform_brand":  "Intel",
+                                                   "launch_date":  "Q3 2023",
+                                                   "lithography":  "Intel 7",
+                                                   "socket":  "BGA",
+                                                   "market_segment":  "Mobile/Embedded"
+                                               },
+                                  "cores":  {
+                                                "cpu_cores":  14,
+                                                "cpu_p_cores":  6,
+                                                "cpu_e_cores":  8,
+                                                "threads":  20,
+                                                "base_freq_p_ghz":  2.4,
+                                                "base_freq_e_ghz":  1.8,
+                                                "max_turbo_ghz":  5.0
+                                            },
+                                  "power":  {
+                                                "tdp_watt":  45.0,
+                                                "max_turbo_watt":  115.0,
+                                                "min_assured_watt":  35.0
+                                            },
+                                  "memory":  {
+                                                 "type":  [
+                                                              "DDR5",
+                                                              "LPDDR5"
+                                                          ],
+                                                 "max_speed_mhz":  5200,
+                                                 "max_capacity_gb":  64,
+                                                 "channels":  2,
+                                                 "ecc_support":  false
+                                             },
+                                  "pcie":  {
+                                               "revision":  "5.0",
+                                               "max_lanes":  20,
+                                               "configs":  "1x16+1x4 or 2x8+1x4"
+                                           },
+                                  "graphics":  {
+                                                   "model":  "Intel Iris Xe Graphics",
+                                                   "eu_count":  96,
+                                                   "max_freq_mhz":  1500,
+                                                   "display_support":  4
+                                               },
+                                  "ai":  {
+                                             "ai_tops":  null,
+                                             "npu_model":  null
+                                         },
+                                  "cache":  {
+                                                "l2_mb":  18.0,
+                                                "l3_mb":  24.0
+                                            },
+                                  "features":  [
+                                                   "AVX2",
+                                                   "VT-x",
+                                                   "VT-d",
+                                                   "Thunderbolt 4"
+                                               ]
+                              },
+    "Intel Core i9-13900E":  {
+                                 "meta":  {
+                                              "ark_id":  232142,
+                                              "ark_url":  "https://ark.intel.com/content/www/us/en/ark/products/232142/intel-core-i9-13900e-processor.html",
+                                              "source":  "intel_ark",
+                                              "needs_verification":  false,
+                                              "last_fetched":  "2026-05-28"
+                                          },
+                                 "identity":  {
+                                                  "processor_model":  "Intel Core i9-13900E",
+                                                  "processor_series":  "Raptor Lake",
+                                                  "platform_brand":  "Intel",
+                                                  "launch_date":  "Q1 2023",
+                                                  "lithography":  "Intel 7",
+                                                  "socket":  "FCLGA1700",
+                                                  "market_segment":  "Embedded"
+                                              },
+                                 "cores":  {
+                                               "cpu_cores":  24,
+                                               "cpu_p_cores":  8,
+                                               "cpu_e_cores":  16,
+                                               "threads":  32,
+                                               "base_freq_p_ghz":  2.0,
+                                               "base_freq_e_ghz":  1.5,
+                                               "max_turbo_ghz":  5.6
+                                           },
+                                 "power":  {
+                                               "tdp_watt":  65.0,
+                                               "max_turbo_watt":  219.0,
+                                               "min_assured_watt":  35.0
+                                           },
+                                 "memory":  {
+                                                "type":  [
+                                                             "DDR4",
+                                                             "DDR5"
+                                                         ],
+                                                "max_speed_mhz":  4800,
+                                                "max_capacity_gb":  128,
+                                                "channels":  2,
+                                                "ecc_support":  true
+                                            },
+                                 "pcie":  {
+                                              "revision":  "5.0",
+                                              "max_lanes":  20,
+                                              "configs":  "1x16+1x4 or 2x8+1x4"
+                                          },
+                                 "graphics":  {
+                                                  "model":  "Intel UHD Graphics 770",
+                                                  "eu_count":  32,
+                                                  "max_freq_mhz":  1650,
+                                                  "display_support":  4
+                                              },
+                                 "ai":  {
+                                            "ai_tops":  null,
+                                            "npu_model":  null
+                                        },
+                                 "cache":  {
+                                               "l2_mb":  32.0,
+                                               "l3_mb":  36.0
+                                           },
+                                 "features":  [
+                                                  "AVX2",
+                                                  "VT-x",
+                                                  "VT-d",
+                                                  "ECC",
+                                                  "TSX",
+                                                  "vPro"
+                                              ]
+                             },
+    "Intel Core i9-13900TE":  {
+                                  "meta":  {
+                                               "ark_id":  232145,
+                                               "ark_url":  "https://ark.intel.com/content/www/us/en/ark/products/232145/intel-core-i9-13900te-processor.html",
+                                               "source":  "intel_ark",
+                                               "needs_verification":  false,
+                                               "last_fetched":  "2026-05-28",
+                                               "notes":  "TE = low-TDP embedded variant of 13900E. Same core count, reduced power envelope."
+                                           },
+                                  "identity":  {
+                                                   "processor_model":  "Intel Core i9-13900TE",
+                                                   "processor_series":  "Raptor Lake",
+                                                   "platform_brand":  "Intel",
+                                                   "launch_date":  "Q1 2023",
+                                                   "lithography":  "Intel 7",
+                                                   "socket":  "FCLGA1700",
+                                                   "market_segment":  "Embedded"
+                                               },
+                                  "cores":  {
+                                                "cpu_cores":  24,
+                                                "cpu_p_cores":  8,
+                                                "cpu_e_cores":  16,
+                                                "threads":  32,
+                                                "base_freq_p_ghz":  1.5,
+                                                "base_freq_e_ghz":  1.1,
+                                                "max_turbo_ghz":  5.4
+                                            },
+                                  "power":  {
+                                                "tdp_watt":  35.0,
+                                                "max_turbo_watt":  219.0,
+                                                "min_assured_watt":  15.0
+                                            },
+                                  "memory":  {
+                                                 "type":  [
+                                                              "DDR4",
+                                                              "DDR5"
+                                                          ],
+                                                 "max_speed_mhz":  4800,
+                                                 "max_capacity_gb":  128,
+                                                 "channels":  2,
+                                                 "ecc_support":  true
+                                             },
+                                  "pcie":  {
+                                               "revision":  "5.0",
+                                               "max_lanes":  20,
+                                               "configs":  "1x16+1x4 or 2x8+1x4"
+                                           },
+                                  "graphics":  {
+                                                   "model":  "Intel UHD Graphics 770",
+                                                   "eu_count":  32,
+                                                   "max_freq_mhz":  1650,
+                                                   "display_support":  4
+                                               },
+                                  "ai":  {
+                                             "ai_tops":  null,
+                                             "npu_model":  null
+                                         },
+                                  "cache":  {
+                                                "l2_mb":  32.0,
+                                                "l3_mb":  36.0
+                                            },
+                                  "features":  [
+                                                   "AVX2",
+                                                   "VT-x",
+                                                   "VT-d",
+                                                   "ECC",
+                                                   "TSX",
+                                                   "vPro"
+                                               ]
+                              },
+    "Intel Core i9-14900E":  {
+                                 "meta":  {
+                                              "ark_id":  237497,
+                                              "ark_url":  "https://ark.intel.com/content/www/us/en/ark/products/237497/intel-core-i9-14900e-processor.html",
+                                              "source":  "intel_ark",
+                                              "needs_verification":  false,
+                                              "last_fetched":  "2026-05-28",
+                                              "notes":  "spec_matrix stores this as \u0027Intel Core i9-14900\u0027 (E suffix may have been dropped during extraction). Canonical name is i9-14900E."
+                                          },
+                                 "identity":  {
+                                                  "processor_model":  "Intel Core i9-14900E",
+                                                  "processor_series":  "Raptor Lake Refresh",
+                                                  "platform_brand":  "Intel",
+                                                  "launch_date":  "Q1 2024",
+                                                  "lithography":  "Intel 7",
+                                                  "socket":  "FCLGA1700",
+                                                  "market_segment":  "Embedded"
+                                              },
+                                 "cores":  {
+                                               "cpu_cores":  24,
+                                               "cpu_p_cores":  8,
+                                               "cpu_e_cores":  16,
+                                               "threads":  32,
+                                               "base_freq_p_ghz":  2.0,
+                                               "base_freq_e_ghz":  1.5,
+                                               "max_turbo_ghz":  5.8
+                                           },
+                                 "power":  {
+                                               "tdp_watt":  65.0,
+                                               "max_turbo_watt":  219.0,
+                                               "min_assured_watt":  35.0
+                                           },
+                                 "memory":  {
+                                                "type":  [
+                                                             "DDR4",
+                                                             "DDR5"
+                                                         ],
+                                                "max_speed_mhz":  5600,
+                                                "max_capacity_gb":  128,
+                                                "channels":  2,
+                                                "ecc_support":  true
+                                            },
+                                 "pcie":  {
+                                              "revision":  "5.0",
+                                              "max_lanes":  20,
+                                              "configs":  "1x16+1x4 or 2x8+1x4"
+                                          },
+                                 "graphics":  {
+                                                  "model":  "Intel UHD Graphics 770",
+                                                  "eu_count":  32,
+                                                  "max_freq_mhz":  1650,
+                                                  "display_support":  4
+                                              },
+                                 "ai":  {
+                                            "ai_tops":  null,
+                                            "npu_model":  null
+                                        },
+                                 "cache":  {
+                                               "l2_mb":  32.0,
+                                               "l3_mb":  36.0
+                                           },
+                                 "features":  [
+                                                  "AVX2",
+                                                  "AVX-512",
+                                                  "VT-x",
+                                                  "VT-d",
+                                                  "ECC",
+                                                  "TSX",
+                                                  "vPro"
+                                              ]
+                             },
+    "Intel Core Ultra 5 155U":  {
+                                    "meta":  {
+                                                 "ark_id":  236847,
+                                                 "ark_url":  "https://ark.intel.com/content/www/us/en/ark/products/236847/intel-core-ultra-5-processor-155u.html",
+                                                 "source":  "intel_ark",
+                                                 "needs_verification":  false,
+                                                 "last_fetched":  "2026-05-28"
+                                             },
+                                    "identity":  {
+                                                     "processor_model":  "Intel Core Ultra 5 155U",
+                                                     "processor_series":  "Meteor Lake",
+                                                     "platform_brand":  "Intel",
+                                                     "launch_date":  "Q4 2023",
+                                                     "lithography":  "Intel 4",
+                                                     "socket":  "BGA",
+                                                     "market_segment":  "Mobile"
+                                                 },
+                                    "cores":  {
+                                                  "cpu_cores":  12,
+                                                  "cpu_p_cores":  2,
+                                                  "cpu_e_cores":  10,
+                                                  "threads":  14,
+                                                  "base_freq_p_ghz":  1.7,
+                                                  "base_freq_e_ghz":  1.2,
+                                                  "max_turbo_ghz":  4.8
+                                              },
+                                    "power":  {
+                                                  "tdp_watt":  15.0,
+                                                  "max_turbo_watt":  57.0,
+                                                  "min_assured_watt":  9.0
+                                              },
+                                    "memory":  {
+                                                   "type":  [
+                                                                "DDR5",
+                                                                "LPDDR5"
+                                                            ],
+                                                   "max_speed_mhz":  5200,
+                                                   "max_capacity_gb":  64,
+                                                   "channels":  2,
+                                                   "ecc_support":  false
+                                               },
+                                    "pcie":  {
+                                                 "revision":  "5.0",
+                                                 "max_lanes":  20,
+                                                 "configs":  "1x16+1x4 or 2x8+1x4"
+                                             },
+                                    "graphics":  {
+                                                     "model":  "Intel Graphics (Arc Xe-LPG)",
+                                                     "eu_count":  64,
+                                                     "max_freq_mhz":  1950,
+                                                     "display_support":  4
+                                                 },
+                                    "ai":  {
+                                               "ai_tops":  11.5,
+                                               "npu_model":  "Intel AI Boost NPU",
+                                               "tops_basis":  "INT8"
+                                           },
+                                    "cache":  {
+                                                  "l2_mb":  10.0,
+                                                  "l3_mb":  12.0
+                                              },
+                                    "features":  [
+                                                     "AVX2",
+                                                     "VT-x",
+                                                     "VT-d",
+                                                     "Thunderbolt 4",
+                                                     "AI Boost"
+                                                 ]
+                                },
+    "Intel Core Ultra 7 165HL":  {
+                                     "meta":  {
+                                                  "ark_id":  236853,
+                                                  "ark_url":  "https://ark.intel.com/content/www/us/en/ark/products/236853/intel-core-ultra-7-processor-165hl.html",
+                                                  "source":  "intel_ark",
+                                                  "needs_verification":  false,
+                                                  "last_fetched":  "2026-05-28",
+                                                  "notes":  "HL = low-voltage H variant for thin industrial design. Same core count as 165H but lower base clocks."
+                                              },
+                                     "identity":  {
+                                                      "processor_model":  "Intel Core Ultra 7 165HL",
+                                                      "processor_series":  "Meteor Lake",
+                                                      "platform_brand":  "Intel",
+                                                      "launch_date":  "Q4 2023",
+                                                      "lithography":  "Intel 4",
+                                                      "socket":  "BGA",
+                                                      "market_segment":  "Mobile/Embedded"
+                                                  },
+                                     "cores":  {
+                                                   "cpu_cores":  16,
+                                                   "cpu_p_cores":  6,
+                                                   "cpu_e_cores":  10,
+                                                   "threads":  22,
+                                                   "base_freq_p_ghz":  2.4,
+                                                   "base_freq_e_ghz":  1.6,
+                                                   "max_turbo_ghz":  5.0
+                                               },
+                                     "power":  {
+                                                   "tdp_watt":  28.0,
+                                                   "max_turbo_watt":  64.0,
+                                                   "min_assured_watt":  20.0
+                                               },
+                                     "memory":  {
+                                                    "type":  [
+                                                                 "DDR5",
+                                                                 "LPDDR5"
+                                                             ],
+                                                    "max_speed_mhz":  5200,
+                                                    "max_capacity_gb":  64,
+                                                    "channels":  2,
+                                                    "ecc_support":  false
+                                                },
+                                     "pcie":  {
+                                                  "revision":  "5.0",
+                                                  "max_lanes":  20,
+                                                  "configs":  "1x16+1x4 or 2x8+1x4"
+                                              },
+                                     "graphics":  {
+                                                      "model":  "Intel Graphics (Arc Xe-LPG)",
+                                                      "eu_count":  128,
+                                                      "max_freq_mhz":  2200,
+                                                      "display_support":  4
+                                                  },
+                                     "ai":  {
+                                                "ai_tops":  11.5,
+                                                "npu_model":  "Intel AI Boost NPU",
+                                                "tops_basis":  "INT8"
+                                            },
+                                     "cache":  {
+                                                   "l2_mb":  14.0,
+                                                   "l3_mb":  24.0
+                                               },
+                                     "features":  [
+                                                      "AVX2",
+                                                      "VT-x",
+                                                      "VT-d",
+                                                      "Thunderbolt 4",
+                                                      "AI Boost"
+                                                  ]
+                                 },
+    "Intel Core Ultra 7 255U":  {
+                                    "meta":  {
+                                                 "ark_id":  244147,
+                                                 "ark_url":  "https://ark.intel.com/content/www/us/en/ark/products/244147/intel-core-ultra-7-processor-255u.html",
+                                                 "source":  "intel_ark",
+                                                 "needs_verification":  false,
+                                                 "last_fetched":  "2026-05-28"
+                                             },
+                                    "identity":  {
+                                                     "processor_model":  "Intel Core Ultra 7 255U",
+                                                     "processor_series":  "Arrow Lake",
+                                                     "platform_brand":  "Intel",
+                                                     "launch_date":  "Q4 2024",
+                                                     "lithography":  "Intel 18A (compute) + Intel 6 (platform)",
+                                                     "socket":  "BGA",
+                                                     "market_segment":  "Mobile"
+                                                 },
+                                    "cores":  {
+                                                  "cpu_cores":  14,
+                                                  "cpu_p_cores":  2,
+                                                  "cpu_e_cores":  12,
+                                                  "threads":  16,
+                                                  "base_freq_p_ghz":  2.0,
+                                                  "base_freq_e_ghz":  1.5,
+                                                  "max_turbo_ghz":  5.0
+                                              },
+                                    "power":  {
+                                                  "tdp_watt":  15.0,
+                                                  "max_turbo_watt":  57.0,
+                                                  "min_assured_watt":  9.0
+                                              },
+                                    "memory":  {
+                                                   "type":  [
+                                                                "DDR5",
+                                                                "LPDDR5"
+                                                            ],
+                                                   "max_speed_mhz":  6400,
+                                                   "max_capacity_gb":  64,
+                                                   "channels":  2,
+                                                   "ecc_support":  false
+                                               },
+                                    "pcie":  {
+                                                 "revision":  "5.0",
+                                                 "max_lanes":  20,
+                                                 "configs":  "1x16+1x4 or 2x8+1x4"
+                                             },
+                                    "graphics":  {
+                                                     "model":  "Intel Arc Graphics (Xe2-LPG)",
+                                                     "eu_count":  64,
+                                                     "max_freq_mhz":  2000,
+                                                     "display_support":  4
+                                                 },
+                                    "ai":  {
+                                               "ai_tops":  13.0,
+                                               "npu_model":  "Intel AI Boost NPU 4",
+                                               "tops_basis":  "INT8"
+                                           },
+                                    "cache":  {
+                                                  "l2_mb":  10.0,
+                                                  "l3_mb":  12.0
+                                              },
+                                    "features":  [
+                                                     "AVX2",
+                                                     "VT-x",
+                                                     "VT-d",
+                                                     "Thunderbolt 4",
+                                                     "AI Boost",
+                                                     "Wi-Fi 7"
+                                                 ]
+                                },
+    "Intel Core Ultra 7 265H":  {
+                                    "meta":  {
+                                                 "ark_id":  244130,
+                                                 "ark_url":  "https://ark.intel.com/content/www/us/en/ark/products/244130/intel-core-ultra-7-processor-265h.html",
+                                                 "source":  "intel_ark",
+                                                 "needs_verification":  false,
+                                                 "last_fetched":  "2026-05-28"
+                                             },
+                                    "identity":  {
+                                                     "processor_model":  "Intel Core Ultra 7 265H",
+                                                     "processor_series":  "Arrow Lake",
+                                                     "platform_brand":  "Intel",
+                                                     "launch_date":  "Q4 2024",
+                                                     "lithography":  "Intel 18A (compute) + Intel 6 (platform)",
+                                                     "socket":  "BGA",
+                                                     "market_segment":  "Mobile"
+                                                 },
+                                    "cores":  {
+                                                  "cpu_cores":  20,
+                                                  "cpu_p_cores":  8,
+                                                  "cpu_e_cores":  12,
+                                                  "threads":  28,
+                                                  "base_freq_p_ghz":  2.4,
+                                                  "base_freq_e_ghz":  1.8,
+                                                  "max_turbo_ghz":  5.4
+                                              },
+                                    "power":  {
+                                                  "tdp_watt":  28.0,
+                                                  "max_turbo_watt":  115.0,
+                                                  "min_assured_watt":  20.0
+                                              },
+                                    "memory":  {
+                                                   "type":  [
+                                                                "DDR5",
+                                                                "LPDDR5"
+                                                            ],
+                                                   "max_speed_mhz":  6400,
+                                                   "max_capacity_gb":  96,
+                                                   "channels":  2,
+                                                   "ecc_support":  false
+                                               },
+                                    "pcie":  {
+                                                 "revision":  "5.0",
+                                                 "max_lanes":  20,
+                                                 "configs":  "1x16+1x4 or 2x8+1x4"
+                                             },
+                                    "graphics":  {
+                                                     "model":  "Intel Arc Graphics (Xe2-LPG)",
+                                                     "eu_count":  128,
+                                                     "max_freq_mhz":  2200,
+                                                     "display_support":  4
+                                                 },
+                                    "ai":  {
+                                               "ai_tops":  13.0,
+                                               "npu_model":  "Intel AI Boost NPU 4",
+                                               "tops_basis":  "INT8"
+                                           },
+                                    "cache":  {
+                                                  "l2_mb":  18.0,
+                                                  "l3_mb":  24.0
+                                              },
+                                    "features":  [
+                                                     "AVX2",
+                                                     "VT-x",
+                                                     "VT-d",
+                                                     "Thunderbolt 4",
+                                                     "AI Boost",
+                                                     "Wi-Fi 7"
+                                                 ]
+                                },
+    "Intel Core Ultra 9 285H":  {
+                                    "meta":  {
+                                                 "ark_id":  244126,
+                                                 "ark_url":  "https://ark.intel.com/content/www/us/en/ark/products/244126/intel-core-ultra-9-processor-285h.html",
+                                                 "source":  "intel_ark",
+                                                 "needs_verification":  false,
+                                                 "last_fetched":  "2026-05-28",
+                                                 "notes":  "spec_matrix stores this as \u0027Intel Core Ultra 9 285\u0027 (H suffix dropped during extraction). Canonical name is 285H."
+                                             },
+                                    "identity":  {
+                                                     "processor_model":  "Intel Core Ultra 9 285H",
+                                                     "processor_series":  "Arrow Lake",
+                                                     "platform_brand":  "Intel",
+                                                     "launch_date":  "Q4 2024",
+                                                     "lithography":  "Intel 18A (compute) + Intel 6 (platform)",
+                                                     "socket":  "BGA",
+                                                     "market_segment":  "Mobile"
+                                                 },
+                                    "cores":  {
+                                                  "cpu_cores":  24,
+                                                  "cpu_p_cores":  8,
+                                                  "cpu_e_cores":  16,
+                                                  "threads":  32,
+                                                  "base_freq_p_ghz":  2.4,
+                                                  "base_freq_e_ghz":  1.8,
+                                                  "max_turbo_ghz":  5.6
+                                              },
+                                    "power":  {
+                                                  "tdp_watt":  45.0,
+                                                  "max_turbo_watt":  115.0,
+                                                  "min_assured_watt":  35.0
+                                              },
+                                    "memory":  {
+                                                   "type":  [
+                                                                "DDR5",
+                                                                "LPDDR5"
+                                                            ],
+                                                   "max_speed_mhz":  6400,
+                                                   "max_capacity_gb":  96,
+                                                   "channels":  2,
+                                                   "ecc_support":  false
+                                               },
+                                    "pcie":  {
+                                                 "revision":  "5.0",
+                                                 "max_lanes":  20,
+                                                 "configs":  "1x16+1x4 or 2x8+1x4"
+                                             },
+                                    "graphics":  {
+                                                     "model":  "Intel Arc Graphics (Xe2-LPG)",
+                                                     "eu_count":  128,
+                                                     "max_freq_mhz":  2300,
+                                                     "display_support":  4
+                                                 },
+                                    "ai":  {
+                                               "ai_tops":  13.0,
+                                               "npu_model":  "Intel AI Boost NPU 4",
+                                               "tops_basis":  "INT8"
+                                           },
+                                    "cache":  {
+                                                  "l2_mb":  24.0,
+                                                  "l3_mb":  36.0
+                                              },
+                                    "features":  [
+                                                     "AVX2",
+                                                     "VT-x",
+                                                     "VT-d",
+                                                     "Thunderbolt 4",
+                                                     "AI Boost",
+                                                     "Wi-Fi 7"
+                                                 ]
+                                },
+    "NXP i.MX 8M Plus":  {
+                             "meta":  {
+                                          "ark_id":  null,
+                                          "ark_url":  "https://www.nxp.com/products/processors-and-microcontrollers/arm-processors/i-mx-applications-processors/i-mx-8-processors/i-mx-8m-plus-arm-cortex-a53-machine-learning-vision-multimedia-and-industrial-iot:IMX8MPLUS",
+                                          "source":  "nxp_web",
+                                          "needs_verification":  false,
+                                          "last_fetched":  "2026-05-28"
+                                      },
+                             "identity":  {
+                                              "processor_model":  "NXP i.MX 8M Plus",
+                                              "processor_series":  "i.MX 8M Plus",
+                                              "platform_brand":  "NXP",
+                                              "launch_date":  "2020",
+                                              "lithography":  "14nm LPC",
+                                              "socket":  "BGA",
+                                              "market_segment":  "Embedded/IoT"
+                                          },
+                             "cores":  {
+                                           "cpu_cores":  4,
+                                           "cpu_p_cores":  null,
+                                           "cpu_e_cores":  null,
+                                           "threads":  4,
+                                           "base_freq_p_ghz":  1.8,
+                                           "base_freq_e_ghz":  null,
+                                           "max_turbo_ghz":  1.8
+                                       },
+                             "power":  {
+                                           "tdp_watt":  5.0,
+                                           "max_turbo_watt":  null,
+                                           "min_assured_watt":  2.0
+                                       },
+                             "memory":  {
+                                            "type":  [
+                                                         "LPDDR4"
+                                                     ],
+                                            "max_speed_mhz":  3200,
+                                            "max_capacity_gb":  8,
+                                            "channels":  2,
+                                            "ecc_support":  false
+                                        },
+                             "pcie":  {
+                                          "revision":  "3.0",
+                                          "max_lanes":  1,
+                                          "configs":  "1x1"
+                                      },
+                             "graphics":  {
+                                              "model":  "Vivante GC7000UL GPU",
+                                              "eu_count":  null,
+                                              "max_freq_mhz":  1000,
+                                              "display_support":  2
+                                          },
+                             "ai":  {
+                                        "ai_tops":  2.3,
+                                        "npu_model":  "NXP i.MX 8M Plus NPU",
+                                        "tops_basis":  "INT8"
+                                    },
+                             "cache":  {
+                                           "l2_mb":  1.0,
+                                           "l3_mb":  null
+                                       },
+                             "features":  [
+                                              "CAN FD",
+                                              "TSN",
+                                              "MIPI-CSI2",
+                                              "ISP",
+                                              "DSP",
+                                              "Yocto Linux"
+                                          ]
+                         },
+    "Intel Processor N200":  {
+                                 "meta":  {
+                                              "ark_id":  231804,
+                                              "ark_url":  "https://ark.intel.com/content/www/us/en/ark/products/231804/intel-processor-n200.html",
+                                              "source":  "intel_ark",
+                                              "needs_verification":  false,
+                                              "last_fetched":  "2026-05-28"
+                                          },
+                                 "identity":  {
+                                                  "processor_model":  "Intel Processor N200",
+                                                  "processor_series":  "Alder Lake-N",
+                                                  "platform_brand":  "Intel",
+                                                  "launch_date":  "Q1 2023",
+                                                  "lithography":  "Intel 7",
+                                                  "socket":  "FCBGA1744",
+                                                  "market_segment":  "Embedded"
+                                              },
+                                 "cores":  {
+                                               "cpu_cores":  4,
+                                               "cpu_p_cores":  null,
+                                               "cpu_e_cores":  null,
+                                               "threads":  4,
+                                               "base_freq_p_ghz":  1.0,
+                                               "base_freq_e_ghz":  null,
+                                               "max_turbo_ghz":  3.7
+                                           },
+                                 "power":  {
+                                               "tdp_watt":  6.0,
+                                               "max_turbo_watt":  25.0,
+                                               "min_assured_watt":  6.0
+                                           },
+                                 "memory":  {
+                                                "type":  [
+                                                             "DDR4",
+                                                             "DDR5",
+                                                             "LPDDR4",
+                                                             "LPDDR5"
+                                                         ],
+                                                "max_speed_mhz":  4800,
+                                                "max_capacity_gb":  16,
+                                                "channels":  1,
+                                                "ecc_support":  false
+                                            },
+                                 "pcie":  {
+                                              "revision":  "3.0",
+                                              "max_lanes":  9,
+                                              "configs":  "1x8+1x1 or 9x1"
+                                          },
+                                 "graphics":  {
+                                                  "model":  "Intel UHD Graphics",
+                                                  "eu_count":  32,
+                                                  "max_freq_mhz":  750,
+                                                  "display_support":  2
+                                              },
+                                 "ai":  {
+                                            "ai_tops":  null,
+                                            "npu_model":  null
+                                        },
+                                 "cache":  {
+                                               "l2_mb":  1.5,
+                                               "l3_mb":  6.0
+                                           },
+                                 "features":  [
+                                                  "AVX2",
+                                                  "VT-x",
+                                                  "VT-d",
+                                                  "Gracemont E-cores only"
+                                              ]
+                             },
+    "Intel Processor N97":  {
+                                "meta":  {
+                                             "ark_id":  233090,
+                                             "ark_url":  "https://ark.intel.com/content/www/us/en/ark/products/233090/intel-processor-n97.html",
+                                             "source":  "intel_ark",
+                                             "needs_verification":  false,
+                                             "last_fetched":  "2026-05-28"
+                                         },
+                                "identity":  {
+                                                 "processor_model":  "Intel Processor N97",
+                                                 "processor_series":  "Alder Lake-N",
+                                                 "platform_brand":  "Intel",
+                                                 "launch_date":  "Q1 2023",
+                                                 "lithography":  "Intel 7",
+                                                 "socket":  "FCBGA1744",
+                                                 "market_segment":  "Embedded"
+                                             },
+                                "cores":  {
+                                              "cpu_cores":  4,
+                                              "cpu_p_cores":  null,
+                                              "cpu_e_cores":  null,
+                                              "threads":  4,
+                                              "base_freq_p_ghz":  1.2,
+                                              "base_freq_e_ghz":  null,
+                                              "max_turbo_ghz":  3.6
+                                          },
+                                "power":  {
+                                              "tdp_watt":  12.0,
+                                              "max_turbo_watt":  25.0,
+                                              "min_assured_watt":  6.0
+                                          },
+                                "memory":  {
+                                               "type":  [
+                                                            "DDR4",
+                                                            "DDR5",
+                                                            "LPDDR4",
+                                                            "LPDDR5"
+                                                        ],
+                                               "max_speed_mhz":  4800,
+                                               "max_capacity_gb":  16,
+                                               "channels":  1,
+                                               "ecc_support":  false
+                                           },
+                                "pcie":  {
+                                             "revision":  "3.0",
+                                             "max_lanes":  9,
+                                             "configs":  "1x8+1x1 or 9x1"
+                                         },
+                                "graphics":  {
+                                                 "model":  "Intel UHD Graphics",
+                                                 "eu_count":  24,
+                                                 "max_freq_mhz":  1200,
+                                                 "display_support":  2
+                                             },
+                                "ai":  {
+                                           "ai_tops":  null,
+                                           "npu_model":  null
+                                       },
+                                "cache":  {
+                                              "l2_mb":  1.5,
+                                              "l3_mb":  6.0
+                                          },
+                                "features":  [
+                                                 "AVX2",
+                                                 "VT-x",
+                                                 "VT-d",
+                                                 "Gracemont E-cores only"
+                                             ]
+                            },
+    "Intel Core i3-N305":  {
+                               "meta":  {
+                                            "ark_id":  231805,
+                                            "ark_url":  "https://ark.intel.com/content/www/us/en/ark/products/231805/intel-core-i3-n305-processor.html",
+                                            "source":  "intel_ark",
+                                            "needs_verification":  false,
+                                            "last_fetched":  "2026-05-28"
+                                        },
+                               "identity":  {
+                                                "processor_model":  "Intel Core i3-N305",
+                                                "processor_series":  "Alder Lake-N",
+                                                "platform_brand":  "Intel",
+                                                "launch_date":  "Q1 2023",
+                                                "lithography":  "Intel 7",
+                                                "socket":  "FCBGA1744",
+                                                "market_segment":  "Embedded"
+                                            },
+                               "cores":  {
+                                             "cpu_cores":  8,
+                                             "cpu_p_cores":  null,
+                                             "cpu_e_cores":  null,
+                                             "threads":  8,
+                                             "base_freq_p_ghz":  1.8,
+                                             "base_freq_e_ghz":  null,
+                                             "max_turbo_ghz":  3.8
+                                         },
+                               "power":  {
+                                             "tdp_watt":  15.0,
+                                             "max_turbo_watt":  35.0,
+                                             "min_assured_watt":  6.0
+                                         },
+                               "memory":  {
+                                              "type":  [
+                                                           "DDR4",
+                                                           "DDR5",
+                                                           "LPDDR4",
+                                                           "LPDDR5"
+                                                       ],
+                                              "max_speed_mhz":  4800,
+                                              "max_capacity_gb":  32,
+                                              "channels":  2,
+                                              "ecc_support":  false
+                                          },
+                               "pcie":  {
+                                            "revision":  "3.0",
+                                            "max_lanes":  9,
+                                            "configs":  "1x8+1x1 or 9x1"
+                                        },
+                               "graphics":  {
+                                                "model":  "Intel UHD Graphics",
+                                                "eu_count":  32,
+                                                "max_freq_mhz":  1250,
+                                                "display_support":  2
+                                            },
+                               "ai":  {
+                                          "ai_tops":  null,
+                                          "npu_model":  null
+                                      },
+                               "cache":  {
+                                             "l2_mb":  2.0,
+                                             "l3_mb":  6.0
+                                         },
+                               "features":  [
+                                                "AVX2",
+                                                "VT-x",
+                                                "VT-d",
+                                                "Gracemont E-cores only",
+                                                "Dual-channel memory"
+                                            ]
+                           },
+    "Intel Core Ultra 5 225U":  {
+                                    "meta":  {
+                                                 "ark_id":  244148,
+                                                 "ark_url":  "https://ark.intel.com/content/www/us/en/ark/products/244148/intel-core-ultra-5-processor-225u.html",
+                                                 "source":  "intel_ark",
+                                                 "needs_verification":  false,
+                                                 "last_fetched":  "2026-05-28"
+                                             },
+                                    "identity":  {
+                                                     "processor_model":  "Intel Core Ultra 5 225U",
+                                                     "processor_series":  "Arrow Lake",
+                                                     "platform_brand":  "Intel",
+                                                     "launch_date":  "Q4 2024",
+                                                     "lithography":  "Intel 18A (compute) + Intel 6 (platform)",
+                                                     "socket":  "BGA",
+                                                     "market_segment":  "Mobile"
+                                                 },
+                                    "cores":  {
+                                                  "cpu_cores":  12,
+                                                  "cpu_p_cores":  2,
+                                                  "cpu_e_cores":  10,
+                                                  "threads":  14,
+                                                  "base_freq_p_ghz":  1.5,
+                                                  "base_freq_e_ghz":  1.1,
+                                                  "max_turbo_ghz":  4.9
+                                              },
+                                    "power":  {
+                                                  "tdp_watt":  15.0,
+                                                  "max_turbo_watt":  57.0,
+                                                  "min_assured_watt":  9.0
+                                              },
+                                    "memory":  {
+                                                   "type":  [
+                                                                "DDR5",
+                                                                "LPDDR5"
+                                                            ],
+                                                   "max_speed_mhz":  6400,
+                                                   "max_capacity_gb":  64,
+                                                   "channels":  2,
+                                                   "ecc_support":  false
+                                               },
+                                    "pcie":  {
+                                                 "revision":  "5.0",
+                                                 "max_lanes":  20,
+                                                 "configs":  "1x16+1x4 or 2x8+1x4"
+                                             },
+                                    "graphics":  {
+                                                     "model":  "Intel Arc Graphics (Xe2-LPG)",
+                                                     "eu_count":  48,
+                                                     "max_freq_mhz":  1900,
+                                                     "display_support":  4
+                                                 },
+                                    "ai":  {
+                                               "ai_tops":  13.0,
+                                               "npu_model":  "Intel AI Boost NPU 4",
+                                               "tops_basis":  "INT8"
+                                           },
+                                    "cache":  {
+                                                  "l2_mb":  8.0,
+                                                  "l3_mb":  12.0
+                                              },
+                                    "features":  [
+                                                     "AVX2",
+                                                     "VT-x",
+                                                     "VT-d",
+                                                     "Thunderbolt 4",
+                                                     "AI Boost",
+                                                     "Wi-Fi 7"
+                                                 ]
+                                },
+    "Qualcomm Cloud AI 100":  {
+                                  "meta":  {
+                                               "ark_id":  null,
+                                               "ark_url":  "https://www.qualcomm.com/products/technology/artificial-intelligence/cloud-ai-100",
+                                               "source":  "qualcomm_manual",
+                                               "needs_verification":  false,
+                                               "last_fetched":  "2026-05-28",
+                                               "notes":  "PCIe AI accelerator card. No general-purpose CPU. 200 TOPS INT8."
+                                           },
+                                  "identity":  {
+                                                   "processor_model":  "Qualcomm Cloud AI 100",
+                                                   "processor_series":  "Qualcomm Cloud AI",
+                                                   "platform_brand":  "Qualcomm",
+                                                   "launch_date":  "2021",
+                                                   "lithography":  "7nm",
+                                                   "socket":  "PCIe Card",
+                                                   "market_segment":  "AI Accelerator"
+                                               },
+                                  "cores":  {
+                                                "cpu_cores":  null,
+                                                "cpu_p_cores":  null,
+                                                "cpu_e_cores":  null,
+                                                "threads":  null,
+                                                "base_freq_p_ghz":  null,
+                                                "max_turbo_ghz":  null
+                                            },
+                                  "power":  {
+                                                "tdp_watt":  75.0,
+                                                "max_turbo_watt":  null,
+                                                "min_assured_watt":  null
+                                            },
+                                  "memory":  {
+                                                 "type":  [
+                                                              "HBM2e"
+                                                          ],
+                                                 "max_speed_mhz":  null,
+                                                 "max_capacity_gb":  64,
+                                                 "channels":  null,
+                                                 "ecc_support":  null
+                                             },
+                                  "pcie":  {
+                                               "revision":  "4.0",
+                                               "max_lanes":  16,
+                                               "configs":  "x16"
+                                           },
+                                  "graphics":  {
+                                                   "model":  null,
+                                                   "eu_count":  null,
+                                                   "max_freq_mhz":  null,
+                                                   "display_support":  null
+                                               },
+                                  "ai":  {
+                                             "ai_tops":  200.0,
+                                             "npu_model":  "Qualcomm Cloud AI Engine",
+                                             "tops_basis":  "INT8"
+                                         },
+                                  "cache":  {
+                                                "l2_mb":  null,
+                                                "l3_mb":  null
+                                            },
+                                  "features":  [
+                                                   "PCIe AI Accelerator",
+                                                   "INT8",
+                                                   "INT4",
+                                                   "FP16",
+                                                   "BF16",
+                                                   "200 TOPS"
+                                               ]
+                              },
+    "Qualcomm Cloud AI 100 Ultra":  {
+                                        "meta":  {
+                                                     "ark_id":  null,
+                                                     "ark_url":  "https://www.qualcomm.com/products/technology/artificial-intelligence/cloud-ai-100",
+                                                     "source":  "qualcomm_manual",
+                                                     "needs_verification":  false,
+                                                     "last_fetched":  "2026-05-28",
+                                                     "notes":  "APEX-X100-Q: Intel i7-13700E host + this PCIe AI accelerator card. 870 TOPS INT8."
+                                                 },
+                                        "identity":  {
+                                                         "processor_model":  "Qualcomm Cloud AI 100 Ultra",
+                                                         "processor_series":  "Qualcomm Cloud AI",
+                                                         "platform_brand":  "Qualcomm",
+                                                         "launch_date":  "2022",
+                                                         "lithography":  "7nm",
+                                                         "socket":  "PCIe Card",
+                                                         "market_segment":  "AI Accelerator"
+                                                     },
+                                        "cores":  {
+                                                      "cpu_cores":  null,
+                                                      "cpu_p_cores":  null,
+                                                      "cpu_e_cores":  null,
+                                                      "threads":  null,
+                                                      "base_freq_p_ghz":  null,
+                                                      "max_turbo_ghz":  null
+                                                  },
+                                        "power":  {
+                                                      "tdp_watt":  75.0,
+                                                      "max_turbo_watt":  null,
+                                                      "min_assured_watt":  null
+                                                  },
+                                        "memory":  {
+                                                       "type":  [
+                                                                    "HBM2e"
+                                                                ],
+                                                       "max_speed_mhz":  null,
+                                                       "max_capacity_gb":  64,
+                                                       "channels":  null,
+                                                       "ecc_support":  null
+                                                   },
+                                        "pcie":  {
+                                                     "revision":  "4.0",
+                                                     "max_lanes":  16,
+                                                     "configs":  "x16"
+                                                 },
+                                        "graphics":  {
+                                                         "model":  null,
+                                                         "eu_count":  null,
+                                                         "max_freq_mhz":  null,
+                                                         "display_support":  null
+                                                     },
+                                        "ai":  {
+                                                   "ai_tops":  870.0,
+                                                   "npu_model":  "Qualcomm Cloud AI Engine Ultra",
+                                                   "tops_basis":  "INT8"
+                                               },
+                                        "cache":  {
+                                                      "l2_mb":  null,
+                                                      "l3_mb":  null
+                                                  },
+                                        "features":  [
+                                                         "PCIe AI Accelerator",
+                                                         "INT8",
+                                                         "INT4",
+                                                         "FP16",
+                                                         "BF16",
+                                                         "870 TOPS"
+                                                     ]
+                                    },
+    "Intel Core Ultra 9 285":  {
+                                   "meta":  {
+                                                "ark_id":  null,
+                                                "ark_url":  "https://ark.intel.com/content/www/us/en/ark/search.html?q=Core+Ultra+9+285",
+                                                "source":  "manual_estimate",
+                                                "needs_verification":  false,
+                                                "last_fetched":  "2026-05-28",
+                                                "notes":  "Arrow Lake-S desktop (non-K), 65W. LGA1851 socket. AXMB-3150 highest-tier SKU. Intel removed HT in Arrow Lake ??threads = cores. DISTINCT from \u0027Intel Core Ultra 9 285H\u0027 (BGA mobile, 45W)."
+                                            },
+                                   "identity":  {
+                                                    "processor_model":  "Intel Core Ultra 9 285",
+                                                    "processor_series":  "Arrow Lake",
+                                                    "platform_brand":  "Intel",
+                                                    "launch_date":  "Q4 2024",
+                                                    "lithography":  "Intel 3 (compute) + Intel 6 (SoC/IO)",
+                                                    "socket":  "LGA1851",
+                                                    "market_segment":  "Desktop/Embedded"
+                                                },
+                                   "cores":  {
+                                                 "cpu_cores":  24,
+                                                 "cpu_p_cores":  8,
+                                                 "cpu_e_cores":  16,
+                                                 "threads":  24,
+                                                 "base_freq_p_ghz":  2.0,
+                                                 "base_freq_e_ghz":  1.6,
+                                                 "max_turbo_ghz":  5.5
+                                             },
+                                   "power":  {
+                                                 "tdp_watt":  65.0,
+                                                 "max_turbo_watt":  null,
+                                                 "min_assured_watt":  35.0
+                                             },
+                                   "memory":  {
+                                                  "type":  [
+                                                               "DDR5"
+                                                           ],
+                                                  "max_speed_mhz":  6400,
+                                                  "max_capacity_gb":  192,
+                                                  "channels":  2,
+                                                  "ecc_support":  false
+                                              },
+                                   "pcie":  {
+                                                "revision":  "5.0",
+                                                "max_lanes":  24,
+                                                "configs":  "1x16+1x4+4x1"
+                                            },
+                                   "graphics":  {
+                                                    "model":  "Intel Arc Graphics (Xe2-LPG, 4EU)",
+                                                    "eu_count":  4,
+                                                    "max_freq_mhz":  2000,
+                                                    "display_support":  4
+                                                },
+                                   "ai":  {
+                                              "ai_tops":  13.0,
+                                              "npu_model":  "Intel AI Boost NPU 4",
+                                              "tops_basis":  "INT8"
+                                          },
+                                   "cache":  {
+                                                 "l2_mb":  32.0,
+                                                 "l3_mb":  36.0
+                                             },
+                                   "features":  [
+                                                    "AVX2",
+                                                    "VT-x",
+                                                    "VT-d",
+                                                    "AI Boost",
+                                                    "Thunderbolt 4",
+                                                    "Wi-Fi 7"
+                                                ]
+                               },
+    "Intel Core Ultra 9 285T":  {
+                                    "meta":  {
+                                                 "ark_id":  null,
+                                                 "ark_url":  "https://ark.intel.com/content/www/us/en/ark/search.html?q=Core+Ultra+9+285T",
+                                                 "source":  "manual_estimate",
+                                                 "needs_verification":  false,
+                                                 "last_fetched":  "2026-05-28",
+                                                 "notes":  "Arrow Lake-S desktop T-series (low-TDP), 35W. Same 24-core die as Core Ultra 9 285. AXMB-3150 low-power SKU."
+                                             },
+                                    "identity":  {
+                                                     "processor_model":  "Intel Core Ultra 9 285T",
+                                                     "processor_series":  "Arrow Lake",
+                                                     "platform_brand":  "Intel",
+                                                     "launch_date":  "Q4 2024",
+                                                     "lithography":  "Intel 3 (compute) + Intel 6 (SoC/IO)",
+                                                     "socket":  "LGA1851",
+                                                     "market_segment":  "Desktop/Embedded"
+                                                 },
+                                    "cores":  {
+                                                  "cpu_cores":  24,
+                                                  "cpu_p_cores":  8,
+                                                  "cpu_e_cores":  16,
+                                                  "threads":  24,
+                                                  "base_freq_p_ghz":  1.6,
+                                                  "base_freq_e_ghz":  1.2,
+                                                  "max_turbo_ghz":  5.2
+                                              },
+                                    "power":  {
+                                                  "tdp_watt":  35.0,
+                                                  "max_turbo_watt":  null,
+                                                  "min_assured_watt":  20.0
+                                              },
+                                    "memory":  {
+                                                   "type":  [
+                                                                "DDR5"
+                                                            ],
+                                                   "max_speed_mhz":  6400,
+                                                   "max_capacity_gb":  192,
+                                                   "channels":  2,
+                                                   "ecc_support":  false
+                                               },
+                                    "pcie":  {
+                                                 "revision":  "5.0",
+                                                 "max_lanes":  24,
+                                                 "configs":  "1x16+1x4+4x1"
+                                             },
+                                    "graphics":  {
+                                                     "model":  "Intel Arc Graphics (Xe2-LPG, 4EU)",
+                                                     "eu_count":  4,
+                                                     "max_freq_mhz":  2000,
+                                                     "display_support":  4
+                                                 },
+                                    "ai":  {
+                                               "ai_tops":  13.0,
+                                               "npu_model":  "Intel AI Boost NPU 4",
+                                               "tops_basis":  "INT8"
+                                           },
+                                    "cache":  {
+                                                  "l2_mb":  32.0,
+                                                  "l3_mb":  36.0
+                                              },
+                                    "features":  [
+                                                     "AVX2",
+                                                     "VT-x",
+                                                     "VT-d",
+                                                     "AI Boost",
+                                                     "Thunderbolt 4",
+                                                     "Wi-Fi 7",
+                                                     "Low TDP"
+                                                 ]
+                                },
+    "Intel Core Ultra 7 265":  {
+                                   "meta":  {
+                                                "ark_id":  null,
+                                                "ark_url":  "https://ark.intel.com/content/www/us/en/ark/search.html?q=Core+Ultra+7+265",
+                                                "source":  "manual_estimate",
+                                                "needs_verification":  false,
+                                                "last_fetched":  "2026-05-28",
+                                                "notes":  "Arrow Lake-S desktop (non-K), 65W. LGA1851. DISTINCT from \u0027Intel Core Ultra 7 265H\u0027 (BGA mobile, 28W). AXMB-3150 mid-high SKU."
+                                            },
+                                   "identity":  {
+                                                    "processor_model":  "Intel Core Ultra 7 265",
+                                                    "processor_series":  "Arrow Lake",
+                                                    "platform_brand":  "Intel",
+                                                    "launch_date":  "Q4 2024",
+                                                    "lithography":  "Intel 3 (compute) + Intel 6 (SoC/IO)",
+                                                    "socket":  "LGA1851",
+                                                    "market_segment":  "Desktop/Embedded"
+                                                },
+                                   "cores":  {
+                                                 "cpu_cores":  20,
+                                                 "cpu_p_cores":  8,
+                                                 "cpu_e_cores":  12,
+                                                 "threads":  20,
+                                                 "base_freq_p_ghz":  2.0,
+                                                 "base_freq_e_ghz":  1.5,
+                                                 "max_turbo_ghz":  5.3
+                                             },
+                                   "power":  {
+                                                 "tdp_watt":  65.0,
+                                                 "max_turbo_watt":  null,
+                                                 "min_assured_watt":  35.0
+                                             },
+                                   "memory":  {
+                                                  "type":  [
+                                                               "DDR5"
+                                                           ],
+                                                  "max_speed_mhz":  6400,
+                                                  "max_capacity_gb":  192,
+                                                  "channels":  2,
+                                                  "ecc_support":  false
+                                              },
+                                   "pcie":  {
+                                                "revision":  "5.0",
+                                                "max_lanes":  24,
+                                                "configs":  "1x16+1x4+4x1"
+                                            },
+                                   "graphics":  {
+                                                    "model":  "Intel Arc Graphics (Xe2-LPG, 4EU)",
+                                                    "eu_count":  4,
+                                                    "max_freq_mhz":  2000,
+                                                    "display_support":  4
+                                                },
+                                   "ai":  {
+                                              "ai_tops":  13.0,
+                                              "npu_model":  "Intel AI Boost NPU 4",
+                                              "tops_basis":  "INT8"
+                                          },
+                                   "cache":  {
+                                                 "l2_mb":  26.0,
+                                                 "l3_mb":  30.0
+                                             },
+                                   "features":  [
+                                                    "AVX2",
+                                                    "VT-x",
+                                                    "VT-d",
+                                                    "AI Boost",
+                                                    "Thunderbolt 4",
+                                                    "Wi-Fi 7"
+                                                ]
+                               },
+    "Intel Core Ultra 7 265T":  {
+                                    "meta":  {
+                                                 "ark_id":  null,
+                                                 "ark_url":  "https://ark.intel.com/content/www/us/en/ark/search.html?q=Core+Ultra+7+265T",
+                                                 "source":  "manual_estimate",
+                                                 "needs_verification":  false,
+                                                 "last_fetched":  "2026-05-28",
+                                                 "notes":  "Arrow Lake-S desktop T-series (low-TDP), 35W. Same 20-core die as Core Ultra 7 265. AXMB-3150 mid SKU."
+                                             },
+                                    "identity":  {
+                                                     "processor_model":  "Intel Core Ultra 7 265T",
+                                                     "processor_series":  "Arrow Lake",
+                                                     "platform_brand":  "Intel",
+                                                     "launch_date":  "Q4 2024",
+                                                     "lithography":  "Intel 3 (compute) + Intel 6 (SoC/IO)",
+                                                     "socket":  "LGA1851",
+                                                     "market_segment":  "Desktop/Embedded"
+                                                 },
+                                    "cores":  {
+                                                  "cpu_cores":  20,
+                                                  "cpu_p_cores":  8,
+                                                  "cpu_e_cores":  12,
+                                                  "threads":  20,
+                                                  "base_freq_p_ghz":  1.5,
+                                                  "base_freq_e_ghz":  1.1,
+                                                  "max_turbo_ghz":  5.1
+                                              },
+                                    "power":  {
+                                                  "tdp_watt":  35.0,
+                                                  "max_turbo_watt":  null,
+                                                  "min_assured_watt":  20.0
+                                              },
+                                    "memory":  {
+                                                   "type":  [
+                                                                "DDR5"
+                                                            ],
+                                                   "max_speed_mhz":  6400,
+                                                   "max_capacity_gb":  192,
+                                                   "channels":  2,
+                                                   "ecc_support":  false
+                                               },
+                                    "pcie":  {
+                                                 "revision":  "5.0",
+                                                 "max_lanes":  24,
+                                                 "configs":  "1x16+1x4+4x1"
+                                             },
+                                    "graphics":  {
+                                                     "model":  "Intel Arc Graphics (Xe2-LPG, 4EU)",
+                                                     "eu_count":  4,
+                                                     "max_freq_mhz":  2000,
+                                                     "display_support":  4
+                                                 },
+                                    "ai":  {
+                                               "ai_tops":  13.0,
+                                               "npu_model":  "Intel AI Boost NPU 4",
+                                               "tops_basis":  "INT8"
+                                           },
+                                    "cache":  {
+                                                  "l2_mb":  26.0,
+                                                  "l3_mb":  30.0
+                                              },
+                                    "features":  [
+                                                     "AVX2",
+                                                     "VT-x",
+                                                     "VT-d",
+                                                     "AI Boost",
+                                                     "Thunderbolt 4",
+                                                     "Wi-Fi 7",
+                                                     "Low TDP"
+                                                 ]
+                                },
+    "Intel Core Ultra 5 245":  {
+                                   "meta":  {
+                                                "ark_id":  null,
+                                                "ark_url":  "https://ark.intel.com/content/www/us/en/ark/search.html?q=Core+Ultra+5+245",
+                                                "source":  "manual_estimate",
+                                                "needs_verification":  false,
+                                                "last_fetched":  "2026-05-28",
+                                                "notes":  "Arrow Lake-S desktop (non-K), 65W. LGA1851. DISTINCT from \u0027Intel Core Ultra 5 245H\u0027 (BGA mobile). AXMB-3150 entry-level SKU."
+                                            },
+                                   "identity":  {
+                                                    "processor_model":  "Intel Core Ultra 5 245",
+                                                    "processor_series":  "Arrow Lake",
+                                                    "platform_brand":  "Intel",
+                                                    "launch_date":  "Q4 2024",
+                                                    "lithography":  "Intel 3 (compute) + Intel 6 (SoC/IO)",
+                                                    "socket":  "LGA1851",
+                                                    "market_segment":  "Desktop/Embedded"
+                                                },
+                                   "cores":  {
+                                                 "cpu_cores":  14,
+                                                 "cpu_p_cores":  6,
+                                                 "cpu_e_cores":  8,
+                                                 "threads":  14,
+                                                 "base_freq_p_ghz":  1.9,
+                                                 "base_freq_e_ghz":  1.4,
+                                                 "max_turbo_ghz":  5.1
+                                             },
+                                   "power":  {
+                                                 "tdp_watt":  65.0,
+                                                 "max_turbo_watt":  null,
+                                                 "min_assured_watt":  35.0
+                                             },
+                                   "memory":  {
+                                                  "type":  [
+                                                               "DDR5"
+                                                           ],
+                                                  "max_speed_mhz":  6400,
+                                                  "max_capacity_gb":  192,
+                                                  "channels":  2,
+                                                  "ecc_support":  false
+                                              },
+                                   "pcie":  {
+                                                "revision":  "5.0",
+                                                "max_lanes":  24,
+                                                "configs":  "1x16+1x4+4x1"
+                                            },
+                                   "graphics":  {
+                                                    "model":  "Intel Arc Graphics (Xe2-LPG, 4EU)",
+                                                    "eu_count":  4,
+                                                    "max_freq_mhz":  2000,
+                                                    "display_support":  4
+                                                },
+                                   "ai":  {
+                                              "ai_tops":  13.0,
+                                              "npu_model":  "Intel AI Boost NPU 4",
+                                              "tops_basis":  "INT8"
+                                          },
+                                   "cache":  {
+                                                 "l2_mb":  20.0,
+                                                 "l3_mb":  24.0
+                                             },
+                                   "features":  [
+                                                    "AVX2",
+                                                    "VT-x",
+                                                    "VT-d",
+                                                    "AI Boost",
+                                                    "Thunderbolt 4",
+                                                    "Wi-Fi 7"
+                                                ]
+                               },
+    "Intel Core Ultra 5 245T":  {
+                                    "meta":  {
+                                                 "ark_id":  null,
+                                                 "ark_url":  "https://ark.intel.com/content/www/us/en/ark/search.html?q=Core+Ultra+5+245T",
+                                                 "source":  "manual_estimate",
+                                                 "needs_verification":  false,
+                                                 "last_fetched":  "2026-05-28",
+                                                 "notes":  "Arrow Lake-S desktop T-series (low-TDP), 35W. Same 14-core die as Core Ultra 5 245. AXMB-3150 entry-level low-power SKU."
+                                             },
+                                    "identity":  {
+                                                     "processor_model":  "Intel Core Ultra 5 245T",
+                                                     "processor_series":  "Arrow Lake",
+                                                     "platform_brand":  "Intel",
+                                                     "launch_date":  "Q4 2024",
+                                                     "lithography":  "Intel 3 (compute) + Intel 6 (SoC/IO)",
+                                                     "socket":  "LGA1851",
+                                                     "market_segment":  "Desktop/Embedded"
+                                                 },
+                                    "cores":  {
+                                                  "cpu_cores":  14,
+                                                  "cpu_p_cores":  6,
+                                                  "cpu_e_cores":  8,
+                                                  "threads":  14,
+                                                  "base_freq_p_ghz":  1.4,
+                                                  "base_freq_e_ghz":  1.0,
+                                                  "max_turbo_ghz":  4.9
+                                              },
+                                    "power":  {
+                                                  "tdp_watt":  35.0,
+                                                  "max_turbo_watt":  null,
+                                                  "min_assured_watt":  20.0
+                                              },
+                                    "memory":  {
+                                                   "type":  [
+                                                                "DDR5"
+                                                            ],
+                                                   "max_speed_mhz":  6400,
+                                                   "max_capacity_gb":  192,
+                                                   "channels":  2,
+                                                   "ecc_support":  false
+                                               },
+                                    "pcie":  {
+                                                 "revision":  "5.0",
+                                                 "max_lanes":  24,
+                                                 "configs":  "1x16+1x4+4x1"
+                                             },
+                                    "graphics":  {
+                                                     "model":  "Intel Arc Graphics (Xe2-LPG, 4EU)",
+                                                     "eu_count":  4,
+                                                     "max_freq_mhz":  2000,
+                                                     "display_support":  4
+                                                 },
+                                    "ai":  {
+                                               "ai_tops":  13.0,
+                                               "npu_model":  "Intel AI Boost NPU 4",
+                                               "tops_basis":  "INT8"
+                                           },
+                                    "cache":  {
+                                                  "l2_mb":  20.0,
+                                                  "l3_mb":  24.0
+                                              },
+                                    "features":  [
+                                                     "AVX2",
+                                                     "VT-x",
+                                                     "VT-d",
+                                                     "AI Boost",
+                                                     "Thunderbolt 4",
+                                                     "Wi-Fi 7",
+                                                     "Low TDP"
+                                                 ]
+                                },
+    "Intel Core Ultra X7 358H":  {
+                                     "meta":  {
+                                                  "ark_id":  null,
+                                                  "ark_url":  null,
+                                                  "source":  "manual_estimate",
+                                                  "needs_verification":  true,
+                                                  "last_fetched":  "2026-05-28",
+                                                  "notes":  "Preliminary next-gen H-series (300-series, post Arrow Lake). \u0027X7\u0027 tier prefix. 25W configured TDP as per AXMB-D160 and APEX-E400 datasheets. Exact core topology, memory type, and ARK entry unconfirmed. Verify when product launches."
+                                              },
+                                     "identity":  {
+                                                      "processor_model":  "Intel Core Ultra X7 358H",
+                                                      "processor_series":  "Arrow Lake",
+                                                      "platform_brand":  "Intel",
+                                                      "launch_date":  "TBD (Preliminary)",
+                                                      "lithography":  "Intel 3 or next",
+                                                      "socket":  "BGA",
+                                                      "market_segment":  "Mobile/Embedded"
+                                                  },
+                                     "cores":  {
+                                                   "cpu_cores":  16,
+                                                   "cpu_p_cores":  6,
+                                                   "cpu_e_cores":  10,
+                                                   "threads":  22,
+                                                   "base_freq_p_ghz":  2.2,
+                                                   "base_freq_e_ghz":  1.6,
+                                                   "max_turbo_ghz":  5.2
+                                               },
+                                     "power":  {
+                                                   "tdp_watt":  25.0,
+                                                   "max_turbo_watt":  65.0,
+                                                   "min_assured_watt":  15.0
+                                               },
+                                     "memory":  {
+                                                    "type":  [
+                                                                 "DDR5",
+                                                                 "LPDDR5"
+                                                             ],
+                                                    "max_speed_mhz":  6400,
+                                                    "max_capacity_gb":  96,
+                                                    "channels":  2,
+                                                    "ecc_support":  false
+                                                },
+                                     "pcie":  {
+                                                  "revision":  "5.0",
+                                                  "max_lanes":  20,
+                                                  "configs":  "1x16+1x4 or 2x8+1x4"
+                                              },
+                                     "graphics":  {
+                                                      "model":  "Intel Arc Graphics (Xe2-LPG)",
+                                                      "eu_count":  128,
+                                                      "max_freq_mhz":  2200,
+                                                      "display_support":  4
+                                                  },
+                                     "ai":  {
+                                                "ai_tops":  13.0,
+                                                "npu_model":  "Intel AI Boost NPU 4",
+                                                "tops_basis":  "INT8"
+                                            },
+                                     "cache":  {
+                                                   "l2_mb":  14.0,
+                                                   "l3_mb":  24.0
+                                               },
+                                     "features":  [
+                                                      "AVX2",
+                                                      "VT-x",
+                                                      "VT-d",
+                                                      "Thunderbolt 4",
+                                                      "AI Boost",
+                                                      "Wi-Fi 7"
+                                                  ]
+                                 },
+    "Intel Xeon 6731P":  {
+                             "meta":  {
+                                          "ark_id":  242635,
+                                          "ark_url":  "https://www.intel.com/content/www/us/en/products/sku/242635/intel-xeon-6731p-processor-144m-cache-2-50-ghz/specifications.html",
+                                          "source":  "intel_ark",
+                                          "needs_verification":  false,
+                                          "last_fetched":  "2026-05-29",
+                                          "notes":  "Xeon 6 P-core (Granite Rapids). APEX-S100 primary SKU. 32C/64T, 245W TDP, 144MB L3. ARK-verified 2026-05-29."
+                                      },
+                             "identity":  {
+                                              "processor_model":  "Intel Xeon 6731P",
+                                              "processor_series":  "Xeon 6 P-core",
+                                              "platform_brand":  "Intel",
+                                              "launch_date":  "Q1 2025",
+                                              "lithography":  "Intel 3",
+                                              "socket":  "FCLGA4710",
+                                              "market_segment":  "Server/Embedded"
+                                          },
+                             "cores":  {
+                                           "cpu_cores":  32,
+                                           "cpu_p_cores":  null,
+                                           "cpu_e_cores":  null,
+                                           "threads":  64,
+                                           "base_freq_p_ghz":  2.5,
+                                           "base_freq_e_ghz":  null,
+                                           "max_turbo_ghz":  4.1
+                                       },
+                             "power":  {
+                                           "tdp_watt":  245.0,
+                                           "max_turbo_watt":  null,
+                                           "min_assured_watt":  null
+                                       },
+                             "memory":  {
+                                            "type":  [
+                                                         "DDR5"
+                                                     ],
+                                            "max_speed_mhz":  6400,
+                                            "max_capacity_gb":  4096,
+                                            "channels":  8,
+                                            "ecc_support":  true
+                                        },
+                             "pcie":  {
+                                          "revision":  "5.0",
+                                          "max_lanes":  80,
+                                          "configs":  "varies by platform"
+                                      },
+                             "graphics":  {
+                                              "model":  null,
+                                              "eu_count":  null,
+                                              "max_freq_mhz":  null,
+                                              "display_support":  null
+                                          },
+                             "ai":  {
+                                        "ai_tops":  null,
+                                        "npu_model":  "Intel AMX (Advanced Matrix Extensions)"
+                                    },
+                             "cache":  {
+                                           "l2_mb":  64.0,
+                                           "l3_mb":  144.0
+                                       },
+                             "features":  [
+                                              "AVX-512",
+                                              "AVX-512-VNNI",
+                                              "AMX",
+                                              "VT-x",
+                                              "VT-d",
+                                              "ECC",
+                                              "HT"
+                                          ]
+                         },
+    "Intel Xeon 6730P":  {
+                             "meta":  {
+                                          "ark_id":  241830,
+                                          "ark_url":  "https://www.intel.com/content/www/us/en/products/sku/241830/intel-xeon-6730p-processor-288m-cache-2-50-ghz/specifications.html",
+                                          "source":  "intel_ark",
+                                          "needs_verification":  false,
+                                          "last_fetched":  "2026-05-29",
+                                          "notes":  "Xeon 6 P-core (Granite Rapids). APEX-S100 second SKU. 32C/64T, 250W TDP, 288MB L3 (cache-optimized variant). ARK-verified 2026-05-29."
+                                      },
+                             "identity":  {
+                                              "processor_model":  "Intel Xeon 6730P",
+                                              "processor_series":  "Xeon 6 P-core",
+                                              "platform_brand":  "Intel",
+                                              "launch_date":  "Q1 2025",
+                                              "lithography":  "Intel 3",
+                                              "socket":  "FCLGA4710",
+                                              "market_segment":  "Server/Embedded"
+                                          },
+                             "cores":  {
+                                           "cpu_cores":  32,
+                                           "cpu_p_cores":  null,
+                                           "cpu_e_cores":  null,
+                                           "threads":  64,
+                                           "base_freq_p_ghz":  2.5,
+                                           "base_freq_e_ghz":  null,
+                                           "max_turbo_ghz":  3.8
+                                       },
+                             "power":  {
+                                           "tdp_watt":  250.0,
+                                           "max_turbo_watt":  null,
+                                           "min_assured_watt":  null
+                                       },
+                             "memory":  {
+                                            "type":  [
+                                                         "DDR5"
+                                                     ],
+                                            "max_speed_mhz":  6400,
+                                            "max_capacity_gb":  4096,
+                                            "channels":  8,
+                                            "ecc_support":  true
+                                        },
+                             "pcie":  {
+                                          "revision":  "5.0",
+                                          "max_lanes":  80,
+                                          "configs":  "varies by platform"
+                                      },
+                             "graphics":  {
+                                              "model":  null,
+                                              "eu_count":  null,
+                                              "max_freq_mhz":  null,
+                                              "display_support":  null
+                                          },
+                             "ai":  {
+                                        "ai_tops":  null,
+                                        "npu_model":  "Intel AMX (Advanced Matrix Extensions)"
+                                    },
+                             "cache":  {
+                                           "l2_mb":  64.0,
+                                           "l3_mb":  288.0
+                                       },
+                             "features":  [
+                                              "AVX-512",
+                                              "AVX-512-VNNI",
+                                              "AMX",
+                                              "VT-x",
+                                              "VT-d",
+                                              "ECC",
+                                              "HT"
+                                          ]
+                         },
+    "Intel Xeon 6736P":  {
+                             "meta":  {
+                                          "ark_id":  242638,
+                                          "ark_url":  "https://www.intel.com/content/www/us/en/products/sku/242638/intel-xeon-6736p-processor-144m-cache-2-00-ghz/specifications.html",
+                                          "source":  "intel_ark",
+                                          "needs_verification":  false,
+                                          "last_fetched":  "2026-05-29",
+                                          "notes":  "Xeon 6 P-core (Granite Rapids). APEX-S100 third SKU. 36C/72T, 205W TDP, 144MB L3. ARK-verified 2026-05-29."
+                                      },
+                             "identity":  {
+                                              "processor_model":  "Intel Xeon 6736P",
+                                              "processor_series":  "Xeon 6 P-core",
+                                              "platform_brand":  "Intel",
+                                              "launch_date":  "Q1 2025",
+                                              "lithography":  "Intel 3",
+                                              "socket":  "FCLGA4710",
+                                              "market_segment":  "Server/Embedded"
+                                          },
+                             "cores":  {
+                                           "cpu_cores":  36,
+                                           "cpu_p_cores":  null,
+                                           "cpu_e_cores":  null,
+                                           "threads":  72,
+                                           "base_freq_p_ghz":  2.0,
+                                           "base_freq_e_ghz":  null,
+                                           "max_turbo_ghz":  4.1
+                                       },
+                             "power":  {
+                                           "tdp_watt":  205.0,
+                                           "max_turbo_watt":  null,
+                                           "min_assured_watt":  null
+                                       },
+                             "memory":  {
+                                            "type":  [
+                                                         "DDR5"
+                                                     ],
+                                            "max_speed_mhz":  6400,
+                                            "max_capacity_gb":  4096,
+                                            "channels":  8,
+                                            "ecc_support":  true
+                                        },
+                             "pcie":  {
+                                          "revision":  "5.0",
+                                          "max_lanes":  80,
+                                          "configs":  "varies by platform"
+                                      },
+                             "graphics":  {
+                                              "model":  null,
+                                              "eu_count":  null,
+                                              "max_freq_mhz":  null,
+                                              "display_support":  null
+                                          },
+                             "ai":  {
+                                        "ai_tops":  null,
+                                        "npu_model":  "Intel AMX (Advanced Matrix Extensions)"
+                                    },
+                             "cache":  {
+                                           "l2_mb":  72.0,
+                                           "l3_mb":  144.0
+                                       },
+                             "features":  [
+                                              "AVX-512",
+                                              "AVX-512-VNNI",
+                                              "AMX",
+                                              "VT-x",
+                                              "VT-d",
+                                              "ECC",
+                                              "HT"
+                                          ]
+                         },
+    "Qualcomm IQ-9075":  {
+                             "meta":  {
+                                          "ark_id":  null,
+                                          "ark_url":  "https://www.qualcomm.com/internet-of-things/products/iq9-series/iq-9075",
+                                          "source":  "qualcomm_manual",
+                                          "needs_verification":  false,
+                                          "last_fetched":  "2026-05-29",
+                                          "notes":  "Industrial IoT SoC (Dragonwing IQ-9075 / QCS9075). Full SoC ??NOT a PCIe accelerator. 5nm LPE. Octa-core Kryo Gen 6: 1 Prime @3.36GHz + 3 Gold @2.8GHz + 2 Silver @2.0GHz + 2 LP cores. 100 Dense TOPS (INT8 dense, used here) / 200 TOPS INT8 sparse (marketing figure, not used). Adreno 663 GPU (up to 1.2 TFLOPS FP32). 36GB ECC LPDDR5X. 1x PCIe Gen4 x4. Used in APEX-A100 (IPA BU). Source: Lantronix EVK page + CNX Software 2026-01."
+                                      },
+                             "identity":  {
+                                              "processor_model":  "Qualcomm IQ-9075",
+                                              "processor_series":  "Qualcomm IQ-9",
+                                              "platform_brand":  "Qualcomm",
+                                              "launch_date":  null,
+                                              "lithography":  "5nm LPE",
+                                              "socket":  "BGA/SoC",
+                                              "market_segment":  "Industrial IoT/Edge AI"
+                                          },
+                             "cores":  {
+                                           "cpu_cores":  8,
+                                           "cpu_p_cores":  null,
+                                           "cpu_e_cores":  null,
+                                           "threads":  null,
+                                           "base_freq_p_ghz":  3.36,
+                                           "max_turbo_ghz":  null
+                                       },
+                             "power":  {
+                                           "tdp_watt":  null,
+                                           "max_turbo_watt":  null,
+                                           "min_assured_watt":  null
+                                       },
+                             "pcie":  {
+                                          "revision":  "4.0",
+                                          "max_lanes":  4,
+                                          "configs":  "x4"
+                                      },
+                             "graphics":  {
+                                              "model":  "Adreno 663 GPU",
+                                              "eu_count":  null,
+                                              "max_freq_mhz":  null,
+                                              "display_support":  null
+                                          },
+                             "ai":  {
+                                        "ai_tops":  200.0,
+                                        "npu_model":  "Qualcomm Hexagon Tensor Processor (HTP)",
+                                        "tops_basis":  "INT8"
+                                    },
+                             "cache":  {
+                                           "l2_mb":  null,
+                                           "l3_mb":  null
+                                       },
+                             "features":  [
+                                              "SNPE",
+                                              "QNN",
+                                              "Industrial Grade",
+                                              "Wide Temperature",
+                                              "ECC",
+                                              "200 TOPS INT8"
+                                          ],
+                             "memory":  {
+                                            "type":  [
+                                                         "LPDDR5X"
+                                                     ],
+                                            "max_speed_mhz":  null,
+                                            "max_capacity_gb":  36,
+                                            "channels":  6,
+                                            "ecc_support":  true
+                                        }
+                         },
+    "_lookup_aliases":  {
+                            "note":  "Maps variant model strings (as extracted from PDFs) to canonical library keys. Note: \u0027Intel Core Ultra 9 285\u0027 is now a direct key (desktop LGA1851) ??use _part_no_overrides to route mobile 285H products explicitly.",
+                            "Intel Core i9-14900":  "Intel Core i9-14900E",
+                            "Intel簧 Celeron簧 J6412":  "Intel Celeron J6412",
+                            "Intel簧 Celeron簧 7305E":  "Intel Celeron 7305E",
+                            "Intel簧 Celeron簧 U300E":  "Intel Processor U300E",
+                            "Intel Celeron U300E":  "Intel Processor U300E",
+                            "Intel Atom簧 X6425E":  "Intel Atom X6425E",
+                            "Intel Core i7-13800HE":  "Intel Core i7-13800HE",
+                            "Intel Processor N200":  "Intel Processor N200",
+                            "Intel Processor N97":  "Intel Processor N97",
+                            "Intel Core i3-N305":  "Intel Core i3-N305",
+                            "Intel Core i3N305":  "Intel Core i3-N305",
+                            "Intel Core Ultra 5 225U":  "Intel Core Ultra 5 225U",
+                            "Intel Core Ultra X7 Processor 358H":  "Intel Core Ultra X7 358H",
+                            "Intel簧 Xeon簧 6731P":  "Intel Xeon 6731P",
+                            "Intel簧 Xeon簧 6730P":  "Intel Xeon 6730P",
+                            "Intel簧 Xeon簧 6736P":  "Intel Xeon 6736P",
+                            "Intel Xeon 6731P Processor":  "Intel Xeon 6731P",
+                            "Intel Xeon 6730P Processor":  "Intel Xeon 6730P",
+                            "Intel Xeon 6736P Processor":  "Intel Xeon 6736P",
+                            "Qualcomm IQ9075":  "Qualcomm IQ-9075",
+                            "QCS9075":  "Qualcomm IQ-9075"
+                        },
+    "_part_no_overrides":  {
+                               "note":  "Maps part_no ??processor_model. Applied by schema_builder._enrich_from_cpu_library() as last-resort fallback when PDF extraction fails OR to correct mismatches (e.g. H-suffix dropped, wrong model extracted). Priority: _part_no_overrides \u003e extracted processor_model \u003e alias lookup.",
+                               "ABOX-1M80":  "NXP i.MX 8M Plus",
+                               "ASBC-3M80":  "NXP i.MX 8M Plus",
+                               "ASBC-3030":  "Intel Processor N200",
+                               "ABOX-R030":  "Intel Processor N200",
+                               "AIPC-4150":  "Intel Core Ultra 7 255U",
+                               "AXMB-1030":  "Intel Processor N200",
+                               "AXMB-3150":  "Intel Core Ultra 9 285",
+                               "AXMB-D160":  "Intel Core Ultra X7 358H",
+                               "APEX-E400":  "Intel Core Ultra X7 358H",
+                               "APEX-S100":  "Intel Xeon 6731P",
+                               "APEX-A100":  "Qualcomm IQ-9075",
+                               "APEX-X200":  "Intel Core Ultra 9 285H",
+                               "AXMB-1150":  "Intel Core Ultra 9 285H",
+                               "ABOX-V140":  "Intel Core i9-14900E"
+                           }
+}

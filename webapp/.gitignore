@@ -1,0 +1,5 @@
+node_modules/
+dist/
+public/spec_matrix.json
+public/embeddings.bin
+.env.local

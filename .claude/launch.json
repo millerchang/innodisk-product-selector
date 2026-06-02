@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "product-selector",
+      "runtimeExecutable": "C:/Users/miller_chang/AppData/Local/Programs/Python/Python311/python.exe",
+      "runtimeArgs": ["-m", "http.server", "3000", "--directory", "webapp"],
+      "port": 3000,
+      "autoPort": true
+    }
+  ]
+}
