@@ -78,5 +78,21 @@
     "product_line_guess": "networking",
     "confidence_score": 0.33,
     "timestamp": "2026-06-03T10:25:46.691607"
+  },
+  {
+    "path": "D:\\Innodisk\\Innodisk Product Selector\\IPA\\EP\\IO Modules\\1. Datasheets\\InnoEx Virtual IO\\InnoEx-ETC22_Datasheet.pdf",
+    "file": "InnoEx-ETC22_Datasheet.pdf",
+    "reason": "part_no not detected (UNKNOWN)",
+    "product_line_guess": "io",
+    "confidence_score": 0.5,
+    "timestamp": "2026-06-03T10:47:12.609228"
+  },
+  {
+    "path": "D:\\Innodisk\\Innodisk Product Selector\\IPA\\EP\\IO Modules\\1. Datasheets\\InnoEx Virtual IO\\InnoEx-IPCKVM_Datasheet.pdf",
+    "file": "InnoEx-IPCKVM_Datasheet.pdf",
+    "reason": "part_no not detected (UNKNOWN)",
+    "product_line_guess": "io",
+    "confidence_score": 0.67,
+    "timestamp": "2026-06-03T10:47:13.424691"
   }
 ]
