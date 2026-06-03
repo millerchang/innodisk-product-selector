@@ -94,6 +94,16 @@ RE_PART_NO_NET    = re.compile(r'\b((?:EGPC|FARO|GADN)-[A-Z0-9]{2,6})\b')
 RE_PART_NO_SENSOR = re.compile(r'\b(ET3-IAERIS[0-9]+|IAG[A-Z0-9]{1,6})\b')
 RE_PART_NO_IO     = re.compile(r'\b(E[23DGHLMSYZ][A-Z0-9]{2}-[A-Z0-9]{2,6})\b')
 
+# ── Subsidiary / OEM module part numbers (filed under Innodisk EP) ──────────
+# These don't follow the E-code scheme, so they're matched from the filename
+# stem in the module-routing block and tagged with a "sourcing" origin:
+#   InnoEx-*  : subsidiary resale product (Virtual IO)        → io,         subsidiary
+#   ANNA-*    : subsidiary GNSS product (subsidiary dissolved) → networking, subsidiary
+#   5S######  : OEM-purchased WiFi modules (Intel AX/BE)       → networking, oem
+_RE_PN_INNOEX = re.compile(r'^(InnoEx-[A-Za-z0-9]{3,8})', re.IGNORECASE)
+_RE_PN_ANNA   = re.compile(r'^(ANNA-[A-Z][0-9]{2}[A-Z][0-9][A-Z]?)', re.IGNORECASE)
+_RE_PN_WIFI   = re.compile(r'^(5S[A-Z]{0,2}[0-9]{6,10})')
+
 # Form factor: first lines of document often contain it
 RE_FORM_FACTOR = re.compile(
     r'\b(3\.5["\']?\s*SBC|Mini-ITX|Thin\s*Mini-ITX|Box\s*PC|Small\s*Box\s*PC|'
@@ -1480,11 +1490,25 @@ def extract(pdf_path: str) -> dict:
     if module_pl in ("io", "networking", "air_sensor"):
         # Filename stem "{PART_NO}_Datasheet.pdf" is the most reliable part_no
         stem = Path(pdf_path).stem.split('_')[0].strip()
-        if re.match(r'^(E[0-9A-Z]{2,3}-|EGPC-|FARO-|GADN-|IAG|ET3-)', stem.upper()) \
+        sourcing = "in-house"
+        subcat_hint = None
+        # Subsidiary / OEM part numbers that don't follow the E-code scheme.
+        if _RE_PN_INNOEX.match(stem):
+            part_no, sourcing, subcat_hint = _RE_PN_INNOEX.match(stem).group(1), "subsidiary", "Virtual IO"
+        elif _RE_PN_ANNA.match(stem):
+            part_no, sourcing, subcat_hint = _RE_PN_ANNA.match(stem).group(1), "subsidiary", "GNSS"
+        elif _RE_PN_WIFI.match(stem):
+            part_no, sourcing, subcat_hint = _RE_PN_WIFI.match(stem).group(1), "oem", "WiFi"
+        elif re.match(r'^(E[0-9A-Z]{2,3}-|EGPC-|FARO-|GADN-|IAG|ET3-)', stem.upper()) \
                 and (part_no == "UNKNOWN" or len(stem) >= len(part_no)):
             part_no = stem
         result = _extract_module(text, pdf_path, part_no, module_pl)
+        # Subcategory is unreliable for 3rd-party GNSS/WiFi datasheets — force it.
+        spec_key = f"{module_pl}_spec"
+        if subcat_hint and spec_key in result:
+            result[spec_key]["subcategory"] = subcat_hint
         result["_product_line"] = module_pl
+        result["_sourcing"] = sourcing
         result["_page_count"] = page_count
         return result
 

@@ -542,6 +542,7 @@ def _build_io_spec(raw: dict) -> dict:
         "supported_os":    _clean_list(s.get("supported_os", [])),
         "driver_required": bool(s.get("driver_required", True)),
         "display_output":  bool(s.get("display_output", False)),
+        "sourcing":        raw.get("_sourcing", "in-house"),
     }
 
 
@@ -558,6 +559,7 @@ def _build_networking_spec(raw: dict) -> dict:
         "poe_watt":       _int_or_null(s.get("poe_watt")),
         "can_fd_support": bool(s.get("can_fd_support", False)),
         "isolation":      bool(s.get("isolation", False)),
+        "sourcing":       raw.get("_sourcing", "in-house"),
     }
 
 
@@ -592,6 +594,11 @@ def _build_module_tags(product_line: str, spec: dict, op_min) -> list:
     tags = ["industrial", "IPA", product_line]
     if op_min is not None and op_min <= -40:
         tags.append("wide-temp")
+    sourcing = spec.get("sourcing")
+    if sourcing == "oem":
+        tags.append("OEM")
+    elif sourcing == "subsidiary":
+        tags.append("subsidiary")
     sub = spec.get("subcategory")
     if sub:
         tags.append(sub)

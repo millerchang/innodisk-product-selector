@@ -19991,5 +19991,634 @@
       ]
     },
     "poc_sw_suggestions": []
+  },
+  {
+    "meta": {
+      "part_no": "ANNA-F00L1",
+      "product_name": "ANNA-F00L1",
+      "product_line": "networking",
+      "bu_owner": "IPA",
+      "source_file": "ANNA-F00L1.pdf",
+      "file_hash_md5": "4efa94c8238a91c3dcb4925894b36c09",
+      "schema_version": "3.0",
+      "last_updated": "2026-06-03",
+      "embedding_id": "ANNA-F00L1"
+    },
+    "common": {
+      "temp_grade": null,
+      "op_temp_min_c": null,
+      "op_temp_max_c": null,
+      "mtbf_hours": null,
+      "warranty_years": null,
+      "certifications": [],
+      "lifecycle_status": "Active",
+      "eol_date": null,
+      "moq": 1,
+      "lead_time_weeks": null
+    },
+    "networking_spec": {
+      "subcategory": "GNSS",
+      "host_interface": "USB",
+      "pcie_gen": null,
+      "port_count": null,
+      "speed_gbps": null,
+      "protocol": [],
+      "poe_watt": null,
+      "can_fd_support": false,
+      "isolation": false,
+      "sourcing": "subsidiary"
+    },
+    "search": {
+      "text_summary": "ANNA-F00L1 | Network type: GNSS | Features: blox 92-channel NEO-M9 GNSS module; 40°C to +85°C) support; tickSignal 3 GND; up Battery 8 NC",
+      "searchable_tags": [
+        "industrial",
+        "IPA",
+        "networking",
+        "subsidiary",
+        "GNSS"
+      ],
+      "target_applications": [
+        "manufacturing",
+        "retail"
+      ]
+    },
+    "poc_sw_suggestions": []
+  },
+  {
+    "meta": {
+      "part_no": "ANNA-F00L1C",
+      "product_name": "ANNA-F00L1C",
+      "product_line": "networking",
+      "bu_owner": "IPA",
+      "source_file": "ANNA-F00L1Cpptx.pdf",
+      "file_hash_md5": "39598a8a9d89c514fefb2633157b58f6",
+      "schema_version": "3.0",
+      "last_updated": "2026-06-03",
+      "embedding_id": "ANNA-F00L1C"
+    },
+    "common": {
+      "temp_grade": null,
+      "op_temp_min_c": null,
+      "op_temp_max_c": null,
+      "mtbf_hours": null,
+      "warranty_years": null,
+      "certifications": [],
+      "lifecycle_status": "Active",
+      "eol_date": null,
+      "moq": 1,
+      "lead_time_weeks": null
+    },
+    "networking_spec": {
+      "subcategory": "GNSS",
+      "host_interface": "USB",
+      "pcie_gen": null,
+      "port_count": null,
+      "speed_gbps": null,
+      "protocol": [],
+      "poe_watt": null,
+      "can_fd_support": false,
+      "isolation": false,
+      "sourcing": "subsidiary"
+    },
+    "search": {
+      "text_summary": "ANNA-F00L1C | Network type: GNSS | Features: blox 72-channel NEO-M8 GNSS module; 40°C to +85°C) support; tickSignal 3 GND; up Battery 8 NC",
+      "searchable_tags": [
+        "industrial",
+        "IPA",
+        "networking",
+        "subsidiary",
+        "GNSS"
+      ],
+      "target_applications": [
+        "manufacturing",
+        "retail"
+      ]
+    },
+    "poc_sw_suggestions": []
+  },
+  {
+    "meta": {
+      "part_no": "ANNA-F00U0",
+      "product_name": "ANNA-F00U0",
+      "product_line": "networking",
+      "bu_owner": "IPA",
+      "source_file": "ANNA-F00U0_Datasheet.pdf",
+      "file_hash_md5": "6faeadd1fb555ce5bcc496a2b2d3d407",
+      "schema_version": "3.0",
+      "last_updated": "2026-06-03",
+      "embedding_id": "ANNA-F00U0"
+    },
+    "common": {
+      "temp_grade": null,
+      "op_temp_min_c": null,
+      "op_temp_max_c": null,
+      "mtbf_hours": null,
+      "warranty_years": null,
+      "certifications": [],
+      "lifecycle_status": "Active",
+      "eol_date": null,
+      "moq": 1,
+      "lead_time_weeks": null
+    },
+    "networking_spec": {
+      "subcategory": "GNSS",
+      "host_interface": "USB",
+      "pcie_gen": null,
+      "port_count": null,
+      "speed_gbps": null,
+      "protocol": [],
+      "poe_watt": null,
+      "can_fd_support": false,
+      "isolation": false,
+      "sourcing": "subsidiary"
+    },
+    "search": {
+      "text_summary": "ANNA-F00U0 | Network type: GNSS | Features: blox 92-channel NEO-M9 GNSS module; 40°C to +85°C) support",
+      "searchable_tags": [
+        "industrial",
+        "IPA",
+        "networking",
+        "subsidiary",
+        "GNSS"
+      ],
+      "target_applications": [
+        "manufacturing",
+        "retail"
+      ]
+    },
+    "poc_sw_suggestions": []
+  },
+  {
+    "meta": {
+      "part_no": "ANNA-M01L1",
+      "product_name": "ANNA-M01L1",
+      "product_line": "networking",
+      "bu_owner": "IPA",
+      "source_file": "ANNA-M01L1_Datasheet.pdf",
+      "file_hash_md5": "417631c3d05acb52ff97f680c05b4d15",
+      "schema_version": "3.0",
+      "last_updated": "2026-06-03",
+      "embedding_id": "ANNA-M01L1"
+    },
+    "common": {
+      "temp_grade": null,
+      "op_temp_min_c": null,
+      "op_temp_max_c": null,
+      "mtbf_hours": null,
+      "warranty_years": null,
+      "certifications": [],
+      "lifecycle_status": "Active",
+      "eol_date": null,
+      "moq": 1,
+      "lead_time_weeks": null
+    },
+    "networking_spec": {
+      "subcategory": "GNSS",
+      "host_interface": "M.2",
+      "pcie_gen": null,
+      "port_count": null,
+      "speed_gbps": null,
+      "protocol": [],
+      "poe_watt": null,
+      "can_fd_support": false,
+      "isolation": false,
+      "sourcing": "subsidiary"
+    },
+    "search": {
+      "text_summary": "ANNA-M01L1 | Network type: GNSS | Features: blox NEO-M8 GNSS module (GPS,; 40°C to +85°C) support; tickSignal 3 GND",
+      "searchable_tags": [
+        "industrial",
+        "IPA",
+        "networking",
+        "subsidiary",
+        "GNSS"
+      ],
+      "target_applications": [
+        "manufacturing"
+      ]
+    },
+    "poc_sw_suggestions": []
+  },
+  {
+    "meta": {
+      "part_no": "ANNA-M01L1C",
+      "product_name": "ANNA-M01L1C",
+      "product_line": "networking",
+      "bu_owner": "IPA",
+      "source_file": "ANNA-M01L1C_Datasheet.pdf",
+      "file_hash_md5": "8bc6ec53bfa0c2df11aecb246fa709b8",
+      "schema_version": "3.0",
+      "last_updated": "2026-06-03",
+      "embedding_id": "ANNA-M01L1C"
+    },
+    "common": {
+      "temp_grade": null,
+      "op_temp_min_c": null,
+      "op_temp_max_c": null,
+      "mtbf_hours": null,
+      "warranty_years": null,
+      "certifications": [],
+      "lifecycle_status": "Active",
+      "eol_date": null,
+      "moq": 1,
+      "lead_time_weeks": null
+    },
+    "networking_spec": {
+      "subcategory": "GNSS",
+      "host_interface": "M.2",
+      "pcie_gen": null,
+      "port_count": null,
+      "speed_gbps": null,
+      "protocol": [],
+      "poe_watt": null,
+      "can_fd_support": false,
+      "isolation": false,
+      "sourcing": "subsidiary"
+    },
+    "search": {
+      "text_summary": "ANNA-M01L1C | Network type: GNSS | Features: blox NEO-M8 GNSS module (GPS,; 40°C to +85°C) support; tickSignal 3 GND",
+      "searchable_tags": [
+        "industrial",
+        "IPA",
+        "networking",
+        "subsidiary",
+        "GNSS"
+      ],
+      "target_applications": [
+        "manufacturing"
+      ]
+    },
+    "poc_sw_suggestions": []
+  },
+  {
+    "meta": {
+      "part_no": "5SA100000003",
+      "product_name": "5SA100000003",
+      "product_line": "networking",
+      "bu_owner": "IPA",
+      "source_file": "5SA100000003_AP12275_Datasheet_251003.pdf",
+      "file_hash_md5": "5e48e01ff040b3cc0c0e5a963c9162b8",
+      "schema_version": "3.0",
+      "last_updated": "2026-06-03",
+      "embedding_id": "5SA100000003"
+    },
+    "common": {
+      "temp_grade": "Wide",
+      "op_temp_min_c": -40,
+      "op_temp_max_c": 105,
+      "mtbf_hours": null,
+      "warranty_years": null,
+      "certifications": [],
+      "lifecycle_status": "Active",
+      "eol_date": null,
+      "moq": 1,
+      "lead_time_weeks": null
+    },
+    "networking_spec": {
+      "subcategory": "WiFi",
+      "host_interface": "PCIe",
+      "pcie_gen": null,
+      "port_count": null,
+      "speed_gbps": null,
+      "protocol": [],
+      "poe_watt": null,
+      "can_fd_support": false,
+      "isolation": false,
+      "sourcing": "oem"
+    },
+    "search": {
+      "text_summary": "5SA100000003 | Network type: WiFi | Op temp: -40°C ~ 105°C | Features: rate connections, improve; stream spatial multiplexing up to 1200 Mbps data rate.; Fi 6 features including 1024-QAM Modulation, OFDMA, MU-MIMO, and WPA3.; Energy 2 Mbps and Low-Energy Long Range.; IV connectors (ANT1 for WLAN, ANT2 for WLAN & BT); Condensing) 5%~95% (Storing)",
+      "searchable_tags": [
+        "industrial",
+        "IPA",
+        "networking",
+        "wide-temp",
+        "OEM",
+        "WiFi"
+      ],
+      "target_applications": [
+        "manufacturing",
+        "medical",
+        "retail"
+      ]
+    },
+    "poc_sw_suggestions": []
+  },
+  {
+    "meta": {
+      "part_no": "5SAX00000002",
+      "product_name": "5SAX00000002",
+      "product_line": "networking",
+      "bu_owner": "IPA",
+      "source_file": "5SAX00000002-Intel AX210 Wifi 6E non-vPro_Spec.pdf",
+      "file_hash_md5": "a641382abf0c445e1f0870928309b64d",
+      "schema_version": "3.0",
+      "last_updated": "2026-06-03",
+      "embedding_id": "5SAX00000002"
+    },
+    "common": {
+      "temp_grade": null,
+      "op_temp_min_c": null,
+      "op_temp_max_c": null,
+      "mtbf_hours": null,
+      "warranty_years": null,
+      "certifications": [
+        "UL"
+      ],
+      "lifecycle_status": "Active",
+      "eol_date": null,
+      "moq": 1,
+      "lead_time_weeks": null
+    },
+    "networking_spec": {
+      "subcategory": "WiFi",
+      "host_interface": "PCIe",
+      "pcie_gen": null,
+      "port_count": null,
+      "speed_gbps": 1.0,
+      "protocol": [],
+      "poe_watt": null,
+      "can_fd_support": false,
+      "isolation": false,
+      "sourcing": "oem"
+    },
+    "search": {
+      "text_summary": "5SAX00000002 | Network type: WiFi | Speed: 1.0 Gbps | Features: on and always-connected; stream Wi-Fi in the 2.4GHz, 5GHz, and; Fi 6 R2 features, including UL MU-MIMO1 that improves UL; Fi 6, including; low latencies, and enhanced reliability; Fi 6E technology",
+      "searchable_tags": [
+        "industrial",
+        "IPA",
+        "networking",
+        "OEM",
+        "WiFi",
+        "1.0GbE"
+      ],
+      "target_applications": []
+    },
+    "poc_sw_suggestions": []
+  },
+  {
+    "meta": {
+      "part_no": "5SAX00000003",
+      "product_name": "5SAX00000003",
+      "product_line": "networking",
+      "bu_owner": "IPA",
+      "source_file": "5SAX00000003_Intel AX210 WiFi 6E IN-vPro_Spec.pdf",
+      "file_hash_md5": "4c479047b8fc5e3b31a5393f1c15081f",
+      "schema_version": "3.0",
+      "last_updated": "2026-06-03",
+      "embedding_id": "5SAX00000003"
+    },
+    "common": {
+      "temp_grade": null,
+      "op_temp_min_c": null,
+      "op_temp_max_c": null,
+      "mtbf_hours": null,
+      "warranty_years": null,
+      "certifications": [
+        "UL"
+      ],
+      "lifecycle_status": "Active",
+      "eol_date": null,
+      "moq": 1,
+      "lead_time_weeks": null
+    },
+    "networking_spec": {
+      "subcategory": "WiFi",
+      "host_interface": "PCIe",
+      "pcie_gen": null,
+      "port_count": null,
+      "speed_gbps": 1.0,
+      "protocol": [],
+      "poe_watt": null,
+      "can_fd_support": false,
+      "isolation": false,
+      "sourcing": "oem"
+    },
+    "search": {
+      "text_summary": "5SAX00000003 | Network type: WiFi | Speed: 1.0 Gbps | Features: on and always-connected; stream Wi-Fi in the 2.4GHz, 5GHz, and; Fi 6 R2 features, including UL MU-MIMO1 that improves UL; Fi 6, including; low latencies, and enhanced reliability; Fi 6E technology",
+      "searchable_tags": [
+        "industrial",
+        "IPA",
+        "networking",
+        "OEM",
+        "WiFi",
+        "1.0GbE"
+      ],
+      "target_applications": []
+    },
+    "poc_sw_suggestions": []
+  },
+  {
+    "meta": {
+      "part_no": "5SAX00000004",
+      "product_name": "5SAX00000004",
+      "product_line": "networking",
+      "bu_owner": "IPA",
+      "source_file": "5SAX00000004_Intel AX210 WiFi 6E IN-non-vPro_Spec..pdf",
+      "file_hash_md5": "0be36d9047f4702b1fdbc3ea682fb934",
+      "schema_version": "3.0",
+      "last_updated": "2026-06-03",
+      "embedding_id": "5SAX00000004"
+    },
+    "common": {
+      "temp_grade": null,
+      "op_temp_min_c": null,
+      "op_temp_max_c": null,
+      "mtbf_hours": null,
+      "warranty_years": null,
+      "certifications": [
+        "UL"
+      ],
+      "lifecycle_status": "Active",
+      "eol_date": null,
+      "moq": 1,
+      "lead_time_weeks": null
+    },
+    "networking_spec": {
+      "subcategory": "WiFi",
+      "host_interface": "PCIe",
+      "pcie_gen": null,
+      "port_count": null,
+      "speed_gbps": 1.0,
+      "protocol": [],
+      "poe_watt": null,
+      "can_fd_support": false,
+      "isolation": false,
+      "sourcing": "oem"
+    },
+    "search": {
+      "text_summary": "5SAX00000004 | Network type: WiFi | Speed: 1.0 Gbps | Features: on and always-connected; stream Wi-Fi in the 2.4GHz, 5GHz, and; Fi 6 R2 features, including UL MU-MIMO1 that improves UL; Fi 6, including; low latencies, and enhanced reliability; Fi 6E technology",
+      "searchable_tags": [
+        "industrial",
+        "IPA",
+        "networking",
+        "OEM",
+        "WiFi",
+        "1.0GbE"
+      ],
+      "target_applications": []
+    },
+    "poc_sw_suggestions": []
+  },
+  {
+    "meta": {
+      "part_no": "5SBE00000001",
+      "product_name": "5SBE00000001",
+      "product_line": "networking",
+      "bu_owner": "IPA",
+      "source_file": "5SBE00000001_Wi-Fi 7 BE200_Specification_240531.pdf",
+      "file_hash_md5": "5a08b85067708204bb4707408f8aba9c",
+      "schema_version": "3.0",
+      "last_updated": "2026-06-03",
+      "embedding_id": "5SBE00000001"
+    },
+    "common": {
+      "temp_grade": null,
+      "op_temp_min_c": null,
+      "op_temp_max_c": null,
+      "mtbf_hours": null,
+      "warranty_years": null,
+      "certifications": [],
+      "lifecycle_status": "Active",
+      "eol_date": null,
+      "moq": 1,
+      "lead_time_weeks": null
+    },
+    "networking_spec": {
+      "subcategory": "WiFi",
+      "host_interface": "PCIe",
+      "pcie_gen": "Gen4",
+      "port_count": null,
+      "speed_gbps": 1.0,
+      "protocol": [],
+      "poe_watt": null,
+      "can_fd_support": false,
+      "isolation": false,
+      "sourcing": "oem"
+    },
+    "search": {
+      "text_summary": "5SBE00000001 | Network type: WiFi | Speed: 1.0 Gbps | Features: over-gen architecture, prociding a; power solution, and set of advanced capabilities. It; Fi spec of 802.11BE, and includes the; Fi: UHB(Ultra High Band).; power chains for Wi-Fi,; Fi 7, including",
+      "searchable_tags": [
+        "industrial",
+        "IPA",
+        "networking",
+        "OEM",
+        "WiFi",
+        "1.0GbE"
+      ],
+      "target_applications": []
+    },
+    "poc_sw_suggestions": []
+  },
+  {
+    "meta": {
+      "part_no": "InnoEx-ETC22",
+      "product_name": "InnoEx-ETC22",
+      "product_line": "io",
+      "bu_owner": "IPA",
+      "source_file": "InnoEx-ETC22_Datasheet.pdf",
+      "file_hash_md5": "4ee9cb85068d43da9b3335ef2f99c929",
+      "schema_version": "3.0",
+      "last_updated": "2026-06-03",
+      "embedding_id": "InnoEx-ETC22"
+    },
+    "common": {
+      "temp_grade": "Industrial",
+      "op_temp_min_c": -10,
+      "op_temp_max_c": 85,
+      "mtbf_hours": null,
+      "warranty_years": null,
+      "certifications": [],
+      "lifecycle_status": "Active",
+      "eol_date": null,
+      "moq": 1,
+      "lead_time_weeks": null
+    },
+    "io_spec": {
+      "subcategory": "Virtual IO",
+      "host_interface": null,
+      "pcie_gen": null,
+      "pcie_lanes": null,
+      "port_type": [
+        "GbE"
+      ],
+      "port_count": null,
+      "supported_os": [
+        "Windows",
+        "Linux"
+      ],
+      "driver_required": true,
+      "display_output": false,
+      "sourcing": "subsidiary"
+    },
+    "search": {
+      "text_summary": "InnoEx-ETC22 | I/O type: Virtual IO | Ports: GbE | Op temp: -10°C ~ 85°C",
+      "searchable_tags": [
+        "industrial",
+        "IPA",
+        "io",
+        "subsidiary",
+        "Virtual IO"
+      ],
+      "target_applications": []
+    },
+    "poc_sw_suggestions": []
+  },
+  {
+    "meta": {
+      "part_no": "InnoEx-IPCKVM",
+      "product_name": "InnoEx-IPCKVM",
+      "product_line": "io",
+      "bu_owner": "IPA",
+      "source_file": "InnoEx-IPCKVM_Datasheet.pdf",
+      "file_hash_md5": "92c0784ed9f91b84c22236421ce71fcc",
+      "schema_version": "3.0",
+      "last_updated": "2026-06-03",
+      "embedding_id": "InnoEx-IPCKVM"
+    },
+    "common": {
+      "temp_grade": "Industrial",
+      "op_temp_min_c": -20,
+      "op_temp_max_c": 90,
+      "mtbf_hours": null,
+      "warranty_years": null,
+      "certifications": [],
+      "lifecycle_status": "Active",
+      "eol_date": null,
+      "moq": 1,
+      "lead_time_weeks": null
+    },
+    "io_spec": {
+      "subcategory": "Virtual IO",
+      "host_interface": "USB",
+      "pcie_gen": null,
+      "pcie_lanes": null,
+      "port_type": [
+        "HDMI",
+        "USB",
+        "GbE"
+      ],
+      "port_count": null,
+      "supported_os": [
+        "Windows",
+        "Linux"
+      ],
+      "driver_required": true,
+      "display_output": true,
+      "sourcing": "subsidiary"
+    },
+    "search": {
+      "text_summary": "InnoEx-IPCKVM | I/O type: Virtual IO | Host: USB | Ports: HDMI, USB, GbE | Op temp: -20°C ~ 90°C",
+      "searchable_tags": [
+        "industrial",
+        "IPA",
+        "io",
+        "subsidiary",
+        "Virtual IO",
+        "USB"
+      ],
+      "target_applications": []
+    },
+    "poc_sw_suggestions": []
   }
 ]
