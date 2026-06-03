@@ -13,6 +13,7 @@ import json
 import re
 import pdfplumber
 from pathlib import Path
+from product_catalog import classify_by_rule
 
 # ── CPU Library (lazy-loaded) ────────────────────────────────────────────────
 _CPU_LIB: dict | None = None
@@ -80,6 +81,18 @@ def _cpu_lib_lookup(model: str) -> dict:
 RE_PART_NO = re.compile(
     r'\b(A(?:SBC|BOX|XMB|IPC|RAK|PEX)-[A-Z0-9]{1,5}(?:-[A-Z0-9]{1,5})?)\b'
 )
+
+# IPA BU \ EP \ Computing part numbers: EXEC-Q911, EXMP-Q911, EXMU-X261, EXOU-X261
+# Format: "EX" + 2 letters + "-" + 3-5 alphanumerics (Innodisk IPA computing prefix)
+RE_PART_NO_IPA = re.compile(r'\b(EX[A-Z]{2}-[A-Z0-9]{3,5})\b')
+
+# IPA BU \ EP module part numbers (Networking / Air Sensor / I/O).
+#   Networking : EGPC-* (Innodisk PoE/GbE cards), FARO-* / GADN-* (Antzertech brands)
+#   Air Sensor : IAG* (gas modules), ET3-IAERIS* (iAeris subsidiary)
+#   I/O        : E + form-factor char {2,3,D,G,H,L,M,S,Y,Z} + 2 chars + -#### (EMSS-3201)
+RE_PART_NO_NET    = re.compile(r'\b((?:EGPC|FARO|GADN)-[A-Z0-9]{2,6})\b')
+RE_PART_NO_SENSOR = re.compile(r'\b(ET3-IAERIS[0-9]+|IAG[A-Z0-9]{1,6})\b')
+RE_PART_NO_IO     = re.compile(r'\b(E[23DGHLMSYZ][A-Z0-9]{2}-[A-Z0-9]{2,6})\b')
 
 # Form factor: first lines of document often contain it
 RE_FORM_FACTOR = re.compile(
@@ -483,6 +496,48 @@ def _parse_cpu(text: str) -> tuple[str | None, str | None]:
         return raw, _infer_series(first)
 
     return None, None
+
+
+def _parse_cpu_ipa(text: str) -> tuple[str | None, str | None, int | None]:
+    """
+    Detect Qualcomm / AMD-Xilinx processor for IPA BU boards.
+    Implements CLAUDE.md rules I-2 (Qualcomm), I-4 (AMD-Xilinx), I-7 (cores).
+    Returns (processor_model, processor_series, cpu_cores). cpu_p/e_cores are
+    always null for these non-hybrid SoCs (handled by caller).
+    """
+    # ── Qualcomm ─────────────────────────────────────────────────────────────
+    if re.search(r'Qualcomm|Snapdragon|Dragonwing|\bQCS\d', text, re.I):
+        m = re.search(r'\bQCS(\d{3,4})\b', text)
+        if m:
+            model, series = f"Qualcomm Dragonwing QCS{m.group(1)}", "Qualcomm Dragonwing"
+        else:
+            sm = re.search(r'Snapdragon[\w\s\-]+', text, re.I)
+            model = _normalize_model(sm.group(0)) if sm else "Qualcomm"
+            series = "Snapdragon"
+        cores = None
+        if re.search(r'Octa[-\s]?core|8x\s*Kryo', text, re.I):
+            cores = 8
+        elif re.search(r'Hexa[-\s]?core', text, re.I):
+            cores = 6
+        elif re.search(r'Quad[-\s]?core', text, re.I):
+            cores = 4
+        return model, series, cores
+
+    # ── AMD-Xilinx ───────────────────────────────────────────────────────────
+    if re.search(r'\bKria\b|\bZynq\b|\bVersal\b|\bXilinx\b', text, re.I):
+        m = re.search(r'\bKria\s+(K\d{2})\b', text, re.I)
+        if m:
+            return f"AMD Kria {m.group(1)}", "Kria", 4   # K26 = quad Cortex-A53 (Rule I-7)
+        m = re.search(r'\bZynq\s+UltraScale\+?\s*(?:MPSoC\s+)?([A-Z0-9]+)?', text, re.I)
+        if m:
+            sku = (m.group(1) or "").strip()
+            return f"Zynq UltraScale+ {sku}".strip(), "Zynq UltraScale+", None
+        m = re.search(r'\bVersal\b[\w\s]*?(VC\d{3,4})', text, re.I)
+        if m:
+            return f"Versal {m.group(1)}", "Versal", None
+        return "AMD-Xilinx FPGA", None, None
+
+    return None, None, None
 
 
 def _parse_ram_gb(text: str) -> float | None:
@@ -1127,6 +1182,219 @@ def _score_completeness(result: dict) -> float:
     return min(filled / total_weight, 1.0)
 
 
+# ── IPA EP module extraction: I/O, Networking, Air Sensor ────────────────────
+
+def _parse_host_iface(text: str) -> tuple[str | None, str | None, int | None]:
+    """Return (host_interface, pcie_gen, pcie_lanes) for an expansion module."""
+    low = text.lower()
+    host = gen = None
+    lanes = None
+    if re.search(r'pci\s*express|\bpcie\b', low):
+        host = "PCIe"
+        g = re.search(r'(?:pcie\s*)?gen\s*([3-5])|pcie\s*([3-5])\.0', low)
+        if g:
+            gen = "Gen" + (g.group(1) or g.group(2))
+        l = re.search(r'\bx\s*(1|2|4|8|16)\b', low)
+        if l:
+            lanes = int(l.group(1))
+    elif re.search(r'\bm\.?2\b', low):
+        host = "M.2"
+    elif re.search(r'\busb\b', low):
+        host = "USB"
+    return host, gen, lanes
+
+
+def _parse_io_spec(text: str) -> dict:
+    """Best-effort io_spec extraction (subcategory, host iface, ports)."""
+    low = text.lower()
+    sub = None
+    if re.search(r'storage expander|\braid\b|jbod', low):
+        sub = "Storage"
+    elif re.search(r'disk array|\bhba\b', low):
+        sub = "DiskArray"
+    elif re.search(r'display adapter|hdmi output|gpu-?less display', low):
+        sub = "Display"
+    elif re.search(r'out-?of-?band|\boob\b|\bipmi\b|\bbmc\b', low):
+        sub = "OOB"
+    elif re.search(r'innoex|virtual\s*i/?o|sr-?iov', low):
+        sub = "InnoEx-VirtualIO"
+    elif re.search(r'testing|diagnostic|signal generator', low):
+        sub = "TestingTool"
+
+    host, gen, lanes = _parse_host_iface(text)
+
+    port_type = []
+    for pat, label in (
+        (r'\bsata\b', "SATA"), (r'\bnvme\b', "NVMe"), (r'\bhdmi\b', "HDMI"),
+        (r'displayport|\bdp\b', "DP"), (r'\busb\b', "USB"),
+        (r'\b(?:gbe|rj45|ethernet)\b', "GbE"), (r'\bm\.?2\b', "M.2"),
+    ):
+        if re.search(pat, low) and label not in port_type:
+            port_type.append(label)
+
+    display_output = bool(re.search(r'\bhdmi\b|displayport|\bdp\b|display output', low))
+    driver_required = not bool(re.search(r'driver-?less|no driver required', low))
+    return {
+        "subcategory":     sub,
+        "host_interface":  host,
+        "pcie_gen":        gen,
+        "pcie_lanes":      lanes,
+        "port_type":       port_type,
+        "port_count":      None,
+        "supported_os":    _parse_os(text),
+        "driver_required": driver_required,
+        "display_output":  display_output,
+    }
+
+
+def _parse_networking_spec(text: str) -> dict:
+    """Best-effort networking_spec extraction (LAN/CAN/Serial/PoE)."""
+    low = text.lower()
+    sub = None
+    if re.search(r'power over ethernet|\bpoe\b', low):
+        sub = "PoE"
+    elif re.search(r'can\s*fd|can\s*bus|can\s*2\.0', low):
+        sub = "CAN-Bus"
+    elif re.search(r'rs-?232|rs-?422|rs-?485|\bserial\b|\bcom port', low):
+        sub = "Serial"
+    elif re.search(r'\blan\b|\bgbe\b|ethernet|\bnic\b', low):
+        sub = "LAN"
+
+    host, gen, _ = _parse_host_iface(text)
+
+    speed = None
+    for pat, val in (
+        (r'100\s*gbe', 100), (r'25\s*gbe', 25), (r'10\s*gbe|10\s*g\b|10000\s*mbps', 10),
+        (r'2\.5\s*gbe|2500\s*mbps', 2.5), (r'\b1\s*gbe|gigabit|1000\s*mbps', 1),
+    ):
+        if re.search(pat, low):
+            speed = val
+            break
+
+    protocol = []
+    if re.search(r'rs-?232/?-?422/?-?485|software selectable', low):
+        protocol = ["RS-232", "RS-422", "RS-485"]
+    else:
+        if re.search(r'rs-?232', low):
+            protocol.append("RS-232")
+        if re.search(r'rs-?422', low):
+            protocol.append("RS-422")
+        if re.search(r'rs-?485', low):
+            protocol.append("RS-485")
+
+    poe_watt = None
+    if re.search(r'802\.3bt|poe\+\+|\b90\s*w|\b60\s*w', low):
+        poe_watt = 90 if re.search(r'\b90\s*w', low) else 60
+    elif re.search(r'802\.3at|poe\+|\b30\s*w', low):
+        poe_watt = 30
+    elif re.search(r'802\.3af|\b15\.4\s*w|\b15\s*w', low):
+        poe_watt = 15
+    elif sub == "PoE":
+        poe_watt = 15  # conservative default
+
+    can_fd = bool(re.search(r'can\s*fd|iso\s*11898-1:2015|flexible data rate', low))
+    isolation = bool(re.search(r'galvanic isolation|isolated|\d+\s*v\s*isolation', low))
+    return {
+        "subcategory":    sub,
+        "host_interface": host,
+        "pcie_gen":       gen,
+        "port_count":     None,
+        "speed_gbps":     speed,
+        "protocol":       protocol,
+        "poe_watt":       poe_watt,
+        "can_fd_support": can_fd,
+        "isolation":      isolation,
+    }
+
+
+# Pollutant keyword → canonical label
+_POLLUTANT_MAP = [
+    (r'pm\s*2\.5|pm2\.5', "PM2.5"), (r'pm\s*10|pm10', "PM10"),
+    (r'\bco2\b|carbon dioxide', "CO2"),
+    (r'\bco\b|carbon monoxide', "CO"), (r'\bvoc\b|tvoc|volatile organic', "VOC"),
+    (r'\bno2\b|nitrogen dioxide', "NO2"), (r'\bso2\b|sulfur dioxide', "SO2"),
+    (r'\bo3\b|ozone', "O3"), (r'hcho|formaldehyde', "HCHO"),
+    (r'humidity', "Humidity"), (r'temperature', "Temp"),
+]
+
+
+def _parse_air_sensor_spec(text: str) -> dict:
+    """Best-effort air_sensor_spec extraction (pollutants, interface, accuracy)."""
+    low = text.lower()
+    pollutants = []
+    for pat, label in _POLLUTANT_MAP:
+        if re.search(pat, low) and label not in pollutants:
+            pollutants.append(label)
+
+    iface = None
+    if re.search(r'\bi2c\b', low):
+        iface = "I2C"
+    elif re.search(r'\buart\b', low):
+        iface = "UART"
+    elif re.search(r'\busb\b', low):
+        iface = "USB"
+
+    rng_m = re.search(r'(?:measurement|measuring)\s*range[:\s]*([^\n]{1,40})', text, re.I)
+    measurement_range = rng_m.group(1).strip() if rng_m else None
+
+    resp_m = re.search(r'response time[:\s]*(?:t90\s*)?[<≤]?\s*(\d+)\s*s', low)
+    response_time = int(resp_m.group(1)) if resp_m else None
+
+    icap = bool(re.search(r'icap|innodisk cloud', low))
+    return {
+        "detected_pollutants": pollutants,
+        "interface_bus":       iface,
+        "accuracy_pm25_ug":    None,
+        "measurement_range":   measurement_range,
+        "response_time_s":     response_time,
+        "sdk_support":         ["iCAP"] if icap else [],
+        "icap_compatible":     icap,
+    }
+
+
+def _score_completeness_module(result: dict, product_line: str) -> float:
+    """0.0–1.0 confidence score for I/O / Networking / Air Sensor modules."""
+    spec = result.get(f"{product_line}_spec") if product_line != "air_sensor" \
+        else result.get("air_sensor_spec")
+    spec = spec or {}
+    checks = [result.get("part_no") not in (None, "UNKNOWN")]
+    if product_line == "io":
+        checks += [bool(spec.get("subcategory")), bool(spec.get("host_interface")),
+                   bool(spec.get("port_type"))]
+    elif product_line == "networking":
+        checks += [bool(spec.get("subcategory")), spec.get("speed_gbps") is not None,
+                   bool(spec.get("host_interface"))]
+    else:  # air_sensor
+        checks += [bool(spec.get("detected_pollutants")), bool(spec.get("interface_bus"))]
+    checks += [bool(result.get("certifications")), result.get("op_temp_min_c") is not None]
+    return sum(1 for c in checks if c) / len(checks)
+
+
+def _extract_module(text: str, pdf_path: str, part_no: str, product_line: str) -> dict:
+    """Extraction path for IPA EP modules: io / networking / air_sensor."""
+    op_min, op_max = _parse_temp(text)
+    result = {
+        "part_no":             part_no,
+        "product_name":        part_no,
+        "op_temp_min_c":       op_min,
+        "op_temp_max_c":       op_max,
+        "temp_grade":          None,
+        "certifications":      _parse_certs(text),
+        "target_applications": _parse_apps(text),
+        "key_features":        _parse_key_features(text),
+    }
+    if product_line == "io":
+        result["io_spec"] = _parse_io_spec(text)
+    elif product_line == "networking":
+        result["networking_spec"] = _parse_networking_spec(text)
+    elif product_line == "air_sensor":
+        result["air_sensor_spec"] = _parse_air_sensor_spec(text)
+
+    result["_confidence"] = _score_completeness_module(result, product_line)
+    result["_method"]     = f"rule_based_{product_line}"
+    return result
+
+
 # ── Public API ──────────────────────────────────────────────────────────────
 
 def extract(pdf_path: str) -> dict:
@@ -1136,18 +1404,20 @@ def extract(pdf_path: str) -> dict:
     Includes a '_confidence' key (0.0–1.0) for the pipeline to decide fallback.
 
     Routing:
-      - EV* / EB* part numbers → camera extraction path
-      - All others              → computing (AIoT/IPA) extraction path
+      - EV* / EB* part numbers           → camera extraction path
+      - EGPC/FARO/GADN, IAG*, EP I/O      → module path (networking / air_sensor / io)
+      - All others                        → computing (AIoT/IPA) extraction path
     """
     text, page_count = _extract_text(pdf_path)
 
-    # ── Part number detection: try AIoT patterns first, then camera ────────────
-    part_no_match = RE_PART_NO.search(text)
-    if part_no_match:
-        part_no = part_no_match.group(1)
-    else:
-        cam_match = RE_PART_NO_CAMERA.search(text)
-        part_no = cam_match.group(1) if cam_match else "UNKNOWN"
+    # ── Part number detection: AIoT → IPA (EX*) → EP modules → camera ──────────
+    part_no = "UNKNOWN"
+    for rx in (RE_PART_NO, RE_PART_NO_IPA, RE_PART_NO_NET,
+               RE_PART_NO_SENSOR, RE_PART_NO_IO, RE_PART_NO_CAMERA):
+        m = rx.search(text)
+        if m:
+            part_no = m.group(1)
+            break
 
     # ── For camera products: prefer filename stem as part_no (most reliable) ──
     # Filenames follow convention "{PART_NO}_{rest}.pdf" — e.g. "EV3F-ZSM1-RXCF-41_Datasheet..."
@@ -1184,6 +1454,17 @@ def extract(pdf_path: str) -> dict:
         result["_method"]      = "rule_based_camera"
         return result
 
+    # ── Route IPA EP modules (I/O / Networking / Air Sensor) ──────────────────
+    module_pl = classify_by_rule(part_no).get("product_line")
+    if module_pl in ("io", "networking", "air_sensor"):
+        # Filename stem "{PART_NO}_Datasheet.pdf" is the most reliable part_no
+        stem = Path(pdf_path).stem.split('_')[0].strip()
+        if classify_by_rule(stem).get("product_line") == module_pl and len(stem) >= len(part_no):
+            part_no = stem
+        result = _extract_module(text, pdf_path, part_no, module_pl)
+        result["_page_count"] = page_count
+        return result
+
     # ── Computing (AIoT / IPA) path ────────────────────────────────────────────
     # Existing fields ────────────────────────────────────────────────────────
 
@@ -1191,6 +1472,10 @@ def extract(pdf_path: str) -> dict:
     form_factor = ff_match.group(0).strip() if ff_match else None
 
     processor_model, processor_series = _parse_cpu(text)
+    # IPA BU fallback: Intel/NXP patterns missed → try Qualcomm / AMD-Xilinx
+    ipa_cpu_cores = None
+    if processor_model is None:
+        processor_model, processor_series, ipa_cpu_cores = _parse_cpu_ipa(text)
 
     tdp_matches = RE_TDP.findall(text)
     tdp_watt = max(int(v) for v in tdp_matches) if tdp_matches else None
@@ -1217,6 +1502,9 @@ def extract(pdf_path: str) -> dict:
 
     # ── v3.0 new fields ────────────────────────────────────────────────────────
     cpu_cores, cpu_p_cores, cpu_e_cores = _derive_cpu_cores(processor_model)
+    # IPA SoCs aren't in the Intel/NXP cores table — use count parsed from datasheet
+    if cpu_cores is None and ipa_cpu_cores is not None:
+        cpu_cores = ipa_cpu_cores
     memory_spec  = _parse_memory_spec(text, ram_gb_fallback=ram_gb)
     dimensions   = _parse_dimensions_structured(text)
     pcie_slots   = _parse_pcie_slots(text)

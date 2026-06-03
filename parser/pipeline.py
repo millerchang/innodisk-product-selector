@@ -31,6 +31,23 @@ load_dotenv(Path(__file__).parent.parent / ".env")
 SUPPORTED_EXT = {".pdf"}
 HASH_CACHE_FILE = "parse_hash_cache.json"
 
+# ── Datasheet roots per BU ──────────────────────────────────────────────
+# Edit these when the datasheet location changes (e.g. new computer).
+# Set to None until the path is confirmed. Use --datasheets to override.
+# Note: IPA BU (APEX series) currently lives nested under the AIoT root,
+#       so the default AIoT scan already picks it up recursively.
+DATASHEET_ROOTS = {
+    # AIoT BU — Intel/NXP system boards (product_line: computing_aiot)
+    "aiot":          Path(r"D:\Innodisk\Innodisk Product Selector\AIoT\1.Datasheet"),
+    # Camera modules (product_line: camera)
+    "camera":        Path(r"D:\Innodisk\Innodisk Product Selector\Camera\1.0 Datasheet"),
+    # IPA BU \ EP — split into 4 product lines under one parent folder:
+    "ipa_computing": Path(r"D:\Innodisk\Innodisk Product Selector\IPA\EP\Computing"),     # computing_ipa (Qualcomm)
+    "air_sensor":    Path(r"D:\Innodisk\Innodisk Product Selector\IPA\EP\Air Sensor"),    # air_sensor
+    "io":            Path(r"D:\Innodisk\Innodisk Product Selector\IPA\EP\IO Modules"),    # io
+    "networking":    Path(r"D:\Innodisk\Innodisk Product Selector\IPA\EP\Networking"),    # networking
+}
+
 
 def _load_cache(output_dir: Path) -> dict:
     cache_path = output_dir / HASH_CACHE_FILE
@@ -52,13 +69,22 @@ def _md5(path: Path) -> str:
     return h.hexdigest()
 
 
+# Folder-name keywords that mark NON-datasheet PDFs (sales kits, manuals, roadmaps).
+# Matched case-insensitively against each path component.
+SKIP_FOLDER_KEYWORDS = ("ODM", "Sales Kit", "User Manual", "Roadmap", "Saleskit")
+
+
 def _collect_pdfs(root: Path) -> list[Path]:
-    """Collect all PDFs, skip ODM subfolder."""
+    """Collect all PDFs, skipping ODM and non-datasheet folders (sales kits, manuals)."""
     pdfs = []
     for p in sorted(root.rglob("*.pdf")):
-        # Skip ODM products — handled separately
-        if "ODM" in p.parts:
-            print(f"  [SKIP] ODM: {p.name}")
+        skip = next(
+            (kw for part in p.parts for kw in SKIP_FOLDER_KEYWORDS
+             if kw.lower() in part.lower()),
+            None,
+        )
+        if skip:
+            print(f"  [SKIP] {skip}: {p.name}")
             continue
         pdfs.append(p)
     return pdfs
@@ -217,8 +243,8 @@ def run(datasheets_dir: Path, output_dir: Path, force: bool = False, single_file
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Innodisk AIoT Datasheet Parser")
     parser.add_argument("--datasheets", type=Path,
-                        default=Path(r"D:\管理\Solution Architect\AIoT\1.Datasheet"),
-                        help="Root folder of datasheets")
+                        default=DATASHEET_ROOTS["aiot"],
+                        help="Root folder of datasheets (default: AIoT BU root)")
     parser.add_argument("--output", type=Path,
                         default=Path(__file__).parent.parent / "output",
                         help="Output directory for spec_matrix.json")

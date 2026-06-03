@@ -527,6 +527,129 @@ def _build_camera_text_summary(raw: dict, part_no: str, cam_spec: dict) -> str:
     return " | ".join(parts)
 
 
+# ── IPA EP module spec builders: I/O, Networking, Air Sensor ─────────────────
+
+def _build_io_spec(raw: dict) -> dict:
+    """Build io_spec sub-object from raw extractor output."""
+    s = raw.get("io_spec") or {}
+    return {
+        "subcategory":     s.get("subcategory"),
+        "host_interface":  s.get("host_interface"),
+        "pcie_gen":        s.get("pcie_gen"),
+        "pcie_lanes":      _int_or_null(s.get("pcie_lanes")),
+        "port_type":       _clean_list(s.get("port_type", [])),
+        "port_count":      _int_or_null(s.get("port_count")),
+        "supported_os":    _clean_list(s.get("supported_os", [])),
+        "driver_required": bool(s.get("driver_required", True)),
+        "display_output":  bool(s.get("display_output", False)),
+    }
+
+
+def _build_networking_spec(raw: dict) -> dict:
+    """Build networking_spec sub-object from raw extractor output."""
+    s = raw.get("networking_spec") or {}
+    return {
+        "subcategory":    s.get("subcategory"),
+        "host_interface": s.get("host_interface"),
+        "pcie_gen":       s.get("pcie_gen"),
+        "port_count":     _int_or_null(s.get("port_count")),
+        "speed_gbps":     _float_or_null(s.get("speed_gbps")),
+        "protocol":       _clean_list(s.get("protocol", [])),
+        "poe_watt":       _int_or_null(s.get("poe_watt")),
+        "can_fd_support": bool(s.get("can_fd_support", False)),
+        "isolation":      bool(s.get("isolation", False)),
+    }
+
+
+def _build_air_sensor_spec(raw: dict) -> dict:
+    """Build air_sensor_spec sub-object from raw extractor output."""
+    s = raw.get("air_sensor_spec") or {}
+    return {
+        "detected_pollutants": _clean_list(s.get("detected_pollutants", [])),
+        "interface_bus":       s.get("interface_bus"),
+        "accuracy_pm25_ug":    _float_or_null(s.get("accuracy_pm25_ug")),
+        "measurement_range":   s.get("measurement_range"),
+        "response_time_s":     _int_or_null(s.get("response_time_s")),
+        "sdk_support":         _clean_list(s.get("sdk_support", [])),
+        "icap_compatible":     bool(s.get("icap_compatible", False)),
+    }
+
+
+_MODULE_SPEC_KEY = {
+    "io":          "io_spec",
+    "networking":  "networking_spec",
+    "air_sensor":  "air_sensor_spec",
+}
+_MODULE_BUILDER = {
+    "io":          _build_io_spec,
+    "networking":  _build_networking_spec,
+    "air_sensor":  _build_air_sensor_spec,
+}
+
+
+def _build_module_tags(product_line: str, spec: dict, op_min) -> list:
+    """searchable_tags for an IPA EP module record."""
+    tags = ["industrial", "IPA", product_line]
+    if op_min is not None and op_min <= -40:
+        tags.append("wide-temp")
+    sub = spec.get("subcategory")
+    if sub:
+        tags.append(sub)
+    if product_line == "networking":
+        if spec.get("speed_gbps"):
+            tags.append(f"{spec['speed_gbps']}GbE")
+        if spec.get("poe_watt"):
+            tags.append("PoE")
+        if spec.get("can_fd_support"):
+            tags.append("CAN-FD")
+    elif product_line == "io" and spec.get("host_interface"):
+        tags.append(spec["host_interface"])
+    elif product_line == "air_sensor":
+        tags.extend(spec.get("detected_pollutants", []))
+    return tags
+
+
+def _build_module_text_summary(raw: dict, part_no: str, product_line: str, spec: dict) -> str:
+    """text_summary for an IPA EP module embedding."""
+    name = raw.get("product_name", "")
+    head = part_no if not name or name == part_no else f"{part_no} {name}"
+    parts = [head.strip()]
+    if product_line == "io":
+        if spec.get("subcategory"):
+            parts.append(f"I/O type: {spec['subcategory']}")
+        if spec.get("host_interface"):
+            hi = spec["host_interface"]
+            if spec.get("pcie_gen"):
+                hi += f" {spec['pcie_gen']}"
+            parts.append(f"Host: {hi}")
+        if spec.get("port_type"):
+            parts.append("Ports: " + ", ".join(spec["port_type"]))
+    elif product_line == "networking":
+        if spec.get("subcategory"):
+            parts.append(f"Network type: {spec['subcategory']}")
+        if spec.get("speed_gbps"):
+            parts.append(f"Speed: {spec['speed_gbps']} Gbps")
+        if spec.get("protocol"):
+            parts.append("Serial: " + ", ".join(spec["protocol"]))
+        if spec.get("poe_watt"):
+            parts.append(f"PoE: {spec['poe_watt']}W")
+    elif product_line == "air_sensor":
+        if spec.get("detected_pollutants"):
+            parts.append("Detects: " + ", ".join(spec["detected_pollutants"]))
+        if spec.get("interface_bus"):
+            parts.append(f"Interface: {spec['interface_bus']}")
+        if spec.get("measurement_range"):
+            parts.append(f"Range: {spec['measurement_range']}")
+    op_min = raw.get("op_temp_min_c")
+    op_max = raw.get("op_temp_max_c")
+    if op_min is not None and op_max is not None:
+        parts.append(f"Op temp: {op_min}°C ~ {op_max}°C")
+    features = _clean_list(raw.get("key_features", []))
+    if features:
+        parts.append("Features: " + "; ".join(features))
+    return " | ".join(parts)
+
+
 # ── Main builder ─────────────────────────────────────────────────────────────
 
 def build_record(pdf_path: str, raw: dict) -> dict:
@@ -596,6 +719,21 @@ def build_record(pdf_path: str, raw: dict) -> dict:
             "search": {
                 "text_summary":       _build_camera_text_summary(raw, part_no, cam_spec),
                 "searchable_tags":    tags,
+                "target_applications": apps,
+            },
+            "poc_sw_suggestions": [],
+        }
+
+    # ── IPA EP module path (I/O / Networking / Air Sensor) ─────────────────────
+    if product_line in _MODULE_SPEC_KEY:
+        spec = _MODULE_BUILDER[product_line](raw)
+        return {
+            "meta":   meta,
+            "common": common,
+            _MODULE_SPEC_KEY[product_line]: spec,
+            "search": {
+                "text_summary":       _build_module_text_summary(raw, part_no, product_line, spec),
+                "searchable_tags":    _build_module_tags(product_line, spec, op_min),
                 "target_applications": apps,
             },
             "poc_sw_suggestions": [],
