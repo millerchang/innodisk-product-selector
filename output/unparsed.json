@@ -1,0 +1,82 @@
+[
+  {
+    "path": "D:\\Innodisk\\Innodisk Product Selector\\IPA\\EP\\Networking\\1. Datasheets\\GPS\\(ANNA) GNSS\\ANNA-F00L1.pdf",
+    "file": "ANNA-F00L1.pdf",
+    "reason": "part_no not detected (UNKNOWN)",
+    "product_line_guess": "networking",
+    "confidence_score": 0.33,
+    "timestamp": "2026-06-03T10:16:31.934594"
+  },
+  {
+    "path": "D:\\Innodisk\\Innodisk Product Selector\\IPA\\EP\\Networking\\1. Datasheets\\GPS\\(ANNA) GNSS\\ANNA-F00L1Cpptx.pdf",
+    "file": "ANNA-F00L1Cpptx.pdf",
+    "reason": "part_no not detected (UNKNOWN)",
+    "product_line_guess": "networking",
+    "confidence_score": 0.33,
+    "timestamp": "2026-06-03T10:16:32.699040"
+  },
+  {
+    "path": "D:\\Innodisk\\Innodisk Product Selector\\IPA\\EP\\Networking\\1. Datasheets\\GPS\\(ANNA) GNSS\\ANNA-F00U0_Datasheet.pdf",
+    "file": "ANNA-F00U0_Datasheet.pdf",
+    "reason": "part_no not detected (UNKNOWN)",
+    "product_line_guess": "networking",
+    "confidence_score": 0.17,
+    "timestamp": "2026-06-03T10:16:35.323082"
+  },
+  {
+    "path": "D:\\Innodisk\\Innodisk Product Selector\\IPA\\EP\\Networking\\1. Datasheets\\GPS\\(ANNA) GNSS\\ANNA-M01L1_Datasheet.pdf",
+    "file": "ANNA-M01L1_Datasheet.pdf",
+    "reason": "part_no not detected (UNKNOWN)",
+    "product_line_guess": "networking",
+    "confidence_score": 0.17,
+    "timestamp": "2026-06-03T10:16:36.058288"
+  },
+  {
+    "path": "D:\\Innodisk\\Innodisk Product Selector\\IPA\\EP\\Networking\\1. Datasheets\\GPS\\(ANNA) GNSS\\ANNA-M01L1C_Datasheet.pdf",
+    "file": "ANNA-M01L1C_Datasheet.pdf",
+    "reason": "part_no not detected (UNKNOWN)",
+    "product_line_guess": "networking",
+    "confidence_score": 0.17,
+    "timestamp": "2026-06-03T10:16:36.836596"
+  },
+  {
+    "path": "D:\\Innodisk\\Innodisk Product Selector\\IPA\\EP\\Networking\\1. Datasheets\\WiFi\\5SA100000003_AP12275_Datasheet_251003.pdf",
+    "file": "5SA100000003_AP12275_Datasheet_251003.pdf",
+    "reason": "part_no not detected (UNKNOWN)",
+    "product_line_guess": "networking",
+    "confidence_score": 0.5,
+    "timestamp": "2026-06-03T10:25:39.754506"
+  },
+  {
+    "path": "D:\\Innodisk\\Innodisk Product Selector\\IPA\\EP\\Networking\\1. Datasheets\\WiFi\\5SAX00000002-Intel AX210 Wifi 6E non-vPro_Spec.pdf",
+    "file": "5SAX00000002-Intel AX210 Wifi 6E non-vPro_Spec.pdf",
+    "reason": "part_no not detected (UNKNOWN)",
+    "product_line_guess": "networking",
+    "confidence_score": 0.5,
+    "timestamp": "2026-06-03T10:25:41.461671"
+  },
+  {
+    "path": "D:\\Innodisk\\Innodisk Product Selector\\IPA\\EP\\Networking\\1. Datasheets\\WiFi\\5SAX00000003_Intel AX210 WiFi 6E IN-vPro_Spec.pdf",
+    "file": "5SAX00000003_Intel AX210 WiFi 6E IN-vPro_Spec.pdf",
+    "reason": "part_no not detected (UNKNOWN)",
+    "product_line_guess": "networking",
+    "confidence_score": 0.5,
+    "timestamp": "2026-06-03T10:25:43.284815"
+  },
+  {
+    "path": "D:\\Innodisk\\Innodisk Product Selector\\IPA\\EP\\Networking\\1. Datasheets\\WiFi\\5SAX00000004_Intel AX210 WiFi 6E IN-non-vPro_Spec..pdf",
+    "file": "5SAX00000004_Intel AX210 WiFi 6E IN-non-vPro_Spec..pdf",
+    "reason": "part_no not detected (UNKNOWN)",
+    "product_line_guess": "networking",
+    "confidence_score": 0.5,
+    "timestamp": "2026-06-03T10:25:44.910713"
+  },
+  {
+    "path": "D:\\Innodisk\\Innodisk Product Selector\\IPA\\EP\\Networking\\1. Datasheets\\WiFi\\5SBE00000001_Wi-Fi 7 BE200_Specification_240531.pdf",
+    "file": "5SBE00000001_Wi-Fi 7 BE200_Specification_240531.pdf",
+    "reason": "part_no not detected (UNKNOWN)",
+    "product_line_guess": "networking",
+    "confidence_score": 0.33,
+    "timestamp": "2026-06-03T10:25:46.691607"
+  }
+]

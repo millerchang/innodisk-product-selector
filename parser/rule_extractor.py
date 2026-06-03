@@ -1184,6 +1184,23 @@ def _score_completeness(result: dict) -> float:
 
 # ── IPA EP module extraction: I/O, Networking, Air Sensor ────────────────────
 
+def _folder_product_line(pdf_path: str) -> str | None:
+    """
+    Infer product_line from the datasheet folder. The EP module part-number
+    prefix (E + form-factor char) cannot separate io vs networking vs air_sensor
+    — e.g. EGPL (LAN card) and EGPS (storage card) share 'EG' — so the folder,
+    which the user organizes by product line, is the authoritative signal.
+    """
+    p = pdf_path.replace("/", "\\").lower()
+    if "\\networking\\" in p:
+        return "networking"
+    if "\\io modules\\" in p or "\\io module\\" in p:
+        return "io"
+    if "\\air sensor\\" in p:
+        return "air_sensor"
+    return None
+
+
 def _parse_host_iface(text: str) -> tuple[str | None, str | None, int | None]:
     """Return (host_interface, pcie_gen, pcie_lanes) for an expansion module."""
     low = text.lower()
@@ -1455,13 +1472,19 @@ def extract(pdf_path: str) -> dict:
         return result
 
     # ── Route IPA EP modules (I/O / Networking / Air Sensor) ──────────────────
-    module_pl = classify_by_rule(part_no).get("product_line")
+    # Folder is authoritative (prefix can't separate io/networking); fall back
+    # to the part-no rule when scanning outside the known module folders.
+    folder_pl = _folder_product_line(pdf_path)
+    module_pl = folder_pl if folder_pl in ("io", "networking", "air_sensor") \
+        else classify_by_rule(part_no).get("product_line")
     if module_pl in ("io", "networking", "air_sensor"):
         # Filename stem "{PART_NO}_Datasheet.pdf" is the most reliable part_no
         stem = Path(pdf_path).stem.split('_')[0].strip()
-        if classify_by_rule(stem).get("product_line") == module_pl and len(stem) >= len(part_no):
+        if re.match(r'^(E[0-9A-Z]{2,3}-|EGPC-|FARO-|GADN-|IAG|ET3-)', stem.upper()) \
+                and (part_no == "UNKNOWN" or len(stem) >= len(part_no)):
             part_no = stem
         result = _extract_module(text, pdf_path, part_no, module_pl)
+        result["_product_line"] = module_pl
         result["_page_count"] = page_count
         return result
 

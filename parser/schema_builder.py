@@ -668,6 +668,15 @@ def build_record(pdf_path: str, raw: dict) -> dict:
     platform      = catalog.get("platform_brand") or "Intel"
     lifecycle     = catalog.get("lifecycle_status", "Active")
 
+    # Folder-derived product_line (from rule_extractor) is authoritative for the
+    # io/networking/air_sensor trio — the prefix rule can't separate them. It
+    # overrides the rule classifier, but never a hand-verified exact catalog hit.
+    folder_pl = raw.get("_product_line")
+    if folder_pl in ("io", "networking", "air_sensor") and catalog.get("_classified_by") != "catalog":
+        product_line = folder_pl
+        bu_owner     = "IPA"
+        platform     = None
+
     op_min = _int_or_null(raw.get("op_temp_min_c"))
     op_max = _int_or_null(raw.get("op_temp_max_c"))
 

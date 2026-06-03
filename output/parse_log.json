@@ -1,218 +1,42 @@
 [
   {
-    "file": "EV2U-LOM1-RHCF_Datasheet_2026_Q1.pdf",
-    "path": "D:\\管理\\Solution Architect\\Camera\\1.0 Datasheet\\1.0 USB 2.0\\EV2U-LOM1-RHCF_Datasheet_2026_Q1.pdf",
-    "timestamp": "2026-06-01T09:33:28.899846",
+    "file": "EXMU-X261_Datasheet.pdf",
+    "path": "D:\\Innodisk\\Innodisk Product Selector\\IPA\\EP\\Computing\\AMD\\1. Datasheet\\EXMU-X261_Datasheet.pdf",
+    "timestamp": "2026-06-03T10:40:54.464237",
+    "status": "ok",
+    "method": "rule_based",
+    "confidence_score": 0.94,
+    "warnings": [],
+    "part_no": "EXMU-X261"
+  },
+  {
+    "file": "EXOU-X261_Datasheet.pdf",
+    "path": "D:\\Innodisk\\Innodisk Product Selector\\IPA\\EP\\Computing\\AMD\\1. Datasheet\\EXOU-X261_Datasheet.pdf",
+    "timestamp": "2026-06-03T10:40:55.544050",
+    "status": "ok",
+    "method": "rule_based",
+    "confidence_score": 0.94,
+    "warnings": [],
+    "part_no": "EXOU-X261"
+  },
+  {
+    "file": "Datasheet_EXEC-Q911_DVT_20251218_Preliminary.pdf",
+    "path": "D:\\Innodisk\\Innodisk Product Selector\\IPA\\EP\\Computing\\Qualcomm\\1. Datasheet\\EXEC-Q911\\Datasheet_EXEC-Q911_DVT_20251218_Preliminary.pdf",
+    "timestamp": "2026-06-03T10:40:56.609413",
     "status": "ok",
     "method": "rule_based",
     "confidence_score": 1.0,
     "warnings": [],
-    "part_no": "EV2U-LOM1-RHCF"
+    "part_no": "EXEC-Q911"
   },
   {
-    "file": "EV2U-RMR1-UMCB_Datasheet_2025_Q2.pdf",
-    "path": "D:\\管理\\Solution Architect\\Camera\\1.0 Datasheet\\1.0 USB 2.0\\EV2U-RMR1-UMCB_Datasheet_2025_Q2.pdf",
-    "timestamp": "2026-06-01T09:33:30.295193",
+    "file": "Datasheet_EXMP-Q911_DVT_20260116_Preliminary.pdf",
+    "path": "D:\\Innodisk\\Innodisk Product Selector\\IPA\\EP\\Computing\\Qualcomm\\1. Datasheet\\EXMP-Q911\\Datasheet_EXMP-Q911_DVT_20260116_Preliminary.pdf",
+    "timestamp": "2026-06-03T10:40:57.723016",
     "status": "ok",
     "method": "rule_based",
-    "confidence_score": 1.0,
+    "confidence_score": 0.88,
     "warnings": [],
-    "part_no": "EV2U-RMR1-UMCB"
-  },
-  {
-    "file": "EV2U-RMR2-MMC1_Datasheet_2025_Q2.pdf",
-    "path": "D:\\管理\\Solution Architect\\Camera\\1.0 Datasheet\\1.0 USB 2.0\\EV2U-RMR2-MMC1_Datasheet_2025_Q2.pdf",
-    "timestamp": "2026-06-01T09:33:31.384717",
-    "status": "ok",
-    "method": "rule_based",
-    "confidence_score": 1.0,
-    "warnings": [],
-    "part_no": "EV2U-RMR2-MMC1"
-  },
-  {
-    "file": "EV2U-SGR1-MMC1_Datasheet_2025_Q3.pdf",
-    "path": "D:\\管理\\Solution Architect\\Camera\\1.0 Datasheet\\1.0 USB 2.0\\EV2U-SGR1-MMC1_Datasheet_2025_Q3.pdf",
-    "timestamp": "2026-06-01T09:33:32.388244",
-    "status": "ok",
-    "method": "rule_based",
-    "confidence_score": 1.0,
-    "warnings": [],
-    "part_no": "EV2U-SGR1-MMC1"
-  },
-  {
-    "file": "EV2U-SSM1-RLCF_Datasheet_2026_Q1.pdf",
-    "path": "D:\\管理\\Solution Architect\\Camera\\1.0 Datasheet\\1.0 USB 2.0\\EV2U-SSM1-RLCF_Datasheet_2026_Q1.pdf",
-    "timestamp": "2026-06-01T09:33:36.543805",
-    "status": "ok",
-    "method": "rule_based",
-    "confidence_score": 1.0,
-    "warnings": [],
-    "part_no": "EV2U-SSM1-RLCF"
-  },
-  {
-    "file": "EV8U-LSM1-RLCF_Datasheet_2025_Q2.pdf",
-    "path": "D:\\管理\\Solution Architect\\Camera\\1.0 Datasheet\\1.0 USB 2.0\\EV8U-LSM1-RLCF_Datasheet_2025_Q2.pdf",
-    "timestamp": "2026-06-01T09:33:38.579461",
-    "status": "ok",
-    "method": "rule_based",
-    "confidence_score": 1.0,
-    "warnings": [],
-    "part_no": "EV8U-LSM1-RLCF"
-  },
-  {
-    "file": "EV8U-LSN1-RSCA_Datasheet_2025_Q2.pdf",
-    "path": "D:\\管理\\Solution Architect\\Camera\\1.0 Datasheet\\1.0 USB 2.0\\EV8U-LSN1-RSCA_Datasheet_2025_Q2.pdf",
-    "timestamp": "2026-06-01T09:33:40.495557",
-    "status": "ok",
-    "method": "rule_based",
-    "confidence_score": 0.83,
-    "warnings": [],
-    "part_no": "EV8U-LSN1-RSCA"
-  },
-  {
-    "file": "EV2M-CSM1-RHCF_Datasheet_2025_Q2.pdf",
-    "path": "D:\\管理\\Solution Architect\\Camera\\1.0 Datasheet\\2.0 MIPI CSI-2\\EV2M-CSM1-RHCF_Datasheet_2025_Q2.pdf",
-    "timestamp": "2026-06-01T09:33:42.216583",
-    "status": "ok",
-    "method": "rule_based",
-    "confidence_score": 0.83,
-    "warnings": [],
-    "part_no": "EV2M-CSM1-RHCF"
-  },
-  {
-    "file": "EV2M-OOM1-UHCA _Datasheet_2025_Q3.pdf",
-    "path": "D:\\管理\\Solution Architect\\Camera\\1.0 Datasheet\\2.0 MIPI CSI-2\\EV2M-OOM1-UHCA _Datasheet_2025_Q3.pdf",
-    "timestamp": "2026-06-01T09:33:44.798311",
-    "status": "ok",
-    "method": "rule_based",
-    "confidence_score": 1.0,
-    "warnings": [],
-    "part_no": "EV2M-OOM1-UHCA"
-  },
-  {
-    "file": "EV2M-ZOM1-GSCV_Datasheet_2025_Q2.pdf",
-    "path": "D:\\管理\\Solution Architect\\Camera\\1.0 Datasheet\\2.0 MIPI CSI-2\\EV2M-ZOM1-GSCV_Datasheet_2025_Q2.pdf",
-    "timestamp": "2026-06-01T09:33:49.325203",
-    "status": "ok",
-    "method": "rule_based",
-    "confidence_score": 0.83,
-    "warnings": [],
-    "part_no": "EV2M-ZOM1-GSCV"
-  },
-  {
-    "file": "EV5M-CSM1-RTCF_Datasheet_2025_Q2.pdf",
-    "path": "D:\\管理\\Solution Architect\\Camera\\1.0 Datasheet\\2.0 MIPI CSI-2\\EV5M-CSM1-RTCF_Datasheet_2025_Q2.pdf",
-    "timestamp": "2026-06-01T09:33:54.258449",
-    "status": "ok",
-    "method": "rule_based",
-    "confidence_score": 0.83,
-    "warnings": [],
-    "part_no": "EV5M-CSM1-RTCF"
-  },
-  {
-    "file": "EV8M-CSM1-RTCF_Datasheet_2025_Q3.pdf",
-    "path": "D:\\管理\\Solution Architect\\Camera\\1.0 Datasheet\\2.0 MIPI CSI-2\\EV8M-CSM1-RTCF_Datasheet_2025_Q3.pdf",
-    "timestamp": "2026-06-01T09:33:56.547630",
-    "status": "ok",
-    "method": "rule_based",
-    "confidence_score": 0.83,
-    "warnings": [],
-    "part_no": "EV8M-CSM1-RTCF"
-  },
-  {
-    "file": "EV8M-OOM1-RHCF_Datasheet_2026_Q1.pdf",
-    "path": "D:\\管理\\Solution Architect\\Camera\\1.0 Datasheet\\2.0 MIPI CSI-2\\EV8M-OOM1-RHCF_Datasheet_2026_Q1.pdf",
-    "timestamp": "2026-06-01T09:33:58.972140",
-    "status": "ok",
-    "method": "rule_based",
-    "confidence_score": 0.83,
-    "warnings": [],
-    "part_no": "EV8M-OOM1-RHCF"
-  },
-  {
-    "file": "EVDM-OOM1-RHCF_Datasheet_2025_Q2.pdf",
-    "path": "D:\\管理\\Solution Architect\\Camera\\1.0 Datasheet\\2.0 MIPI CSI-2\\EVDM-OOM1-RHCF_Datasheet_2025_Q2.pdf",
-    "timestamp": "2026-06-01T09:33:59.929816",
-    "status": "ok",
-    "method": "rule_based",
-    "confidence_score": 1.0,
-    "warnings": [],
-    "part_no": "EVDM-OOM1-RHCF"
-  },
-  {
-    "file": "EV8C-OOM1-RHCF_Datasheet_2025_Q3.pdf",
-    "path": "D:\\管理\\Solution Architect\\Camera\\1.0 Datasheet\\3.0 MIPI over Type-C\\EV8C-OOM1-RHCF_Datasheet_2025_Q3.pdf",
-    "timestamp": "2026-06-01T09:34:06.512955",
-    "status": "ok",
-    "method": "rule_based",
-    "confidence_score": 1.0,
-    "warnings": [],
-    "part_no": "EV8C-OOM1-RHCF"
-  },
-  {
-    "file": "EV2F-OOM3-RHCF_Datasheet_2025_Q4.pdf",
-    "path": "D:\\管理\\Solution Architect\\Camera\\1.0 Datasheet\\4.0 GMSL2\\EV2F-OOM3-RHCF_Datasheet_2025_Q4.pdf",
-    "timestamp": "2026-06-01T09:34:13.561110",
-    "status": "ok",
-    "method": "rule_based",
-    "confidence_score": 1.0,
-    "warnings": [],
-    "part_no": "EV2F-OOM3-RHCF"
-  },
-  {
-    "file": "EV3F-ZSM1-RXCF-41_Datasheet_2025_Q4.pdf",
-    "path": "D:\\管理\\Solution Architect\\Camera\\1.0 Datasheet\\4.0 GMSL2\\EV3F-ZSM1-RXCF-41_Datasheet_2025_Q4.pdf",
-    "timestamp": "2026-06-01T09:34:16.594969",
-    "status": "ok",
-    "method": "rule_based",
-    "confidence_score": 1.0,
-    "warnings": [],
-    "part_no": "EV3F-ZSM1-RXCF-41"
-  },
-  {
-    "file": "EVDF-OOM1-RHCF_Datasheet_2026_Q1.pdf",
-    "path": "D:\\管理\\Solution Architect\\Camera\\1.0 Datasheet\\4.0 GMSL2\\EVDF-OOM1-RHCF_Datasheet_2026_Q1.pdf",
-    "timestamp": "2026-06-01T09:34:20.278137",
-    "status": "ok",
-    "method": "rule_based",
-    "confidence_score": 1.0,
-    "warnings": [],
-    "part_no": "EVDF-OOM1-RHCF"
-  },
-  {
-    "file": "EB022-2M4F_Datasheet_2026 May.pdf",
-    "path": "D:\\管理\\Solution Architect\\Camera\\1.0 Datasheet\\5.0 Capture Card\\EB022-2M4F_Datasheet_2026 May.pdf",
-    "timestamp": "2026-06-01T09:34:22.295101",
-    "status": "ok",
-    "method": "vision_fallback",
-    "confidence_score": 0.5,
-    "warnings": [
-      "Rule-based confidence 50% — Vision skipped (no API key set)"
-    ],
-    "part_no": "EB022-2M4F"
-  },
-  {
-    "file": "EB120-1S4F_Datasheet_2026_May.pdf",
-    "path": "D:\\管理\\Solution Architect\\Camera\\1.0 Datasheet\\5.0 Capture Card\\EB120-1S4F_Datasheet_2026_May.pdf",
-    "timestamp": "2026-06-01T09:34:25.637912",
-    "status": "ok",
-    "method": "vision_fallback",
-    "confidence_score": 0.5,
-    "warnings": [
-      "Rule-based confidence 50% — Vision skipped (no API key set)"
-    ],
-    "part_no": "EB120-1S4F"
-  },
-  {
-    "file": "EB120-1S4M_Datasheet_2026_May.pdf",
-    "path": "D:\\管理\\Solution Architect\\Camera\\1.0 Datasheet\\5.0 Capture Card\\EB120-1S4M_Datasheet_2026_May.pdf",
-    "timestamp": "2026-06-01T09:34:47.108554",
-    "status": "ok",
-    "method": "vision_fallback",
-    "confidence_score": 0.5,
-    "warnings": [
-      "Rule-based confidence 50% — Vision skipped (no API key set)"
-    ],
-    "part_no": "EB120-1S4M"
+    "part_no": "EXMP-Q911"
   }
 ]

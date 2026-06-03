@@ -112,6 +112,31 @@ def _save_log(output_dir: Path, log: list[dict]):
     log_path.write_text(json.dumps(log, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
+UNPARSED_FILE = "unparsed.json"
+
+
+def _load_unparsed(output_dir: Path) -> dict[str, dict]:
+    """Load the set-aside list of files whose part_no could not be resolved.
+    Keyed by full file path so each unparseable PDF is preserved individually
+    (avoids the UNKNOWN-key collision that collapses many files into one)."""
+    path = output_dir / UNPARSED_FILE
+    if not path.exists():
+        return {}
+    try:
+        items = json.loads(path.read_text(encoding="utf-8-sig"))
+        return {it["path"]: it for it in items}
+    except Exception:
+        return {}
+
+
+def _save_unparsed(output_dir: Path, unparsed: dict[str, dict]):
+    path = output_dir / UNPARSED_FILE
+    path.write_text(
+        json.dumps(list(unparsed.values()), indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
+
 def parse_one(pdf_path: Path, client: anthropic.Anthropic) -> tuple[dict | None, dict]:
     """
     Parse a single PDF. Returns (record, log_entry).
@@ -183,6 +208,7 @@ def run(datasheets_dir: Path, output_dir: Path, force: bool = False, single_file
         print(f"      PDFs below {CONFIDENCE_THRESHOLD:.0%} rule-based confidence will be SKIPPED.\n")
     cache = _load_cache(output_dir)
     existing = _load_existing_matrix(output_dir)
+    unparsed = _load_unparsed(output_dir)
     log: list[dict] = []
 
     if single_file:
@@ -195,7 +221,7 @@ def run(datasheets_dir: Path, output_dir: Path, force: bool = False, single_file
     print(f"Output dir: {output_dir}")
     print(f"{'='*60}\n")
 
-    processed = skipped = errors = 0
+    processed = skipped = errors = set_aside = 0
 
     for pdf in pdfs:
         file_hash = _md5(pdf)
@@ -211,15 +237,31 @@ def run(datasheets_dir: Path, output_dir: Path, force: bool = False, single_file
         record, log_entry = parse_one(pdf, client)
         elapsed = time.time() - t0
 
-        if record:
+        if record and record["meta"]["part_no"] != "UNKNOWN":
             part_no = record["meta"]["part_no"]
             existing[part_no] = record
             cache[str(pdf)] = file_hash
             processed += 1
+            # If this file was previously set aside, it's now resolved → drop it.
+            unparsed.pop(str(pdf), None)
             method  = log_entry.get("method", "rule_based")
             conf    = log_entry.get("confidence_score", "?")
             method_tag = "rule" if method == "rule_based" else "vision"
             print(f"OK  [{method_tag}:{conf}] {part_no} ({elapsed:.1f}s)")
+        elif record:
+            # part_no == UNKNOWN → set aside for later manual handling instead of
+            # collapsing every UNKNOWN file into one polluting matrix record.
+            cache[str(pdf)] = file_hash
+            unparsed[str(pdf)] = {
+                "path": str(pdf),
+                "file": pdf.name,
+                "reason": "part_no not detected (UNKNOWN)",
+                "product_line_guess": record.get("meta", {}).get("product_line"),
+                "confidence_score": log_entry.get("confidence_score"),
+                "timestamp": datetime.now().isoformat(),
+            }
+            set_aside += 1
+            print(f"SET-ASIDE [unparsed] {pdf.name} ({elapsed:.1f}s)")
         else:
             errors += 1
             print(f"FAIL ({elapsed:.1f}s) — {log_entry['warnings']}")
@@ -230,13 +272,17 @@ def run(datasheets_dir: Path, output_dir: Path, force: bool = False, single_file
         _save_matrix(output_dir, existing)
         _save_cache(output_dir, cache)
         _save_log(output_dir, log)
+        _save_unparsed(output_dir, unparsed)
 
         # Brief pause to avoid API rate limits
         time.sleep(0.5)
 
     print(f"\n{'='*60}")
-    print(f"Done. Processed: {processed}  Skipped: {skipped}  Errors: {errors}")
+    print(f"Done. Processed: {processed}  Skipped: {skipped}  "
+          f"Set-aside: {set_aside}  Errors: {errors}")
     print(f"Output: {output_dir / 'spec_matrix.json'}")
+    if set_aside:
+        print(f"Unparsed (set aside): {output_dir / UNPARSED_FILE}")
     print(f"{'='*60}\n")
 
 
