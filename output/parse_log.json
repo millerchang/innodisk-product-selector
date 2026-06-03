@@ -1,12 +1,14 @@
 [
   {
-    "file": "InnoEx-IPCKVM_Datasheet.pdf",
-    "path": "D:\\Innodisk\\Innodisk Product Selector\\IPA\\EP\\IO Modules\\1. Datasheets\\InnoEx Virtual IO\\InnoEx-IPCKVM_Datasheet.pdf",
-    "timestamp": "2026-06-03T11:06:58.388284",
+    "file": "5SBE00000001_Wi-Fi 7 BE200_Specification_240531.pdf",
+    "path": "D:\\Innodisk\\Innodisk Product Selector\\IPA\\EP\\Networking\\1. Datasheets\\WiFi\\5SBE00000001_Wi-Fi 7 BE200_Specification_240531.pdf",
+    "timestamp": "2026-06-03T11:14:16.755402",
     "status": "ok",
-    "method": "rule_based",
-    "confidence_score": 0.83,
-    "warnings": [],
-    "part_no": "InnoEx-IPCKVM"
+    "method": "vision_fallback",
+    "confidence_score": 0.5,
+    "warnings": [
+      "Rule-based confidence 50% — Vision skipped (no API key set)"
+    ],
+    "part_no": "5SBE00000001"
   }
 ]

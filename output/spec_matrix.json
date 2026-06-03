@@ -20026,7 +20026,8 @@
       "poe_watt": null,
       "can_fd_support": false,
       "isolation": false,
-      "sourcing": "subsidiary"
+      "sourcing": "subsidiary",
+      "source_vendor": "Antzertech"
     },
     "search": {
       "text_summary": "ANNA-F00L1 | Network type: GNSS | Features: blox 92-channel NEO-M9 GNSS module; 40°C to +85°C) support; tickSignal 3 GND; up Battery 8 NC",
@@ -20078,7 +20079,8 @@
       "poe_watt": null,
       "can_fd_support": false,
       "isolation": false,
-      "sourcing": "subsidiary"
+      "sourcing": "subsidiary",
+      "source_vendor": "Antzertech"
     },
     "search": {
       "text_summary": "ANNA-F00L1C | Network type: GNSS | Features: blox 72-channel NEO-M8 GNSS module; 40°C to +85°C) support; tickSignal 3 GND; up Battery 8 NC",
@@ -20130,7 +20132,8 @@
       "poe_watt": null,
       "can_fd_support": false,
       "isolation": false,
-      "sourcing": "subsidiary"
+      "sourcing": "subsidiary",
+      "source_vendor": "Antzertech"
     },
     "search": {
       "text_summary": "ANNA-F00U0 | Network type: GNSS | Features: blox 92-channel NEO-M9 GNSS module; 40°C to +85°C) support",
@@ -20182,7 +20185,8 @@
       "poe_watt": null,
       "can_fd_support": false,
       "isolation": false,
-      "sourcing": "subsidiary"
+      "sourcing": "subsidiary",
+      "source_vendor": "Antzertech"
     },
     "search": {
       "text_summary": "ANNA-M01L1 | Network type: GNSS | Features: blox NEO-M8 GNSS module (GPS,; 40°C to +85°C) support; tickSignal 3 GND",
@@ -20233,7 +20237,8 @@
       "poe_watt": null,
       "can_fd_support": false,
       "isolation": false,
-      "sourcing": "subsidiary"
+      "sourcing": "subsidiary",
+      "source_vendor": "Antzertech"
     },
     "search": {
       "text_summary": "ANNA-M01L1C | Network type: GNSS | Features: blox NEO-M8 GNSS module (GPS,; 40°C to +85°C) support; tickSignal 3 GND",
@@ -20284,7 +20289,8 @@
       "poe_watt": null,
       "can_fd_support": false,
       "isolation": false,
-      "sourcing": "oem"
+      "sourcing": "oem",
+      "source_vendor": null
     },
     "search": {
       "text_summary": "5SA100000003 | Network type: WiFi | Op temp: -40°C ~ 105°C | Features: rate connections, improve; stream spatial multiplexing up to 1200 Mbps data rate.; Fi 6 features including 1024-QAM Modulation, OFDMA, MU-MIMO, and WPA3.; Energy 2 Mbps and Low-Energy Long Range.; IV connectors (ANT1 for WLAN, ANT2 for WLAN & BT); Condensing) 5%~95% (Storing)",
@@ -20340,7 +20346,8 @@
       "poe_watt": null,
       "can_fd_support": false,
       "isolation": false,
-      "sourcing": "oem"
+      "sourcing": "oem",
+      "source_vendor": null
     },
     "search": {
       "text_summary": "5SAX00000002 | Network type: WiFi | Speed: 1.0 Gbps | Features: on and always-connected; stream Wi-Fi in the 2.4GHz, 5GHz, and; Fi 6 R2 features, including UL MU-MIMO1 that improves UL; Fi 6, including; low latencies, and enhanced reliability; Fi 6E technology",
@@ -20392,7 +20399,8 @@
       "poe_watt": null,
       "can_fd_support": false,
       "isolation": false,
-      "sourcing": "oem"
+      "sourcing": "oem",
+      "source_vendor": null
     },
     "search": {
       "text_summary": "5SAX00000003 | Network type: WiFi | Speed: 1.0 Gbps | Features: on and always-connected; stream Wi-Fi in the 2.4GHz, 5GHz, and; Fi 6 R2 features, including UL MU-MIMO1 that improves UL; Fi 6, including; low latencies, and enhanced reliability; Fi 6E technology",
@@ -20444,7 +20452,8 @@
       "poe_watt": null,
       "can_fd_support": false,
       "isolation": false,
-      "sourcing": "oem"
+      "sourcing": "oem",
+      "source_vendor": null
     },
     "search": {
       "text_summary": "5SAX00000004 | Network type: WiFi | Speed: 1.0 Gbps | Features: on and always-connected; stream Wi-Fi in the 2.4GHz, 5GHz, and; Fi 6 R2 features, including UL MU-MIMO1 that improves UL; Fi 6, including; low latencies, and enhanced reliability; Fi 6E technology",
@@ -20494,7 +20503,8 @@
       "poe_watt": null,
       "can_fd_support": false,
       "isolation": false,
-      "sourcing": "oem"
+      "sourcing": "oem",
+      "source_vendor": null
     },
     "search": {
       "text_summary": "5SBE00000001 | Network type: WiFi | Speed: 1.0 Gbps | Features: over-gen architecture, prociding a; power solution, and set of advanced capabilities. It; Fi spec of 802.11BE, and includes the; Fi: UHB(Ultra High Band).; power chains for Wi-Fi,; Fi 7, including",
@@ -20549,7 +20559,8 @@
       ],
       "driver_required": true,
       "display_output": false,
-      "sourcing": "subsidiary"
+      "sourcing": "subsidiary",
+      "source_vendor": "Millitronic"
     },
     "search": {
       "text_summary": "InnoEx-ETC22 | I/O type: Virtual IO | Ports: GbE | Op temp: -10°C ~ 85°C",
@@ -20605,7 +20616,8 @@
       ],
       "driver_required": true,
       "display_output": true,
-      "sourcing": "subsidiary"
+      "sourcing": "subsidiary",
+      "source_vendor": "Millitronic"
     },
     "search": {
       "text_summary": "InnoEx-IPCKVM | I/O type: Virtual IO | Host: USB | Ports: HDMI, USB, GbE | Op temp: -20°C ~ 90°C",

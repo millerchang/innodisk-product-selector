@@ -543,6 +543,7 @@ def _build_io_spec(raw: dict) -> dict:
         "driver_required": bool(s.get("driver_required", True)),
         "display_output":  bool(s.get("display_output", False)),
         "sourcing":        raw.get("_sourcing", "in-house"),
+        "source_vendor":   raw.get("_source_vendor"),
     }
 
 
@@ -560,6 +561,7 @@ def _build_networking_spec(raw: dict) -> dict:
         "can_fd_support": bool(s.get("can_fd_support", False)),
         "isolation":      bool(s.get("isolation", False)),
         "sourcing":       raw.get("_sourcing", "in-house"),
+        "source_vendor":  raw.get("_source_vendor"),
     }
 
 

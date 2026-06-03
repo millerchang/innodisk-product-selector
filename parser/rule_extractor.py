@@ -1492,13 +1492,17 @@ def extract(pdf_path: str) -> dict:
         stem = Path(pdf_path).stem.split('_')[0].strip()
         sourcing = "in-house"
         subcat_hint = None
+        source_vendor = None
         # Subsidiary / OEM part numbers that don't follow the E-code scheme.
         if _RE_PN_INNOEX.match(stem):
             part_no, sourcing, subcat_hint = _RE_PN_INNOEX.match(stem).group(1), "subsidiary", "Virtual IO"
+            source_vendor = "Millitronic"        # 巽晨國際 (resale)
         elif _RE_PN_ANNA.match(stem):
             part_no, sourcing, subcat_hint = _RE_PN_ANNA.match(stem).group(1), "subsidiary", "GNSS"
+            source_vendor = "Antzertech"          # 安捷科 (dissolved subsidiary)
         elif _RE_PN_WIFI.match(stem):
             part_no, sourcing, subcat_hint = _RE_PN_WIFI.match(stem).group(1), "oem", "WiFi"
+            source_vendor = None                  # OEM purchase (Intel AX/BE)
         elif re.match(r'^(E[0-9A-Z]{2,3}-|EGPC-|FARO-|GADN-|IAG|ET3-)', stem.upper()) \
                 and (part_no == "UNKNOWN" or len(stem) >= len(part_no)):
             part_no = stem
@@ -1509,6 +1513,7 @@ def extract(pdf_path: str) -> dict:
             result[spec_key]["subcategory"] = subcat_hint
         result["_product_line"] = module_pl
         result["_sourcing"] = sourcing
+        result["_source_vendor"] = source_vendor
         result["_page_count"] = page_count
         return result
 
