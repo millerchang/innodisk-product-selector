@@ -105,6 +105,14 @@ export default function SolutionPanel({ solution, onSelectHost, onToggleSelect, 
                     {spec.speed_gbps != null && <span>{spec.speed_gbps} Gbps</span>}
                   </div>
                 </div>
+                <label className="compare-toggle" onClick={e => e.stopPropagation()}>
+                  <input
+                    type="checkbox"
+                    checked={selectedForCompare.includes(card.meta.part_no)}
+                    onChange={() => onToggleSelect?.(card.meta.part_no)}
+                  />
+                  <span>Compare</span>
+                </label>
               </div>
             );
           })}

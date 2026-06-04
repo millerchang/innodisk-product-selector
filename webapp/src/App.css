@@ -700,6 +700,12 @@
 }
 
 .col-header-inner strong { font-size: 13px; color: var(--color-text); }
+.col-header-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.col-header-line {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
 
 .remove-col-btn {
   background: none;
