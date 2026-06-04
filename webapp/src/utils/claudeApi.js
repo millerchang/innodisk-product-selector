@@ -85,7 +85,7 @@ Return exactly this JSON structure (no extra fields, no markdown):
     "os_required": [],
     "keywords": []
   },
-  "required_functions": [],
+  "required_functions": [{ "function": "", "count": 1 }],
   "recommended_part_nos": [],
   "recommendation_summary": "",
   "key_tradeoffs": ""
@@ -93,8 +93,12 @@ Return exactly this JSON structure (no extra fields, no markdown):
 
 Rules:
 - required_functions: list every I/O / connectivity function the customer asks for,
-  using ONLY these canonical keys: ["ethernet","can","serial","wifi","gnss","usb","storage","poe","display","air_sensor","camera"].
-  Example: "需要 4 個網口、CAN bus 和 GPS" → ["ethernet","can","gnss"]. Empty array if none stated.
+  as objects {"function": <key>, "count": <number>}, using ONLY these canonical
+  keys: ["ethernet","can","serial","wifi","gnss","usb","storage","poe","display","air_sensor","camera"].
+  count = how many ports/units the customer needs (default 1 if unspecified).
+  Example: "需要 4 個網口、10 個 USB 接相機、CAN bus 和 GPS" →
+    [{"function":"ethernet","count":4},{"function":"usb","count":10},{"function":"can","count":1},{"function":"gnss","count":1}].
+  Empty array if no I/O functions stated.
 - structured_criteria: hard COMPUTE constraints only (null = not specified).
 - product_lines: array from ["computing_aiot","computing_ipa"] or null. Pick the
   compute host line(s); the system fills I/O gaps with EP cards automatically.

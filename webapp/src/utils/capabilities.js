@@ -81,6 +81,39 @@ export function getHostProvides(host) {
   return provides;
 }
 
+/** Sum a `count` field across an io_ports array (or accept a bare number). */
+function sumPorts(v) {
+  if (Array.isArray(v)) return v.reduce((n, x) => n + countOf(x?.count, 1), 0);
+  return countOf(v);
+}
+
+/**
+ * How many ports/units of a canonical function the host provides natively.
+ * Port-type functions (usb/ethernet/serial/can/display) return real counts;
+ * boolean-ish functions (wifi/gnss/poe/storage/camera) return 1 if present.
+ */
+export function getHostFunctionCount(host, fn) {
+  const cs = host.computing_spec || {};
+  const io = cs.io_ports || {};
+  switch (fn) {
+    case 'usb':      return sumPorts(io.usb);
+    case 'ethernet': return sumPorts(io.gbe);
+    case 'serial':   return sumPorts(io.serial);
+    case 'can':      return countOf(io.can_bus_count) || (sumPorts(io.can));
+    case 'display':  return (cs.display_outputs || io.display_outputs || []).length
+                          || (cs.connectivity || []).filter(t => /HDMI|DP|VGA|DISPLAY/i.test(t)).length;
+    case 'camera':   return 0; // always needs a module
+    default:         return getHostProvides(host).has(fn) ? 1 : 0;
+  }
+}
+
+/** How many ports/units of `fn` a single EP/camera card contributes. */
+export function getCardCapacity(card, fn) {
+  if (card.meta.product_line === 'camera') return 1;
+  const spec = card.networking_spec || card.io_spec || {};
+  return countOf(spec.port_count, 1);
+}
+
 /**
  * Camera interfaces a host can drive (MIPI / USB / PCIe / GMSL), as a count map.
  * USB and PCIe are shared with the general slot pool; MIPI/GMSL are camera-only.

@@ -63,11 +63,14 @@ export function buildQuoteCSV(solution, rfqText = '') {
   lines.push(['Innodisk Product Selector — Solution Quote']);
   lines.push(['Generated', new Date().toLocaleString()]);
   if (rfqText) lines.push(['Customer RFQ', rfqText]);
-  if (solution?.requiredFns?.length) {
-    lines.push(['Requested Functions', solution.requiredFns.map(functionLabel).join('; ')]);
+  if (solution?.requirements?.length) {
+    lines.push(['Requested Functions', solution.requirements
+      .map(r => `${functionLabel(r.fn)}${r.count > 1 ? ` x${r.count}` : ''}`).join('; ')]);
   }
-  if (solution?.unfilledGaps?.length) {
-    lines.push(['UNFILLED (no card/slot)', solution.unfilledGaps.map(functionLabel).join('; ')]);
+  const unmet = (solution?.coverage || []).filter(c => !c.covered);
+  if (unmet.length) {
+    lines.push(['UNFILLED', unmet
+      .map(c => `${functionLabel(c.fn)} (need ${c.need}, got ${c.total})`).join('; ')]);
   }
   lines.push([]); // blank row
   lines.push(['#', 'Role', 'Part No', 'Product Line', 'Description', 'Fills Function', 'Slot', 'Qty', 'Lifecycle']);
@@ -113,10 +116,11 @@ export function printQuote(solution, rfqText = '') {
       <td>${esc(it.lifecycle)}</td>
     </tr>`).join('');
 
-  const reqLine = solution?.requiredFns?.length
-    ? `<p><strong>Requested functions:</strong> ${esc(solution.requiredFns.map(functionLabel).join(' · '))}</p>` : '';
-  const gapLine = solution?.unfilledGaps?.length
-    ? `<p class="warn"><strong>⚠ Unfilled (no card/slot):</strong> ${esc(solution.unfilledGaps.map(functionLabel).join(' · '))}</p>` : '';
+  const reqLine = solution?.requirements?.length
+    ? `<p><strong>Requested functions:</strong> ${esc(solution.requirements.map(r => `${functionLabel(r.fn)}${r.count > 1 ? ` ×${r.count}` : ''}`).join(' · '))}</p>` : '';
+  const unmet = (solution?.coverage || []).filter(c => !c.covered);
+  const gapLine = unmet.length
+    ? `<p class="warn"><strong>⚠ Unfilled:</strong> ${esc(unmet.map(c => `${functionLabel(c.fn)} (need ${c.need}, got ${c.total})`).join(' · '))}</p>` : '';
   const rfqLine = rfqText ? `<p><strong>Customer RFQ:</strong> ${esc(rfqText)}</p>` : '';
 
   const html = `<!doctype html><html><head><meta charset="utf-8"><title>Innodisk Solution Quote</title>

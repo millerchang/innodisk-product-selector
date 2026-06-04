@@ -8,7 +8,7 @@ import { getProductLineLabel, getPlatformIcon, formatTops, formatTdp, formatTemp
  */
 export default function SolutionPanel({ solution, onSelectHost, onToggleSelect, selectedForCompare = [], rfqText = '' }) {
   if (!solution) return null;
-  const { host, addOns = [], unfilledGaps = [], nativelyCovered = [], requiredFns = [], alternativeHosts = [] } = solution;
+  const { host, addOns = [], unfilledGaps = [], requiredFns = [], coverage = [], alternativeHosts = [] } = solution;
 
   if (!host) {
     return (
@@ -47,19 +47,19 @@ export default function SolutionPanel({ solution, onSelectHost, onToggleSelect, 
         </div>
       </div>
 
-      {/* Requested function checklist */}
-      {requiredFns.length > 0 && (
+      {/* Requested function checklist — quantity-aware */}
+      {coverage.length > 0 && (
         <div className="solution-reqs">
-          {requiredFns.map(f => {
-            const native = nativelyCovered.includes(f);
-            const byCard = addOns.find(a => a.fillsFunction === f);
-            const status = native ? 'native' : byCard ? 'card' : 'missing';
+          {coverage.map(c => {
+            const status = !c.covered ? 'missing' : c.fromCards > 0 ? 'card' : 'native';
+            const qty = c.need > 1 ? ` ×${c.need}` : '';
+            let detail;
+            if (status === 'native') detail = ` · onboard (${c.hostHave})`;
+            else if (status === 'card') detail = ` · host ${c.hostHave} + ${c.cards.length} card${c.cards.length > 1 ? 's' : ''} = ${c.total}`;
+            else detail = ` · ✗ short ${c.shortfall} (got ${c.total})`;
             return (
-              <span key={f} className={`req-chip req-${status}`}>
-                {functionIcon(f)} {functionLabel(f)}
-                {status === 'native' && ' · onboard'}
-                {status === 'card' && ` · +${byCard.card.meta.part_no}`}
-                {status === 'missing' && ' · ✗ no card'}
+              <span key={c.fn} className={`req-chip req-${status}`} title={c.cards.map(x => x.card.meta.part_no).join(', ')}>
+                {functionIcon(c.fn)} {functionLabel(c.fn)}{qty}{detail}
               </span>
             );
           })}
@@ -135,14 +135,16 @@ export default function SolutionPanel({ solution, onSelectHost, onToggleSelect, 
         </div>
       )}
 
-      {/* Unfilled gaps */}
+      {/* Unfilled gaps (with quantity shortfall) */}
       {unfilledGaps.length > 0 && (
         <div className="solution-unfilled">
           <div className="bundle-row-label warn">UNFILLED</div>
           <p>
-            No matching EP card (or no free slot) for:{' '}
-            {unfilledGaps.map(f => `${functionIcon(f)} ${functionLabel(f)}`).join(' · ')}.
-            Consider a host with these functions onboard, or an external module.
+            Could not meet the requested quantity for:{' '}
+            {coverage.filter(c => !c.covered).map(c =>
+              `${functionIcon(c.fn)} ${functionLabel(c.fn)} (need ${c.need}, got ${c.total})`
+            ).join(' · ')}.
+            Consider a host with more of these ports onboard, or an external module.
           </p>
         </div>
       )}
