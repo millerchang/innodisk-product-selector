@@ -64,6 +64,11 @@ export default function ProductCard({ product, recommendedPartNos, isSelected, o
       {co.lifecycle_status === 'NRND' && (
         <div className="nrnd-warning">⚠ Not Recommended for New Designs</div>
       )}
+
+      {/* Preview note — new / in-development product */}
+      {co.lifecycle_status === 'Preview' && (
+        <div className="preview-note">🆕 Preview — new product, preliminary datasheet</div>
+      )}
     </div>
   );
 }

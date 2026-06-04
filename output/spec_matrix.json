@@ -21,7 +21,7 @@
         "CE",
         "FCC"
       ],
-      "lifecycle_status": "NRND",
+      "lifecycle_status": "Preview",
       "eol_date": null,
       "moq": 1,
       "lead_time_weeks": null
@@ -329,7 +329,7 @@
         "CE",
         "FCC"
       ],
-      "lifecycle_status": "NRND",
+      "lifecycle_status": "Preview",
       "eol_date": null,
       "moq": 1,
       "lead_time_weeks": null
@@ -784,7 +784,7 @@
         "FCC",
         "UL"
       ],
-      "lifecycle_status": "NRND",
+      "lifecycle_status": "Preview",
       "eol_date": null,
       "moq": 1,
       "lead_time_weeks": null
@@ -4137,7 +4137,7 @@
         "FCC",
         "UKCA"
       ],
-      "lifecycle_status": "NRND",
+      "lifecycle_status": "Preview",
       "eol_date": null,
       "moq": 1,
       "lead_time_weeks": null
@@ -5127,7 +5127,7 @@
         "RoHS",
         "UKCA"
       ],
-      "lifecycle_status": "NRND",
+      "lifecycle_status": "Preview",
       "eol_date": null,
       "moq": 1,
       "lead_time_weeks": null
@@ -19737,7 +19737,7 @@
         "CE",
         "FCC"
       ],
-      "lifecycle_status": "NRND",
+      "lifecycle_status": "Preview",
       "eol_date": null,
       "moq": 1,
       "lead_time_weeks": null
@@ -19883,7 +19883,7 @@
         "CE",
         "FCC"
       ],
-      "lifecycle_status": "NRND",
+      "lifecycle_status": "Preview",
       "eol_date": null,
       "moq": 1,
       "lead_time_weeks": null

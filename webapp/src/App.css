@@ -608,6 +608,15 @@
   border-radius: 4px;
 }
 
+.preview-note {
+  font-size: 11px;
+  color: #1E40AF;
+  background: #DBEAFE;
+  border: 1px solid #BFDBFE;
+  padding: 5px 8px;
+  border-radius: 4px;
+}
+
 /* ============================================================
    COMPARISON PANEL
    ============================================================ */

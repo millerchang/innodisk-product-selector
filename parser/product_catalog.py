@@ -111,7 +111,9 @@ PRODUCT_CATALOG = {
     "EB120-1S4M": ("camera", None, None),
 }
 
-# Preliminary products (lifecycle_status → "NRND")
+# Preliminary products — new / in-development parts whose datasheet is still
+# marked "Preliminary". These get lifecycle_status "Preview" (NOT "NRND";
+# NRND means a mature part near end-of-life — the opposite of a new product).
 PRELIMINARY_PARTS = {
     "APEX-A100", "APEX-E400", "APEX-S100", "ABOX-V140", "ARAK-4120",
     "EXEC-Q911", "EXMP-Q911",
@@ -206,7 +208,7 @@ def lookup(part_no: str) -> dict:
             "product_line": product_line,
             "bu_owner": bu_owner if bu_owner != "null" else None,
             "platform_brand": platform_brand,
-            "lifecycle_status": "NRND" if part_no in PRELIMINARY_PARTS else "Active",
+            "lifecycle_status": "Preview" if part_no in PRELIMINARY_PARTS else "Active",
             "_classified_by": "catalog",
         }
 

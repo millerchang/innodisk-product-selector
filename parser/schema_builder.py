@@ -777,7 +777,7 @@ def build_record(pdf_path: str, raw: dict) -> dict:
 
     # Searchable tags
     tags = ["industrial", "AIoT", platform.lower()]
-    if lifecycle == "NRND":
+    if lifecycle == "Preview":
         tags.append("preliminary")
     if raw.get("openvino_support"):
         tags.append("OpenVINO")

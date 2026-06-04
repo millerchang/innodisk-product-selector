@@ -77,5 +77,6 @@ export function formatDimensions(dims) {
 export function getLifecycleStyle(status) {
   if (status === 'EOL') return { color: '#DC2626', label: 'EOL' };
   if (status === 'NRND') return { color: '#D97706', label: 'NRND' };
+  if (status === 'Preview') return { color: '#2563EB', label: 'Preview' };
   return { color: '#16A34A', label: 'Active' };
 }
