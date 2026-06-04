@@ -25,12 +25,16 @@ export function solutionToLineItems(solution) {
   });
 
   for (const { card, fillsFunction, slot } of solution.addOns || []) {
+    const isCam = card.meta.product_line === 'camera';
     const spec = card.networking_spec || card.io_spec || card.air_sensor_spec || {};
+    const description = isCam
+      ? `Camera ${card.camera_spec?.resolution_mp != null ? `${card.camera_spec.resolution_mp}MP ` : ''}${card.camera_spec?.interface_bus || ''}`.trim()
+      : (spec.subcategory || getProductLineLabel(card.meta.product_line));
     items.push({
       role: 'Add-on',
       part_no: card.meta.part_no,
       line: getProductLineLabel(card.meta.product_line),
-      description: spec.subcategory || getProductLineLabel(card.meta.product_line),
+      description,
       fills: functionLabel(fillsFunction),
       slot,
       qty: 1,

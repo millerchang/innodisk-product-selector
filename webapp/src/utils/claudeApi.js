@@ -30,6 +30,18 @@ function buildProductSummary(products) {
         ];
         return parts.filter(Boolean).join(' | ');
       }
+      // Camera module one-liner
+      if (line === 'camera') {
+        const cam = p.camera_spec || {};
+        return [
+          p.meta.part_no,
+          'Camera',
+          cam.interface_bus ? `via ${cam.interface_bus}` : null,
+          cam.resolution_mp != null ? `${cam.resolution_mp}MP` : null,
+          cam.fps != null ? `${cam.fps}fps` : null,
+          line,
+        ].filter(Boolean).join(' | ');
+      }
       // EP / add-on card one-liner (io / networking / air_sensor)
       const spec = p.networking_spec || p.io_spec || p.air_sensor_spec || {};
       const parts = [

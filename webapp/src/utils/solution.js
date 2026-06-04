@@ -67,9 +67,15 @@ function pickCardForFunction(fn, epCards, freeSlots, usedPartNos) {
     const iface = getCardInterface(card);
     const slot = findSlotFor(iface, freeSlots);
     if (!slot) continue;
-    // Prefer Active lifecycle, then lower slot footprint (USB < M.2 < PCIe).
+    // Prefer Active lifecycle, then interface preference.
+    // For cameras, prefer the host's direct CSI/GMSL interface over a USB fallback
+    // (this is what proves the host natively supports the camera); for other
+    // functions prefer the lowest slot footprint (USB < M.2 < PCIe).
     const lifeRank = card.common?.lifecycle_status === 'Active' ? 0 : 1;
-    const slotRank = { USB: 0, 'M.2': 1, PCIe: 2 }[slot] ?? 3;
+    const rankMap = fn === 'camera'
+      ? { MIPI: 0, GMSL: 1, USB: 2, 'M.2': 2, PCIe: 3 }
+      : { USB: 0, MIPI: 1, 'M.2': 1, GMSL: 2, PCIe: 2 };
+    const slotRank = rankMap[slot] ?? 3;
     const rank = lifeRank * 10 + slotRank;
     if (!best || rank < best.rank) best = { card, slot, rank };
   }

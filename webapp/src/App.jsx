@@ -15,7 +15,7 @@ const MODE_SELECT = 'select';
 const MODE_COMPETE = 'compete';
 
 export default function App() {
-  const { products, hosts, epCards, loading: matrixLoading, error: matrixError } = useSpecMatrix();
+  const { products, hosts, epCards, cameras, loading: matrixLoading, error: matrixError } = useSpecMatrix();
 
   const [mode, setMode] = useState(MODE_SELECT);
   const [searchLoading, setSearchLoading] = useState(false);
@@ -38,10 +38,10 @@ export default function App() {
       aiResult.structured_criteria,
       aiResult.required_functions,
       hosts,
-      epCards,
+      [...epCards, ...cameras], // camera modules are add-on candidates too
       rec,
     );
-  }, [aiResult, hosts, epCards, forcedHost]);
+  }, [aiResult, hosts, epCards, cameras, forcedHost]);
 
   // Filtered + sorted display list (browse view shows compute hosts)
   const displayProducts = useMemo(() => {

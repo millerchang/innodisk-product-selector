@@ -73,7 +73,25 @@ export function getHostProvides(host) {
   if (countOf(io.can_bus_count) > 0 || nonEmpty(io.can)) provides.add('can');
   if (nonEmpty(io.display_outputs) || nonEmpty(cs.display_outputs)) provides.add('display');
 
+  // Camera is never "onboard": it always needs a physical module. The host only
+  // exposes an *interface* for it — so we don't mark camera as natively provided;
+  // it is satisfied by pairing a compatible camera module (see getHostSlots).
+  provides.delete('camera');
+
   return provides;
+}
+
+/**
+ * Camera interfaces a host can drive (MIPI / USB / PCIe / GMSL), as a count map.
+ * USB and PCIe are shared with the general slot pool; MIPI/GMSL are camera-only.
+ */
+export function getHostCameraInterfaces(host) {
+  const cs = host.computing_spec || {};
+  const tokens = (cs.connectivity || []).map(t => String(t).toUpperCase());
+  return {
+    MIPI: tokens.some(t => t.includes('MIPI') || t.includes('CSI')) ? 4 : 0,
+    GMSL: tokens.some(t => t.includes('GMSL')) ? 4 : 0,
+  };
 }
 
 /**
@@ -87,13 +105,16 @@ export function getHostSlots(host) {
   for (const s of cs.m2_slots || []) slots['M.2'] += countOf(s.count, 1);
   for (const s of cs.pcie_slots || []) slots['PCIe'] += countOf(s.count, 1);
 
-  // USB ports can host USB EP cards/dongles (WiFi, GNSS, some I/O)
+  // USB ports can host USB EP cards/dongles (WiFi, GNSS, USB cameras, some I/O)
   const usb = (cs.io_ports || {}).usb;
   if (Array.isArray(usb)) {
     slots['USB'] += usb.reduce((n, u) => n + countOf(u.count, 1), 0);
   } else if (countOf(usb) > 0) {
     slots['USB'] += countOf(usb);
   }
+
+  // Camera-only interfaces (MIPI / GMSL). USB/PCIe cameras reuse the slots above.
+  Object.assign(slots, getHostCameraInterfaces(host));
   return slots;
 }
 
@@ -114,6 +135,7 @@ const SUBCAT_TO_FUNCTION = {
 export function getCardFunction(card) {
   const line = card.meta.product_line;
   if (line === 'air_sensor') return 'air_sensor';
+  if (line === 'camera') return 'camera';
 
   const spec = card.networking_spec || card.io_spec || {};
   const sub = spec.subcategory;
@@ -130,11 +152,23 @@ export function getCardFunction(card) {
   return null;
 }
 
-/** The host slot type an EP card consumes: 'M.2' | 'PCIe' | 'USB' | null. */
+/** The host slot/interface type a card consumes: 'M.2'|'PCIe'|'USB'|'MIPI'|'GMSL'|null. */
 export function getCardInterface(card) {
+  const line = card.meta.product_line;
+
+  // Camera modules consume a camera interface derived from interface_bus.
+  if (line === 'camera') {
+    const bus = String(card.camera_spec?.interface_bus || '').toUpperCase();
+    if (bus.includes('GMSL')) return 'GMSL';
+    if (bus.includes('MIPI') || bus.includes('CSI')) return 'MIPI';
+    if (bus.includes('USB')) return 'USB';
+    if (bus.includes('PCIE') || bus.includes('PCI')) return 'PCIe';
+    return null;
+  }
+
   const spec = card.networking_spec || card.io_spec || {};
   const hi = spec.host_interface;
-  if (!hi) return card.meta.product_line === 'air_sensor' ? 'USB' : null;
+  if (!hi) return line === 'air_sensor' ? 'USB' : null;
   const h = String(hi).toUpperCase();
   if (h.includes('M.2') || h.includes('M2')) return 'M.2';
   if (h.includes('PCIE') || h.includes('PCI')) return 'PCIe';

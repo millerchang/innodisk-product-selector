@@ -98,20 +98,27 @@ export default function SolutionPanel({ solution, onSelectHost, onToggleSelect, 
         <div className="solution-addons">
           <div className="bundle-row-label">ADD-ON EP CARDS</div>
           {addOns.map(({ card, fillsFunction, slot }) => {
+            const isCam = card.meta.product_line === 'camera';
+            const cam = card.camera_spec || {};
             const spec = card.networking_spec || card.io_spec || card.air_sensor_spec || {};
+            const sub = isCam
+              ? (cam.interface_bus ? `Camera · ${cam.interface_bus}` : 'Camera')
+              : (spec.subcategory || getProductLineLabel(card.meta.product_line));
             return (
               <div key={card.meta.part_no} className="bundle-card addon-card">
                 <span className="addon-fn-icon">{functionIcon(fillsFunction)}</span>
                 <div className="bundle-card-body">
                   <div className="bundle-card-title">{card.meta.part_no}</div>
                   <div className="bundle-card-sub">
-                    {spec.subcategory || getProductLineLabel(card.meta.product_line)}
+                    {sub}
                     {' · fills '}<strong>{functionLabel(fillsFunction)}</strong>
                   </div>
                   <div className="bundle-card-specs">
-                    <span className="slot-badge">uses {slot} slot</span>
-                    {spec.port_count != null && <span>{spec.port_count} port</span>}
-                    {spec.speed_gbps != null && <span>{spec.speed_gbps} Gbps</span>}
+                    <span className="slot-badge">uses {slot} {slot === 'MIPI' || slot === 'GMSL' ? 'interface' : 'slot'}</span>
+                    {isCam && cam.resolution_mp != null && <span>{cam.resolution_mp} MP</span>}
+                    {isCam && cam.fps != null && <span>{cam.fps} fps</span>}
+                    {!isCam && spec.port_count != null && <span>{spec.port_count} port</span>}
+                    {!isCam && spec.speed_gbps != null && <span>{spec.speed_gbps} Gbps</span>}
                   </div>
                 </div>
                 <label className="compare-toggle" onClick={e => e.stopPropagation()}>
