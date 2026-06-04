@@ -26,6 +26,7 @@ export default function App() {
   const [showComparison, setShowComparison] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [forcedHost, setForcedHost] = useState(null); // part_no of user-picked alt host
+  const [lastQuery, setLastQuery] = useState('');     // RFQ text for quote export
 
   // Solution bundle: pick host + fill I/O gaps with EP cards.
   const solution = useMemo(() => {
@@ -65,6 +66,7 @@ export default function App() {
     setSearchError(null);
     setAiResult(null);
     setForcedHost(null);
+    setLastQuery(query);
     setHasSearched(true);
 
     try {
@@ -209,6 +211,7 @@ export default function App() {
             {!searchLoading && solution && (
               <SolutionPanel
                 solution={solution}
+                rfqText={lastQuery}
                 selectedForCompare={selectedForCompare}
                 onToggleSelect={handleToggleSelect}
                 onSelectHost={h => setForcedHost(h.meta.part_no)}

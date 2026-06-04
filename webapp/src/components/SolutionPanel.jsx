@@ -1,11 +1,12 @@
 import { functionLabel, functionIcon } from '../utils/solution';
+import { downloadQuoteCSV, printQuote } from '../utils/exportSolution';
 import { getProductLineLabel, getPlatformIcon, formatTops, formatTdp, formatTemp } from '../utils/formatters';
 
 /**
  * Renders a complete RFQ solution bundle:
  *   host board  +  EP add-on cards (one per I/O gap)  +  unfilled-gap warnings.
  */
-export default function SolutionPanel({ solution, onSelectHost, onToggleSelect, selectedForCompare = [] }) {
+export default function SolutionPanel({ solution, onSelectHost, onToggleSelect, selectedForCompare = [], rfqText = '' }) {
   if (!solution) return null;
   const { host, addOns = [], unfilledGaps = [], nativelyCovered = [], requiredFns = [], alternativeHosts = [] } = solution;
 
@@ -31,11 +32,19 @@ export default function SolutionPanel({ solution, onSelectHost, onToggleSelect, 
     <div className="solution-panel">
       <div className="solution-head">
         <h3 className="solution-title">📦 Recommended Solution Bundle</h3>
-        <span className={`solution-status ${fullyCovered ? 'ok' : 'warn'}`}>
-          {fullyCovered
-            ? '✓ All requested functions covered'
-            : `⚠ ${unfilledGaps.length} function(s) not covered`}
-        </span>
+        <div className="solution-head-right">
+          <span className={`solution-status ${fullyCovered ? 'ok' : 'warn'}`}>
+            {fullyCovered
+              ? '✓ All requested functions covered'
+              : `⚠ ${unfilledGaps.length} function(s) not covered`}
+          </span>
+          <button className="export-btn" onClick={() => downloadQuoteCSV(solution, rfqText)} title="Download BOM as CSV">
+            ⬇ CSV
+          </button>
+          <button className="export-btn" onClick={() => printQuote(solution, rfqText)} title="Print / Save as PDF">
+            🖨 Print
+          </button>
+        </div>
       </div>
 
       {/* Requested function checklist */}
