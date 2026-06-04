@@ -93,6 +93,11 @@ export default function App() {
     if (next.length === 0) setShowComparison(false);
   };
 
+  const handleClearCompare = () => {
+    setSelectedForCompare([]);
+    setShowComparison(false);
+  };
+
   // ---- Loading / Error screens ----
   if (matrixLoading) {
     return (
@@ -149,12 +154,21 @@ export default function App() {
           <div className="header-actions">
             <span className="catalog-count">{products.length} products</span>
             {selectedForCompare.length > 0 && (
-              <button
-                className="btn btn-compare"
-                onClick={() => setShowComparison(true)}
-              >
-                Compare ({selectedForCompare.length})
-              </button>
+              <>
+                <button
+                  className="btn btn-compare"
+                  onClick={() => setShowComparison(true)}
+                >
+                  Compare ({selectedForCompare.length})
+                </button>
+                <button
+                  className="btn btn-clear-compare"
+                  onClick={handleClearCompare}
+                  title="Clear all comparison selections"
+                >
+                  ✕ Clear
+                </button>
+              </>
             )}
             <button
               className="btn btn-icon"
@@ -172,26 +186,6 @@ export default function App() {
 
         {mode === MODE_SELECT ? (
           <>
-            {/* AI Result Summary */}
-            {aiResult && (
-              <div className="ai-summary-card">
-                <div className="ai-icon">🤖</div>
-                <div className="ai-summary-text">
-                  <p className="ai-recommendation">{aiResult.recommendation_summary}</p>
-                  {aiResult.key_tradeoffs && (
-                    <p className="ai-tradeoffs">💡 {aiResult.key_tradeoffs}</p>
-                  )}
-                </div>
-                <button
-                  className="clear-btn"
-                  onClick={() => { setAiResult(null); setHasSearched(false); }}
-                  title="Clear results"
-                >
-                  ✕
-                </button>
-              </div>
-            )}
-
             {/* Search Error */}
             {searchError && (
               <div className="error-banner">
@@ -207,15 +201,46 @@ export default function App() {
             {/* Search Bar */}
             <SearchBar onSearch={handleSearch} loading={searchLoading} />
 
-            {/* Solution Bundle (host + EP add-on cards) */}
+            {/* Solution Bundle (left) + AI analysis reply (right) */}
             {!searchLoading && solution && (
-              <SolutionPanel
-                solution={solution}
-                rfqText={lastQuery}
-                selectedForCompare={selectedForCompare}
-                onToggleSelect={handleToggleSelect}
-                onSelectHost={h => setForcedHost(h.meta.part_no)}
-              />
+              <div className="solution-row">
+                <div className="solution-row-main">
+                  <SolutionPanel
+                    solution={solution}
+                    rfqText={lastQuery}
+                    selectedForCompare={selectedForCompare}
+                    onToggleSelect={handleToggleSelect}
+                    onSelectHost={h => setForcedHost(h.meta.part_no)}
+                  />
+                </div>
+                {aiResult && (aiResult.recommendation_summary || aiResult.key_tradeoffs) && (
+                  <aside className="ai-summary-card ai-summary-side">
+                    <div className="ai-summary-head">
+                      <span className="ai-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M12 3 13.9 8.6 19.5 10.5 13.9 12.4 12 18 10.1 12.4 4.5 10.5 10.1 8.6 12 3Z" />
+                          <path d="M19 15l.6 1.8L21.4 17.4 19.6 18 19 19.8 18.4 18 16.6 17.4 18.4 16.8 19 15Z" />
+                        </svg>
+                      </span>
+                      <span className="ai-summary-title">Claude AI Analysis</span>
+                      <button
+                        className="clear-btn"
+                        onClick={() => { setAiResult(null); setHasSearched(false); }}
+                        title="Clear results"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                    <div className="ai-summary-text">
+                      <p className="ai-recommendation">{aiResult.recommendation_summary}</p>
+                      {aiResult.key_tradeoffs && (
+                        <p className="ai-tradeoffs">💡 {aiResult.key_tradeoffs}</p>
+                      )}
+                    </div>
+                  </aside>
+                )}
+              </div>
             )}
 
             {/* Product List */}

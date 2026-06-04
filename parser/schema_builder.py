@@ -186,6 +186,23 @@ def _clean_list(val) -> list:
     return []
 
 
+# Known PDF text-extraction corruptions: certain symbol glyphs get decoded to
+# the wrong CJK codepoint (e.g. the plus-minus sign "±" comes out as "簣").
+_MOJIBAKE_MAP = {
+    "簣": "±",  # 簣 → ±
+    "賞": "±",  # 賞 → ±  (alternate corruption seen in some fonts)
+}
+
+
+def _fix_mojibake(val):
+    """Repair known glyph-decoding corruptions in extracted strings."""
+    if not isinstance(val, str):
+        return val
+    for bad, good in _MOJIBAKE_MAP.items():
+        val = val.replace(bad, good)
+    return val
+
+
 def _int_or_null(val):
     try:
         return int(val) if val is not None else None
@@ -819,7 +836,7 @@ def build_record(pdf_path: str, raw: dict) -> dict:
             "openvino_support": raw.get("openvino_support"),
             # ── Physical
             "dimensions":  dimensions,
-            "power_input": raw.get("power_input"),
+            "power_input": _fix_mojibake(raw.get("power_input")),
             # ── Expansion
             "pcie_slots": pcie_slots,
             "m2_slots":   m2_slots,

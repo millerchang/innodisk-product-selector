@@ -214,7 +214,7 @@
         "depth_mm": null,
         "height_mm": null
       },
-      "power_input": "DC 12V (簣5%)",
+      "power_input": "DC 12V (±5%)",
       "pcie_slots": [],
       "m2_slots": [
         {
@@ -520,7 +520,7 @@
         "depth_mm": null,
         "height_mm": null
       },
-      "power_input": "DC 24V(簣5%)",
+      "power_input": "DC 24V(±5%)",
       "pcie_slots": [],
       "m2_slots": [
         {
@@ -680,7 +680,7 @@
         "depth_mm": 182.0,
         "height_mm": 90.0
       },
-      "power_input": "DC 19V (簣5%)",
+      "power_input": "DC 19V (±5%)",
       "pcie_slots": [],
       "m2_slots": [
         {
@@ -952,7 +952,7 @@
         "depth_mm": null,
         "height_mm": null
       },
-      "power_input": "DC 24~48V (簣5%)",
+      "power_input": "DC 24~48V (±5%)",
       "pcie_slots": [],
       "m2_slots": [
         {
@@ -1087,7 +1087,7 @@
         "depth_mm": null,
         "height_mm": null
       },
-      "power_input": "DC 24~48V (簣5%)",
+      "power_input": "DC 24~48V (±5%)",
       "pcie_slots": [],
       "m2_slots": [
         {

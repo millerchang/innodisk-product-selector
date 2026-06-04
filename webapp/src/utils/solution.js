@@ -14,6 +14,7 @@
 import {
   getHostProvides, getHostSlots, getCardFunction, getCardInterface, findSlotFor,
   getHostFunctionCount, getCardCapacity, normalizeFunction, FUNCTIONS,
+  osFamily, osVersion, osFamilyLabel,
 } from './capabilities';
 
 /** Does a host satisfy the hard compute constraints? */
@@ -28,11 +29,43 @@ function hostMeetsConstraints(host, c) {
   if (c.max_op_temp_c != null && (co.op_temp_max_c == null || co.op_temp_max_c < c.max_op_temp_c)) return false;
 
   if (c.os_required && c.os_required.length > 0) {
-    const os = (cs.os_support || []).map(s => s.toLowerCase());
-    const ok = c.os_required.some(r => os.some(s => s.includes(r.toLowerCase())));
+    // Family-level match: a host listing "Windows" satisfies "Windows 11".
+    // An OS string we can't classify into a family is not used to gate.
+    const hostFamilies = new Set((cs.os_support || []).map(osFamily).filter(Boolean));
+    const ok = c.os_required.some(r => {
+      const fam = osFamily(r);
+      return fam ? hostFamilies.has(fam) : true;
+    });
     if (!ok) return false;
   }
   return true;
+}
+
+/**
+ * OS version caveats: when the RFQ asks for a specific version (e.g. Windows 11,
+ * Ubuntu 22.04) and the host supports that family, surface a note to verify the
+ * exact version with the Product PM — the catalog records the family, not the
+ * tested minor version, so we flag rather than silently assume compatibility.
+ */
+export function buildOsNotes(host, criteria) {
+  if (!host || !criteria?.os_required?.length) return [];
+  const cs = host.computing_spec || {};
+  const hostFamilies = new Set((cs.os_support || []).map(osFamily).filter(Boolean));
+  const notes = [];
+  const seen = new Set();
+  for (const req of criteria.os_required) {
+    const fam = osFamily(req);
+    const ver = osVersion(req);
+    if (!fam || !ver || !hostFamilies.has(fam)) continue;
+    const key = `${fam}:${ver}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    notes.push(
+      `${host.meta.part_no} 支援 ${osFamilyLabel(fam)} 系統；型錄未記錄已驗證的細部版本，` +
+      `請與 Product PM 確認是否已測試 ${req}。`
+    );
+  }
+  return notes;
 }
 
 /**
@@ -60,28 +93,15 @@ export function normalizeRequiredFunctions(list) {
 }
 
 /**
- * Score a host for ranking: more requirements met natively at the requested
- * quantity is best, then higher native coverage ratio, then TOPS. AI-recommended
- * hosts win the first tiebreak.
+ * Pick the best EP card for a function given remaining slots, biased toward the
+ * `remaining` shortfall we still need to fill; or null.
+ *
+ * Priority: Active lifecycle → cover as much of the shortfall as possible per
+ * card (fewest cards) → lighter slot footprint (USB before PCIe) → least wasted
+ * capacity. This makes serial×8 grab one 8-port PCIe card, but a small ×2 gap
+ * still prefer a 2-port USB dongle over burning a PCIe slot.
  */
-function scoreHost(host, requirements, recommendedSet) {
-  let fullyMet = 0;
-  let ratioSum = 0;
-  for (const { fn, count } of requirements) {
-    const have = getHostFunctionCount(host, fn);
-    if (have >= count) fullyMet += 1;
-    ratioSum += Math.min(have, count) / count;
-  }
-  return {
-    isRec: recommendedSet.has(host.meta.part_no) ? 1 : 0,
-    fullyMet,
-    ratio: ratioSum,
-    tops: host.computing_spec?.ai_tops ?? 0,
-  };
-}
-
-/** Pick the best EP card for a function given remaining slots; or null. */
-function pickCardForFunction(fn, epCards, freeSlots, usedPartNos) {
+function pickCardForFunction(fn, epCards, freeSlots, usedPartNos, remaining = 1) {
   let best = null;
   for (const card of epCards) {
     if (usedPartNos.has(card.meta.part_no)) continue;
@@ -94,12 +114,57 @@ function pickCardForFunction(fn, epCards, freeSlots, usedPartNos) {
       ? { MIPI: 0, GMSL: 1, USB: 2, 'M.2': 2, PCIe: 3 }
       : { USB: 0, MIPI: 1, 'M.2': 1, GMSL: 2, PCIe: 2 };
     const slotRank = rankMap[slot] ?? 3;
-    // For quantity fills, prefer higher-capacity cards (fewer cards/slots used).
     const cap = getCardCapacity(card, fn);
-    const rank = lifeRank * 100 + slotRank * 10 - Math.min(cap, 9);
+    const eff = Math.min(cap, remaining);          // ports this card actually contributes
+    const waste = Math.max(0, cap - remaining);    // unused capacity
+    // Lower rank = better. Lifecycle dominates, then effective coverage,
+    // then slot footprint, then waste.
+    const rank = lifeRank * 10000 - eff * 100 + slotRank * 10 + Math.min(waste, 9);
     if (!best || rank < best.rank) best = { card, slot, cap, rank };
   }
   return best ? { card: best.card, slot: best.slot, capacity: best.cap } : null;
+}
+
+/**
+ * Simulate filling every required function on a single host with EP cards.
+ * Pure: takes a fresh slot map per call, never mutates the host or shared state.
+ * Returns the per-function coverage plus the flattened add-on list.
+ */
+function simulateFill(host, requirements, epCards) {
+  const freeSlots = getHostSlots(host);
+  const usedPartNos = new Set();
+  const coverage = [];
+  const addOns = [];
+  const unfilledGaps = [];
+  const nativelyCovered = [];
+
+  for (const { fn, count } of requirements) {
+    const hostHave = getHostFunctionCount(host, fn);
+    const cards = [];
+    let total = hostHave;
+
+    while (total < count) {
+      const pick = pickCardForFunction(fn, epCards, freeSlots, usedPartNos, count - total);
+      if (!pick) break;
+      freeSlots[pick.slot] -= 1;
+      usedPartNos.add(pick.card.meta.part_no);
+      cards.push(pick);
+      total += pick.capacity;
+      addOns.push({ card: pick.card, fillsFunction: fn, slot: pick.slot, capacity: pick.capacity });
+    }
+
+    const covered = total >= count;
+    if (covered && cards.length === 0) nativelyCovered.push(fn);
+    if (!covered) unfilledGaps.push(fn);
+    coverage.push({
+      fn, need: count, hostHave,
+      fromCards: total - hostHave, total, covered,
+      shortfall: Math.max(0, count - total),
+      cards,
+    });
+  }
+
+  return { freeSlots, coverage, addOns, unfilledGaps, nativelyCovered };
 }
 
 /**
@@ -121,70 +186,66 @@ export function buildSolution(criteria, requiredFnsRaw, hosts, epCards, recommen
     const hostLines = criteria.product_lines.filter(l => l.startsWith('computing'));
     if (hostLines.length) eligible = eligible.filter(h => hostLines.includes(h.meta.product_line));
   }
+
+  // Always keep AI-recommended hosts in the running, even if a numeric-criteria
+  // artifact (e.g. an over-tight TDP/TOPS cap inferred from the RFQ) would
+  // otherwise drop them. The AI reasoned about both the criteria *and* the
+  // recommendation from the same RFQ, so when they conflict we trust the
+  // explicit, holistic pick rather than silently swapping in a different board.
+  if (recommendedSet.size) {
+    const present = new Set(eligible.map(h => h.meta.part_no));
+    for (const h of hosts) {
+      if (recommendedSet.has(h.meta.part_no) && !present.has(h.meta.part_no)) eligible.push(h);
+    }
+  }
+
   if (eligible.length === 0) {
     return {
       host: null, addOns: [], coverage: [], nativelyCovered: [],
       unfilledGaps: requirements.map(r => r.fn), requirements,
       requiredFns: requirements.map(r => r.fn), eligibleHosts: [], alternativeHosts: [],
+      osNotes: [],
     };
   }
 
-  // 2. rank hosts
-  const ranked = [...eligible].sort((a, b) => {
-    const sa = scoreHost(a, requirements, recommendedSet);
-    const sb = scoreHost(b, requirements, recommendedSet);
-    if (sb.fullyMet !== sa.fullyMet) return sb.fullyMet - sa.fullyMet;
-    if (sb.isRec !== sa.isRec) return sb.isRec - sa.isRec;
-    if (sb.ratio !== sa.ratio) return sb.ratio - sa.ratio;
-    return sb.tops - sa.tops;
+  // 2 + 3 + 4. Rank hosts by *achievable* coverage. For each eligible host we
+  // actually simulate filling the I/O gaps with EP cards, so a host that can't
+  // physically host the cards (e.g. no PCIe slot for a PCIe serial card) is not
+  // credited for that function. Ranking: most requirements fully covered →
+  // AI-recommended → fewest add-on cards (prefer native / simpler bundle) → TOPS.
+  const evaluated = eligible.map(h => {
+    const fill = simulateFill(h, requirements, epCards);
+    return {
+      host: h,
+      ...fill,
+      coveredCount: fill.coverage.filter(c => c.covered).length,
+      isRec: recommendedSet.has(h.meta.part_no) ? 1 : 0,
+      tops: h.computing_spec?.ai_tops ?? 0,
+    };
   });
-  const host = ranked[0];
+  evaluated.sort((a, b) => {
+    if (b.coveredCount !== a.coveredCount) return b.coveredCount - a.coveredCount;
+    if (b.isRec !== a.isRec) return b.isRec - a.isRec;
+    if (a.addOns.length !== b.addOns.length) return a.addOns.length - b.addOns.length;
+    return b.tops - a.tops;
+  });
 
-  // 3 + 4. per-function quantity coverage
-  const freeSlots = getHostSlots(host);
-  const usedPartNos = new Set();
-  const coverage = [];
-  const addOns = [];
-  const unfilledGaps = [];
-  const nativelyCovered = [];
-
-  for (const { fn, count } of requirements) {
-    const hostHave = getHostFunctionCount(host, fn);
-    const cards = [];
-    let total = hostHave;
-
-    while (total < count) {
-      const pick = pickCardForFunction(fn, epCards, freeSlots, usedPartNos);
-      if (!pick) break;
-      freeSlots[pick.slot] -= 1;
-      usedPartNos.add(pick.card.meta.part_no);
-      cards.push(pick);
-      total += pick.capacity;
-      addOns.push({ card: pick.card, fillsFunction: fn, slot: pick.slot, capacity: pick.capacity });
-    }
-
-    const covered = total >= count;
-    if (covered && cards.length === 0) nativelyCovered.push(fn);
-    if (!covered) unfilledGaps.push(fn);
-    coverage.push({
-      fn, need: count, hostHave,
-      fromCards: total - hostHave, total, covered,
-      shortfall: Math.max(0, count - total),
-      cards,
-    });
-  }
+  const best = evaluated[0];
+  const host = best.host;
+  const ranked = evaluated.map(e => e.host);
 
   return {
     host,
-    coverage,
-    nativelyCovered,
-    addOns,
-    unfilledGaps,
+    coverage: best.coverage,
+    nativelyCovered: best.nativelyCovered,
+    addOns: best.addOns,
+    unfilledGaps: best.unfilledGaps,
     requirements,
     requiredFns: requirements.map(r => r.fn),
-    remainingSlots: freeSlots,
+    remainingSlots: best.freeSlots,
     eligibleHosts: ranked,
     alternativeHosts: ranked.slice(1, 4),
+    osNotes: buildOsNotes(host, criteria),
   };
 }
 

@@ -41,6 +41,38 @@ const FUNCTION_ALIASES = [
   ['camera',    ['camera', 'mipi', 'csi', 'gmsl', 'image sensor', 'vision']],
 ];
 
+// ── OS family matching ───────────────────────────────────────────────────────
+// Match on OS *family* (Windows / Linux), NOT the version number. Versions like
+// Windows 10/11 or Ubuntu 18.04–24.04 are treated as compatible within the
+// family and are surfaced as a textual caveat instead of a hard gate, because
+// minor-version support is usually compatible but may need PM verification.
+const OS_FAMILY_RULES = [
+  ['windows', ['windows', 'win10', 'win11', 'win 10', 'win 11']],
+  ['linux',   ['linux', 'ubuntu', 'debian', 'yocto', 'red hat', 'redhat', 'rhel', 'centos', 'fedora', 'android']],
+];
+
+/** Canonical OS family for a free-text OS string ('windows' | 'linux' | null). */
+export function osFamily(str) {
+  if (!str) return null;
+  const t = String(str).toLowerCase();
+  for (const [fam, kw] of OS_FAMILY_RULES) {
+    if (kw.some(k => t.includes(k))) return fam;
+  }
+  return null;
+}
+
+/** Extract a version token from an OS string ("Windows 11"→"11", "Ubuntu 22.04"→"22.04"), or null. */
+export function osVersion(str) {
+  if (!str) return null;
+  const m = String(str).match(/(\d+(?:\.\d+)?)/);
+  return m ? m[1] : null;
+}
+
+/** Human label for an OS family key. */
+export function osFamilyLabel(fam) {
+  return fam === 'windows' ? 'Windows' : fam === 'linux' ? 'Linux' : fam || '';
+}
+
 /** Normalize a single free-text token/phrase to a canonical function key, or null. */
 export function normalizeFunction(token) {
   if (!token) return null;
@@ -107,11 +139,31 @@ export function getHostFunctionCount(host, fn) {
   }
 }
 
+/**
+ * Infer an EP card's port count from its 12-char part number.
+ * Position 7 ("Output items", per EP_Naming_Rule) = the digit right after the
+ * dash in the 2nd segment: `EMP2-X801`→8, `EMU2-X1S1`→1, `EGP2-X4S1`→4.
+ * Returns null when that position is a letter (F/I/L/N/P/R/S/W — a type code,
+ * not a count) or the part number doesn't match the pattern.
+ */
+export function inferCardPortCount(partNo) {
+  if (!partNo) return null;
+  const seg = String(partNo).split('-')[1];
+  if (!seg || seg.length < 2) return null;
+  const ch = seg[1];
+  if (!/[0-9]/.test(ch)) return null;
+  const n = Number(ch);
+  return n > 0 ? n : null;
+}
+
 /** How many ports/units of `fn` a single EP/camera card contributes. */
 export function getCardCapacity(card, fn) {
   if (card.meta.product_line === 'camera') return 1;
   const spec = card.networking_spec || card.io_spec || {};
-  return countOf(spec.port_count, 1);
+  if (spec.port_count != null) return countOf(spec.port_count, 1);
+  // port_count is often missing in the catalog — recover it from the part number.
+  const inferred = inferCardPortCount(card.meta.part_no);
+  return inferred || 1;
 }
 
 /**

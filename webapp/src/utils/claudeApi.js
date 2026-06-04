@@ -99,7 +99,17 @@ Rules:
   Example: "需要 4 個網口、10 個 USB 接相機、CAN bus 和 GPS" →
     [{"function":"ethernet","count":4},{"function":"usb","count":10},{"function":"can","count":1},{"function":"gnss","count":1}].
   Empty array if no I/O functions stated.
-- structured_criteria: hard COMPUTE constraints only (null = not specified).
+- structured_criteria: hard COMPUTE constraints ONLY. Leave every numeric field
+  null unless the customer states an EXPLICIT number for THAT field. Do NOT infer
+  or estimate values from CPU class, GPU model, "edge"/"industrial" wording, or
+  any other soft cue.
+    • min_ai_tops: null unless an explicit TOPS figure is given (e.g. "≥40 TOPS").
+    • max_tdp_watt: null unless an explicit power/wattage limit is given
+      (e.g. "under 25W"). A CPU/GPU model is NOT a wattage spec → keep null.
+    • min_op_temp_c / max_op_temp_c: null unless an explicit temperature range is
+      given (e.g. "-20~60°C"). "industrial"/"rugged" alone → keep null.
+    • os_required: only OS names the customer actually names.
+  When unsure, prefer null — an over-tight constraint wrongly drops good hosts.
 - product_lines: array from ["computing_aiot","computing_ipa"] or null. Pick the
   compute host line(s); the system fills I/O gaps with EP cards automatically.
 - recommended_part_nos: 3–5 best COMPUTE HOSTS, sorted by relevance (best first).
@@ -117,6 +127,7 @@ Rules:
     body: JSON.stringify({
       model: MODEL,
       max_tokens: 1024,
+      temperature: 0, // deterministic extraction — same RFQ → same criteria
       system: systemPrompt,
       messages: [{ role: 'user', content: userPrompt }],
     }),
@@ -190,6 +201,7 @@ Return this JSON:
     body: JSON.stringify({
       model: MODEL,
       max_tokens: 2048,
+      temperature: 0, // deterministic comparison output
       system: systemPrompt,
       messages: [{ role: 'user', content: userPrompt }],
     }),

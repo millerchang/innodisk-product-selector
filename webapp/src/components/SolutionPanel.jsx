@@ -8,7 +8,7 @@ import { getProductLineLabel, getPlatformIcon, formatTops, formatTdp, formatTemp
  */
 export default function SolutionPanel({ solution, onSelectHost, onToggleSelect, selectedForCompare = [], rfqText = '' }) {
   if (!solution) return null;
-  const { host, addOns = [], unfilledGaps = [], requiredFns = [], coverage = [], alternativeHosts = [] } = solution;
+  const { host, addOns = [], unfilledGaps = [], requiredFns = [], coverage = [], alternativeHosts = [], osNotes = [] } = solution;
 
   if (!host) {
     return (
@@ -28,10 +28,32 @@ export default function SolutionPanel({ solution, onSelectHost, onToggleSelect, 
   const co = host.common || {};
   const fullyCovered = unfilledGaps.length === 0;
 
+  // Only surface requirements that need attention: those topped up by EP cards,
+  // and those that can't be met. Natively-covered functions are not shown.
+  const cardFilled = coverage.filter(c => c.covered && c.fromCards > 0);
+  const missing = coverage.filter(c => !c.covered);
+
+  // Smooth-scroll to the matching add-on card and briefly highlight it.
+  const jumpToCard = partNo => {
+    const el = document.getElementById(`addon-${partNo}`);
+    if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    el.classList.add('addon-flash');
+    setTimeout(() => el.classList.remove('addon-flash'), 1400);
+  };
+
   return (
     <div className="solution-panel">
       <div className="solution-head">
-        <h3 className="solution-title">📦 Recommended Solution Bundle</h3>
+        <h3 className="solution-title">
+          <svg className="solution-title-icon" width="20" height="20" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 2 2 7l10 5 10-5-10-5Z" />
+            <path d="m2 17 10 5 10-5" />
+            <path d="m2 12 10 5 10-5" />
+          </svg>
+          Recommended Solution Bundle
+        </h3>
         <div className="solution-head-right">
           <span className={`solution-status ${fullyCovered ? 'ok' : 'warn'}`}>
             {fullyCovered
@@ -47,22 +69,60 @@ export default function SolutionPanel({ solution, onSelectHost, onToggleSelect, 
         </div>
       </div>
 
-      {/* Requested function checklist — quantity-aware */}
-      {coverage.length > 0 && (
+      {/* Coverage notes — only functions that need an add-on card, or can't be met.
+          Natively-covered functions are intentionally not listed. */}
+      {(cardFilled.length > 0 || missing.length > 0) && (
         <div className="solution-reqs">
-          {coverage.map(c => {
-            const status = !c.covered ? 'missing' : c.fromCards > 0 ? 'card' : 'native';
+          {cardFilled.map(c => {
             const qty = c.need > 1 ? ` ×${c.need}` : '';
-            let detail;
-            if (status === 'native') detail = ` · onboard (${c.hostHave})`;
-            else if (status === 'card') detail = ` · host ${c.hostHave} + ${c.cards.length} card${c.cards.length > 1 ? 's' : ''} = ${c.total}`;
-            else detail = ` · ✗ short ${c.shortfall} (got ${c.total})`;
             return (
-              <span key={c.fn} className={`req-chip req-${status}`} title={c.cards.map(x => x.card.meta.part_no).join(', ')}>
-                {functionIcon(c.fn)} {functionLabel(c.fn)}{qty}{detail}
-              </span>
+              <div key={c.fn} className="req-row req-card">
+                <span className="req-row-label">
+                  {functionIcon(c.fn)} {functionLabel(c.fn)}{qty}
+                </span>
+                <span className="req-row-detail">
+                  {c.hostHave > 0
+                    ? `${c.hostHave} built-in + ${c.fromCards} via add-on card:`
+                    : `${c.fromCards} via add-on card:`}
+                </span>
+                <span className="req-row-cards">
+                  {c.cards.map(x => (
+                    <button
+                      key={x.card.meta.part_no}
+                      className="req-card-link"
+                      onClick={() => jumpToCard(x.card.meta.part_no)}
+                      title="Jump to this add-on card"
+                    >
+                      {x.card.meta.part_no}
+                    </button>
+                  ))}
+                </span>
+              </div>
             );
           })}
+          {missing.map(c => {
+            const qty = c.need > 1 ? ` ×${c.need}` : '';
+            return (
+              <div key={c.fn} className="req-row req-missing">
+                <span className="req-row-label">
+                  ⚠ {functionIcon(c.fn)} {functionLabel(c.fn)}{qty}
+                </span>
+                <span className="req-row-detail">
+                  Customer needs {c.need}; only {c.total} available — short {c.shortfall}.
+                  No compatible add-on card / slot to make up the gap.
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {/* OS version compatibility caveats */}
+      {osNotes.length > 0 && (
+        <div className="solution-os-notes">
+          {osNotes.map((n, i) => (
+            <p key={i} className="os-note">ℹ {n}</p>
+          ))}
         </div>
       )}
 
@@ -105,7 +165,7 @@ export default function SolutionPanel({ solution, onSelectHost, onToggleSelect, 
               ? (cam.interface_bus ? `Camera · ${cam.interface_bus}` : 'Camera')
               : (spec.subcategory || getProductLineLabel(card.meta.product_line));
             return (
-              <div key={card.meta.part_no} className="bundle-card addon-card">
+              <div key={card.meta.part_no} id={`addon-${card.meta.part_no}`} className="bundle-card addon-card">
                 <span className="addon-fn-icon">{functionIcon(fillsFunction)}</span>
                 <div className="bundle-card-body">
                   <div className="bundle-card-title">{card.meta.part_no}</div>

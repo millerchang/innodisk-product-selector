@@ -138,6 +138,15 @@
 
 .btn-compare:hover { background: #6D28D9; }
 
+.btn-clear-compare {
+  background: rgba(255,255,255,.08);
+  color: #CBD5E1;
+  font-size: 13px;
+  padding: 6px 12px;
+}
+
+.btn-clear-compare:hover { background: rgba(248,113,113,.18); color: #FCA5A5; }
+
 .btn-icon {
   background: rgba(255,255,255,.08);
   border: none;
@@ -189,20 +198,68 @@
    AI SUMMARY CARD
    ============================================================ */
 
-.ai-summary-card {
-  background: linear-gradient(135deg, #EFF6FF 0%, #F0FDF4 100%);
-  border: 1px solid #BFDBFE;
-  border-radius: var(--radius);
-  padding: 16px 20px;
+/* Two-column row: solution bundle (left) + AI analysis (right) */
+.solution-row {
   display: flex;
-  gap: 14px;
-  align-items: flex-start;
-  position: relative;
+  gap: 16px;
+  align-items: stretch;
 }
 
-.ai-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+.solution-row-main {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.solution-row-main .solution-panel { height: 100%; }
+
+.ai-summary-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  position: relative;
+  box-shadow: var(--shadow);
+}
+
+.ai-summary-side {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-self: flex-start;
+}
+
+.ai-summary-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ai-summary-title {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: .01em;
+  color: var(--color-text);
+  flex: 1;
+}
+
+.ai-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
 
 .ai-summary-text { flex: 1; }
+
+@media (max-width: 900px) {
+  .solution-row { flex-direction: column; }
+  .ai-summary-side { flex-basis: auto; max-width: none; width: 100%; }
+}
 
 .ai-recommendation {
   font-size: 14px;
@@ -615,6 +672,24 @@
   border: 1px solid #BFDBFE;
   padding: 5px 8px;
   border-radius: 4px;
+}
+
+.solution-os-notes {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.os-note {
+  font-size: 12px;
+  color: #1E40AF;
+  background: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  border-left: 3px solid #2563EB;
+  padding: 6px 10px;
+  border-radius: 4px;
+  margin: 0;
 }
 
 /* ============================================================
@@ -1096,7 +1171,15 @@
   gap: 12px;
   margin-bottom: 14px;
 }
-.solution-title { font-size: 16px; font-weight: 700; color: var(--color-text); }
+.solution-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.solution-title-icon { color: var(--color-primary); flex-shrink: 0; }
 .solution-head-right { display: flex; align-items: center; gap: 8px; }
 .export-btn {
   font-size: 12px;
@@ -1121,20 +1204,47 @@
 
 .solution-reqs {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 8px;
   margin-bottom: 16px;
 }
-.req-chip {
+.req-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
   font-size: 12px;
-  padding: 4px 10px;
-  border-radius: 999px;
+  padding: 8px 12px;
+  border-radius: var(--radius);
   border: 1px solid var(--color-border);
-  white-space: nowrap;
 }
-.req-native  { background: #DCFCE7; border-color: #86EFAC; color: #15803D; }
+.req-row-label { font-weight: 700; white-space: nowrap; }
+.req-row-detail { color: var(--color-text-muted); }
+.req-row-cards { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+.req-card-link {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: inherit;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid #93C5FD;
+  background: #fff;
+  color: #1D4ED8;
+  cursor: pointer;
+  transition: background .15s, transform .1s;
+}
+.req-card-link:hover { background: #EFF6FF; transform: translateY(-1px); }
+
 .req-card    { background: #DBEAFE; border-color: #93C5FD; color: #1D4ED8; }
 .req-missing { background: #FEE2E2; border-color: #FCA5A5; color: #B91C1C; }
+.req-missing .req-row-detail { color: #B91C1C; }
+
+/* Brief highlight when jumping from a coverage note to its add-on card */
+@keyframes addon-flash-kf {
+  0%   { box-shadow: 0 0 0 0 rgba(37,99,235,.55); border-color: #2563EB; }
+  100% { box-shadow: 0 0 0 8px rgba(37,99,235,0); border-color: var(--color-border); }
+}
+.addon-flash { animation: addon-flash-kf 1.4s ease-out; }
 
 .bundle-row-label {
   font-size: 11px;

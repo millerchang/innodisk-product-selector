@@ -13,9 +13,11 @@
   --color-text: #1E293B;
   --color-text-muted: #64748B;
   --color-border: #E2E8F0;
-  --color-match-best: #16A34A;
-  --color-match-good: #2563EB;
-  --color-match-ok: #7C3AED;
+  /* Match-quality ramp — kept distinct from the CPU platform dot colors
+     (Intel blue / Qualcomm purple / NXP green / AMD-Xilinx yellow). */
+  --color-match-best: #0D9488;  /* teal-600  — Best Match   */
+  --color-match-good: #DB2777;  /* rose-600  — Strong Match */
+  --color-match-ok:   #64748B;  /* slate-500 — Good Match   */
   --color-warning: #D97706;
   --color-error: #DC2626;
   --color-tops: #0284C7;

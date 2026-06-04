@@ -43,7 +43,7 @@ export function getMatchBadge(partNo, recommendedPartNos) {
 export function getPlatformIcon(platformBrand) {
   const icons = {
     Intel: '🔵',
-    Qualcomm: '🔴',
+    Qualcomm: '🟣',
     NXP: '🟢',
     'AMD-Xilinx': '🟡',
   };

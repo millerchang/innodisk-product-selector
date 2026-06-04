@@ -72,6 +72,9 @@ export function buildQuoteCSV(solution, rfqText = '') {
     lines.push(['UNFILLED', unmet
       .map(c => `${functionLabel(c.fn)} (need ${c.need}, got ${c.total})`).join('; ')]);
   }
+  if (solution?.osNotes?.length) {
+    solution.osNotes.forEach(n => lines.push(['OS Note', n]));
+  }
   lines.push([]); // blank row
   lines.push(['#', 'Role', 'Part No', 'Product Line', 'Description', 'Fills Function', 'Slot', 'Qty', 'Lifecycle']);
   items.forEach((it, i) => {
@@ -122,6 +125,8 @@ export function printQuote(solution, rfqText = '') {
   const gapLine = unmet.length
     ? `<p class="warn"><strong>⚠ Unfilled:</strong> ${esc(unmet.map(c => `${functionLabel(c.fn)} (need ${c.need}, got ${c.total})`).join(' · '))}</p>` : '';
   const rfqLine = rfqText ? `<p><strong>Customer RFQ:</strong> ${esc(rfqText)}</p>` : '';
+  const osNoteLines = (solution?.osNotes || [])
+    .map(n => `<p class="note"><strong>ℹ OS:</strong> ${esc(n)}</p>`).join('');
 
   const html = `<!doctype html><html><head><meta charset="utf-8"><title>Innodisk Solution Quote</title>
   <style>
@@ -130,6 +135,7 @@ export function printQuote(solution, rfqText = '') {
     .sub { color: #64748B; font-size: 12px; margin-bottom: 16px; }
     p { font-size: 13px; margin: 4px 0; }
     .warn { color: #B45309; }
+    .note { color: #1E40AF; }
     table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 12px; }
     th, td { border: 1px solid #E2E8F0; padding: 6px 8px; text-align: left; }
     th { background: #F1F5F9; }
@@ -142,7 +148,7 @@ export function printQuote(solution, rfqText = '') {
   </style></head><body>
     <h1>Innodisk Product Selector — Solution Quote</h1>
     <div class="sub">Generated ${esc(new Date().toLocaleString())}</div>
-    ${rfqLine}${reqLine}${gapLine}
+    ${rfqLine}${reqLine}${gapLine}${osNoteLines}
     <table>
       <thead><tr>
         <th>#</th><th>Role</th><th>Part No</th><th>Product Line</th><th>Description</th>
