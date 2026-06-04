@@ -14,18 +14,31 @@ const MODEL = 'claude-haiku-4-5';
 function buildProductSummary(products) {
   return products
     .map(p => {
-      const cs = p.computing_spec || {};
-      const co = p.common || {};
+      const line = p.meta.product_line;
+      if (line === 'computing_aiot' || line === 'computing_ipa') {
+        const cs = p.computing_spec || {};
+        const co = p.common || {};
+        const parts = [
+          p.meta.part_no,
+          cs.processor_model || cs.platform_brand || '?',
+          cs.ai_tops != null ? `${cs.ai_tops}T` : null,
+          cs.tdp_watt != null ? `${cs.tdp_watt}W` : null,
+          co.op_temp_min_c != null ? `${co.op_temp_min_c}~${co.op_temp_max_c}°C` : null,
+          cs.os_support?.join('/') || null,
+          cs.connectivity?.slice(0, 6).join(',') || null,
+          line, p.meta.bu_owner,
+        ];
+        return parts.filter(Boolean).join(' | ');
+      }
+      // EP / add-on card one-liner (io / networking / air_sensor)
+      const spec = p.networking_spec || p.io_spec || p.air_sensor_spec || {};
       const parts = [
         p.meta.part_no,
-        cs.processor_model || cs.platform_brand || '?',
-        cs.ai_tops != null ? `${cs.ai_tops}T` : null,
-        cs.tdp_watt != null ? `${cs.tdp_watt}W` : null,
-        co.op_temp_min_c != null ? `${co.op_temp_min_c}~${co.op_temp_max_c}°C` : null,
-        cs.os_support?.join('/') || null,
-        cs.connectivity?.slice(0, 5).join(',') || null,
-        p.meta.product_line,
-        p.meta.bu_owner,
+        spec.subcategory || line,
+        spec.host_interface ? `via ${spec.host_interface}` : null,
+        spec.speed_gbps != null ? `${spec.speed_gbps}Gbps` : null,
+        spec.port_count != null ? `${spec.port_count}port` : null,
+        line,
       ];
       return parts.filter(Boolean).join(' | ');
     })
@@ -42,9 +55,11 @@ export async function queryProductSelector(requirement, products, apiKey) {
   const systemPrompt = `You are a product selector assistant for Innodisk, an industrial edge AI computing company.
 Match customer requirements to products from the catalog. Always respond with valid JSON only — no markdown fences, no explanation outside the JSON.`;
 
-  const userPrompt = `Customer requirement: "${requirement}"
+  const userPrompt = `Customer RFQ / requirement: "${requirement}"
 
-Product catalog (PART_NO | Processor | TOPS | TDP | Temp | OS | Connectivity | line | BU):
+Catalog. Compute hosts are lines computing_aiot / computing_ipa.
+Add-on EP cards are lines io / networking / air_sensor (they expand a host's I/O).
+Format: PART_NO | spec... | line
 ${productSummary}
 
 Return exactly this JSON structure (no extra fields, no markdown):
@@ -58,16 +73,21 @@ Return exactly this JSON structure (no extra fields, no markdown):
     "os_required": [],
     "keywords": []
   },
+  "required_functions": [],
   "recommended_part_nos": [],
   "recommendation_summary": "",
   "key_tradeoffs": ""
 }
 
 Rules:
-- recommended_part_nos: 3–5 best matches, sorted by relevance (best first)
-- structured_criteria: extract hard constraints only (null = not specified)
-- product_lines: array from ["computing_aiot","computing_ipa"] or null
-- recommendation_summary: 2–3 sentences explaining the top recommendation
+- required_functions: list every I/O / connectivity function the customer asks for,
+  using ONLY these canonical keys: ["ethernet","can","serial","wifi","gnss","usb","storage","poe","display","air_sensor","camera"].
+  Example: "需要 4 個網口、CAN bus 和 GPS" → ["ethernet","can","gnss"]. Empty array if none stated.
+- structured_criteria: hard COMPUTE constraints only (null = not specified).
+- product_lines: array from ["computing_aiot","computing_ipa"] or null. Pick the
+  compute host line(s); the system fills I/O gaps with EP cards automatically.
+- recommended_part_nos: 3–5 best COMPUTE HOSTS, sorted by relevance (best first).
+- recommendation_summary: 2–3 sentences explaining the top host recommendation.
 - key_tradeoffs: one sentence on tradeoffs or null`;
 
   const response = await fetch(CLAUDE_API_URL, {

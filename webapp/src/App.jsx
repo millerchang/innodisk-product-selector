@@ -2,8 +2,10 @@ import { useState, useMemo } from 'react';
 import { useSpecMatrix } from './hooks/useSpecMatrix';
 import { queryProductSelector } from './utils/claudeApi';
 import { filterProducts, sortProducts } from './utils/filter';
+import { buildSolution } from './utils/solution';
 import SearchBar from './components/SearchBar';
 import ProductList from './components/ProductList';
+import SolutionPanel from './components/SolutionPanel';
 import ComparisonPanel from './components/ComparisonPanel';
 import CompetitorMode from './components/CompetitorMode';
 import SettingsModal from './components/SettingsModal';
@@ -13,7 +15,7 @@ const MODE_SELECT = 'select';
 const MODE_COMPETE = 'compete';
 
 export default function App() {
-  const { products, loading: matrixLoading, error: matrixError } = useSpecMatrix();
+  const { products, hosts, epCards, loading: matrixLoading, error: matrixError } = useSpecMatrix();
 
   const [mode, setMode] = useState(MODE_SELECT);
   const [searchLoading, setSearchLoading] = useState(false);
@@ -23,14 +25,30 @@ export default function App() {
   const [selectedForCompare, setSelectedForCompare] = useState([]);
   const [showComparison, setShowComparison] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const [forcedHost, setForcedHost] = useState(null); // part_no of user-picked alt host
 
-  // Filtered + sorted display list
+  // Solution bundle: pick host + fill I/O gaps with EP cards.
+  const solution = useMemo(() => {
+    if (!aiResult || !hosts.length) return null;
+    const rec = forcedHost
+      ? [forcedHost, ...(aiResult.recommended_part_nos || [])]
+      : aiResult.recommended_part_nos || [];
+    return buildSolution(
+      aiResult.structured_criteria,
+      aiResult.required_functions,
+      hosts,
+      epCards,
+      rec,
+    );
+  }, [aiResult, hosts, epCards, forcedHost]);
+
+  // Filtered + sorted display list (browse view shows compute hosts)
   const displayProducts = useMemo(() => {
     if (!products.length) return [];
     if (!aiResult) return products;
-    const filtered = filterProducts(products, aiResult.structured_criteria);
+    const filtered = filterProducts(hosts, aiResult.structured_criteria);
     return sortProducts(filtered, aiResult.recommended_part_nos);
-  }, [products, aiResult]);
+  }, [products, hosts, aiResult]);
 
   const compareProducts = useMemo(
     () => products.filter(p => selectedForCompare.includes(p.meta.part_no)),
@@ -46,6 +64,7 @@ export default function App() {
     setSearchLoading(true);
     setSearchError(null);
     setAiResult(null);
+    setForcedHost(null);
     setHasSearched(true);
 
     try {
@@ -185,6 +204,16 @@ export default function App() {
 
             {/* Search Bar */}
             <SearchBar onSearch={handleSearch} loading={searchLoading} />
+
+            {/* Solution Bundle (host + EP add-on cards) */}
+            {!searchLoading && solution && (
+              <SolutionPanel
+                solution={solution}
+                selectedForCompare={selectedForCompare}
+                onToggleSelect={handleToggleSelect}
+                onSelectHost={h => setForcedHost(h.meta.part_no)}
+              />
+            )}
 
             {/* Product List */}
             {!searchLoading && (
