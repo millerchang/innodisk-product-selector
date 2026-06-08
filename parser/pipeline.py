@@ -1,7 +1,7 @@
 """
 Main pipeline: scan datasheets folder → hash check → Vision extract → build records → write spec_matrix.json
 Usage:
-    python pipeline.py --datasheets "D:\\管理\\Solution Architect\\AIoT\\1.Datasheet" --output ".\\output"
+    python pipeline.py --datasheets "D:\\Claude\\Miller_Workspace\\Work\\Innodisk_Product_Selector\\AIoT\\1.Datasheet" --output ".\\output"
     python pipeline.py --file "path/to/single.pdf"   # parse one file only
 """
 
@@ -38,14 +38,14 @@ HASH_CACHE_FILE = "parse_hash_cache.json"
 #       so the default AIoT scan already picks it up recursively.
 DATASHEET_ROOTS = {
     # AIoT BU — Intel/NXP system boards (product_line: computing_aiot)
-    "aiot":          Path(r"D:\Innodisk\Innodisk Product Selector\AIoT\1.Datasheet"),
+    "aiot":          Path(r"D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\AIoT\1.Datasheet"),
     # Camera modules (product_line: camera)
-    "camera":        Path(r"D:\Innodisk\Innodisk Product Selector\Camera\1.0 Datasheet"),
+    "camera":        Path(r"D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\Camera\1.0 Datasheet"),
     # IPA BU \ EP — split into 4 product lines under one parent folder:
-    "ipa_computing": Path(r"D:\Innodisk\Innodisk Product Selector\IPA\EP\Computing"),     # computing_ipa (Qualcomm)
-    "air_sensor":    Path(r"D:\Innodisk\Innodisk Product Selector\IPA\EP\Air Sensor"),    # air_sensor
-    "io":            Path(r"D:\Innodisk\Innodisk Product Selector\IPA\EP\IO Modules"),    # io
-    "networking":    Path(r"D:\Innodisk\Innodisk Product Selector\IPA\EP\Networking"),    # networking
+    "ipa_computing": Path(r"D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\IPA\EP\Computing"),     # computing_ipa (Qualcomm)
+    "air_sensor":    Path(r"D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\IPA\EP\Air Sensor"),    # air_sensor
+    "io":            Path(r"D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\IPA\EP\IO Modules"),    # io
+    "networking":    Path(r"D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\IPA\EP\Networking"),    # networking
 }
 
 

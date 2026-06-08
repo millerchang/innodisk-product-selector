@@ -4,10 +4,10 @@ sys.path.insert(0, r'D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\p
 import rule_extractor
 
 PDFS = [
-    r'D:\管理\Solution Architect\Camera\1.0 Datasheet\2.0 MIPI CSI-2\EV8M-CSM1-RTCF_Datasheet_2025_Q3.pdf',
-    r'D:\管理\Solution Architect\Camera\1.0 Datasheet\4.0 GMSL2\EV2F-OOM3-RHCF_Datasheet_2025_Q4.pdf',
-    r'D:\管理\Solution Architect\Camera\1.0 Datasheet\5.0 Capture Card\EB120-1S4F_Datasheet_2026_May.pdf',
-    r'D:\管理\Solution Architect\Camera\1.0 Datasheet\3.0 MIPI over Type-C\EV8C-OOM1-RHCF_Datasheet_2025_Q3.pdf',
+    r'D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\Camera\1.0 Datasheet\2.0 MIPI CSI-2\EV8M-CSM1-RTCF_Datasheet_2025_Q3.pdf',
+    r'D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\Camera\1.0 Datasheet\4.0 GMSL2\EV2F-OOM3-RHCF_Datasheet_2025_Q4.pdf',
+    r'D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\Camera\1.0 Datasheet\5.0 Capture Card\EB120-1S4F_Datasheet_2026_May.pdf',
+    r'D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\Camera\1.0 Datasheet\3.0 MIPI over Type-C\EV8C-OOM1-RHCF_Datasheet_2025_Q3.pdf',
 ]
 
 for pdf in PDFS:

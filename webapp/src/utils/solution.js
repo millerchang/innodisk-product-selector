@@ -215,17 +215,19 @@ export function buildSolution(criteria, requiredFnsRaw, hosts, epCards, recommen
   // AI-recommended → fewest add-on cards (prefer native / simpler bundle) → TOPS.
   const evaluated = eligible.map(h => {
     const fill = simulateFill(h, requirements, epCards);
+    const recIdx = recommendedPartNos.indexOf(h.meta.part_no);
     return {
       host: h,
       ...fill,
       coveredCount: fill.coverage.filter(c => c.covered).length,
-      isRec: recommendedSet.has(h.meta.part_no) ? 1 : 0,
+      // Higher = better: first in recommended list gets highest score, non-recommended gets 0
+      isRec: recIdx >= 0 ? (recommendedPartNos.length - recIdx) : 0,
       tops: h.computing_spec?.ai_tops ?? 0,
     };
   });
   evaluated.sort((a, b) => {
-    if (b.coveredCount !== a.coveredCount) return b.coveredCount - a.coveredCount;
     if (b.isRec !== a.isRec) return b.isRec - a.isRec;
+    if (b.coveredCount !== a.coveredCount) return b.coveredCount - a.coveredCount;
     if (a.addOns.length !== b.addOns.length) return a.addOns.length - b.addOns.length;
     return b.tops - a.tops;
   });

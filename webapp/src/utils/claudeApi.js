@@ -112,9 +112,9 @@ Rules:
   When unsure, prefer null — an over-tight constraint wrongly drops good hosts.
 - product_lines: array from ["computing_aiot","computing_ipa"] or null. Pick the
   compute host line(s); the system fills I/O gaps with EP cards automatically.
-- recommended_part_nos: 3–5 best COMPUTE HOSTS, sorted by relevance (best first).
-- recommendation_summary: 2–3 sentences explaining the top host recommendation.
-- key_tradeoffs: one sentence on tradeoffs or null`;
+- recommended_part_nos: 3–5 best COMPUTE HOSTS, sorted by relevance (best first). Your single best pick must be first.
+- recommendation_summary: 2–3 sentences explaining WHY recommended_part_nos[0] (your first-listed host) is the best match. Must name that exact part number.
+- key_tradeoffs: one sentence on tradeoffs vs. the alternatives, or null`;
 
   const response = await fetch(CLAUDE_API_URL, {
     method: 'POST',

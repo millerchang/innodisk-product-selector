@@ -39,9 +39,10 @@
   flex-shrink: 0;
 }
 
-.brand-hexagon {
-  font-size: 22px;
-  color: #60A5FA;
+.brand-logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
 }
 
 .brand-name {

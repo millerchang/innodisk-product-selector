@@ -11,14 +11,14 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 import rule_extractor
 
 TEST_FILES = {
-    "SBC (Intel Ultra)":      r"D:\管理\Solution Architect\AIoT\1.Datasheet\SBC\ASBC-3150\ASBC-3150_251003.pdf",
-    "Box PC (Elkhart Lake)":  r"D:\管理\Solution Architect\AIoT\1.Datasheet\Box PC\ABOX-4020\ABOX-4020.pdf",
-    "ABOX-4140 (Ultra short)":r"D:\管理\Solution Architect\AIoT\1.Datasheet\Box PC\ABOX-4140\ABOX-4140_251205.pdf",
-    "APEX-E100 (Ultra HL)":   r"D:\管理\Solution Architect\AIoT\1.Datasheet\APEX series\APEX-E100\Datasheet_APEX-E100_20250814.pdf",
-    "APEX-X100-Q (Qualcomm)": r"D:\管理\Solution Architect\AIoT\1.Datasheet\APEX series\APEX-X100-Q\Datasheet_APEX-X100-Q_20250903.pdf",
-    "AXMB-D150 (Ultra 265H)": r"D:\管理\Solution Architect\AIoT\1.Datasheet\Industrial Board\AXMB-D150_Mini ITX\Datasheet_AXMB-D150_20251008.pdf",
-    "IndBoard (13th Gen)":    r"D:\管理\Solution Architect\AIoT\1.Datasheet\Industrial Board\AXMB-1130\AXMB-1130_20250807.pdf",
-    "NXP SBC":                r"D:\管理\Solution Architect\AIoT\1.Datasheet\SBC\ASBC-3M80\ASBC-3M80_251014.pdf",
+    "SBC (Intel Ultra)":      r"D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\AIoT\1.Datasheet\SBC\ASBC-3150\ASBC-3150_251003.pdf",
+    "Box PC (Elkhart Lake)":  r"D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\AIoT\1.Datasheet\Box PC\ABOX-4020\ABOX-4020.pdf",
+    "ABOX-4140 (Ultra short)":r"D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\AIoT\1.Datasheet\Box PC\ABOX-4140\ABOX-4140_251205.pdf",
+    "APEX-E100 (Ultra HL)":   r"D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\AIoT\1.Datasheet\APEX series\APEX-E100\Datasheet_APEX-E100_20250814.pdf",
+    "APEX-X100-Q (Qualcomm)": r"D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\AIoT\1.Datasheet\APEX series\APEX-X100-Q\Datasheet_APEX-X100-Q_20250903.pdf",
+    "AXMB-D150 (Ultra 265H)": r"D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\AIoT\1.Datasheet\Industrial Board\AXMB-D150_Mini ITX\Datasheet_AXMB-D150_20251008.pdf",
+    "IndBoard (13th Gen)":    r"D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\AIoT\1.Datasheet\Industrial Board\AXMB-1130\AXMB-1130_20250807.pdf",
+    "NXP SBC":                r"D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\AIoT\1.Datasheet\SBC\ASBC-3M80\ASBC-3M80_251014.pdf",
 }
 
 DISPLAY_FIELDS = [

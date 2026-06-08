@@ -129,17 +129,17 @@ export default function App() {
       <header className="app-header">
         <div className="header-inner">
           <div className="header-brand">
-            <span className="brand-hexagon">⬡</span>
+            <img src="/logo.png" alt="Innodisk" className="brand-logo" />
             <div>
-              <span className="brand-name">Innodisk</span>
-              <span className="brand-sub"> Product Selector</span>
+              <span className="brand-name">Golden Bros</span>
+              <span className="brand-sub"> Intelligent Product Selection Guide</span>
             </div>
           </div>
 
           <nav className="header-nav">
             <button
               className={`nav-btn ${mode === MODE_SELECT ? 'nav-active' : ''}`}
-              onClick={() => setMode(MODE_SELECT)}
+              onClick={() => { setMode(MODE_SELECT); setAiResult(null); setHasSearched(false); setForcedHost(null); }}
             >
               Product Selection
             </button>

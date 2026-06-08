@@ -92,13 +92,17 @@ Innodisk_Product_Selector/
 
 | 產品線 | 原路徑 |
 |--------|--------|
-| AIoT BU（Intel/NXP） | `D:\管理\Solution Architect\AIoT\1.Datasheet\` |
-| Camera Module | `D:\管理\Solution Architect\Camera\1.0 Datasheet\` |
-| IPA BU（Qualcomm）| `D:\管理\Solution Architect\AIoT\1.Datasheet\APEX series\APEX-A100 (Preliminary)\` |
+| AIoT BU（Intel/NXP） | `D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\AIoT\1.Datasheet\` |
+| Camera Module | `D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\Camera\1.0 Datasheet\` |
+| IPA BU（Qualcomm）| `D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\IPA\EP\Computing\` |
+| IPA EP — Air Sensor | `D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\IPA\EP\Air Sensor\` |
+| IPA EP — IO Modules | `D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\IPA\EP\IO Modules\` |
+| IPA EP — Networking | `D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\IPA\EP\Networking\` |
+| Naming Rules | `D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\Innodisk Product Naming Rule\` |
 
-**在新電腦操作方式（二選一）：**
-- 選項 A：複製整個 `D:\管理\Solution Architect\` 資料夾至新電腦同路徑 → 無需改程式
-- 選項 B：資料夾放到不同路徑 → 修改 `parser/pipeline.py` 裡的 `DATASHEET_ROOTS` 對應路徑
+**在新電腦操作方式：**
+- Datasheet 根目錄已統一放在 `D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\` 下對應子資料夾
+- `parser/pipeline.py` 的 `DATASHEET_ROOTS` 已對應此路徑，無需額外修改
 
 ---
 

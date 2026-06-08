@@ -9,13 +9,13 @@ import pdfplumber
 
 TARGETS = {
     "ABOX-4140 (ai_tops=22.4?)":
-        r"D:\管理\Solution Architect\AIoT\1.Datasheet\Box PC\ABOX-4140\ABOX-4140_251205.pdf",
+        r"D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\AIoT\1.Datasheet\Box PC\ABOX-4140\ABOX-4140_251205.pdf",
     "APEX-X100-Q (ai_tops=870?)":
-        r"D:\管理\Solution Architect\AIoT\1.Datasheet\APEX series\APEX-X100-Q\Datasheet_APEX-X100-Q_20250903.pdf",
+        r"D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\AIoT\1.Datasheet\APEX series\APEX-X100-Q\Datasheet_APEX-X100-Q_20250903.pdf",
     "APEX-E100 (cpu=?)":
-        r"D:\管理\Solution Architect\AIoT\1.Datasheet\APEX series\APEX-E100\Datasheet_APEX-E100_20250814.pdf",
+        r"D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\AIoT\1.Datasheet\APEX series\APEX-E100\Datasheet_APEX-E100_20250814.pdf",
     "AXMB-D150 (ai_tops=97?)":
-        r"D:\管理\Solution Architect\AIoT\1.Datasheet\Industrial Board\AXMB-D150_Mini ITX\Datasheet_AXMB-D150_20251008.pdf",
+        r"D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\AIoT\1.Datasheet\Industrial Board\AXMB-D150_Mini ITX\Datasheet_AXMB-D150_20251008.pdf",
 }
 
 RE_TOPS = re.compile(r'(\d+(?:\.\d+)?)\s*TOPS', re.IGNORECASE)

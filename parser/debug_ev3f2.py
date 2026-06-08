@@ -3,7 +3,7 @@ import sys, re
 sys.path.insert(0, r'D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\parser')
 import pdfplumber
 
-PDF = r'D:\管理\Solution Architect\Camera\1.0 Datasheet\4.0 GMSL2\EV3F-ZSM1-RXCF-41_Datasheet_2025_Q4.pdf'
+PDF = r'D:\Claude\Miller_Workspace\Work\Innodisk_Product_Selector\Camera\1.0 Datasheet\4.0 GMSL2\EV3F-ZSM1-RXCF-41_Datasheet_2025_Q4.pdf'
 
 full_text = ""
 with pdfplumber.open(PDF) as pdf:
