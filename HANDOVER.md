@@ -6,6 +6,49 @@
 
 ---
 
+## 🔖 接手補充（2026-06-08）— 換帳號 / 換電腦繼續開發
+
+> 此段為最新狀態，與下方 2026-06-01 原文若有出入，**以此段為準**。
+
+### 進度狀態
+- 最新 commit：`64d8702` "Fix RFQ solution accuracy and refine selector UX"，**已 push 到 origin/main**。
+- 工作目錄 clean，從 GitHub clone 即是最新進度。
+- **主力 App 已改為 `webapp/src/` 的 React + Vite 版**（含 AI RFQ 解決方案組合 / solution builder），不再是 standalone.html（standalone.html 仍可當作免 Node 的 demo 備案）。
+
+### 換帳號 / 換電腦的標準起手式
+```powershell
+git clone https://github.com/millerchang/innodisk-product-selector.git
+cd innodisk-product-selector\webapp
+.\copy_data.ps1     # 從 git 內的 output/spec_matrix.json 還原到 public/
+npm install         # node_modules 重裝，勿沿用複製過去的（平台 binary 問題）
+npm run dev
+```
+最後到 App 右上角 **⚙ Settings** 重新貼一次 Anthropic API Key 即可繼續。
+
+### ⚠️ git 沒帶走、接手要自行還原的東西
+| 項目 | 是否在 git | 還原方式 |
+|------|-----------|---------|
+| `output/spec_matrix.json` | ✅ 有追蹤 | 已在 repo 內 |
+| `webapp/public/spec_matrix.json` | ❌ gitignore | clone 後跑 `webapp\copy_data.ps1` |
+| `webapp/node_modules` | ❌ gitignore | `npm install` |
+| `webapp/dist`（已 build 成品）| ❌ gitignore | `npm run build`，或直接用 dev |
+| `.env`（secrets / API key）| ❌ gitignore | **手動從舊電腦複製**，不會在 GitHub 上 |
+| 瀏覽器 API Key（localStorage）| ❌ 不在資料夾 | 新機器 ⚙ Settings 重貼 |
+
+### Demo（不開發、只展示）最省事的方式
+```powershell
+cd webapp\dist
+python -m http.server 3000   # 開 http://localhost:3000，免 Node、免 build
+```
+記得：**demo 機要能上網**（App 直接呼叫 api.anthropic.com）+ 到 Settings 貼 API key。
+
+### 切換 GitHub 帳號 push 時
+- remote 走 HTTPS：`https://github.com/millerchang/innodisk-product-selector.git`
+- 新帳號需有此 repo 的權限，並用該帳號的 **PAT（Personal Access Token）** 認證。
+- 若要改推到不同 repo：`git remote set-url origin <新網址>`。
+
+---
+
 ## TL;DR — 在新電腦重新跑起來需要做的事
 
 1. Clone repo
