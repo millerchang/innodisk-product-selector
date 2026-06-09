@@ -199,7 +199,7 @@ function ComputingDetail({ cs, co }) {
           </Row>
         )}
         {ports.audio && (ports.audio.line_out || ports.audio.mic_in || ports.audio.spk_out) && (
-          <Row label="Audio">
+          <Row label={ports.audio.chip ? `Audio (${ports.audio.chip})` : 'Audio'}>
             {[
               ports.audio.line_out && 'Line-out',
               ports.audio.mic_in && 'Mic-in',
