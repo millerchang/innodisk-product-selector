@@ -235,7 +235,8 @@ RE_MEM_SPEED = re.compile(
     re.IGNORECASE
 )
 # Physical slot count: "2 x SO-DIMM" / "2 SO-DIMM slots"
-RE_MEM_SLOTS = re.compile(r'(\d+)\s*[xX×]?\s*(?:SO-DIMM|DIMM)\b', re.IGNORECASE)
+# (?<![A-Za-z]) 防止誤抓 "DDR5 SO-DIMM" 中的 "5"
+RE_MEM_SLOTS = re.compile(r'(?<![A-Za-z])(\d+)\s*[xX×]?\s*(?:SO-DIMM|DIMM)\b', re.IGNORECASE)
 # Max capacity backup pattern
 RE_MEM_MAX = re.compile(
     r'(?:Max\.?|Maximum)\s*(?:Memory\s*)?(?:Capacity\s*)?(?:Up\s*to\s*)?(\d+)\s*GB',
