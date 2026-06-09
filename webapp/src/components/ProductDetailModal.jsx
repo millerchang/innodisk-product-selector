@@ -94,9 +94,19 @@ export default function ProductDetailModal({ product, onClose }) {
             <div className="preview-note">🆕 Preview — new product, preliminary datasheet</div>
           )}
 
-          {/* Source file */}
+          {/* Source file — 超連結開啟 PDF */}
           {m.source_file && (
-            <p className="modal-source">📄 Source: {m.source_file}</p>
+            <p className="modal-source">
+              📄{' '}
+              <a
+                href={`/datasheets/${encodeURIComponent(m.source_file)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="modal-source-link"
+              >
+                {m.source_file}
+              </a>
+            </p>
           )}
         </div>
       </div>

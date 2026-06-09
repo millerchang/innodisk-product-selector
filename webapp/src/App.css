@@ -1386,15 +1386,19 @@
 .modal-body {
   padding: 20px;
   overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 .modal-section {
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .modal-section-title {
@@ -1406,6 +1410,7 @@
   letter-spacing: .05em;
   color: var(--color-text-muted);
   margin: 0;
+  border-radius: 8px 8px 0 0;
 }
 
 .modal-rows {
@@ -1439,4 +1444,12 @@
   font-size: 11px;
   color: var(--color-text-muted);
   margin: 0;
+}
+.modal-source-link {
+  color: var(--color-text-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.modal-source-link:hover {
+  color: var(--color-primary);
 }

@@ -10,4 +10,10 @@ export default defineConfig({
   optimizeDeps: {
     entries: ['index.html'],
   },
+  server: {
+    // Exclude the large datasheets folder from HMR watching to prevent slowdown
+    watch: {
+      ignored: ['**/public/datasheets/**'],
+    },
+  },
 })
