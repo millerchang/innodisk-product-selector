@@ -23,6 +23,9 @@ webapp/node_modules/
 webapp/dist/
 webapp/.vite/
 
+# PDF datasheets — served locally only, not committed to git
+webapp/public/datasheets/
+
 # Environment / secrets
 .env
 *.env
@@ -40,3 +43,5 @@ desktop.ini
 
 # Claude session memory (local only)
 .claude/projects/
+
+# PDF datasheets — served locally only, not committed to git
