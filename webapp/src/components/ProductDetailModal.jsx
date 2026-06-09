@@ -157,18 +157,31 @@ function ComputingDetail({ cs, co }) {
 
       {/* I/O Ports */}
       <Section title="I/O Ports">
-        {ports.usb?.map((u, i) => (
-          <Row key={i} label={`USB (${u.standard})`}>
-            {u.count}× {u.connector ? `Type-${u.connector.replace('Type-', '')}` : ''}
-          </Row>
-        ))}
+        {/* USB — 依 standard 分行（方案 B），相同 standard 合併顯示 */}
+        {(() => {
+          const grouped = {};
+          (ports.usb || []).forEach(u => {
+            if (!grouped[u.standard]) grouped[u.standard] = [];
+            grouped[u.standard].push(u);
+          });
+          return Object.entries(grouped).map(([std, entries]) => {
+            const value = entries
+              .map(e => e.connector ? `${e.count}× ${e.connector}` : `${e.count}×`)
+              .join(', ');
+            return <Row key={std} label={std}>{value}</Row>;
+          });
+        })()}
+        {/* Ethernet — speed 移進 value，PoE / chip 補充顯示 */}
         {ports.gbe?.map((g, i) => (
-          <Row key={i} label={`Ethernet (${g.speed_gbps}G)`}>
-            {g.count}×{g.poe_support ? ' PoE' : ''}{g.chip ? ` — ${g.chip}` : ''}
+          <Row key={i} label="Ethernet">
+            {g.count}× {g.speed_gbps >= 1 ? `${g.speed_gbps}GbE` : `${g.speed_gbps * 1000}M`}
+            {g.poe_support ? ' PoE' : ''}
+            {g.chip ? ` (${g.chip})` : ''}
           </Row>
         ))}
+        {/* Serial — 標準名直接作 label */}
         {ports.serial?.map((s, i) => (
-          <Row key={i} label={`Serial (${s.standard})`}>{s.count}×{s.note ? ` — ${s.note}` : ''}</Row>
+          <Row key={i} label={s.standard}>{s.count}×{s.note ? ` — ${s.note}` : ''}</Row>
         ))}
         {ports.can_bus_count != null && <Row label="CAN Bus">{ports.can_bus_count}×</Row>}
         {ports.gpio_pins != null && <Row label="GPIO">{ports.gpio_pins} pins</Row>}
