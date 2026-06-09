@@ -36,6 +36,22 @@ const ALL_ROWS = [
   { label: 'Dimensions',     fn: p => formatDimensions(p.computing_spec?.dimensions) },
   { label: 'Power Input',    fn: p => p.computing_spec?.power_input || '—' },
 
+  // ── Camera ────────────────────────────────────────────────────────
+  { label: 'Interface',      fn: p => p.camera_spec?.interface_bus || '—' },
+  { label: 'Resolution',     highlight: true, fn: p => { const c = p.camera_spec; if (!c) return '—'; return c.resolution_mp ? `${c.resolution_mp}MP (${c.resolution_px || '—'})` : '—'; } },
+  { label: 'Sensor',         fn: p => p.camera_spec?.sensor_model || '—' },
+  { label: 'Sensor Size',    fn: p => p.camera_spec?.sensor_size || '—' },
+  { label: 'Pixel Size',     fn: p => p.camera_spec?.pixel_size_um != null ? `${p.camera_spec.pixel_size_um} µm` : '—' },
+  { label: 'Frame Rate',     fn: p => p.camera_spec?.fps != null ? `${p.camera_spec.fps} fps` : '—' },
+  { label: 'Dynamic Range',  fn: p => p.camera_spec?.dynamic_range_db != null ? `${p.camera_spec.dynamic_range_db} dB` : (p.camera_spec?.hdr ? 'HDR' : '—') },
+  { label: 'Lens Type',      fn: p => p.camera_spec?.lens_type || '—' },
+  { label: 'HDR',            fn: p => p.camera_spec == null ? '—' : (p.camera_spec.hdr ? 'Yes' : 'No') },
+  { label: 'Low Light',      fn: p => p.camera_spec == null ? '—' : (p.camera_spec.low_light ? 'Yes' : 'No') },
+
+  // ── Computing — USB (總數 + 明細，供比對用) ──────────────────────
+  { label: 'USB Total',      highlight: true, fn: p => { const usb = p.computing_spec?.io_ports?.usb; if (!usb?.length) return '—'; return `×${usb.reduce((s,u)=>s+u.count,0)}`; } },
+  { label: 'USB Detail',     wide: true, fn: p => { const usb = p.computing_spec?.io_ports?.usb; if (!usb?.length) return '—'; return usb.map(u => u.connector ? `${u.count}× ${u.standard} (${u.connector})` : `${u.count}× ${u.standard}`).join(', '); } },
+
   // ── EP / add-on cards (io / networking / air_sensor) ───────────────
   { label: 'Category',       fn: p => epSpec(p).subcategory || '—' },
   { label: 'Host Interface', fn: p => epSpec(p).host_interface || '—' },
