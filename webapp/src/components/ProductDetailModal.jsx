@@ -175,7 +175,7 @@ function ComputingDetail({ cs, co }) {
         ))}
         {/* Serial — 標準名直接作 label，只顯示數量 */}
         {ports.serial?.map((s, i) => (
-          <Row key={i} label={s.standard}>{s.count}×</Row>
+          <Row key={i} label={s.standard}>{s.count}</Row>
         ))}
         {ports.can_bus_count != null && <Row label="CAN Bus">{ports.can_bus_count}×</Row>}
         {ports.gpio_pins != null && <Row label="GPIO">{ports.gpio_pins} pins</Row>}
