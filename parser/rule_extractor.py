@@ -814,18 +814,44 @@ def _normalize_m2_key(raw: str) -> str | None:
 
 
 def _parse_m2_interface(raw: str) -> list[str]:
-    """Parse M.2 interface string into normalized list."""
+    """Parse M.2 interface string into normalized list.
+
+    Handles two PCIe ordering conventions found in datasheets:
+      - "PCIe x1 Gen3"   (lanes first)
+      - "PCIe Gen 3 x1"  (gen first)
+    USB version is preserved as-is (USB 2.0, USB3.0, etc.).
+    """
     iface = []
     r = raw.upper()
-    pcie_m = re.search(r'PCIE\s*[xX]?\s*(\d+)(?:\s*GEN\.?\s*(\d))?', r)
-    if pcie_m:
+
+    # Try "PCIe x<lanes> Gen<n>" (lanes first)
+    pcie_m = re.search(r'PCIE\s*[xX]\s*(\d+)\s*(?:GEN\.?\s*(\d))?', r)
+    if not pcie_m:
+        # Try "PCIe Gen<n> x<lanes>" (gen first — common in Innodisk datasheets)
+        pcie_m2 = re.search(r'PCIE\s*GEN\.?\s*(\d)\s*[xX]\s*(\d+)', r)
+        if pcie_m2:
+            gen, lanes = pcie_m2.group(1), pcie_m2.group(2)
+            iface.append(f"PCIe x{lanes} Gen{gen}")
+        else:
+            # Bare "PCIe" with no lane/gen info
+            if re.search(r'\bPCIE\b', r):
+                iface.append("PCIe")
+    else:
         lanes = pcie_m.group(1)
         gen   = pcie_m.group(2)
         iface.append(f"PCIe x{lanes} Gen{gen}" if gen else f"PCIe x{lanes}")
+
     if "SATA" in r:
         iface.append("SATA")
-    if "USB" in r:
-        iface.append("USB3.0")
+
+    # Preserve actual USB version: "USB 2.0", "USB3.0", "USB3.2 Gen2", etc.
+    usb_m = re.search(r'USB\s*(\d+(?:\.\d+)?(?:\s*GEN\s*\d+)?)', r)
+    if usb_m:
+        ver = usb_m.group(1).replace(" ", "")
+        iface.append(f"USB {ver}" if "." in ver else f"USB{ver}")
+    elif "USB" in r:
+        iface.append("USB")
+
     return iface
 
 
@@ -853,6 +879,9 @@ def _parse_m2_slots(text: str) -> list[dict]:
                 iface = ["PCIe x4", "SATA"]
             elif key in ("B", "B+M"):
                 iface = ["SATA"]
+            elif key in ("E", "A+E"):
+                # E-Key 標準介面：PCIe Gen3 x1 + USB 2.0（WiFi/BT 模組用）
+                iface = ["PCIe x1 Gen3", "USB 2.0"]
         slots.append({"size": size, "key": key, "interface": iface, "count": count})
 
     # Format A: "1 x M.2 [size] KEY [size] (iface)"

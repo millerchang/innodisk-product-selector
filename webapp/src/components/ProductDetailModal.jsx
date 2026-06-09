@@ -4,12 +4,41 @@ import {
   getPlatformIcon, getProductLineLabel, getLifecycleStyle,
 } from '../utils/formatters';
 
+/**
+ * Convert stored interface string to display format.
+ * "PCIe x4 Gen4" → "PCIe Gen4x4"
+ * "PCIe x1 Gen3" → "PCIe Gen3x1"
+ * "SATA"         → "SATA"
+ */
+function fmtIface(raw) {
+  // Match "PCIe xN GenM" or "PCIe xN" patterns
+  const full = raw.match(/^PCIe\s+x(\d+)\s+Gen(\d+)$/i);
+  if (full) return `PCIe Gen${full[2]}x${full[1]}`;
+  const noGen = raw.match(/^PCIe\s+x(\d+)$/i);
+  if (noGen) return `PCIe x${noGen[1]}`;
+  return raw; // SATA, USB3.0, etc. — return as-is
+}
+
+/** Format a single m2_slot as "N × PCIe Gen4x4 co-lay SATA" */
+function formatM2Interface(slot) {
+  const ifaces = slot.interface || [];
+  if (ifaces.length === 0) return `${slot.count} ×  —`;
+  const [primary, ...rest] = ifaces.map(fmtIface);
+  const suffix = rest.length > 0 ? ` co-lay ${rest.join(' / ')}` : '';
+  return `${slot.count} × ${primary}${suffix}`;
+}
+
 export default function ProductDetailModal({ product, onClose }) {
-  // Close on Escape key
+  // Close on Escape + lock body scroll while open
   useEffect(() => {
     const handler = e => { if (e.key === 'Escape') onClose(); };
     window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', handler);
+      document.body.style.overflow = prev;
+    };
   }, [onClose]);
 
   const m = product.meta;
@@ -171,13 +200,13 @@ function ComputingDetail({ cs, co }) {
       {(cs.m2_slots?.length > 0 || cs.pcie_slots?.length > 0) && (
         <Section title="Expansion">
           {cs.pcie_slots?.map((slot, i) => (
-            <Row key={i} label={`PCIe ${slot.width} Gen${slot.gen || '?'}`}>
-              {slot.count}×{slot.note ? ` — ${slot.note}` : ''}
+            <Row key={i} label={`PCIe slot`}>
+              {slot.count} × PCIe Gen{slot.gen || '?'}{slot.width}{slot.note ? ` (${slot.note})` : ''}
             </Row>
           ))}
           {cs.m2_slots?.map((slot, i) => (
-            <Row key={i} label={`M.2 ${slot.size} ${slot.key}-key`}>
-              {slot.count}× — {slot.interface?.join(' / ') || '—'}
+            <Row key={i} label={`M.2 ${slot.size} ${slot.key}-Key`}>
+              {formatM2Interface(slot)}
             </Row>
           ))}
           {cs.storage_interfaces?.length > 0 && (
