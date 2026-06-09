@@ -9,6 +9,7 @@ import SolutionPanel from './components/SolutionPanel';
 import ComparisonPanel from './components/ComparisonPanel';
 import CompetitorMode from './components/CompetitorMode';
 import SettingsModal from './components/SettingsModal';
+import ProductDetailModal from './components/ProductDetailModal';
 import './App.css';
 
 const MODE_SELECT = 'select';
@@ -27,6 +28,7 @@ export default function App() {
   const [showSettings, setShowSettings] = useState(false);
   const [forcedHost, setForcedHost] = useState(null); // part_no of user-picked alt host
   const [lastQuery, setLastQuery] = useState('');     // RFQ text for quote export
+  const [detailProduct, setDetailProduct] = useState(null); // product detail modal
 
   // Solution bundle: pick host + fill I/O gaps with EP cards.
   const solution = useMemo(() => {
@@ -250,6 +252,7 @@ export default function App() {
                 recommendedPartNos={aiResult?.recommended_part_nos}
                 selectedForCompare={selectedForCompare}
                 onToggleSelect={handleToggleSelect}
+                onCardClick={p => setDetailProduct(p)}
                 totalCount={products.length}
                 hasSearched={hasSearched}
               />
@@ -278,6 +281,9 @@ export default function App() {
 
       {/* ── Settings Modal ── */}
       {showSettings && <SettingsModal onClose={() => setShowSettings(false)} />}
+
+      {/* ── Product Detail Modal ── */}
+      {detailProduct && <ProductDetailModal product={detailProduct} onClose={() => setDetailProduct(null)} />}
     </div>
   );
 }

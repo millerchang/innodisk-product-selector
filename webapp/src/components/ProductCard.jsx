@@ -5,7 +5,7 @@ import {
 
 const COMPUTING_LINES = ['computing_aiot', 'computing_ipa'];
 
-export default function ProductCard({ product, recommendedPartNos, isSelected, onToggleSelect }) {
+export default function ProductCard({ product, recommendedPartNos, isSelected, onToggleSelect, onCardClick }) {
   const m = product.meta;
   const co = product.common || {};
   const badge = getMatchBadge(m.part_no, recommendedPartNos);
@@ -14,7 +14,10 @@ export default function ProductCard({ product, recommendedPartNos, isSelected, o
   const cs = product.computing_spec || {};
 
   return (
-    <div className={`product-card ${isSelected ? 'card-selected' : ''} ${badge ? 'card-matched' : ''}`}>
+    <div
+      className={`product-card ${isSelected ? 'card-selected' : ''} ${badge ? 'card-matched' : ''} ${onCardClick ? 'card-clickable' : ''}`}
+      onClick={onCardClick ? () => onCardClick(product) : undefined}
+    >
 
       {/* Match Badge */}
       {badge && (
@@ -39,7 +42,8 @@ export default function ProductCard({ product, recommendedPartNos, isSelected, o
             </div>
           </div>
         </div>
-        <label className="compare-toggle" title={isSelected ? 'Remove from comparison' : 'Add to comparison (max 4)'}>
+        <label className="compare-toggle" title={isSelected ? 'Remove from comparison' : 'Add to comparison (max 4)'}
+          onClick={e => e.stopPropagation()}>
           <input
             type="checkbox"
             checked={isSelected}

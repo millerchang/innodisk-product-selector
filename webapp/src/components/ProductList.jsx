@@ -1,6 +1,6 @@
 import ProductCard from './ProductCard';
 
-export default function ProductList({ products, recommendedPartNos, selectedForCompare, onToggleSelect, totalCount, hasSearched }) {
+export default function ProductList({ products, recommendedPartNos, selectedForCompare, onToggleSelect, onCardClick, totalCount, hasSearched }) {
   if (!hasSearched) {
     return (
       <div className="all-products-grid">
@@ -15,6 +15,7 @@ export default function ProductList({ products, recommendedPartNos, selectedForC
               recommendedPartNos={null}
               isSelected={selectedForCompare.includes(p.meta.part_no)}
               onToggleSelect={onToggleSelect}
+              onCardClick={onCardClick}
             />
           ))}
         </div>
@@ -60,6 +61,7 @@ export default function ProductList({ products, recommendedPartNos, selectedForC
                 recommendedPartNos={recommendedPartNos}
                 isSelected={selectedForCompare.includes(p.meta.part_no)}
                 onToggleSelect={onToggleSelect}
+                onCardClick={onCardClick}
               />
             ))}
           </div>
@@ -80,6 +82,7 @@ export default function ProductList({ products, recommendedPartNos, selectedForC
                 recommendedPartNos={null}
                 isSelected={selectedForCompare.includes(p.meta.part_no)}
                 onToggleSelect={onToggleSelect}
+                onCardClick={onCardClick}
               />
             ))}
           </div>
