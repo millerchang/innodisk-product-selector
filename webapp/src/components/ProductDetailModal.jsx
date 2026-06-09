@@ -157,20 +157,14 @@ function ComputingDetail({ cs, co }) {
 
       {/* I/O Ports */}
       <Section title="I/O Ports">
-        {/* USB — 依 standard 分行（方案 B），相同 standard 合併顯示 */}
-        {(() => {
-          const grouped = {};
-          (ports.usb || []).forEach(u => {
-            if (!grouped[u.standard]) grouped[u.standard] = [];
-            grouped[u.standard].push(u);
-          });
-          return Object.entries(grouped).map(([std, entries]) => {
-            const value = entries
-              .map(e => e.connector ? `${e.count}× ${e.connector}` : `${e.count}×`)
-              .join(', ');
-            return <Row key={std} label={std}>{value}</Row>;
-          });
-        })()}
+        {/* USB — 方案 A：所有規格合併成單行 */}
+        {(ports.usb?.length > 0) && (
+          <Row label="USB">
+            {ports.usb
+              .map(u => u.connector ? `${u.count}× ${u.standard} (${u.connector})` : `${u.count}× ${u.standard}`)
+              .join(', ')}
+          </Row>
+        )}
         {/* Ethernet — speed 移進 value，PoE / chip 補充顯示 */}
         {ports.gbe?.map((g, i) => (
           <Row key={i} label="Ethernet">
