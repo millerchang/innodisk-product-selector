@@ -173,15 +173,17 @@ function ComputingDetail({ cs, co }) {
             {g.chip ? ` (${g.chip})` : ''}
           </Row>
         ))}
-        {/* Serial — 標準名直接作 label */}
+        {/* Serial — 標準名直接作 label，只顯示數量 */}
         {ports.serial?.map((s, i) => (
-          <Row key={i} label={s.standard}>{s.count}×{s.note ? ` — ${s.note}` : ''}</Row>
+          <Row key={i} label={s.standard}>{s.count}×</Row>
         ))}
         {ports.can_bus_count != null && <Row label="CAN Bus">{ports.can_bus_count}×</Row>}
         {ports.gpio_pins != null && <Row label="GPIO">{ports.gpio_pins} pins</Row>}
         {ports.sim_slot_count != null && <Row label="SIM Slot">{ports.sim_slot_count}×</Row>}
         {ports.mipi_csi?.map((mi, i) => (
-          <Row key={i} label="MIPI CSI-2">{mi.count}× {mi.lanes}-lane {mi.note ? `(${mi.note})` : ''}</Row>
+          <Row key={i} label="MIPI CSI-2">
+            {mi.count}×{mi.lanes ? ` ${mi.lanes}-lane` : ''}{mi.note ? ` ${mi.note}` : ''}
+          </Row>
         ))}
         {cs.display_outputs?.length > 0 && (
           <Row label="Display">
