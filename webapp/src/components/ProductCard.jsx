@@ -42,7 +42,7 @@ export default function ProductCard({ product, recommendedPartNos, isSelected, o
             </div>
           </div>
         </div>
-        <label className="compare-toggle" title={isSelected ? 'Remove from comparison' : 'Add to comparison (max 4)'}
+        <label className="compare-toggle" title={isSelected ? 'Remove from comparison' : 'Add to comparison (max 6)'}
           onClick={e => e.stopPropagation()}>
           <input
             type="checkbox"

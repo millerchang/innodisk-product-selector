@@ -474,17 +474,47 @@ def _build_text_summary(raw: dict, part_no: str, platform: str,
 def _build_camera_spec(raw: dict) -> dict:
     """Build camera_spec sub-object from raw extractor output."""
     cam = raw.get("camera_spec") or {}
+
+    # Dimensions: camera PCB dimensions (W × L × H mm)
+    cam_dims_raw = cam.get("dimensions")
+    cam_dims = None
+    if isinstance(cam_dims_raw, dict):
+        cam_dims = {
+            "width_mm":  cam_dims_raw.get("width_mm"),
+            "depth_mm":  cam_dims_raw.get("depth_mm"),
+            "height_mm": cam_dims_raw.get("height_mm"),
+        }
+
     return {
+        # ── Interface & image ──────────────────────────────────────────────
         "interface_bus":            cam.get("interface_bus"),
         "resolution_mp":            _float_or_null(cam.get("resolution_mp")),
         "resolution_px":            cam.get("resolution_px"),
         "fps":                      _int_or_null(cam.get("fps")),
+        # ── Sensor ────────────────────────────────────────────────────────
         "sensor_type":              cam.get("sensor_type"),
+        "sensor_model":             cam.get("sensor_model"),
         "sensor_size":              cam.get("sensor_size"),
+        "pixel_size_um":            _float_or_null(cam.get("pixel_size_um")),
+        "chroma_type":              cam.get("chroma_type"),
+        # ── Optics ────────────────────────────────────────────────────────
+        "shutter_type":             cam.get("shutter_type"),
+        "lens_type":                cam.get("lens_type"),
+        "lens_fov_deg":             _int_or_null(cam.get("lens_fov_deg")),
+        "lens_fov_d_deg":           _int_or_null(cam.get("lens_fov_d_deg")),
+        "lens_fov_h_deg":           _int_or_null(cam.get("lens_fov_h_deg")),
+        "lens_fov_v_deg":           _int_or_null(cam.get("lens_fov_v_deg")),
+        # ── Feature flags ─────────────────────────────────────────────────
         "hdr":                      bool(cam.get("hdr", False)),
         "low_light":                bool(cam.get("low_light", False)),
-        "lens_fov_deg":             _int_or_null(cam.get("lens_fov_deg")),
         "ir_filter":                bool(cam.get("ir_filter", False)),
+        # ── Output & power ────────────────────────────────────────────────
+        "video_format":             cam.get("video_format"),
+        "power_w":                  _float_or_null(cam.get("power_w")),
+        # ── OS & dimensions ───────────────────────────────────────────────
+        "os_support":               _clean_list(cam.get("os_support", [])),
+        "dimensions":               cam_dims,
+        # ── Compatibility ─────────────────────────────────────────────────
         "adapter_board_compatible": _clean_list(cam.get("adapter_board_compatible", [])),
     }
 

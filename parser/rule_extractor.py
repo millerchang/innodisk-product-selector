@@ -206,13 +206,55 @@ RE_DIM = re.compile(
     r'(?:Dimension|Size)[^\n]{0,30}?(\d{2,4}(?:\.\d+)?\s*[xX×]\s*\d{2,4}(?:\.\d+)?(?:\s*[xX×]\s*\d{2,4}(?:\.\d+)?)?)\s*mm',
     re.IGNORECASE
 )
-# Dimensions — three-group for structured parsing
-# Handles both "225 x 139 x 44 mm" AND "225mm x 139mm x 44mm" (mm after each number)
-RE_DIM3 = re.compile(
+# Dimensions — multi-pattern for structured parsing
+# Pattern A: "Dimension ... num × num × num mm"  (ABOX/ASBC classic)
+# Pattern B: "Dimension L x W x H (mm) num x num x num"  (APEX series — mm BEFORE numbers)
+# Pattern C: "numMM x numMM x numMM"  (mm after each value)
+# Pattern D: "Dimension num x num mm"  (2-D only, e.g. AXMB motherboards)
+RE_DIM3_A = re.compile(
     r'(?:Dimension|Size|L\s*[xX×]\s*W\s*[xX×]\s*H)[^\n]{0,50}?'
     r'(\d{2,4}(?:\.\d+)?)\s*(?:mm)?\s*[xX×]\s*'
     r'(\d{2,4}(?:\.\d+)?)\s*(?:mm)?\s*[xX×]\s*'
     r'(\d{2,4}(?:\.\d+)?)\s*mm',
+    re.IGNORECASE
+)
+RE_DIM3_B = re.compile(                               # APEX: "(mm) 188 x 140 x 56"
+    r'(?:Dimension|Size)[^\n]{0,30}?\(mm\)\s*'
+    r'(\d{2,4}(?:\.\d+)?)\s*[xX×]\s*'
+    r'(\d{2,4}(?:\.\d+)?)\s*[xX×]\s*'
+    r'(\d{2,4}(?:\.\d+)?)',
+    re.IGNORECASE
+)
+RE_DIM3_C = re.compile(                               # "146mm x 102mm x 50mm"
+    r'(\d{2,4}(?:\.\d+)?)\s*mm\s*[xX×]\s*'
+    r'(\d{2,4}(?:\.\d+)?)\s*mm\s*[xX×]\s*'
+    r'(\d{2,4}(?:\.\d+)?)\s*mm',
+    re.IGNORECASE
+)
+RE_DIM2_D = re.compile(                               # "Dimension L x W (mm) 170 x 170"  (2-D boards)
+    r'(?:Dimension|Size)[^\n]{0,30}?'
+    r'(\d{2,4}(?:\.\d+)?)\s*(?:mm)?\s*[xX×]\s*'
+    r'(\d{2,4}(?:\.\d+)?)\s*mm',
+    re.IGNORECASE
+)
+RE_DIM2_FF = re.compile(                              # "form factor (170 x 170mm)" / "(243.84x243.84mm)"
+    r'form\s+factor[^\n]{0,25}\('
+    r'(\d{2,4}(?:\.\d+)?)\s*[xX×]\s*'
+    r'(\d{2,4}(?:\.\d+)?)\s*mm\)',
+    re.IGNORECASE
+)
+RE_DIM3_ML = re.compile(                              # ABOX-V140 multiline: header line \n value line
+    r'Dimension[^\n]{0,30}\(mm\)\s*\n'               # label line ends here
+    r'[^\n]{0,20}?'                                   # LAZY: min prefix on next line ("Physical ")
+    r'(\d{3,4}(?:\.\d+)?)\s*[xX×]\s*'               # 3-4 digits avoids "00" from "300"
+    r'(\d{2,4}(?:\.\d+)?)\s*[xX×]\s*'
+    r'(\d{2,4}(?:\.\d+)?)',
+    re.IGNORECASE
+)
+RE_DIM2_B_LW = re.compile(                           # AXMB-1150: "Dimension L x W (mm) 170 x 170"
+    r'(?:Dimension|Size)[^\n]{0,30}?\(mm\)\s*'       # "(mm)" before numbers
+    r'(\d{2,4}(?:\.\d+)?)\s*[xX×]\s*'
+    r'(\d{2,4}(?:\.\d+)?)',
     re.IGNORECASE
 )
 
@@ -348,16 +390,51 @@ RE_CAM_MP   = re.compile(r'(\d+(?:\.\d+)?)\s*M\.?P\.?\b|(\d+(?:\.\d+)?)\s*Mega[-
 RE_CAM_PX   = re.compile(r'(\d{3,4})\s*[xX×]\s*(\d{3,4})', re.IGNORECASE)
 # FPS — take the maximum
 RE_CAM_FPS  = re.compile(r'(?:Up\s+to\s+)?(\d+)\s*(?:fps|FPS|Hz)\b', re.IGNORECASE)
-# Sensor
+# Sensor type (BSI/CMOS), size, and model name
 RE_CAM_SENSOR_TYPE = re.compile(r'\b(BSI[\s-]?CMOS|CMOS)\b', re.IGNORECASE)
 RE_CAM_SENSOR_SIZE = re.compile(r'1/(\d+(?:\.\d+)?)["\']?\s*(?:inch|")?', re.IGNORECASE)
+# Sensor model: "Sensor OmniVision OV2740" (no colon) or "Sensor: Sony IMX335" (colon)
+# Innodisk datasheets use space-only table format (key<space>value, no colon)
+RE_CAM_SENSOR_MODEL = re.compile(
+    r'(?:Image\s+Sensor|Sensor\s+(?:Model|Chip)|Sensor)\s*[:\|]?\s*'
+    r'((?:Sony|OmniVision|ON\s*Semi|Samsung|Aptina|Hamamatsu|Teledyne|ams)\s+[\w-]+|'
+    r'(?:IMX|OV|AR|MT|S5K|OX|IMX)\d{3,5}(?:[-\s][A-Z0-9]+)?)',
+    re.IGNORECASE)
 # FOV — handles "FOV: 90°", "HFOV: 80°", "120° D-FOV", etc.
 RE_CAM_FOV  = re.compile(r'(?:[DHV]?[-\s]?FOV|Field\s+of\s+View)[^\n]{0,30}?(\d+)\s*°', re.IGNORECASE)
 RE_CAM_FOV2 = re.compile(r'(\d{2,3})\s*°\s*(?:[DHV]?[-\s]?FOV)', re.IGNORECASE)
+# FOV D/H/V breakdown: "77° / 69° / 42°" after "Lens FOV (D/H/V)"
+RE_CAM_FOV_DHV = re.compile(
+    r'(?:Lens\s+)?FOV[^\n]{0,30}\(D\s*/\s*H\s*/\s*V\)[^\n]{0,30}'
+    r'(\d{1,3})\s*°\s*/\s*(\d{1,3})\s*°\s*/\s*(\d{1,3})\s*°',
+    re.IGNORECASE)
 # Feature flags
 RE_CAM_HDR  = re.compile(r'\bHDR\b|\bWDR\b|Wide\s+Dynamic\s+Range', re.IGNORECASE)
 RE_CAM_IR   = re.compile(r'\bIR\s*[Cc]ut\b|\bIR\s*[Ff]ilter\b|Night\s+[Vv]ision', re.IGNORECASE)
 RE_CAM_LL   = re.compile(r'Low[-\s]?[Ll]ight|[Ss]tarlight|F1\.[0-8]\b', re.IGNORECASE)
+# Pixel size: "Pixel Size 1.4µm" (no colon) or "Pixel Size: 1.4µm"
+# Note: µ may appear as Unicode U+00B5 or as 'u'; match both
+RE_CAM_PIXEL = re.compile(r'Pixel\s+[Ss]ize\s*[:\|]?\s*([\d.]+)\s*(?:µ|[µu])m', re.IGNORECASE)
+# Shutter type: "Shutter Rolling" (no colon) or "Shutter: Rolling"
+RE_CAM_SHUTTER = re.compile(
+    r'Shutter\s*(?:Type\s*)?[:\|]?\s*(Rolling|Global|Electronic\s+Rolling|Electronic\s+Global)',
+    re.IGNORECASE)
+# Video / output format: "Video Format YUV422, MJPEG" (no colon)
+RE_CAM_VIDEO_FMT = re.compile(r'(?:Video|Output)\s+Format\s*[:\|]?\s*([^\n\|]{0,80})', re.IGNORECASE)
+# Power consumption: "Power Consumption Approximate 1W" or "Power Consumption: 1W"
+RE_CAM_POWER = re.compile(
+    r'Power\s+(?:Consumption|Input|Supply)\s*[:\|]?[^\n]{0,40}?([\d.]+)\s*W\b',
+    re.IGNORECASE)
+# Lens type: "Lens Type Fixed Focus (M5)" (no colon) or "Lens Type: Fixed Focus"
+RE_CAM_LENS_TYPE = re.compile(r'Lens\s+Type\s*[:\|]?\s*([^\n\|]{0,60})', re.IGNORECASE)
+# OS support: "OS Support Windows/Linux/Android/macOS" or "OS Support: ..."
+RE_CAM_OS = re.compile(r'OS\s+Support\s*[:\|]?\s*([^\n\|]{0,120})', re.IGNORECASE)
+# Chroma type: "Chroma Type Color" (no colon)
+RE_CAM_CHROMA = re.compile(r'Chroma\s+Type\s*[:\|]?\s*(Color|Monochrome|Mono|Colour)', re.IGNORECASE)
+# Camera PCB dimension: "Dimension (W x L x H/mm): 60 x 8 x 3.85"
+RE_CAM_DIM = re.compile(
+    r'Dimension[^\n]{0,30}[(\s]+([\d.]+)\s*[xX×]\s*([\d.]+)\s*[xX×]\s*([\d.]+)\s*(?:mm)?[)\s\n]',
+    re.IGNORECASE)
 # Adapter/platform compatibility
 RE_CAM_COMPAT = re.compile(
     r'(?:Compatible\s+with|Works\s+with|Support(?:ed)?\s+(?:Platform|Board)s?)[^\n]{0,120}',
@@ -384,6 +461,19 @@ APP_KEYWORDS = {
 
 # ── Main extractor ──────────────────────────────────────────────────────────
 
+def _fix_encoding_artifacts(text: str) -> str:
+    """
+    Fix characters mangled by pdfplumber's CP950/Big5 mis-decoding.
+    Common case: ® (U+00AE, byte 0xAE) decoded as 簧 (U+7C27) in some PDFs.
+    """
+    return (
+        text
+        .replace('簧', '®')   # 簧 → ®
+        .replace('™', '™')   # ™ already correct but normalise
+        .replace('ｲ', '®')   # ｲ → ® (alternative mis-decode)
+    )
+
+
 def _extract_text(pdf_path: str) -> tuple[str, int]:
     """Return full concatenated text and page count."""
     pages_text = []
@@ -391,7 +481,7 @@ def _extract_text(pdf_path: str) -> tuple[str, int]:
         page_count = len(pdf.pages)
         for page in pdf.pages:
             t = page.extract_text() or ""
-            pages_text.append(t)
+            pages_text.append(_fix_encoding_artifacts(t))
     return "\n".join(pages_text), page_count
 
 
@@ -754,17 +844,36 @@ def _parse_memory_spec(text: str, ram_gb_fallback: float | None = None) -> dict:
 
 
 def _parse_dimensions_structured(text: str) -> dict:
-    """Extract W×D×H dimensions as structured object (Rule 13)."""
-    m = RE_DIM3.search(text)
-    if not m:
-        return {"width_mm": None, "depth_mm": None, "height_mm": None}
-    a, b, c = float(m.group(1)), float(m.group(2)), float(m.group(3))
-    # Rule: shorter of first two = width, larger = depth, third = height
-    return {
-        "width_mm":  min(a, b),
-        "depth_mm":  max(a, b),
-        "height_mm": c,
-    }
+    """Extract W×D×H dimensions as structured object (Rule 13).
+    Tries patterns in priority order (3-number first, then 2-number fallbacks):
+      A  — classic     : 'Dimension ... num × num × num mm'
+      B  — APEX inline : 'Dimension L x W x H (mm) 188 x 140 x 56'
+      C  — per-unit mm : '146mm x 102mm x 50mm'
+      ML — multiline   : 'Dimension ... (mm)\\nPhysical 300 x 229.8 x 70.5'
+      D  — 2-D board   : 'Dimension L x W (mm) 170 x 170'
+      FF — form factor : 'Mini-ITX form factor (170 x 170mm)'
+    """
+    # 3-number patterns (height known)
+    for pat in (RE_DIM3_A, RE_DIM3_B, RE_DIM3_C, RE_DIM3_ML):
+        m = pat.search(text)
+        if m:
+            a, b, c = float(m.group(1)), float(m.group(2)), float(m.group(3))
+            return {
+                "width_mm":  min(a, b),
+                "depth_mm":  max(a, b),
+                "height_mm": c,
+            }
+    # 2-number fallbacks (height_mm = null for boards/SBCs)
+    for pat in (RE_DIM2_B_LW, RE_DIM2_D, RE_DIM2_FF):
+        m = pat.search(text)
+        if m:
+            a, b = float(m.group(1)), float(m.group(2))
+            return {
+                "width_mm":  min(a, b),
+                "depth_mm":  max(a, b),
+                "height_mm": None,
+            }
+    return {"width_mm": None, "depth_mm": None, "height_mm": None}
 
 
 def _parse_pcie_slots(text: str) -> list[dict]:
@@ -1138,17 +1247,82 @@ def _parse_camera_spec(text: str, pdf_path: str) -> dict:
         candidates = [int(v) for v in fps_vals if 1 <= int(v) <= 960]
         fps = max(candidates) if candidates else None
 
-    # ── Sensor type ──
+    # ── Sensor type (BSI/CMOS) ──
     sensor_type = None
     m = RE_CAM_SENSOR_TYPE.search(text)
     if m:
         sensor_type = "BSI" if "BSI" in m.group(1).upper() else "CMOS"
+
+    # ── Sensor model name (e.g., "Sony IMX335", "OmniVision OV2740") ──
+    sensor_model = None
+    m = RE_CAM_SENSOR_MODEL.search(text)
+    if m:
+        sensor_model = m.group(1).strip()
 
     # ── Sensor size ──
     sensor_size = None
     m = RE_CAM_SENSOR_SIZE.search(text)
     if m:
         sensor_size = f"1/{m.group(1)}inch"
+
+    # ── Pixel size (µm) ──
+    pixel_size_um = None
+    m = RE_CAM_PIXEL.search(text)
+    if m:
+        try:
+            pixel_size_um = float(m.group(1))
+        except (TypeError, ValueError):
+            pass
+
+    # ── Shutter type ──
+    shutter_type = None
+    m = RE_CAM_SHUTTER.search(text)
+    if m:
+        shutter_type = m.group(1).strip().title()
+
+    # ── Video format ──
+    video_format = None
+    m = RE_CAM_VIDEO_FMT.search(text)
+    if m:
+        video_format = m.group(1).strip().rstrip(',;')
+
+    # ── Power consumption (W) ──
+    power_w = None
+    m = RE_CAM_POWER.search(text)
+    if m:
+        try:
+            power_w = float(m.group(1))
+        except (TypeError, ValueError):
+            pass
+
+    # ── Lens type ──
+    lens_type = None
+    m = RE_CAM_LENS_TYPE.search(text)
+    if m:
+        lens_type = m.group(1).strip().rstrip(',;')
+
+    # ── OS support ──
+    os_support_cam: list[str] = []
+    m = RE_CAM_OS.search(text)
+    if m:
+        raw_os = m.group(1).strip()
+        os_support_cam = [o.strip() for o in re.split(r'[/,;]', raw_os) if o.strip()]
+
+    # ── Chroma type ──
+    chroma_type = None
+    m = RE_CAM_CHROMA.search(text)
+    if m:
+        chroma_type = m.group(1).strip().title()
+
+    # ── Camera PCB dimensions (W × L × H mm) ──
+    cam_dims = None
+    m = RE_CAM_DIM.search(text)
+    if m:
+        try:
+            w, l, h = float(m.group(1)), float(m.group(2)), float(m.group(3))
+            cam_dims = {"width_mm": w, "depth_mm": l, "height_mm": h}
+        except (TypeError, ValueError):
+            pass
 
     # ── FOV ──
     fov = None
@@ -1158,6 +1332,15 @@ def _parse_camera_spec(text: str, pdf_path: str) -> dict:
     if m:
         try:
             fov = int(m.group(1))
+        except (TypeError, ValueError):
+            pass
+
+    # ── FOV D/H/V breakdown ──
+    fov_d = fov_h = fov_v = None
+    m = RE_CAM_FOV_DHV.search(text)
+    if m:
+        try:
+            fov_d, fov_h, fov_v = int(m.group(1)), int(m.group(2)), int(m.group(3))
         except (TypeError, ValueError):
             pass
 
@@ -1180,10 +1363,22 @@ def _parse_camera_spec(text: str, pdf_path: str) -> dict:
         "resolution_px":            resolution_px,
         "fps":                      fps,
         "sensor_type":              sensor_type,
+        "sensor_model":             sensor_model,
         "sensor_size":              sensor_size,
+        "pixel_size_um":            pixel_size_um,
+        "shutter_type":             shutter_type,
+        "video_format":             video_format,
+        "power_w":                  power_w,
+        "lens_type":                lens_type,
+        "os_support":               os_support_cam,
+        "chroma_type":              chroma_type,
+        "dimensions":               cam_dims,
         "hdr":                      hdr,
         "low_light":                low_light,
         "lens_fov_deg":             fov,
+        "lens_fov_d_deg":           fov_d,
+        "lens_fov_h_deg":           fov_h,
+        "lens_fov_v_deg":           fov_v,
         "ir_filter":                ir_filter,
         "adapter_board_compatible": adapter_boards,
     }

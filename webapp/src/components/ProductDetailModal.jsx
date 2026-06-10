@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   formatTemp, formatTops, formatRam, formatTdp, formatOS,
   getPlatformIcon, getProductLineLabel, getLifecycleStyle,
@@ -28,7 +28,21 @@ function formatM2Interface(slot) {
   return `${slot.count} × ${primary}${suffix}`;
 }
 
+/** Load notes.json once and return the note for a given part_no (or null). */
+function useProductNote(partNo) {
+  const [note, setNote] = useState(null);
+  useEffect(() => {
+    fetch('/notes.json')
+      .then(r => r.ok ? r.json() : {})
+      .then(data => setNote(data[partNo] ?? null))
+      .catch(() => setNote(null));
+  }, [partNo]);
+  return note;
+}
+
 export default function ProductDetailModal({ product, onClose }) {
+  const note = useProductNote(product?.meta?.part_no);
+
   // Close on Escape + lock body scroll while open
   useEffect(() => {
     const handler = e => { if (e.key === 'Escape') onClose(); };
@@ -73,6 +87,18 @@ export default function ProductDetailModal({ product, onClose }) {
 
         {/* Body */}
         <div className="modal-body">
+
+          {/* PM Notes callout — only shown when a note exists */}
+          {note && (
+            <div className="pm-notes-callout">
+              <span className="pm-notes-icon">📝</span>
+              <div>
+                <div className="pm-notes-label">PM Notes</div>
+                <div className="pm-notes-text">{note}</div>
+              </div>
+            </div>
+          )}
+
           {isComputing
             ? <ComputingDetail cs={cs} co={co} />
             : <EpDetail product={product} co={co} />}
@@ -105,6 +131,20 @@ export default function ProductDetailModal({ product, onClose }) {
                 className="modal-source-link"
               >
                 {m.source_file}
+              </a>
+            </p>
+          )}
+          {/* User Manual link */}
+          {m.user_manual_file && (
+            <p className="modal-source">
+              📖{' '}
+              <a
+                href={`/datasheets/${encodeURIComponent(m.user_manual_file)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="modal-source-link"
+              >
+                {m.user_manual_file}
               </a>
             </p>
           )}
@@ -239,8 +279,10 @@ function ComputingDetail({ cs, co }) {
 
 /* ── EP / Camera detail ───────────────────────────────── */
 function EpDetail({ product, co }) {
-  const line = product.meta.product_line;
-  const spec = product.networking_spec || product.io_spec || product.air_sensor_spec || product.camera_spec || {};
+  const cs = product.camera_spec;
+  if (cs) return <CameraDetail cs={cs} co={co} />;
+
+  const spec = product.networking_spec || product.io_spec || product.air_sensor_spec || {};
 
   return (
     <Section title="Specifications">
@@ -256,21 +298,6 @@ function EpDetail({ product, co }) {
       {spec.can_fd_support != null && <Row label="CAN FD">{spec.can_fd_support ? 'Yes' : 'No'}</Row>}
       {spec.isolation != null && <Row label="Isolation">{spec.isolation ? 'Yes' : 'No'}</Row>}
 
-      {/* Camera specific */}
-      {spec.interface_bus && <Row label="Interface">{spec.interface_bus}</Row>}
-      {spec.resolution_mp != null && (
-        <Row label="Resolution">{spec.resolution_mp} MP{spec.resolution_px ? ` (${spec.resolution_px})` : ''}</Row>
-      )}
-      {spec.fps != null && <Row label="Frame Rate">{spec.fps} fps</Row>}
-      {spec.sensor_type && <Row label="Sensor">{spec.sensor_type}{spec.sensor_size ? ` ${spec.sensor_size}` : ''}</Row>}
-      {spec.lens_fov_deg != null && <Row label="FOV">{spec.lens_fov_deg}°</Row>}
-      {spec.hdr && <Row label="HDR">Yes</Row>}
-      {spec.low_light && <Row label="Low Light">Yes</Row>}
-      {spec.ir_filter && <Row label="IR Filter">Yes</Row>}
-      {spec.adapter_board_compatible?.length > 0 && (
-        <Row label="Compatible">{spec.adapter_board_compatible.join(', ')}</Row>
-      )}
-
       {/* Air sensor */}
       {spec.detected_pollutants?.length > 0 && (
         <Row label="Detects">{spec.detected_pollutants.join(', ')}</Row>
@@ -281,6 +308,82 @@ function EpDetail({ product, co }) {
         <Row label="Op Temp">{formatTemp(co.op_temp_min_c, co.op_temp_max_c)}</Row>
       )}
     </Section>
+  );
+}
+
+/* ── Camera detail — two tables ───────────────────────── */
+function CameraDetail({ cs, co }) {
+  const isCapture = !!cs.camera_if; // Capture cards (EB-series) have camera_if instead of sensor
+
+  return (
+    <>
+      {/* Table 1: Product Parameter */}
+      <Section title="Product Parameter">
+        {isCapture ? (
+          <>
+            {cs.camera_if && <Row label="Camera I/F">{cs.camera_if}{cs.camera_if_port ? ` ×${cs.camera_if_port}` : ''}</Row>}
+            {cs.host_if && <Row label="Host I/F">{cs.host_if}{cs.host_if_port ? ` ×${cs.host_if_port}` : ''}</Row>}
+            {cs.chipset && cs.chipset !== 'N/A' && <Row label="Chipset">{cs.chipset}</Row>}
+          </>
+        ) : (
+          <>
+            <Row label="Interface">{cs.interface_bus}</Row>
+            {cs.resolution_mp != null && (
+              <Row label="Resolution">{cs.resolution_mp} MP{cs.resolution_px ? ` (${cs.resolution_px})` : ''}</Row>
+            )}
+            {cs.fps != null && <Row label="Frame Rate">{cs.fps} fps</Row>}
+            {cs.sensor_model && <Row label="Sensor">{cs.sensor_model}</Row>}
+            {cs.shutter_type && <Row label="Shutter">{cs.shutter_type}</Row>}
+            {cs.video_format && <Row label="Video Format">{cs.video_format}</Row>}
+            {cs.sensor_size && <Row label="Sensor Size">{cs.sensor_size}</Row>}
+            {cs.pixel_size_um != null && <Row label="Pixel Size">{cs.pixel_size_um} µm</Row>}
+            {cs.chroma_type && <Row label="Chroma">{cs.chroma_type}</Row>}
+            {cs.lens_type && <Row label="Lens Type">{cs.lens_type}</Row>}
+            {cs.lens_fov_deg != null && <Row label="Lens FOV">{cs.lens_fov_deg}°</Row>}
+            {cs.dynamic_range_db != null && <Row label="Dynamic Range">{cs.dynamic_range_db} dB</Row>}
+            {(cs.hdr || cs.low_light) && (
+              <Row label="Features">
+                {[cs.hdr && 'HDR', cs.low_light && 'Low Light'].filter(Boolean).join(', ')}
+              </Row>
+            )}
+            {cs.platform_support && <Row label="Platform">{cs.platform_support}</Row>}
+          </>
+        )}
+        {cs.power_consumption_w != null && <Row label="Power">{cs.power_consumption_w} W</Row>}
+        {(co.op_temp_min_c != null || co.op_temp_max_c != null) && (
+          <Row label="Op Temp">{formatTemp(co.op_temp_min_c, co.op_temp_max_c)}</Row>
+        )}
+        {cs.dimension_mm && <Row label="Dimension">{cs.dimension_mm} mm</Row>}
+        {cs.module_weight_g != null && <Row label="Weight">{cs.module_weight_g} g</Row>}
+        {cs.warranty_years != null && <Row label="Warranty">{cs.warranty_years} Years</Row>}
+      </Section>
+
+      {/* Table 2: Resolution Information */}
+      {cs.resolution_table?.length > 0 && (
+        <Section title="Resolution Information">
+          <div className="camera-res-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Resolution</th>
+                  {cs.resolution_table[0].yuv422 !== undefined && <th>YUV422</th>}
+                  {cs.resolution_table[0].mjpeg !== undefined && <th>MJPEG</th>}
+                </tr>
+              </thead>
+              <tbody>
+                {cs.resolution_table.map((row, i) => (
+                  <tr key={i}>
+                    <td>{row.resolution}</td>
+                    {row.yuv422 !== undefined && <td>{row.yuv422}</td>}
+                    {row.mjpeg !== undefined && <td>{row.mjpeg !== 'N/A' ? row.mjpeg : '—'}</td>}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Section>
+      )}
+    </>
   );
 }
 

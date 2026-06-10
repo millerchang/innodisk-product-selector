@@ -168,16 +168,26 @@ def parse_one(pdf_path: Path, client: anthropic.Anthropic) -> tuple[dict | None,
                 )
                 vision_raw = vision_extractor.extract(str(pdf_path), client)
                 if "_parse_error" in vision_raw:
-                    log_entry["status"] = "parse_error"
-                    log_entry["warnings"].append(vision_raw["_parse_error"])
-                    return None, log_entry
-                # Merge: Vision takes priority; rule-based fills gaps
-                for key, val in raw.items():
-                    if key.startswith("_"):
-                        continue
-                    if not vision_raw.get(key) and val:
-                        vision_raw[key] = val
-                raw = vision_raw
+                    err = vision_raw["_parse_error"]
+                    # Connection / network errors → fall back to rule-based rather than dropping the record
+                    if "Connection error" in err or "timeout" in err.lower() or "network" in err.lower():
+                        log_entry["method"] = "rule_based_fallback"
+                        log_entry["warnings"].append(
+                            f"Vision API unreachable ({err}) — using rule-based result as fallback"
+                        )
+                        # raw already holds rule-based result; continue with it
+                    else:
+                        log_entry["status"] = "parse_error"
+                        log_entry["warnings"].append(err)
+                        return None, log_entry
+                else:
+                    # Merge: Vision takes priority; rule-based fills gaps
+                    for key, val in raw.items():
+                        if key.startswith("_"):
+                            continue
+                        if not vision_raw.get(key) and val:
+                            vision_raw[key] = val
+                    raw = vision_raw
             else:
                 log_entry["warnings"].append(
                     f"Rule-based confidence {confidence:.0%} — Vision skipped (no API key set)"

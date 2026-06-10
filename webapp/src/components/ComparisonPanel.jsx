@@ -11,9 +11,7 @@ function epSpec(p) {
 const EMPTY = new Set([null, undefined, '', '—', 'N/A']);
 const isEmpty = v => EMPTY.has(v) || (Array.isArray(v) && v.length === 0);
 
-// Candidate rows across ALL product lines. A row is rendered only if at least
-// one selected product yields a non-empty value, so a comparison of pure EP
-// cards hides the computing rows and vice-versa.
+// Candidate rows across ALL product lines.
 const ALL_ROWS = [
   // ── Always-relevant ────────────────────────────────────────────────
   { label: 'Product Line',   always: true, fn: p => getProductLineLabel(p.meta.product_line) },
@@ -48,11 +46,11 @@ const ALL_ROWS = [
   { label: 'HDR',            fn: p => p.camera_spec == null ? '—' : (p.camera_spec.hdr ? 'Yes' : 'No') },
   { label: 'Low Light',      fn: p => p.camera_spec == null ? '—' : (p.camera_spec.low_light ? 'Yes' : 'No') },
 
-  // ── Computing — USB (總數 + 明細，供比對用) ──────────────────────
+  // ── Computing — USB ────────────────────────────────────────────────
   { label: 'USB Total',      highlight: true, fn: p => { const usb = p.computing_spec?.io_ports?.usb; if (!usb?.length) return '—'; return `×${usb.reduce((s,u)=>s+u.count,0)}`; } },
   { label: 'USB Detail',     wide: true, fn: p => { const usb = p.computing_spec?.io_ports?.usb; if (!usb?.length) return '—'; return usb.map(u => u.connector ? `${u.count}× ${u.standard} (${u.connector})` : `${u.count}× ${u.standard}`).join(', '); } },
 
-  // ── EP / add-on cards (io / networking / air_sensor) ───────────────
+  // ── EP / add-on cards ──────────────────────────────────────────────
   { label: 'Category',       fn: p => epSpec(p).subcategory || '—' },
   { label: 'Host Interface', fn: p => epSpec(p).host_interface || '—' },
   { label: 'PCIe',           fn: p => { const s = epSpec(p); return s.pcie_gen ? `Gen${s.pcie_gen}${s.pcie_lanes ? ` x${s.pcie_lanes}` : ''}` : '—'; } },
@@ -70,64 +68,127 @@ const ALL_ROWS = [
   { label: 'Sourcing',       fn: p => { const s = epSpec(p); if (!s.sourcing) return '—'; return s.source_vendor ? `${s.sourcing} (${s.source_vendor})` : s.sourcing; } },
 ];
 
+/** Compute per-row diff metadata when multiple products are compared. */
+function buildDiffMeta(rows, products) {
+  return rows.map(row => {
+    const values = products.map(p => {
+      const v = row.fn(p);
+      return isEmpty(v) ? '—' : String(v);
+    });
+    const unique = new Set(values.filter(v => v !== '—'));
+    const allSame = unique.size <= 1;
+    return { allSame, values };
+  });
+}
+
 export default function ComparisonPanel({ products, onClose, onRemove }) {
   if (!products.length) return null;
 
-  // Keep only rows that at least one product has a value for (or always-rows).
   const rows = ALL_ROWS.filter(
     r => r.always || products.some(p => !isEmpty(r.fn(p)))
   );
 
-  return (
-    <div className="comparison-overlay" onClick={onClose}>
-      <div className="comparison-panel" onClick={e => e.stopPropagation()}>
-        <div className="comparison-header">
-          <h2>Side-by-Side Comparison</h2>
-          <div className="comparison-header-actions">
-            <span className="comparison-count">{products.length} products</span>
-            <button className="btn btn-secondary" onClick={onClose}>Close ✕</button>
-          </div>
-        </div>
+  const diffMeta = buildDiffMeta(rows, products);
+  const hasDiff = products.length > 1;
 
-        <div className="comparison-table-wrapper">
-          <table className="comparison-table">
-            <thead>
-              <tr>
-                <th className="spec-col-header">Specification</th>
-                {products.map(p => (
-                  <th key={p.meta.part_no} className="product-col-header">
-                    <div className="col-header-inner">
-                      <div className="col-header-text">
-                        <strong>{p.meta.part_no}</strong>
-                        <span className="col-header-line">{getProductLineLabel(p.meta.product_line)}</span>
-                      </div>
-                      <button
-                        className="remove-col-btn"
-                        onClick={() => onRemove(p.meta.part_no)}
-                        title="Remove"
-                      >✕</button>
+  // Count rows with differences
+  const diffCount = hasDiff ? diffMeta.filter(m => !m.allSame).length : 0;
+
+  return (
+    <div className="comparison-inline">
+      {/* Panel header */}
+      <div className="comparison-header">
+        <div className="comparison-header-left">
+          <h2>Side-by-Side Comparison</h2>
+          {hasDiff && (
+            <span className="diff-count-badge">
+              {diffCount} spec{diffCount !== 1 ? 's differ' : ' differs'}
+            </span>
+          )}
+        </div>
+        <div className="comparison-header-actions">
+          <span className="comparison-count">{products.length} products selected</span>
+          {hasDiff && (
+            <span className="diff-legend">
+              <span className="legend-dot legend-diff" /> Differs
+              <span className="legend-dot legend-same" /> Same
+            </span>
+          )}
+          <button className="btn btn-secondary" onClick={onClose}>Close ✕</button>
+        </div>
+      </div>
+
+      {/* Table */}
+      <div className="comparison-table-wrapper">
+        <table className="comparison-table">
+          <thead>
+            <tr>
+              <th className="spec-col-header">Specification</th>
+              {products.map(p => (
+                <th key={p.meta.part_no} className="product-col-header">
+                  <div className="col-header-inner">
+                    <div className="col-header-text">
+                      <strong>{p.meta.part_no}</strong>
+                      <span className="col-header-line">{getProductLineLabel(p.meta.product_line)}</span>
                     </div>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map(row => (
-                <tr key={row.label} className={row.highlight ? 'row-highlight' : ''}>
-                  <td className="spec-row-label">{row.label}</td>
-                  {products.map(p => {
-                    const v = row.fn(p);
+                    <button
+                      className="remove-col-btn"
+                      onClick={() => onRemove(p.meta.part_no)}
+                      title="Remove from comparison"
+                    >✕</button>
+                  </div>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row, ri) => {
+              const meta = diffMeta[ri];
+              const isDiff = hasDiff && !meta.allSame;
+              const isSame = hasDiff && meta.allSame;
+
+              return (
+                <tr
+                  key={row.label}
+                  className={[
+                    row.highlight ? 'row-highlight' : '',
+                    isDiff ? 'row-differs' : '',
+                    isSame ? 'row-same' : '',
+                  ].filter(Boolean).join(' ')}
+                >
+                  <td className="spec-row-label">
+                    {row.label}
+                    {isSame && products.length > 1 && (
+                      <span className="same-indicator" title="All products have the same value">✓</span>
+                    )}
+                    {isDiff && (
+                      <span className="diff-indicator" title="Values differ between products">≠</span>
+                    )}
+                  </td>
+                  {products.map((p, pi) => {
+                    const v = meta.values[pi];
+                    // Determine if this specific cell is unique (different from others)
+                    const otherValues = meta.values.filter((_, i) => i !== pi);
+                    const isCellUnique = isDiff && !otherValues.includes(v);
+
                     return (
-                      <td key={p.meta.part_no} className={`spec-row-value ${row.highlight ? 'value-highlight' : ''}`}>
-                        {isEmpty(v) ? '—' : v}
+                      <td
+                        key={p.meta.part_no}
+                        className={[
+                          'spec-row-value',
+                          row.highlight ? 'value-highlight' : '',
+                          isCellUnique ? 'cell-diff' : '',
+                        ].filter(Boolean).join(' ')}
+                      >
+                        {v === '—' ? <span className="empty-val">—</span> : v}
                       </td>
                     );
                   })}
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     </div>
   );

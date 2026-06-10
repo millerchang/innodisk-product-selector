@@ -46,6 +46,68 @@ export function filterProducts(products, criteria) {
 }
 
 /**
+ * Local search — part-number lookup and keyword match.
+ * Runs entirely in-browser with no Claude API call.
+ *
+ * isLocalQuery(q): returns true when the query looks like a part-no or
+ *   short model keyword, NOT a natural-language sentence.
+ *
+ * search(q, products): returns matched products sorted by relevance score.
+ */
+export const localSearch = {
+  /**
+   * Heuristic: treat as a local query when ALL of the following are true:
+   *   - 40 chars or fewer
+   *   - No sentence-like words (no 需要/need/support/with/under/above/for/temperature)
+   *   - Looks like alphanumeric segments (part-no pattern OR brand+number)
+   */
+  isLocalQuery(query) {
+    const q = query.trim();
+    if (!q || q.length > 60) return false;
+    // Reject if it contains sentence-structure keywords
+    const sentenceWords = /\b(需要|support|need|with|under|above|for|temperature|windows|linux|industrial|wide|temp|°C|TOPS|watt|GbE|PCIe|USB\s+\d)\b/i;
+    if (sentenceWords.test(q)) return false;
+    // Accept if it looks like a product code or short brand+model string
+    const partNoPattern = /^[A-Z]{2,6}[-_ ]?[\dA-Z]+([-_ ][\dA-Z]+)*$/i;
+    const brandModel = /^[A-Za-z]{2,20}\s+[A-Z0-9][-A-Z0-9 ]+$/i;
+    return partNoPattern.test(q) || brandModel.test(q) || q.split(/\s+/).length <= 3;
+  },
+
+  /**
+   * Score and return matching products.
+   * Scoring:
+   *   100 — exact part_no match (case-insensitive)
+   *    80 — part_no starts with query
+   *    60 — part_no contains query
+   *    40 — processor_model contains query
+   *    20 — text_summary contains query
+   */
+  search(query, products) {
+    const q = query.trim().toLowerCase();
+    const scored = [];
+
+    for (const p of products) {
+      const partNo   = (p.meta.part_no   || '').toLowerCase();
+      const procName = (p.computing_spec?.processor_model || '').toLowerCase();
+      const summary  = (p.search?.text_summary || '').toLowerCase();
+
+      let score = 0;
+      if (partNo === q)              score = 100;
+      else if (partNo.startsWith(q)) score =  80;
+      else if (partNo.includes(q))   score =  60;
+      else if (procName.includes(q)) score =  40;
+      else if (summary.includes(q))  score =  20;
+
+      if (score > 0) scored.push({ product: p, score });
+    }
+
+    return scored
+      .sort((a, b) => b.score - a.score)
+      .map(s => s.product);
+  },
+};
+
+/**
  * Sort filtered products:
  *   1. AI-recommended products first (by recommendation rank)
  *   2. Then by AI TOPS descending as tiebreaker

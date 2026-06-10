@@ -1,0 +1,5 @@
+{
+  "_comment": "PM-maintained product notes. Key = part_no (e.g. 'APEX-E100'). Value = note string shown in product detail modal.",
+  "APEX-E100": "Entry-level edge AI system; ideal for cost-sensitive deployments requiring Qualcomm Snapdragon X Elite compute.",
+  "APEX-A100": "High-performance AIoT platform optimized for computer vision and real-time inference at the edge."
+}

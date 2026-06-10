@@ -8,7 +8,7 @@
       "source_file": "Datasheet_APEX-A100_20251029 2-Preliminary.pdf",
       "file_hash_md5": "b342c75ba8c58f8a1027ef604dce589b",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "APEX-A100"
     },
     "common": {
@@ -29,21 +29,21 @@
     "computing_spec": {
       "bu_owner": "IPA",
       "platform_brand": "Qualcomm",
-      "processor_model": "Qualcomm Cloud AI 100",
-      "processor_series": "Qualcomm Cloud AI",
+      "processor_model": "Qualcomm IQ-9075",
+      "processor_series": "Qualcomm Dragonwing",
       "cpu_cores": 8,
-      "cpu_p_cores": 4,
-      "cpu_e_cores": 4,
-      "tdp_watt": 20.0,
+      "cpu_p_cores": null,
+      "cpu_e_cores": null,
+      "tdp_watt": null,
       "ai_tops": 200,
-      "ram_gb": 36.0,
+      "ram_gb": 36,
       "memory_spec": {
         "type": "LPDDR5",
-        "speed_mhz": 6400,
+        "speed_mhz": null,
         "slots": 0,
-        "max_capacity_gb": 36.0,
+        "max_capacity_gb": 36,
         "form_factor": "on-board",
-        "ecc_support": false
+        "ecc_support": true
       },
       "storage_gb": null,
       "storage_interfaces": [
@@ -58,8 +58,8 @@
       "openvino_support": null,
       "dimensions": {
         "width_mm": 108.65,
-        "depth_mm": 180.0,
-        "height_mm": 69.0
+        "depth_mm": 180,
+        "height_mm": 69
       },
       "power_input": "DC 9~36V",
       "pcie_slots": [],
@@ -76,7 +76,10 @@
         {
           "size": "2230",
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         }
       ],
@@ -100,7 +103,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 1,
             "poe_support": false
           }
@@ -128,11 +131,10 @@
         "SATA",
         "USB2",
         "USB3"
-      ],
-      "ai_tops_basis": "INT8"
+      ]
     },
     "search": {
-      "text_summary": "APEX-A100 APEX-A100 | Platform: Qualcomm Qualcomm IQ-9075 | I/O: 5x USB2.0 Type-C, 5x USB3.2 Gen2, 1x USB2.0 Type-C, 1x 1.0GbE, 1x CAN Bus | Expansion: 1x M.2 2280 M (PCIe x4/SATA), 1x M.2 2230 E () | OS: Linux, Yocto | Op temp: -40簞C ~ 70簞C | Features: Powered by Qualcomm Dragonwing IQ-9075; Up to 100 TOPS AI computing power at low power consumption; Accelerates AGV, AMR, and LLM applications at the edge with; 128GB UFS 3.1 storage, 36GB onboard memory; Dual 2.5G Ethernet, dual 4-lane MIPI CSI-2; Longevity: Chipset supported through 2038",
+      "text_summary": "APEX-A100 APEX-A100 | Platform: Qualcomm Qualcomm IQ-9075 | I/O: 5x USB2.0 Type-C, 5x USB3.2 Gen2, 1x USB2.0 Type-C, 1x 1.0GbE, 1x CAN Bus | Expansion: 1x M.2 2280 M (PCIe x4/SATA), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0) | OS: Linux, Yocto | Op temp: -40°C ~ 70°C | Features: Powered by Qualcomm Dragonwing IQ-9075; Up to 100 TOPS AI computing power at low power consumption; Accelerates AGV, AMR, and LLM applications at the edge with; 128GB UFS 3.1 storage, 36GB onboard memory; Dual 2.5G Ethernet, dual 4-lane MIPI CSI-2; Longevity: Chipset supported through 2038",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -158,7 +160,7 @@
       "source_file": "Datasheet_APEX-E100_20250814.pdf",
       "file_hash_md5": "4477731570735c738f849548ab3e74ad",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "APEX-E100"
     },
     "common": {
@@ -185,15 +187,15 @@
       "cpu_cores": 16,
       "cpu_p_cores": 6,
       "cpu_e_cores": 10,
-      "tdp_watt": 45.0,
-      "ai_tops": 36.0,
-      "ram_gb": 96.0,
+      "tdp_watt": 45,
+      "ai_tops": 36,
+      "ram_gb": 96,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 5600,
-        "slots": 5,
-        "max_capacity_gb": 96.0,
-        "form_factor": "SO-DIMM",
+        "slots": null,
+        "max_capacity_gb": 96,
+        "form_factor": null,
         "ecc_support": false
       },
       "storage_gb": null,
@@ -210,9 +212,9 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": null,
-        "depth_mm": null,
-        "height_mm": null
+        "width_mm": 140,
+        "depth_mm": 188,
+        "height_mm": 56
       },
       "power_input": "DC 12V (±5%)",
       "pcie_slots": [],
@@ -220,7 +222,10 @@
         {
           "size": "2230",
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         },
         {
@@ -258,7 +263,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 1,
             "poe_support": false
           }
@@ -288,11 +293,10 @@
         "USB2",
         "USB3",
         "WiFi"
-      ],
-      "ai_tops_basis": "INT8"
+      ]
     },
     "search": {
-      "text_summary": "APEX-E100 APEX SERIES | Platform: Intel Intel Core Ultra 7 165HL | I/O: 2x USB3.2 Gen1, 1x USB2.0, 2x USB3.2 Gen2, 2x USB2.0, 1x 1.0GbE | Expansion: 1x M.2 2230 E (), 1x M.2 2280 M (PCIe x4/SATA) | OS: Windows, Linux | Op temp: -20簞C ~ 60簞C | Features: Based AI System with Integrated NPU; Equipped with Intel CPU, GPU and built-in NPU delivering up to 36; Intel Core Ultra CPU, 16GB DDR5 DRAM, and 512GB NVMe SSD are; Supports Innodisk dual MIPI over Type-C cameras",
+      "text_summary": "APEX-E100 APEX SERIES | Platform: Intel Intel Core Ultra 7 165HL | I/O: 2x USB3.2 Gen1, 1x USB2.0, 2x USB3.2 Gen2, 2x USB2.0, 1x 1.0GbE | Expansion: 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 2280 M (PCIe x4/SATA) | OS: Windows, Linux | Op temp: -20°C ~ 60°C | Features: Based AI System with Integrated NPU; Equipped with Intel CPU, GPU and built-in NPU delivering up to 36; Intel Core Ultra CPU, 16GB DDR5 DRAM, and 512GB NVMe SSD are; Supports Innodisk dual MIPI over Type-C cameras",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -342,14 +346,14 @@
       "cpu_cores": 16,
       "cpu_p_cores": 6,
       "cpu_e_cores": 10,
-      "tdp_watt": 25.0,
-      "ai_tops": 180.0,
-      "ram_gb": 64.0,
+      "tdp_watt": 25,
+      "ai_tops": 180,
+      "ram_gb": 64,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 7467,
         "slots": null,
-        "max_capacity_gb": 64.0,
+        "max_capacity_gb": 64,
         "form_factor": null,
         "ecc_support": false
       },
@@ -364,9 +368,9 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": null,
-        "depth_mm": null,
-        "height_mm": null
+        "width_mm": 215,
+        "depth_mm": 275,
+        "height_mm": 44.5
       },
       "power_input": "AC 100-240V",
       "pcie_slots": [],
@@ -402,7 +406,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 1,
             "poe_support": false
           }
@@ -465,7 +469,7 @@
       "source_file": "Datasheet_APEX-P100 20250814.pdf",
       "file_hash_md5": "21408d03793233e008ada2289c45257e",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "APEX-P100"
     },
     "common": {
@@ -491,15 +495,15 @@
       "cpu_cores": 16,
       "cpu_p_cores": 8,
       "cpu_e_cores": 8,
-      "tdp_watt": 65.0,
+      "tdp_watt": 65,
       "ai_tops": null,
-      "ram_gb": 64.0,
+      "ram_gb": 64,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 5200,
-        "slots": 5,
-        "max_capacity_gb": 64.0,
-        "form_factor": "SO-DIMM",
+        "slots": null,
+        "max_capacity_gb": 64,
+        "form_factor": null,
         "ecc_support": true
       },
       "storage_gb": null,
@@ -516,9 +520,9 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": null,
-        "depth_mm": null,
-        "height_mm": null
+        "width_mm": 270,
+        "depth_mm": 280,
+        "height_mm": 148.2
       },
       "power_input": "DC 24V(±5%)",
       "pcie_slots": [],
@@ -568,7 +572,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 1,
             "poe_support": false
           }
@@ -600,7 +604,7 @@
       ]
     },
     "search": {
-      "text_summary": "APEX-P100 APEX SERIES | Platform: Intel Intel Core i7-13700E | I/O: 6x USB2.0, 6x USB3.2 Gen2, 2x USB2.0, 1x USB3.2 Gen2 Type-C, 1x USB3.2 Gen2, 2x USB3.2 Gen2, 1x 1.0GbE, 1-pin GPIO, 2x CAN Bus | Expansion: 2x M.2 2280 M (PCIe x4/SATA) | OS: Windows, Linux | Op temp: 0簞C ~ 50簞C | Features: Based AI System with NVIDIA RTX 5000 Ada Accelerator; Support 9,728 CUDA Cores, 304 Tensor Cores, 76 RT Core w/ 16GB; Intel 13th Gen Core i7 CPU??2GB DDR5 and 512GB NVMe SSD are",
+      "text_summary": "APEX-P100 APEX SERIES | Platform: Intel Intel Core i7-13700E | I/O: 6x USB2.0, 6x USB3.2 Gen2, 2x USB2.0, 1x USB3.2 Gen2 Type-C, 1x USB3.2 Gen2, 2x USB3.2 Gen2, 1x 1.0GbE, 1-pin GPIO, 2x CAN Bus | Expansion: 2x M.2 2280 M (PCIe x4/SATA) | OS: Windows, Linux | Op temp: 0°C ~ 50°C | Features: Based AI System with NVIDIA RTX 5000 Ada Accelerator; Support 9,728 CUDA Cores, 304 Tensor Cores, 76 RT Core w/ 16GB; Intel 13th Gen Core i7 CPU、32GB DDR5 and 512GB NVMe SSD are",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -624,7 +628,7 @@
       "source_file": "Datasheet_APEX-P200_20251224.pdf",
       "file_hash_md5": "05061610db5479237615ff0aae43e5a1",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "APEX-P200"
     },
     "common": {
@@ -651,15 +655,15 @@
       "cpu_cores": 14,
       "cpu_p_cores": 6,
       "cpu_e_cores": 8,
-      "tdp_watt": 45.0,
+      "tdp_watt": 45,
       "ai_tops": null,
-      "ram_gb": 64.0,
+      "ram_gb": 64,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 5200,
-        "slots": 5,
-        "max_capacity_gb": 64.0,
-        "form_factor": "SO-DIMM",
+        "slots": null,
+        "max_capacity_gb": 64,
+        "form_factor": null,
         "ecc_support": false
       },
       "storage_gb": null,
@@ -677,8 +681,8 @@
       "openvino_support": null,
       "dimensions": {
         "width_mm": 158.6,
-        "depth_mm": 182.0,
-        "height_mm": 90.0
+        "depth_mm": 182,
+        "height_mm": 90
       },
       "power_input": "DC 19V (±5%)",
       "pcie_slots": [],
@@ -695,7 +699,10 @@
         {
           "size": "2230",
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         }
       ],
@@ -714,7 +721,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 1,
             "poe_support": false
           }
@@ -747,7 +754,7 @@
       ]
     },
     "search": {
-      "text_summary": "APEX-P200 APEX SERIES | Platform: Intel Intel Core i7-13800HE | I/O: 2x USB3.2 Gen2, 2x USB2.0, 1x 1.0GbE | Expansion: 1x M.2 2280 M (PCIe x4/SATA), 1x M.2 2230 E () | OS: Windows, Linux | Op temp: -20簞C ~ 60簞C | Features: Based AI System with NVIDIA RTX 2000 Ada Accelerator; Supports 3,072 CUDA Cores, 96 Tensor Cores, and 24 RT Cores with 8GB; Intel 13th Gen Core i7 CPU, 32GB DDR5 DRAM and 512GB NVMe SSD; Compact design with dimensions of 182mm x 158.6mm x 90mm for",
+      "text_summary": "APEX-P200 APEX SERIES | Platform: Intel Intel Core i7-13800HE | I/O: 2x USB3.2 Gen2, 2x USB2.0, 1x 1.0GbE | Expansion: 1x M.2 2280 M (PCIe x4/SATA), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0) | OS: Windows, Linux | Op temp: -20°C ~ 60°C | Features: Based AI System with NVIDIA RTX 2000 Ada Accelerator; Supports 3,072 CUDA Cores, 96 Tensor Cores, and 24 RT Cores with 8GB; Intel 13th Gen Core i7 CPU, 32GB DDR5 DRAM and 512GB NVMe SSD; Compact design with dimensions of 182mm x 158.6mm x 90mm for",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -770,7 +777,7 @@
       "source_file": "Datasheet_APEX-S100_20260522.pdf",
       "file_hash_md5": "214bf058a865fd078b2991da354004b4",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "APEX-S100"
     },
     "common": {
@@ -794,10 +801,10 @@
       "platform_brand": "Intel",
       "processor_model": "Intel Xeon 6731P",
       "processor_series": "Xeon 6 P-core",
-      "cpu_cores": 28,
+      "cpu_cores": 32,
       "cpu_p_cores": null,
       "cpu_e_cores": null,
-      "tdp_watt": 225.0,
+      "tdp_watt": 245,
       "ai_tops": null,
       "ram_gb": 4096,
       "memory_spec": {
@@ -818,9 +825,9 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": null,
-        "depth_mm": null,
-        "height_mm": null
+        "width_mm": 420,
+        "depth_mm": 438,
+        "height_mm": 88
       },
       "power_input": "AC 220V",
       "pcie_slots": [],
@@ -845,7 +852,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 1,
             "poe_support": false
           }
@@ -873,7 +880,7 @@
       ]
     },
     "search": {
-      "text_summary": "APEX-S100 APEX SERIES | Platform: Intel Intel Xeon 6731P | I/O: 2x USB2.0, 1x 1.0GbE | Expansion: 2x M.2 22110 M (PCIe x4/SATA) | OS: Windows, Linux | Op temp: 0簞C ~ 35簞C | Features: Depth Design Empowering NVIDIA MGX Modular AI Server; Features Intel簧 Xeon簧 6 processors (codenamed Birch Stream); Up to 768GB DDR5 6400 MT/s RDIMM, 2 ? 4TB E1.S, 2 ? 2TB M.2 SSD; Supports NVIDIA BlueField-3 DPU, NVLink; Hot-swappable E1.S SSD & CRPS for easy maintenance; Suitable for AI training, deep learning, LLM, SLM, HPC, fine-tuning",
+      "text_summary": "APEX-S100 APEX SERIES | Platform: Intel Intel Xeon 6731P | I/O: 2x USB2.0, 1x 1.0GbE | Expansion: 2x M.2 22110 M (PCIe x4/SATA) | OS: Windows, Linux | Op temp: 0°C ~ 35°C | Features: Depth Design Empowering NVIDIA MGX Modular AI Server; Features Intel® Xeon® 6 processors (codenamed Birch Stream); Up to 768GB DDR5 6400 MT/s RDIMM, 2 × 4TB E1.S, 2 × 2TB M.2 SSD; Supports NVIDIA BlueField-3 DPU, NVLink; Hot-swappable E1.S SSD & CRPS for easy maintenance; Suitable for AI training, deep learning, LLM, SLM, HPC, fine-tuning",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -896,7 +903,7 @@
       "source_file": "Datasheet_APEX-X100_20260213.pdf",
       "file_hash_md5": "ab285600595bc30be699d16513349869",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "APEX-X100"
     },
     "common": {
@@ -923,14 +930,14 @@
       "cpu_cores": 24,
       "cpu_p_cores": 8,
       "cpu_e_cores": 16,
-      "tdp_watt": 65.0,
+      "tdp_watt": 65,
       "ai_tops": null,
-      "ram_gb": 192.0,
+      "ram_gb": 192,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 4400,
         "slots": null,
-        "max_capacity_gb": 192.0,
+        "max_capacity_gb": 192,
         "form_factor": null,
         "ecc_support": true
       },
@@ -948,9 +955,9 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": null,
-        "depth_mm": null,
-        "height_mm": null
+        "width_mm": 279,
+        "depth_mm": 340,
+        "height_mm": 215
       },
       "power_input": "DC 24~48V (±5%)",
       "pcie_slots": [],
@@ -958,7 +965,10 @@
         {
           "size": "2230",
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         },
         {
@@ -980,7 +990,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 1,
             "poe_support": false
           }
@@ -1005,12 +1015,13 @@
         "HDMI",
         "M.2",
         "OOB",
+        "PCIe",
         "SATA",
         "USB3"
       ]
     },
     "search": {
-      "text_summary": "APEX-X100 APEX SERIES | Platform: Intel Intel Core i9-14900 | I/O: 8x USB3.2 Gen2, 1x 1.0GbE | Expansion: 1x M.2 2230 E (), 1x M.2 3052 B (SATA) | OS: Windows, Linux | Op temp: 0簞C ~ 40簞C | Features: Based AI System with NVIDIA PRO 6000 Blackwell Max-Q/ 6000 Ada Accelerator; Supports up to 24,064 CUDA Cores, 752 Tensor Cores, and 188 RT Cores with 96GB; Supports up to Intel 14th Gen Core i9 CPU, with up to 192GB DDR5 DRAM and 2TB",
+      "text_summary": "APEX-X100 APEX SERIES | Platform: Intel Intel Core i9-14900 | I/O: 8x USB3.2 Gen2, 1x 1.0GbE | Expansion: 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 3052 B (SATA) | OS: Windows, Linux | Op temp: 0°C ~ 40°C | Features: Based AI System with NVIDIA PRO 6000 Blackwell Max-Q/ 6000 Ada Accelerator; Supports up to 24,064 CUDA Cores, 752 Tensor Cores, and 188 RT Cores with 96GB; Supports up to Intel 14th Gen Core i9 CPU, with up to 192GB DDR5 DRAM and 2TB",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -1032,7 +1043,7 @@
       "source_file": "Datasheet_APEX-X100-Q_20250903.pdf",
       "file_hash_md5": "455b7d4aeaa343b7bdebbe9a09f82dd7",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "APEX-X100-Q"
     },
     "common": {
@@ -1059,14 +1070,14 @@
       "cpu_cores": 16,
       "cpu_p_cores": 8,
       "cpu_e_cores": 8,
-      "tdp_watt": 65.0,
-      "ai_tops": 870.0,
-      "ram_gb": 192.0,
+      "tdp_watt": 65,
+      "ai_tops": 870,
+      "ram_gb": 192,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 4400,
         "slots": null,
-        "max_capacity_gb": 192.0,
+        "max_capacity_gb": 192,
         "form_factor": null,
         "ecc_support": true
       },
@@ -1083,9 +1094,9 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": null,
-        "depth_mm": null,
-        "height_mm": null
+        "width_mm": 279,
+        "depth_mm": 340,
+        "height_mm": 215
       },
       "power_input": "DC 24~48V (±5%)",
       "pcie_slots": [],
@@ -1102,7 +1113,10 @@
         {
           "size": "2230",
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         },
         {
@@ -1134,7 +1148,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 1,
             "poe_support": false
           }
@@ -1162,11 +1176,10 @@
         "PCIe",
         "SATA",
         "USB3"
-      ],
-      "ai_tops_basis": "INT8"
+      ]
     },
     "search": {
-      "text_summary": "APEX-X100-Q APEX SERIES | Platform: Intel Intel Core i7-13700E | I/O: 1x USB3.2 Gen2, 1x USB3.2 Gen2 Type-C, 8x USB3.2 Gen2, 1x 1.0GbE | Expansion: 1x M.2 2280 M (PCIe x4/SATA), 1x M.2 2230 E (), 1x M.2 3052 B (SATA) | OS: Linux | Op temp: 0簞C ~ 40簞C | Features: Based AI System with Qualcomm Cloud AI 100 Ultra Accelerator; Supports 870TOPS with 128GB LPDDR4x memory for SLM, LLM, and; Intel 13th Gen Core i7 CPU, 192GB DDR5 DRAM and 2TB NVMe SSD pre-",
+      "text_summary": "APEX-X100-Q APEX SERIES | Platform: Intel Intel Core i7-13700E | I/O: 1x USB3.2 Gen2, 1x USB3.2 Gen2 Type-C, 8x USB3.2 Gen2, 1x 1.0GbE | Expansion: 1x M.2 2280 M (PCIe x4/SATA), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 3052 B (SATA) | OS: Linux | Op temp: 0°C ~ 40°C | Features: Based AI System with Qualcomm Cloud AI 100 Ultra Accelerator; Supports 870TOPS with 128GB LPDDR4x memory for SLM, LLM, and; Intel 13th Gen Core i7 CPU, 192GB DDR5 DRAM and 2TB NVMe SSD pre-",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -1189,7 +1202,7 @@
       "source_file": "Datasheet_APEX-X200_20260213.pdf",
       "file_hash_md5": "f265b6d191f3e4507b8e970141cd3770",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "APEX-X200"
     },
     "common": {
@@ -1216,8 +1229,8 @@
       "cpu_cores": 24,
       "cpu_p_cores": 8,
       "cpu_e_cores": 16,
-      "tdp_watt": 45.0,
-      "ai_tops": 13.0,
+      "tdp_watt": 45,
+      "ai_tops": 13,
       "ram_gb": 96,
       "memory_spec": {
         "type": "DDR5",
@@ -1241,9 +1254,9 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": null,
-        "depth_mm": null,
-        "height_mm": null
+        "width_mm": 185,
+        "depth_mm": 381,
+        "height_mm": 235
       },
       "power_input": "100-240V, 8-4A, 50-60Hz/",
       "pcie_slots": [
@@ -1264,7 +1277,10 @@
         {
           "size": "2230",
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         }
       ],
@@ -1278,7 +1294,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 1,
             "poe_support": false
           }
@@ -1317,11 +1333,10 @@
         "RS-232",
         "SATA",
         "USB3"
-      ],
-      "ai_tops_basis": "INT8"
+      ]
     },
     "search": {
-      "text_summary": "APEX-X200 APEX SERIES | Platform: Intel Intel Core Ultra 9 285H | I/O: 8x USB3.2 Gen2, 1x 1.0GbE, 4x RS-232, 2x RS-232 | Expansion: 1x M.2 2230 E (), 3x PCIe x16 Gen5, 2x PCIe x16 | OS: Windows, Linux | Op temp: 0簞C ~ 45簞C | Features: Based AI System with NVIDIA RTX 5080 Accelerator; Supports 10,752 CUDA Cores, 336 Tensor Cores, and 84 RT Cores with; Intel 15th Gen Core Ultra 9/7 CPU, with up to 96GB DDR5 DRAM and 1TB",
+      "text_summary": "APEX-X200 APEX SERIES | Platform: Intel Intel Core Ultra 9 285H | I/O: 8x USB3.2 Gen2, 1x 1.0GbE, 4x RS-232, 2x RS-232 | Expansion: 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 3x PCIe x16 Gen5, 2x PCIe x16 | OS: Windows, Linux | Op temp: 0°C ~ 45°C | Features: Based AI System with NVIDIA RTX 5080 Accelerator; Supports 10,752 CUDA Cores, 336 Tensor Cores, and 84 RT Cores with; Intel 15th Gen Core Ultra 9/7 CPU, with up to 96GB DDR5 DRAM and 1TB",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -1345,7 +1360,7 @@
       "source_file": "ABOX-1M80 Datasheet_251208.pdf",
       "file_hash_md5": "bf3eff3b59208b8f23276c215dfced90",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ABOX-1M80"
     },
     "common": {
@@ -1373,14 +1388,14 @@
       "cpu_cores": 4,
       "cpu_p_cores": null,
       "cpu_e_cores": null,
-      "tdp_watt": 5.0,
+      "tdp_watt": 5,
       "ai_tops": 2.3,
-      "ram_gb": 6.0,
+      "ram_gb": 6,
       "memory_spec": {
         "type": "LPDDR4",
         "speed_mhz": 4000,
         "slots": 0,
-        "max_capacity_gb": 6.0,
+        "max_capacity_gb": 6,
         "form_factor": "on-board",
         "ecc_support": false
       },
@@ -1397,9 +1412,9 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": 120.0,
-        "depth_mm": 176.0,
-        "height_mm": 44.0
+        "width_mm": 120,
+        "depth_mm": 176,
+        "height_mm": 44
       },
       "power_input": "12, 15~30V",
       "pcie_slots": [],
@@ -1408,7 +1423,7 @@
           "size": "3042",
           "key": "B",
           "interface": [
-            "USB3.0"
+            "USB 3.0"
           ],
           "count": 1
         },
@@ -1416,7 +1431,8 @@
           "size": "2230",
           "key": "E",
           "interface": [
-            "USB3.0"
+            "PCIe x1 Gen3",
+            "USB 2.0"
           ],
           "count": 1
         }
@@ -1431,7 +1447,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 1,
             "poe_support": false
           }
@@ -1460,16 +1476,16 @@
         "GbE",
         "HDMI",
         "M.2",
+        "PCIe",
         "RS-232",
         "RS-422",
         "RS-485",
         "USB2",
         "WiFi"
-      ],
-      "ai_tops_basis": "INT8"
+      ]
     },
     "search": {
-      "text_summary": "ABOX-1M80 SMALL BOX PC | Platform: NXP NXP i.MX 8M Plus | I/O: 2x USB2.0 Type-A, 1x 1.0GbE, 2x RS-232/422/485, 1x CAN Bus | Expansion: 1x M.2 3042 B (USB3.0), 1x M.2 2230 E (USB3.0) | OS: Linux, Yocto | Op temp: -20簞C ~ 60簞C",
+      "text_summary": "ABOX-1M80 SMALL BOX PC | Platform: NXP NXP i.MX 8M Plus | I/O: 2x USB2.0 Type-A, 1x 1.0GbE, 2x RS-232/422/485, 1x CAN Bus | Expansion: 1x M.2 3042 B (USB 3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0) | OS: Linux, Yocto | Op temp: -20°C ~ 60°C",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -1494,7 +1510,7 @@
       "source_file": "ABOX-2020_251031.pdf",
       "file_hash_md5": "7f63495df1f8e01591583c6f90831be9",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ABOX-2020"
     },
     "common": {
@@ -1517,19 +1533,19 @@
     "computing_spec": {
       "bu_owner": "AIoT",
       "platform_brand": "Intel",
-      "processor_model": "Intel Atom簧 X6425E",
+      "processor_model": "Intel Atom® X6425E",
       "processor_series": "Elkhart Lake",
       "cpu_cores": 4,
       "cpu_p_cores": null,
       "cpu_e_cores": null,
-      "tdp_watt": 12.0,
+      "tdp_watt": 12,
       "ai_tops": null,
-      "ram_gb": 8.0,
+      "ram_gb": 8,
       "memory_spec": {
         "type": "DDR4",
         "speed_mhz": 3200,
         "slots": null,
-        "max_capacity_gb": 8.0,
+        "max_capacity_gb": 8,
         "form_factor": null,
         "ecc_support": true
       },
@@ -1547,7 +1563,7 @@
       "openvino_support": null,
       "dimensions": {
         "width_mm": 108.9,
-        "depth_mm": 175.0,
+        "depth_mm": 175,
         "height_mm": 45.3
       },
       "power_input": "Single 12V",
@@ -1559,7 +1575,7 @@
           "interface": [
             "PCIe x1 Gen3",
             "SATA",
-            "USB3.0"
+            "USB 3.2"
           ],
           "count": 1
         },
@@ -1568,7 +1584,7 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         }
@@ -1638,7 +1654,7 @@
       ]
     },
     "search": {
-      "text_summary": "ABOX-2020 SMALL BOX PC | Platform: Intel Intel Atom簧 X6425E | I/O: 3x USB3.2 Gen2 Type-A, 4x USB2.0 Type-A, 3x USB2.0 Type-A, 1x USB3.2 Gen2 Type-A, 2x 2.5GbE, 2x RS-232/422/485 | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB3.0) | OS: Windows | Op temp: -20簞C ~ 50簞C | Features: Optional on board storage: eMMC 64G~256G / on board PCIe SSD form 128G~512G",
+      "text_summary": "ABOX-2020 SMALL BOX PC | Platform: Intel Intel Atom® X6425E | I/O: 3x USB3.2 Gen2 Type-A, 4x USB2.0 Type-A, 3x USB2.0 Type-A, 1x USB3.2 Gen2 Type-A, 2x 2.5GbE, 2x RS-232/422/485 | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB 3.2), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0) | OS: Windows | Op temp: -20°C ~ 50°C | Features: Optional on board storage: eMMC 64G~256G / on board PCIe SSD form 128G~512G",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -1658,7 +1674,7 @@
       "source_file": "ABOX-3020_251031.pdf",
       "file_hash_md5": "35d4558a5bc078f0b111d277949c0560",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ABOX-3020"
     },
     "common": {
@@ -1681,19 +1697,19 @@
     "computing_spec": {
       "bu_owner": "AIoT",
       "platform_brand": "Intel",
-      "processor_model": "Intel簧 Celeron簧 J6412",
+      "processor_model": "Intel® Celeron® J6412",
       "processor_series": "Elkhart Lake",
       "cpu_cores": 4,
       "cpu_p_cores": null,
       "cpu_e_cores": null,
-      "tdp_watt": 12.0,
+      "tdp_watt": 12,
       "ai_tops": null,
-      "ram_gb": 8.0,
+      "ram_gb": 8,
       "memory_spec": {
         "type": "DDR4",
         "speed_mhz": 3200,
         "slots": null,
-        "max_capacity_gb": 8.0,
+        "max_capacity_gb": 8,
         "form_factor": null,
         "ecc_support": false
       },
@@ -1723,7 +1739,7 @@
           "interface": [
             "PCIe x1 Gen2",
             "SATA",
-            "USB3.0"
+            "USB 3.2"
           ],
           "count": 1
         },
@@ -1732,7 +1748,7 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         }
@@ -1796,7 +1812,7 @@
       ]
     },
     "search": {
-      "text_summary": "ABOX-3020 SMALL BOX PC | Platform: Intel Intel簧 Celeron簧 J6412 | I/O: 1x USB3.2 Gen2 Type-A, 2x USB2.0 Type-A, 1x USB2.0 Type-A, 2x 2.5GbE, 1x RS-232 | Expansion: 1x M.2 3042 B (PCIe x1 Gen2/SATA/USB3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB3.0) | OS: Windows | Op temp: -20簞C ~ 50簞C | Features: Optional on board storage: eMMC 64G~256G / on board PCIe SSD form 128G~512G; EIO for expansion board reserved; Standard expansion board offers additional Lan with PoE, COM port and InnoAgent, open for customized",
+      "text_summary": "ABOX-3020 SMALL BOX PC | Platform: Intel Intel® Celeron® J6412 | I/O: 1x USB3.2 Gen2 Type-A, 2x USB2.0 Type-A, 1x USB2.0 Type-A, 2x 2.5GbE, 1x RS-232 | Expansion: 1x M.2 3042 B (PCIe x1 Gen2/SATA/USB 3.2), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0) | OS: Windows | Op temp: -20°C ~ 50°C | Features: Optional on board storage: eMMC 64G~256G / on board PCIe SSD form 128G~512G; EIO for expansion board reserved; Standard expansion board offers additional Lan with PoE, COM port and InnoAgent, open for customized",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -1816,7 +1832,7 @@
       "source_file": "ABOX-4020.pdf",
       "file_hash_md5": "65aadafdeef10691fb1cdccd2cdb71f2",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ABOX-4020"
     },
     "common": {
@@ -1839,19 +1855,19 @@
     "computing_spec": {
       "bu_owner": "AIoT",
       "platform_brand": "Intel",
-      "processor_model": "Intel Atom簧 X6425E",
+      "processor_model": "Intel Atom® X6425E",
       "processor_series": "Elkhart Lake",
       "cpu_cores": 4,
       "cpu_p_cores": null,
       "cpu_e_cores": null,
-      "tdp_watt": 12.0,
+      "tdp_watt": 12,
       "ai_tops": null,
-      "ram_gb": 32.0,
+      "ram_gb": 32,
       "memory_spec": {
         "type": "DDR4",
         "speed_mhz": 3200,
         "slots": null,
-        "max_capacity_gb": 32.0,
+        "max_capacity_gb": 32,
         "form_factor": null,
         "ecc_support": true
       },
@@ -1867,9 +1883,9 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": 139.0,
-        "depth_mm": 225.0,
-        "height_mm": 44.0
+        "width_mm": 139,
+        "depth_mm": 225,
+        "height_mm": 44
       },
       "power_input": "Single 12V",
       "pcie_slots": [],
@@ -1878,8 +1894,9 @@
           "size": "3042",
           "key": "B",
           "interface": [
+            "PCIe x1 Gen3",
             "SATA",
-            "USB3.0"
+            "USB 3.0"
           ],
           "count": 1
         },
@@ -1887,14 +1904,18 @@
           "size": "2230",
           "key": "E",
           "interface": [
-            "USB3.0"
+            "PCIe x1 Gen3",
+            "USB 2.0"
           ],
           "count": 1
         },
         {
           "size": null,
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         }
       ],
@@ -1943,6 +1964,7 @@
         "GPIO",
         "GbE",
         "M.2",
+        "PCIe",
         "RS-232",
         "SATA",
         "USB2",
@@ -1951,7 +1973,7 @@
       ]
     },
     "search": {
-      "text_summary": "ABOX-4020 SMALL BOX PC | Platform: Intel Intel Atom簧 X6425E | I/O: 2x USB3.2 Gen2 Type-A, 2x USB2.0 Type-A, 2x 2.5GbE, 2x RS-232, 2-pin GPIO | Expansion: 1x M.2 3042 B (SATA/USB3.0), 1x M.2 2230 E (USB3.0), 1x M.2 None E () | OS: Windows | Op temp: -20簞C ~ 50簞C | Features: SATA port supports pin8 power supply for SATADOM.; Dual DP++ support. Allow user to adapt different type of monitor interfaces, such as HDMI & DP by cable.; Multiple expansion slots including M.2 B key for storage, LTE application and M.2 E Key for Wi-Fi.",
+      "text_summary": "ABOX-4020 SMALL BOX PC | Platform: Intel Intel Atom® X6425E | I/O: 2x USB3.2 Gen2 Type-A, 2x USB2.0 Type-A, 2x 2.5GbE, 2x RS-232, 2-pin GPIO | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB 3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 None E (PCIe x1 Gen3/USB 2.0) | OS: Windows | Op temp: -20°C ~ 50°C | Features: SATA port supports pin8 power supply for SATADOM.; Dual DP++ support. Allow user to adapt different type of monitor interfaces, such as HDMI & DP by cable.; Multiple expansion slots including M.2 B key for storage, LTE application and M.2 E Key for Wi-Fi.",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -1971,7 +1993,7 @@
       "source_file": "ABOX-4021_251031.pdf",
       "file_hash_md5": "e059321a7a38bfbd4826b5e82cb6c858",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ABOX-4021"
     },
     "common": {
@@ -1994,19 +2016,19 @@
     "computing_spec": {
       "bu_owner": "AIoT",
       "platform_brand": "Intel",
-      "processor_model": "Intel Atom簧 X6425E",
+      "processor_model": "Intel Atom® X6425E",
       "processor_series": "Elkhart Lake",
       "cpu_cores": 4,
       "cpu_p_cores": null,
       "cpu_e_cores": null,
-      "tdp_watt": 12.0,
+      "tdp_watt": 12,
       "ai_tops": null,
-      "ram_gb": 32.0,
+      "ram_gb": 32,
       "memory_spec": {
         "type": "DDR4",
         "speed_mhz": 3200,
         "slots": null,
-        "max_capacity_gb": 32.0,
+        "max_capacity_gb": 32,
         "form_factor": null,
         "ecc_support": true
       },
@@ -2023,8 +2045,8 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": 140.0,
-        "depth_mm": 225.0,
+        "width_mm": 140,
+        "depth_mm": 225,
         "height_mm": 45.3
       },
       "power_input": "DC 9~48V",
@@ -2044,14 +2066,17 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         },
         {
           "size": null,
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         }
       ],
@@ -2075,7 +2100,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 2,
             "poe_support": false
           }
@@ -2114,7 +2139,7 @@
       ]
     },
     "search": {
-      "text_summary": "ABOX-4021 SMALL BOX PC | Platform: Intel Intel Atom簧 X6425E | I/O: 2x USB2.0, 2x USB3.2 Gen2 Type-A, 4x USB2.0, 2x 1.0GbE, 3x RS-232 | Expansion: 1x M.2 2280 M (PCIe x2 Gen3/SATA), 1x M.2 2230 E (PCIe x1 Gen3/USB3.0), 1x M.2 None E () | OS: Windows, Linux | Op temp: -20簞C ~ 70簞C | Features: Triple Lan with dual PoE IEEE 802.3at support. (by module); Wide Power Voltage support: 9~48V",
+      "text_summary": "ABOX-4021 SMALL BOX PC | Platform: Intel Intel Atom® X6425E | I/O: 2x USB2.0, 2x USB3.2 Gen2 Type-A, 4x USB2.0, 2x 1.0GbE, 3x RS-232 | Expansion: 1x M.2 2280 M (PCIe x2 Gen3/SATA), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 None E (PCIe x1 Gen3/USB 2.0) | OS: Windows, Linux | Op temp: -20°C ~ 70°C | Features: Triple Lan with dual PoE IEEE 802.3at support. (by module); Wide Power Voltage support: 9~48V",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -2134,7 +2159,7 @@
       "source_file": "ABOX-4120_bareBOM.pdf",
       "file_hash_md5": "8d2b1f7a33d6e7bb1c79f461e83bdf4f",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ABOX-4120"
     },
     "common": {
@@ -2157,19 +2182,19 @@
     "computing_spec": {
       "bu_owner": "AIoT",
       "platform_brand": "Intel",
-      "processor_model": "Intel簧 Celeron簧 7305E",
+      "processor_model": "Intel® Celeron® 7305E",
       "processor_series": "Alder Lake",
-      "cpu_cores": 10,
-      "cpu_p_cores": 2,
-      "cpu_e_cores": 8,
-      "tdp_watt": 15.0,
+      "cpu_cores": 5,
+      "cpu_p_cores": 1,
+      "cpu_e_cores": 4,
+      "tdp_watt": 15,
       "ai_tops": null,
-      "ram_gb": 64.0,
+      "ram_gb": 64,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 4800,
         "slots": null,
-        "max_capacity_gb": 64.0,
+        "max_capacity_gb": 64,
         "form_factor": null,
         "ecc_support": false
       },
@@ -2185,9 +2210,9 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": 139.0,
-        "depth_mm": 225.0,
-        "height_mm": 44.0
+        "width_mm": 139,
+        "depth_mm": 225,
+        "height_mm": 44
       },
       "power_input": "Wide Voltage 9~36V",
       "pcie_slots": [],
@@ -2198,7 +2223,7 @@
           "interface": [
             "PCIe x1 Gen3",
             "SATA",
-            "USB3.0"
+            "USB 3.0"
           ],
           "count": 1
         },
@@ -2207,7 +2232,7 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         },
@@ -2238,7 +2263,10 @@
         {
           "size": null,
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         }
       ],
@@ -2306,7 +2334,7 @@
       ]
     },
     "search": {
-      "text_summary": "ABOX-4120 SMALL BOX PC | Platform: Intel Intel簧 Celeron簧 7305E | I/O: 1x USB3.2 Gen1 Type-C, 2x USB3.2 Gen2 Type-A, 4x USB2.0 Type-A, 2x USB2.0 Type-A, 3x USB3.2 Gen2 Type-A, 2x 2.5GbE, 3-pin GPIO | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB3.0), 1x M.2 2242 M (PCIe x2 Gen3), 1x M.2 2280 M (PCIe x4 Gen4), 2x M.2 None B+M (SATA), 1x M.2 None E () | OS: Windows | Op temp: -20簞C ~ 70簞C | Features: USB Type C for display supports 4K @ 60Hz (DP1.4a); Up to 4 M.2 Expansion slots",
+      "text_summary": "ABOX-4120 SMALL BOX PC | Platform: Intel Intel® Celeron® 7305E | I/O: 1x USB3.2 Gen1 Type-C, 2x USB3.2 Gen2 Type-A, 4x USB2.0 Type-A, 2x USB2.0 Type-A, 3x USB3.2 Gen2 Type-A, 2x 2.5GbE, 3-pin GPIO | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB 3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 2242 M (PCIe x2 Gen3), 1x M.2 2280 M (PCIe x4 Gen4), 2x M.2 None B+M (SATA), 1x M.2 None E (PCIe x1 Gen3/USB 2.0) | OS: Windows | Op temp: -20°C ~ 70°C | Features: USB Type C for display supports 4K @ 60Hz (DP1.4a); Up to 4 M.2 Expansion slots",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -2326,7 +2354,7 @@
       "source_file": "ABOX-4130_bareBOM.pdf",
       "file_hash_md5": "10a5084838c8a0c180f8b065e4aca566",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ABOX-4130"
     },
     "common": {
@@ -2349,19 +2377,19 @@
     "computing_spec": {
       "bu_owner": "AIoT",
       "platform_brand": "Intel",
-      "processor_model": "Intel簧 Celeron簧 U300E",
+      "processor_model": "Intel® Celeron® U300E",
       "processor_series": "Alder Lake-N",
       "cpu_cores": 4,
       "cpu_p_cores": null,
       "cpu_e_cores": null,
-      "tdp_watt": 15.0,
+      "tdp_watt": 15,
       "ai_tops": null,
-      "ram_gb": 96.0,
+      "ram_gb": 96,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 5200,
         "slots": null,
-        "max_capacity_gb": 96.0,
+        "max_capacity_gb": 96,
         "form_factor": null,
         "ecc_support": false
       },
@@ -2377,9 +2405,9 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": 139.0,
-        "depth_mm": 225.0,
-        "height_mm": 44.0
+        "width_mm": 139,
+        "depth_mm": 225,
+        "height_mm": 44
       },
       "power_input": "Wide Voltage 9~36V",
       "pcie_slots": [],
@@ -2390,7 +2418,7 @@
           "interface": [
             "PCIe x1 Gen3",
             "SATA",
-            "USB3.0"
+            "USB 3.0"
           ],
           "count": 1
         },
@@ -2399,7 +2427,7 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         },
@@ -2430,7 +2458,10 @@
         {
           "size": null,
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         }
       ],
@@ -2498,7 +2529,7 @@
       ]
     },
     "search": {
-      "text_summary": "ABOX-4130 SMALL BOX PC | Platform: Intel Intel簧 Celeron簧 U300E | I/O: 1x USB3.2 Gen1 Type-C, 2x USB3.2 Gen2 Type-A, 4x USB2.0 Type-A, 2x USB2.0 Type-A, 3x USB3.2 Gen2 Type-A, 2x 2.5GbE, 3-pin GPIO | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB3.0), 1x M.2 2242 M (PCIe x2 Gen3), 1x M.2 2280 M (PCIe x4 Gen4), 2x M.2 None B+M (SATA), 1x M.2 None E () | OS: Windows | Op temp: -20簞C ~ 70簞C | Features: USB Type C for display supports 4K @ 60Hz (DP1.4a); Up to 4 M.2 Expansion slots",
+      "text_summary": "ABOX-4130 SMALL BOX PC | Platform: Intel Intel® Celeron® U300E | I/O: 1x USB3.2 Gen1 Type-C, 2x USB3.2 Gen2 Type-A, 4x USB2.0 Type-A, 2x USB2.0 Type-A, 3x USB3.2 Gen2 Type-A, 2x 2.5GbE, 3-pin GPIO | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB 3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 2242 M (PCIe x2 Gen3), 1x M.2 2280 M (PCIe x4 Gen4), 2x M.2 None B+M (SATA), 1x M.2 None E (PCIe x1 Gen3/USB 2.0) | OS: Windows | Op temp: -20°C ~ 70°C | Features: USB Type C for display supports 4K @ 60Hz (DP1.4a); Up to 4 M.2 Expansion slots",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -2518,7 +2549,7 @@
       "source_file": "ABOX-4140_251205.pdf",
       "file_hash_md5": "ff2faeae290a8dc6177ba876248d0aa6",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ABOX-4140"
     },
     "common": {
@@ -2546,14 +2577,14 @@
       "cpu_cores": 12,
       "cpu_p_cores": 2,
       "cpu_e_cores": 10,
-      "tdp_watt": 15.0,
+      "tdp_watt": 15,
       "ai_tops": 22.4,
-      "ram_gb": 96.0,
+      "ram_gb": 96,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 5600,
         "slots": null,
-        "max_capacity_gb": 96.0,
+        "max_capacity_gb": 96,
         "form_factor": null,
         "ecc_support": false
       },
@@ -2569,9 +2600,9 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": 139.0,
-        "depth_mm": 225.0,
-        "height_mm": 44.0
+        "width_mm": 139,
+        "depth_mm": 225,
+        "height_mm": 44
       },
       "power_input": "Wide Voltage 9~36V",
       "pcie_slots": [],
@@ -2582,7 +2613,7 @@
           "interface": [
             "PCIe x1 Gen3",
             "SATA",
-            "USB3.0"
+            "USB 3.0"
           ],
           "count": 1
         },
@@ -2591,7 +2622,7 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         },
@@ -2672,11 +2703,10 @@
         "USB2",
         "USB3",
         "WiFi"
-      ],
-      "ai_tops_basis": "INT8"
+      ]
     },
     "search": {
-      "text_summary": "ABOX-4140 SMALL BOX PC | Platform: Intel Intel Core Ultra 5 155U | I/O: 4x USB3.2 Gen2, 2x USB2.0, 4x USB2.0 Type-A, 2x 2.5GbE, 2x RS-232/422/485 | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB3.0), 1x M.2 2242 M (PCIe x4 Gen4), 1x M.2 2280 M (PCIe x4 Gen4/SATA) | OS: Windows | Op temp: -20簞C ~ 70簞C | Features: NPU integrated, support up to 22.4 TOPs; Phoenix header supports 9~36V wide voltage power input; Up to 4 M.2 expansion slots",
+      "text_summary": "ABOX-4140 SMALL BOX PC | Platform: Intel Intel Core Ultra 5 155U | I/O: 4x USB3.2 Gen2, 2x USB2.0, 4x USB2.0 Type-A, 2x 2.5GbE, 2x RS-232/422/485 | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB 3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 2242 M (PCIe x4 Gen4), 1x M.2 2280 M (PCIe x4 Gen4/SATA) | OS: Windows | Op temp: -20°C ~ 70°C | Features: NPU integrated, support up to 22.4 TOPs; Phoenix header supports 9~36V wide voltage power input; Up to 4 M.2 expansion slots",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -2699,7 +2729,7 @@
       "source_file": "ABOX-4150_251205.pdf",
       "file_hash_md5": "1bfeee87201c1fcb08961446b37995e1",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ABOX-4150"
     },
     "common": {
@@ -2727,14 +2757,14 @@
       "cpu_cores": 14,
       "cpu_p_cores": 2,
       "cpu_e_cores": 12,
-      "tdp_watt": 15.0,
+      "tdp_watt": 15,
       "ai_tops": 22.5,
-      "ram_gb": 128.0,
+      "ram_gb": 128,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 6400,
         "slots": null,
-        "max_capacity_gb": 128.0,
+        "max_capacity_gb": 128,
         "form_factor": null,
         "ecc_support": false
       },
@@ -2750,9 +2780,9 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": 139.0,
-        "depth_mm": 225.0,
-        "height_mm": 44.0
+        "width_mm": 139,
+        "depth_mm": 225,
+        "height_mm": 44
       },
       "power_input": "Wide Voltage 9~36V",
       "pcie_slots": [],
@@ -2763,7 +2793,7 @@
           "interface": [
             "PCIe x1 Gen3",
             "SATA",
-            "USB3.0"
+            "USB 3.0"
           ],
           "count": 1
         },
@@ -2772,7 +2802,7 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         },
@@ -2853,11 +2883,10 @@
         "USB2",
         "USB3",
         "WiFi"
-      ],
-      "ai_tops_basis": "INT8"
+      ]
     },
     "search": {
-      "text_summary": "ABOX-4150 SMALL BOX PC | Platform: Intel Intel Core Ultra 7 255U | I/O: 4x USB3.2 Gen2, 2x USB2.0, 4x USB2.0 Type-A, 2x 2.5GbE, 2x RS-232/422/485 | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB3.0), 1x M.2 2242 M (PCIe x4 Gen4), 1x M.2 2280 M (PCIe x4 Gen4/SATA) | OS: Windows | Op temp: -20簞C ~ 70簞C | Features: NPU integrated, support up to 22.5 TOPs; Phoenix header supports 9~36V wide voltage power input; Up to 4 M.2 expansion slots",
+      "text_summary": "ABOX-4150 SMALL BOX PC | Platform: Intel Intel Core Ultra 7 255U | I/O: 4x USB3.2 Gen2, 2x USB2.0, 4x USB2.0 Type-A, 2x 2.5GbE, 2x RS-232/422/485 | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB 3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 2242 M (PCIe x4 Gen4), 1x M.2 2280 M (PCIe x4 Gen4/SATA) | OS: Windows | Op temp: -20°C ~ 70°C | Features: NPU integrated, support up to 22.5 TOPs; Phoenix header supports 9~36V wide voltage power input; Up to 4 M.2 expansion slots",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -2880,7 +2909,7 @@
       "source_file": "ABOX-5020_bareBOM.pdf",
       "file_hash_md5": "2eba9bc7d1b1bbaf20f38e426d88f826",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ABOX-5020"
     },
     "common": {
@@ -2903,19 +2932,19 @@
     "computing_spec": {
       "bu_owner": "AIoT",
       "platform_brand": "Intel",
-      "processor_model": "Intel Atom簧 X6425E",
+      "processor_model": "Intel Atom® X6425E",
       "processor_series": "Elkhart Lake",
       "cpu_cores": 4,
       "cpu_p_cores": null,
       "cpu_e_cores": null,
-      "tdp_watt": 12.0,
+      "tdp_watt": 12,
       "ai_tops": null,
-      "ram_gb": 32.0,
+      "ram_gb": 32,
       "memory_spec": {
         "type": "DDR4",
         "speed_mhz": 3200,
         "slots": null,
-        "max_capacity_gb": 32.0,
+        "max_capacity_gb": 32,
         "form_factor": null,
         "ecc_support": true
       },
@@ -2944,7 +2973,7 @@
           "interface": [
             "PCIe x1 Gen3",
             "SATA",
-            "USB3.0"
+            "USB 3.0"
           ],
           "count": 1
         },
@@ -2953,20 +2982,26 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         },
         {
           "size": null,
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         },
         {
           "size": null,
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         }
       ],
@@ -3024,7 +3059,7 @@
       ]
     },
     "search": {
-      "text_summary": "ABOX-5020 SMALL BOX PC | Platform: Intel Intel Atom簧 X6425E | I/O: 2x USB3.2 Gen2 Type-A, 2x USB2.0, 2x 2.5GbE, 2x RS-232 | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB3.0), 1x M.2 None E (), 1x M.2 None E () | OS: Windows | Op temp: -20簞C ~ 50簞C | Features: SATA port supports pin8 power supply for SATADOM; EIO for expansion board reserved; Standard expansion board offers up to triple COM ports and InnoAgent, open for customized",
+      "text_summary": "ABOX-5020 SMALL BOX PC | Platform: Intel Intel Atom® X6425E | I/O: 2x USB3.2 Gen2 Type-A, 2x USB2.0, 2x 2.5GbE, 2x RS-232 | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB 3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 None E (PCIe x1 Gen3/USB 2.0), 1x M.2 None E (PCIe x1 Gen3/USB 2.0) | OS: Windows | Op temp: -20°C ~ 50°C | Features: SATA port supports pin8 power supply for SATADOM; EIO for expansion board reserved; Standard expansion board offers up to triple COM ports and InnoAgent, open for customized",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -3044,7 +3079,7 @@
       "source_file": "ABOX-5021.pdf",
       "file_hash_md5": "bdae31872eb6c5df7d767480229d7a65",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ABOX-5021"
     },
     "common": {
@@ -3067,19 +3102,19 @@
     "computing_spec": {
       "bu_owner": "AIoT",
       "platform_brand": "Intel",
-      "processor_model": "Intel Atom簧 X6425E",
+      "processor_model": "Intel Atom® X6425E",
       "processor_series": "Elkhart Lake",
       "cpu_cores": 4,
       "cpu_p_cores": null,
       "cpu_e_cores": null,
-      "tdp_watt": 12.0,
+      "tdp_watt": 12,
       "ai_tops": null,
-      "ram_gb": 32.0,
+      "ram_gb": 32,
       "memory_spec": {
         "type": "DDR4",
         "speed_mhz": 3200,
         "slots": null,
-        "max_capacity_gb": 32.0,
+        "max_capacity_gb": 32,
         "form_factor": null,
         "ecc_support": true
       },
@@ -3117,14 +3152,17 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         },
         {
           "size": null,
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         }
       ],
@@ -3148,7 +3186,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 2,
             "poe_support": false
           }
@@ -3180,7 +3218,7 @@
       ]
     },
     "search": {
-      "text_summary": "ABOX-5021 SMALL BOX PC | Platform: Intel Intel Atom簧 X6425E | I/O: 1x USB3.2 Gen2 Type-A, 2x USB2.0, 2x USB3.2 Gen2 Type-A, 2x 1.0GbE | Expansion: 1x M.2 2280 M (PCIe x2 Gen3/SATA), 1x M.2 2230 E (PCIe x1 Gen3/USB3.0), 1x M.2 None E () | OS: Windows, Linux | Op temp: -20簞C ~ 60簞C | Features: Triple LAN with dual PoE IEEE 802.3at support by module; Wide power voltage support 9~48V; Multiple expansions: M.2 M Key for storage or AI Accelerator, M.2 E Key for Wi-Fi",
+      "text_summary": "ABOX-5021 SMALL BOX PC | Platform: Intel Intel Atom® X6425E | I/O: 1x USB3.2 Gen2 Type-A, 2x USB2.0, 2x USB3.2 Gen2 Type-A, 2x 1.0GbE | Expansion: 1x M.2 2280 M (PCIe x2 Gen3/SATA), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 None E (PCIe x1 Gen3/USB 2.0) | OS: Windows, Linux | Op temp: -20°C ~ 60°C | Features: Triple LAN with dual PoE IEEE 802.3at support by module; Wide power voltage support 9~48V; Multiple expansions: M.2 M Key for storage or AI Accelerator, M.2 E Key for Wi-Fi",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -3200,7 +3238,7 @@
       "source_file": "ABOX-5120_bareBOM.pdf",
       "file_hash_md5": "55224293ba95cf54fa48e3a390bcc484",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ABOX-5120"
     },
     "common": {
@@ -3223,19 +3261,19 @@
     "computing_spec": {
       "bu_owner": "AIoT",
       "platform_brand": "Intel",
-      "processor_model": "Intel簧 Celeron簧 7305E",
+      "processor_model": "Intel® Celeron® 7305E",
       "processor_series": "Alder Lake",
-      "cpu_cores": 10,
-      "cpu_p_cores": 2,
-      "cpu_e_cores": 8,
-      "tdp_watt": 15.0,
+      "cpu_cores": 5,
+      "cpu_p_cores": 1,
+      "cpu_e_cores": 4,
+      "tdp_watt": 15,
       "ai_tops": null,
-      "ram_gb": 64.0,
+      "ram_gb": 64,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 4800,
         "slots": null,
-        "max_capacity_gb": 64.0,
+        "max_capacity_gb": 64,
         "form_factor": null,
         "ecc_support": false
       },
@@ -3264,7 +3302,7 @@
           "interface": [
             "PCIe x1 Gen3",
             "SATA",
-            "USB3.0"
+            "USB 3.0"
           ],
           "count": 1
         },
@@ -3273,7 +3311,7 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         },
@@ -3304,7 +3342,10 @@
         {
           "size": null,
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         },
         {
@@ -3318,7 +3359,10 @@
         {
           "size": null,
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         }
       ],
@@ -3395,7 +3439,7 @@
       ]
     },
     "search": {
-      "text_summary": "ABOX-5120 SMALL BOX PC | Platform: Intel Intel簧 Celeron簧 7305E | I/O: 1x USB3.2 Gen1 Type-C, 2x USB3.2 Gen2 Type-A, 2x USB2.0, 3x USB3.2 Gen2 Type-A, 2x 2.5GbE, 2x RS-232/422/485, 1x RS-232/422/485 | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB3.0), 1x M.2 2242 M (PCIe x2 Gen3), 1x M.2 2280 M (PCIe x4 Gen4), 2x M.2 None B+M (SATA), 1x M.2 None E (), 2x M.2 None B+M (SATA), 1x M.2 None E () | OS: Windows | Op temp: -20簞C ~ 60簞C | Features: USB Type C for display supports 4K @ 60Hz (DP1.4a); Up to 4 M.2 Expansion slots; EIO for expansion board reserved; Standard expansion board offers up to triple COM ports, dual PoE and InnoAgent, open for customized",
+      "text_summary": "ABOX-5120 SMALL BOX PC | Platform: Intel Intel® Celeron® 7305E | I/O: 1x USB3.2 Gen1 Type-C, 2x USB3.2 Gen2 Type-A, 2x USB2.0, 3x USB3.2 Gen2 Type-A, 2x 2.5GbE, 2x RS-232/422/485, 1x RS-232/422/485 | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB 3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 2242 M (PCIe x2 Gen3), 1x M.2 2280 M (PCIe x4 Gen4), 2x M.2 None B+M (SATA), 1x M.2 None E (PCIe x1 Gen3/USB 2.0), 2x M.2 None B+M (SATA), 1x M.2 None E (PCIe x1 Gen3/USB 2.0) | OS: Windows | Op temp: -20°C ~ 60°C | Features: USB Type C for display supports 4K @ 60Hz (DP1.4a); Up to 4 M.2 Expansion slots; EIO for expansion board reserved; Standard expansion board offers up to triple COM ports, dual PoE and InnoAgent, open for customized",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -3415,7 +3459,7 @@
       "source_file": "ABOX-5130_Datasheet_bareBOM.pdf",
       "file_hash_md5": "f5c3b71516aa5502f62f2d3032ad120d",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ABOX-5130"
     },
     "common": {
@@ -3438,19 +3482,19 @@
     "computing_spec": {
       "bu_owner": "AIoT",
       "platform_brand": "Intel",
-      "processor_model": "Intel簧 Celeron簧 U300E",
+      "processor_model": "Intel® Celeron® U300E",
       "processor_series": "Alder Lake-N",
       "cpu_cores": 4,
       "cpu_p_cores": null,
       "cpu_e_cores": null,
-      "tdp_watt": 15.0,
+      "tdp_watt": 15,
       "ai_tops": null,
-      "ram_gb": 96.0,
+      "ram_gb": 96,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 5200,
         "slots": null,
-        "max_capacity_gb": 96.0,
+        "max_capacity_gb": 96,
         "form_factor": null,
         "ecc_support": false
       },
@@ -3479,7 +3523,7 @@
           "interface": [
             "PCIe x1 Gen3",
             "SATA",
-            "USB3.0"
+            "USB 3.0"
           ],
           "count": 1
         },
@@ -3488,7 +3532,7 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         },
@@ -3519,7 +3563,10 @@
         {
           "size": null,
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         },
         {
@@ -3533,7 +3580,10 @@
         {
           "size": null,
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         }
       ],
@@ -3610,7 +3660,7 @@
       ]
     },
     "search": {
-      "text_summary": "ABOX-5130 SMALL BOX PC | Platform: Intel Intel簧 Celeron簧 U300E | I/O: 1x USB3.2 Gen1 Type-C, 2x USB3.2 Gen2 Type-A, 2x USB2.0, 3x USB3.2 Gen2 Type-A, 2x 2.5GbE, 2x RS-232/422/485, 1x RS-232/422/485 | Expansion: 1x M.2 2242 B (PCIe x1 Gen3/SATA/USB3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB3.0), 1x M.2 2242 M (PCIe x2 Gen3), 1x M.2 2280 M (PCIe x4 Gen4), 2x M.2 None B+M (SATA), 1x M.2 None E (), 2x M.2 None B+M (SATA), 1x M.2 None E () | OS: Windows | Op temp: -20簞C ~ 60簞C | Features: USB Type C for display supports 4K @ 60Hz (DP1.4a); Up to 4 M.2 Expansion slots; EIO for expansion board reserved; Standard expansion board offers up to triple COM ports, dual PoE and InnoAgent, open for customized",
+      "text_summary": "ABOX-5130 SMALL BOX PC | Platform: Intel Intel® Celeron® U300E | I/O: 1x USB3.2 Gen1 Type-C, 2x USB3.2 Gen2 Type-A, 2x USB2.0, 3x USB3.2 Gen2 Type-A, 2x 2.5GbE, 2x RS-232/422/485, 1x RS-232/422/485 | Expansion: 1x M.2 2242 B (PCIe x1 Gen3/SATA/USB 3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 2242 M (PCIe x2 Gen3), 1x M.2 2280 M (PCIe x4 Gen4), 2x M.2 None B+M (SATA), 1x M.2 None E (PCIe x1 Gen3/USB 2.0), 2x M.2 None B+M (SATA), 1x M.2 None E (PCIe x1 Gen3/USB 2.0) | OS: Windows | Op temp: -20°C ~ 60°C | Features: USB Type C for display supports 4K @ 60Hz (DP1.4a); Up to 4 M.2 Expansion slots; EIO for expansion board reserved; Standard expansion board offers up to triple COM ports, dual PoE and InnoAgent, open for customized",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -3630,7 +3680,7 @@
       "source_file": "ABOX-R020 Datasheet_250423.pdf",
       "file_hash_md5": "06fd6a72b60d0ccb2c2ec6bd3cd93bd0",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ABOX-R020"
     },
     "common": {
@@ -3652,19 +3702,19 @@
     "computing_spec": {
       "bu_owner": "AIoT",
       "platform_brand": "Intel",
-      "processor_model": "Intel Atom簧 X6425E",
+      "processor_model": "Intel Atom® X6425E",
       "processor_series": "Elkhart Lake",
       "cpu_cores": 4,
       "cpu_p_cores": null,
       "cpu_e_cores": null,
-      "tdp_watt": 12.0,
+      "tdp_watt": 12,
       "ai_tops": null,
-      "ram_gb": 32.0,
+      "ram_gb": 32,
       "memory_spec": {
         "type": "DDR4",
         "speed_mhz": 3200,
         "slots": null,
-        "max_capacity_gb": 32.0,
+        "max_capacity_gb": 32,
         "form_factor": null,
         "ecc_support": true
       },
@@ -3683,7 +3733,7 @@
       "dimensions": {
         "width_mm": 108.6,
         "depth_mm": 158.5,
-        "height_mm": 60.0
+        "height_mm": 60
       },
       "power_input": "Single 9~36V",
       "pcie_slots": [],
@@ -3692,8 +3742,9 @@
           "size": "3042",
           "key": "B",
           "interface": [
+            "PCIe x1 Gen3",
             "SATA",
-            "USB3.0"
+            "USB 3.0"
           ],
           "count": 1
         },
@@ -3701,7 +3752,8 @@
           "size": "2230",
           "key": "E",
           "interface": [
-            "USB3.0"
+            "PCIe x1 Gen3",
+            "USB 2.0"
           ],
           "count": 1
         }
@@ -3721,7 +3773,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 1,
             "poe_support": false
           }
@@ -3749,6 +3801,7 @@
         "DP",
         "GbE",
         "M.2",
+        "PCIe",
         "RS-232",
         "RS-422",
         "RS-485",
@@ -3759,7 +3812,7 @@
       ]
     },
     "search": {
-      "text_summary": "ABOX-R020 SMALL BOX PC | Platform: Intel Intel Atom簧 X6425E | I/O: 2x USB3.2 Gen2, 2x USB2.0, 1x 1.0GbE, 3x RS-232/422/485 | Expansion: 1x M.2 3042 B (SATA/USB3.0), 1x M.2 2230 E (USB3.0) | OS: Windows, Linux | Op temp: -20簞C ~ 50簞C | Features: sensitive environments",
+      "text_summary": "ABOX-R020 SMALL BOX PC | Platform: Intel Intel Atom® X6425E | I/O: 2x USB3.2 Gen2, 2x USB2.0, 1x 1.0GbE, 3x RS-232/422/485 | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB 3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0) | OS: Windows, Linux | Op temp: -20°C ~ 50°C | Features: sensitive environments",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -3779,7 +3832,7 @@
       "source_file": "ABOX-R030_251224.pdf",
       "file_hash_md5": "d16a0df58ec00679a76fc4a4cf6d725e",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ABOX-R030"
     },
     "common": {
@@ -3806,15 +3859,15 @@
       "cpu_cores": 4,
       "cpu_p_cores": null,
       "cpu_e_cores": null,
-      "tdp_watt": 6.0,
+      "tdp_watt": 6,
       "ai_tops": null,
-      "ram_gb": 16.0,
+      "ram_gb": 16,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 4800,
-        "slots": 5,
-        "max_capacity_gb": 16.0,
-        "form_factor": "SO-DIMM",
+        "slots": null,
+        "max_capacity_gb": 16,
+        "form_factor": null,
         "ecc_support": false
       },
       "storage_gb": null,
@@ -3830,9 +3883,9 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": 60.0,
-        "depth_mm": 110.0,
-        "height_mm": 160.0
+        "width_mm": 60,
+        "depth_mm": 110,
+        "height_mm": 160
       },
       "power_input": "Single 9~36V",
       "pcie_slots": [],
@@ -3842,7 +3895,7 @@
           "key": "B",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 3.0"
           ],
           "count": 1
         },
@@ -3851,7 +3904,7 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         },
@@ -3885,7 +3938,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 2,
             "poe_support": false
           }
@@ -3931,7 +3984,7 @@
       ]
     },
     "search": {
-      "text_summary": "ABOX-R030 SMALL BOX PC | Platform: Intel Intel Processor N200 | I/O: 6x USB3.2 Gen2 Type-A, 6x USB2.0 Type-A, 2x USB3.2 Gen2 Type-A, 2x 1.0GbE, 2x RS-232/422/485, 2x RS-232/422/485 | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/USB3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB3.0), 1x M.2 2280 M (PCIe x1 Gen3/SATA) | OS: Windows, Linux | Op temp: 0簞C ~ 60簞C | Features: Energy efficiency processors, featuring low TDP, suitable for energy-sensitive environments; DIN rail compatibility enables flexible placement within cabinets, optimizing space usage and accessibility; Rugged casing that protects against dust, moisture, and vibrations",
+      "text_summary": "ABOX-R030 SMALL BOX PC | Platform: Intel Intel Processor N200 | I/O: 6x USB3.2 Gen2 Type-A, 6x USB2.0 Type-A, 2x USB3.2 Gen2 Type-A, 2x 1.0GbE, 2x RS-232/422/485, 2x RS-232/422/485 | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/USB 3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 2280 M (PCIe x1 Gen3/SATA) | OS: Windows, Linux | Op temp: 0°C ~ 60°C | Features: Energy efficiency processors, featuring low TDP, suitable for energy-sensitive environments; DIN rail compatibility enables flexible placement within cabinets, optimizing space usage and accessibility; Rugged casing that protects against dust, moisture, and vibrations",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -3951,7 +4004,7 @@
       "source_file": "ABOX-R040_251224.pdf",
       "file_hash_md5": "fffbc56e02a31902966d33369664e9e2",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ABOX-R040"
     },
     "common": {
@@ -3978,15 +4031,15 @@
       "cpu_cores": 2,
       "cpu_p_cores": null,
       "cpu_e_cores": null,
-      "tdp_watt": 9.0,
+      "tdp_watt": 9,
       "ai_tops": null,
-      "ram_gb": 32.0,
+      "ram_gb": 32,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 4800,
-        "slots": 5,
-        "max_capacity_gb": 32.0,
-        "form_factor": "SO-DIMM",
+        "slots": null,
+        "max_capacity_gb": 32,
+        "form_factor": null,
         "ecc_support": true
       },
       "storage_gb": null,
@@ -4002,9 +4055,9 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": 60.0,
-        "depth_mm": 110.0,
-        "height_mm": 160.0
+        "width_mm": 60,
+        "depth_mm": 110,
+        "height_mm": 160
       },
       "power_input": "Single 9~36V",
       "pcie_slots": [],
@@ -4014,7 +4067,7 @@
           "key": "B",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 3.0"
           ],
           "count": 1
         },
@@ -4023,7 +4076,7 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         },
@@ -4057,7 +4110,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 2,
             "poe_support": false
           }
@@ -4103,7 +4156,7 @@
       ]
     },
     "search": {
-      "text_summary": "ABOX-R040 SMALL BOX PC | Platform: Intel Intel Atom x7213RE | I/O: 6x USB3.2 Gen2 Type-A, 6x USB2.0 Type-A, 2x USB3.2 Gen2 Type-A, 2x 1.0GbE, 2x RS-232/422/485, 2x RS-232/422/485 | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/USB3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB3.0), 1x M.2 2280 M (PCIe x1 Gen3/SATA) | OS: Windows, Linux | Op temp: -20簞C ~ 70簞C | Features: Energy efficiency processors, featuring low TDP, suitable for energy-sensitive environments; DIN rail compatibility enables flexible placement within cabinets, optimizing space usage and accessibility; Rugged casing that protects against dust, moisture, and vibrations",
+      "text_summary": "ABOX-R040 SMALL BOX PC | Platform: Intel Intel Atom x7213RE | I/O: 6x USB3.2 Gen2 Type-A, 6x USB2.0 Type-A, 2x USB3.2 Gen2 Type-A, 2x 1.0GbE, 2x RS-232/422/485, 2x RS-232/422/485 | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/USB 3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 2280 M (PCIe x1 Gen3/SATA) | OS: Windows, Linux | Op temp: -20°C ~ 70°C | Features: Energy efficiency processors, featuring low TDP, suitable for energy-sensitive environments; DIN rail compatibility enables flexible placement within cabinets, optimizing space usage and accessibility; Rugged casing that protects against dust, moisture, and vibrations",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -4123,7 +4176,7 @@
       "source_file": "Datasheet_ABOX-V140_20260129 (Preliminary).pdf",
       "file_hash_md5": "b6df669c88dd16b9e3e8577af1cd707b",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ABOX-V140"
     },
     "common": {
@@ -4145,19 +4198,19 @@
     "computing_spec": {
       "bu_owner": "AIoT",
       "platform_brand": "Intel",
-      "processor_model": "Intel Core i9-14900",
+      "processor_model": "Intel Core i9-14900E",
       "processor_series": "Raptor Lake Refresh",
       "cpu_cores": 24,
       "cpu_p_cores": 8,
       "cpu_e_cores": 16,
-      "tdp_watt": 65.0,
+      "tdp_watt": 65,
       "ai_tops": null,
-      "ram_gb": 96.0,
+      "ram_gb": 96,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 5600,
         "slots": null,
-        "max_capacity_gb": 96.0,
+        "max_capacity_gb": 96,
         "form_factor": null,
         "ecc_support": true
       },
@@ -4173,9 +4226,9 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": null,
-        "depth_mm": null,
-        "height_mm": null
+        "width_mm": 229.8,
+        "depth_mm": 300,
+        "height_mm": 70.5
       },
       "power_input": null,
       "pcie_slots": [],
@@ -4185,7 +4238,7 @@
           "key": "B",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 3.2"
           ],
           "count": 1
         },
@@ -4194,7 +4247,7 @@
           "key": "B",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         },
@@ -4203,7 +4256,7 @@
           "key": "E",
           "interface": [
             "PCIe x2 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         },
@@ -4260,7 +4313,7 @@
       ]
     },
     "search": {
-      "text_summary": "ABOX-V140 ABOX-V140 | Platform: Intel Intel Core i9-14900 | I/O: 5x USB3.2 Gen1 Type-A, 4x RS-232, 8-pin GPIO, 2x CAN Bus | Expansion: 1x M.2 3052 B (PCIe x1 Gen3/USB3.0), 1x M.2 2280 B (PCIe x1 Gen3/USB3.0), 1x M.2 2230 E (PCIe x2 Gen3/USB3.0), 2x M.2 2280 M (PCIe x4/SATA) | OS: Windows | Op temp: -40簞C ~ 80簞C",
+      "text_summary": "ABOX-V140 ABOX-V140 | Platform: Intel Intel Core i9-14900E | I/O: 5x USB3.2 Gen1 Type-A, 4x RS-232, 8-pin GPIO, 2x CAN Bus | Expansion: 1x M.2 3052 B (PCIe x1 Gen3/USB 3.2), 1x M.2 2280 B (PCIe x1 Gen3/USB 2.0), 1x M.2 2230 E (PCIe x2 Gen3/USB 2.0), 2x M.2 2280 M (PCIe x4/SATA) | OS: Windows | Op temp: -40°C ~ 80°C",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -4286,7 +4339,7 @@
       "source_file": "AIPC-4120 Datasheet_1209.pdf",
       "file_hash_md5": "e10813f2bb50fa42e0095c4eed88e5d8",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "AIPC-4120"
     },
     "common": {
@@ -4314,14 +4367,14 @@
       "cpu_cores": 24,
       "cpu_p_cores": 8,
       "cpu_e_cores": 16,
-      "tdp_watt": 65.0,
+      "tdp_watt": 65,
       "ai_tops": null,
-      "ram_gb": 128.0,
+      "ram_gb": 128,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 4800,
         "slots": null,
-        "max_capacity_gb": 128.0,
+        "max_capacity_gb": 128,
         "form_factor": null,
         "ecc_support": true
       },
@@ -4338,9 +4391,9 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": 318.0,
+        "width_mm": 318,
         "depth_mm": 351.5,
-        "height_mm": 143.0
+        "height_mm": 143
       },
       "power_input": "100-240V, 8-4A, 50-60Hz/100-240V, 10-6A, 50-60Hz",
       "pcie_slots": [
@@ -4365,7 +4418,8 @@
           "size": "2230",
           "key": "E",
           "interface": [
-            "USB3.0"
+            "PCIe",
+            "USB 2.0"
           ],
           "count": 1
         }
@@ -4410,7 +4464,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 1,
             "poe_support": false
           },
@@ -4459,7 +4513,7 @@
       ]
     },
     "search": {
-      "text_summary": "AIPC-4120 EMBEDDED SYSTEM | Platform: Intel Intel Core i9-13900E | I/O: 2x USB3.2 Gen1, 2x USB3.2 Gen1 Type-A, 6x USB3.2 Gen2 Type-C, 4x USB3.2 Gen1, 2x USB2.0 Type-A, 6x USB3.2 Gen2 Type-A, 1x USB3.2 Gen2 Type-C, 1x 1.0GbE, 1x 2.5GbE, 3x 2.5GbE, 2x RS-232 | Expansion: 2x M.2 2280 M (PCIe x4/SATA), 1x M.2 2230 E (USB3.0), 1x PCIe x16 Gen5 | OS: Windows, Linux | Op temp: 0簞C ~ 50簞C | Features: Intel簧 12th/13th/14th Gen. Core??i Processors; Support 1 x PCIe x16 Gen.5 for maximum standard height 4.3??GPU; Support 4 x 2.5??SSD or 2 x 3.5??HDD (or 1 x 3.5??HDD + 2 x 2.5??SSD); 4 SATA (RAID 0, 1, 5, 10) supported by R680E/Q670E; Optional 2 x USB 3.2 Gen.1 x1 and COM 1~4",
+      "text_summary": "AIPC-4120 EMBEDDED SYSTEM | Platform: Intel Intel Core i9-13900E | I/O: 2x USB3.2 Gen1, 2x USB3.2 Gen1 Type-A, 6x USB3.2 Gen2 Type-C, 4x USB3.2 Gen1, 2x USB2.0 Type-A, 6x USB3.2 Gen2 Type-A, 1x USB3.2 Gen2 Type-C, 1x 1.0GbE, 1x 2.5GbE, 3x 2.5GbE, 2x RS-232 | Expansion: 2x M.2 2280 M (PCIe x4/SATA), 1x M.2 2230 E (PCIe/USB 2.0), 1x PCIe x16 Gen5 | OS: Windows, Linux | Op temp: 0°C ~ 50°C | Features: Intel® 12th/13th/14th Gen. Core™ i Processors; Support 1 x PCIe x16 Gen.5 for maximum standard height 4.3” GPU; Support 4 x 2.5” SSD or 2 x 3.5” HDD (or 1 x 3.5” HDD + 2 x 2.5” SSD); 4 SATA (RAID 0, 1, 5, 10) supported by R680E/Q670E; Optional 2 x USB 3.2 Gen.1 x1 and COM 1~4",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -4480,7 +4534,7 @@
       "source_file": "AIPC-4150 Datasheet_initial version_20250701.pdf",
       "file_hash_md5": "04e06b67ef4c6786465e9328adc39d24",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "AIPC-4150"
     },
     "common": {
@@ -4508,14 +4562,14 @@
       "cpu_cores": 14,
       "cpu_p_cores": 2,
       "cpu_e_cores": 12,
-      "tdp_watt": 15.0,
-      "ai_tops": 13.0,
-      "ram_gb": 128.0,
+      "tdp_watt": 15,
+      "ai_tops": 13,
+      "ram_gb": 128,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 6400,
         "slots": null,
-        "max_capacity_gb": 128.0,
+        "max_capacity_gb": 128,
         "form_factor": null,
         "ecc_support": false
       },
@@ -4532,9 +4586,9 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": 318.0,
+        "width_mm": 318,
         "depth_mm": 351.5,
-        "height_mm": 143.0
+        "height_mm": 143
       },
       "power_input": "100-240V, 8-4A, 50-60Hz/100-240V, 10-6A, 50-60Hz",
       "pcie_slots": [
@@ -4555,7 +4609,10 @@
         {
           "size": "2230",
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         }
       ],
@@ -4625,11 +4682,10 @@
         "SATA",
         "USB2",
         "USB3"
-      ],
-      "ai_tops_basis": "INT8"
+      ]
     },
     "search": {
-      "text_summary": "AIPC-4150 EMBEDDED SYSTEM | Platform: Intel Intel Core Ultra 7 255U | I/O: 2x USB3.2 Gen1, 2x USB3.2 Gen1 Type-A, 4x USB3.2 Gen1, 2x USB2.0 Type-A, 8x USB3.2 Gen2 Type-A, 3x 2.5GbE, 2x RS-232 | Expansion: 1x M.2 2230 E (), 2x PCIe x16 Gen5, 1x PCIe x16 Gen5 | OS: Windows, Linux | Op temp: 0簞C ~ 50簞C | Features: Intel簧 15th Gen. Core??i Processors; Support 2 x PCIe x16 Gen.5 for maximum standard height 4.3??GPU; Support 4 x 2.5??SSD or 2 x 3.5??HDD (or 1 x 3.5??HDD + 2 x 2.5??SSD); up to 4 SATA (RAID 0, 1, 5, 10) supported; Optional 2 x USB 3.2 Gen.1 x1 and COM 1~4",
+      "text_summary": "AIPC-4150 EMBEDDED SYSTEM | Platform: Intel Intel Core Ultra 7 255U | I/O: 2x USB3.2 Gen1, 2x USB3.2 Gen1 Type-A, 4x USB3.2 Gen1, 2x USB2.0 Type-A, 8x USB3.2 Gen2 Type-A, 3x 2.5GbE, 2x RS-232 | Expansion: 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 2x PCIe x16 Gen5, 1x PCIe x16 Gen5 | OS: Windows, Linux | Op temp: 0°C ~ 50°C | Features: Intel® 15th Gen. Core™ i Processors; Support 2 x PCIe x16 Gen.5 for maximum standard height 4.3” GPU; Support 4 x 2.5” SSD or 2 x 3.5” HDD (or 1 x 3.5” HDD + 2 x 2.5” SSD); up to 4 SATA (RAID 0, 1, 5, 10) supported; Optional 2 x USB 3.2 Gen.1 x1 and COM 1~4",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -4651,7 +4707,7 @@
       "source_file": "AIPC-6120 Datasheet 1014.pdf",
       "file_hash_md5": "d3eef3c874d5e414504036564c67c4f9",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "AIPC-6120"
     },
     "common": {
@@ -4679,14 +4735,14 @@
       "cpu_cores": 24,
       "cpu_p_cores": 8,
       "cpu_e_cores": 16,
-      "tdp_watt": 65.0,
+      "tdp_watt": 65,
       "ai_tops": null,
-      "ram_gb": 128.0,
+      "ram_gb": 128,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 4800,
         "slots": null,
-        "max_capacity_gb": 128.0,
+        "max_capacity_gb": 128,
         "form_factor": null,
         "ecc_support": true
       },
@@ -4703,8 +4759,8 @@
       "openvino_support": null,
       "dimensions": {
         "width_mm": 176.2,
-        "depth_mm": 448.0,
-        "height_mm": 418.0
+        "depth_mm": 448,
+        "height_mm": 418
       },
       "power_input": "100-240V, 12-6A, 60-50Hz",
       "pcie_slots": [],
@@ -4713,7 +4769,8 @@
           "size": "2230",
           "key": "E",
           "interface": [
-            "USB3.0"
+            "PCIe",
+            "USB 2.0"
           ],
           "count": 1
         }
@@ -4773,13 +4830,14 @@
         "GbE",
         "HDMI",
         "M.2",
+        "PCIe",
         "SATA",
         "USB2",
         "USB3"
       ]
     },
     "search": {
-      "text_summary": "AIPC-6120 EMBEDDED SYSTEM | Platform: Intel Intel Core i9-13900E | I/O: 6x USB3.2 Gen2 Type-C, 2x USB2.0 Type-A, 6x USB3.2 Gen2 Type-A, 1x USB3.2 Gen2 Type-C, 4x USB3.2 Gen1, 3x 2.5GbE | Expansion: 1x M.2 2230 E (USB3.0) | OS: Windows | Op temp: 0簞C ~ 45簞C | Features: Intel簧 12th/13th/14th Gen. Core??i Processors; Support dual GPU cards with 2 x PCIex16 slots; 4 SATA (RAID 0, 1, 5, 10) supported by R680E/ Q670E",
+      "text_summary": "AIPC-6120 EMBEDDED SYSTEM | Platform: Intel Intel Core i9-13900E | I/O: 6x USB3.2 Gen2 Type-C, 2x USB2.0 Type-A, 6x USB3.2 Gen2 Type-A, 1x USB3.2 Gen2 Type-C, 4x USB3.2 Gen1, 3x 2.5GbE | Expansion: 1x M.2 2230 E (PCIe/USB 2.0) | OS: Windows | Op temp: 0°C ~ 45°C | Features: Intel® 12th/13th/14th Gen. Core™ i Processors; Support dual GPU cards with 2 x PCIex16 slots; 4 SATA (RAID 0, 1, 5, 10) supported by R680E/ Q670E",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -4799,7 +4857,7 @@
       "source_file": "ARAK-1120_260326.pdf",
       "file_hash_md5": "ccdfd9e4b123dd99c85a2057358c3b08",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ARAK-1120"
     },
     "common": {
@@ -4827,14 +4885,14 @@
       "cpu_cores": 24,
       "cpu_p_cores": 8,
       "cpu_e_cores": 16,
-      "tdp_watt": 65.0,
+      "tdp_watt": 65,
       "ai_tops": null,
-      "ram_gb": 128.0,
+      "ram_gb": 128,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 4800,
         "slots": null,
-        "max_capacity_gb": 128.0,
+        "max_capacity_gb": 128,
         "form_factor": null,
         "ecc_support": true
       },
@@ -4851,8 +4909,8 @@
       "openvino_support": null,
       "dimensions": {
         "width_mm": 371.3,
-        "depth_mm": 438.0,
-        "height_mm": 44.0
+        "depth_mm": 438,
+        "height_mm": 44
       },
       "power_input": "100-240V~, 6-3A, 60-50Hz/100-240V~, 8-4A, 50-60Hz",
       "pcie_slots": [],
@@ -4870,7 +4928,8 @@
           "size": "2230",
           "key": "E",
           "interface": [
-            "USB3.0"
+            "PCIe",
+            "USB 2.0"
           ],
           "count": 1
         }
@@ -4939,7 +4998,7 @@
       ]
     },
     "search": {
-      "text_summary": "ARAK-1120 EMBEDDED SYSTEM | Platform: Intel Intel Core i9-13900E | I/O: 2x USB3.2 Gen1 Type-A, 6x USB3.2 Gen2 Type-C, 2x USB2.0 Type-A, 1x USB3.2 Gen2 Type-C, 3x 2.5GbE, 4x RS-232 | Expansion: 1x M.2 2280 M (PCIe x4/SATA), 1x M.2 2230 E (USB3.0) | OS: Windows | Op temp: 0簞C ~ 45簞C | Features: Intel簧 12th/13th/14th Gen. Core??i Processors; A well-designed cooling system with two fans effectively manage temperatures up to 45簞C; 1U high chassis design maximizes space efficiency; Four front USB ports, including two USB 3.0; Support 2 SATA (RAID 0, 1)",
+      "text_summary": "ARAK-1120 EMBEDDED SYSTEM | Platform: Intel Intel Core i9-13900E | I/O: 2x USB3.2 Gen1 Type-A, 6x USB3.2 Gen2 Type-C, 2x USB2.0 Type-A, 1x USB3.2 Gen2 Type-C, 3x 2.5GbE, 4x RS-232 | Expansion: 1x M.2 2280 M (PCIe x4/SATA), 1x M.2 2230 E (PCIe/USB 2.0) | OS: Windows | Op temp: 0°C ~ 45°C | Features: Intel® 12th/13th/14th Gen. Core™ i Processors; A well-designed cooling system with two fans effectively manage temperatures up to 45°C; 1U high chassis design maximizes space efficiency; Four front USB ports, including two USB 3.0; Support 2 SATA (RAID 0, 1)",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -4959,7 +5018,7 @@
       "source_file": "ARAK-2120_240522.pdf",
       "file_hash_md5": "ced047d411b16dda8ee608bac0dc25f2",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ARAK-2120"
     },
     "common": {
@@ -4987,14 +5046,14 @@
       "cpu_cores": 24,
       "cpu_p_cores": 8,
       "cpu_e_cores": 16,
-      "tdp_watt": 65.0,
+      "tdp_watt": 65,
       "ai_tops": null,
-      "ram_gb": 128.0,
+      "ram_gb": 128,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 4800,
         "slots": null,
-        "max_capacity_gb": 128.0,
+        "max_capacity_gb": 128,
         "form_factor": null,
         "ecc_support": true
       },
@@ -5010,9 +5069,9 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": 438.0,
-        "depth_mm": 482.0,
-        "height_mm": 88.0
+        "width_mm": 438,
+        "depth_mm": 482,
+        "height_mm": 88
       },
       "power_input": "100-240V, 10-6A, 50-60Hz",
       "pcie_slots": [],
@@ -5030,7 +5089,8 @@
           "size": "2230",
           "key": "E",
           "interface": [
-            "USB3.0"
+            "PCIe",
+            "USB 2.0"
           ],
           "count": 1
         }
@@ -5092,7 +5152,7 @@
       ]
     },
     "search": {
-      "text_summary": "ARAK-2120 EMBEDDED SYSTEM | Platform: Intel Intel Core i9-13900E | I/O: 6x USB3.2 Gen2 Type-C, 2x USB2.0 Type-A, 6x USB3.2 Gen2 Type-A, 1x USB3.2 Gen2 Type-C, 3x 2.5GbE | Expansion: 2x M.2 2280 M (PCIe x4/SATA), 1x M.2 2230 E (USB3.0) | OS: Windows | Op temp: 0簞C ~ 45簞C | Features: Intel簧 12th/13th/14th Gen. Core??i Processors; Support dual GPU cards by riser card; It can be seamlessly installed into a rack using sliding rails; Detailed LED indicators display the system's status; 4 SATA (RAID 0, 1, 5, 10) supported by R680E; Door lock prevents unauthorized access",
+      "text_summary": "ARAK-2120 EMBEDDED SYSTEM | Platform: Intel Intel Core i9-13900E | I/O: 6x USB3.2 Gen2 Type-C, 2x USB2.0 Type-A, 6x USB3.2 Gen2 Type-A, 1x USB3.2 Gen2 Type-C, 3x 2.5GbE | Expansion: 2x M.2 2280 M (PCIe x4/SATA), 1x M.2 2230 E (PCIe/USB 2.0) | OS: Windows | Op temp: 0°C ~ 45°C | Features: Intel® 12th/13th/14th Gen. Core™ i Processors; Support dual GPU cards by riser card; It can be seamlessly installed into a rack using sliding rails; Detailed LED indicators display the system's status; 4 SATA (RAID 0, 1, 5, 10) supported by R680E; Door lock prevents unauthorized access",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -5112,7 +5172,7 @@
       "source_file": "Datasheet_ARAK-4120_20260422.pdf",
       "file_hash_md5": "024b699f27c29e347d4d4b9c0dc3de57",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ARAK-4120"
     },
     "common": {
@@ -5140,14 +5200,14 @@
       "cpu_cores": 24,
       "cpu_p_cores": 8,
       "cpu_e_cores": 16,
-      "tdp_watt": 65.0,
+      "tdp_watt": 65,
       "ai_tops": null,
-      "ram_gb": 128.0,
+      "ram_gb": 128,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 4800,
         "slots": null,
-        "max_capacity_gb": 128.0,
+        "max_capacity_gb": 128,
         "form_factor": null,
         "ecc_support": true
       },
@@ -5163,9 +5223,9 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": null,
-        "depth_mm": null,
-        "height_mm": null
+        "width_mm": 450,
+        "depth_mm": 482,
+        "height_mm": 176
       },
       "power_input": "100-240V, 12-6A, 60-50Hz",
       "pcie_slots": [],
@@ -5173,7 +5233,10 @@
         {
           "size": "2230",
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         }
       ],
@@ -5232,13 +5295,14 @@
         "GbE",
         "HDMI",
         "M.2",
+        "PCIe",
         "SATA",
         "USB2",
         "USB3"
       ]
     },
     "search": {
-      "text_summary": "ARAK-4120 ARAK-4120 | Platform: Intel Intel Core i9-13900TE | I/O: 2x USB2.0, 6x USB3.2 Gen2 Type-C, 6x USB3.2 Gen2, 1x USB3.2 Gen2 Type-C, 4x USB3.2 Gen1, 3x 2.5GbE | Expansion: 1x M.2 2230 E () | OS: Windows | Op temp: 0簞C ~ 40簞C | Features: Powered by Intel 12th/13th/14th Gen. Core i Processors; 4x Dual channel DDR5 U-DIMM, Max. 128GB; Supports dual PCIe x16 slots for high-bandwidth expansion; High-speed connectivity with 2x USB 2.0 and 7x USB 3.2; Wide-range 100??40V AC input with 850W ATX power supply",
+      "text_summary": "ARAK-4120 ARAK-4120 | Platform: Intel Intel Core i9-13900TE | I/O: 2x USB2.0, 6x USB3.2 Gen2 Type-C, 6x USB3.2 Gen2, 1x USB3.2 Gen2 Type-C, 4x USB3.2 Gen1, 3x 2.5GbE | Expansion: 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0) | OS: Windows | Op temp: 0°C ~ 40°C | Features: Powered by Intel 12th/13th/14th Gen. Core i Processors; 4x Dual channel DDR5 U-DIMM, Max. 128GB; Supports dual PCIe x16 slots for high-bandwidth expansion; High-speed connectivity with 2x USB 2.0 and 7x USB 3.2; Wide-range 100–240V AC input with 850W ATX power supply",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -5259,7 +5323,7 @@
       "source_file": "AXMB-1030_20251030.pdf",
       "file_hash_md5": "2d18a32e4415716f5cd942327bec0182",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "AXMB-1030"
     },
     "common": {
@@ -5287,7 +5351,7 @@
       "cpu_cores": 4,
       "cpu_p_cores": null,
       "cpu_e_cores": null,
-      "tdp_watt": 6.0,
+      "tdp_watt": 6,
       "ai_tops": null,
       "ram_gb": 16,
       "memory_spec": {
@@ -5311,8 +5375,8 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": null,
-        "depth_mm": null,
+        "width_mm": 170,
+        "depth_mm": 170,
         "height_mm": null
       },
       "power_input": "DC 12-24V",
@@ -5378,7 +5442,7 @@
       ]
     },
     "search": {
-      "text_summary": "AXMB-1030 INDUSTRIAL MOTHERBOARD | Platform: Intel Intel Processor N200 | I/O: 2x USB3.2 Gen2 Type-A, 2x USB2.0 Type-A, 2x USB2.0, 2x 2.5GbE, 2x RS-232 | OS: Windows, Linux | Op temp: 0簞C ~ 60簞C | Features: Support Intel簧 Core/N Series Processor; Support MIPI to Type C camera extension BD connector; Wide voltage support 12-24V DC",
+      "text_summary": "AXMB-1030 INDUSTRIAL MOTHERBOARD | Platform: Intel Intel Processor N200 | I/O: 2x USB3.2 Gen2 Type-A, 2x USB2.0 Type-A, 2x USB2.0, 2x 2.5GbE, 2x RS-232 | OS: Windows, Linux | Op temp: 0°C ~ 60°C | Features: Support Intel® Core/N Series Processor; Support MIPI to Type C camera extension BD connector; Wide voltage support 12-24V DC",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -5397,7 +5461,7 @@
       "source_file": "AXMB-1130_20250807.pdf",
       "file_hash_md5": "7103e8d745e279dd0e0053e2c1040ced",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "AXMB-1130"
     },
     "common": {
@@ -5425,14 +5489,14 @@
       "cpu_cores": 24,
       "cpu_p_cores": 8,
       "cpu_e_cores": 16,
-      "tdp_watt": 65.0,
+      "tdp_watt": 65,
       "ai_tops": null,
-      "ram_gb": 64.0,
+      "ram_gb": 64,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 5600,
         "slots": null,
-        "max_capacity_gb": 64.0,
+        "max_capacity_gb": 64,
         "form_factor": null,
         "ecc_support": true
       },
@@ -5449,8 +5513,8 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": null,
-        "depth_mm": null,
+        "width_mm": 170,
+        "depth_mm": 170,
         "height_mm": null
       },
       "power_input": "DC 12V",
@@ -5468,7 +5532,7 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         },
@@ -5476,8 +5540,7 @@
           "size": "2280",
           "key": "M",
           "interface": [
-            "PCIe x4",
-            "SATA"
+            "PCIe"
           ],
           "count": 1
         },
@@ -5485,8 +5548,7 @@
           "size": "2280",
           "key": "M",
           "interface": [
-            "PCIe x4",
-            "SATA"
+            "PCIe"
           ],
           "count": 1
         }
@@ -5557,7 +5619,7 @@
       ]
     },
     "search": {
-      "text_summary": "AXMB-1130 INDUSTRIAL MOTHERBOARD | Platform: Intel Intel Core i9-13900E | I/O: 8x USB3.2 Gen2, 2x USB3.2 Gen2, 2x USB3.2 Gen1, 2x USB2.0, 2x 2.5GbE, 2x RS-232 | Expansion: 1x M.2 2230 E (PCIe x1 Gen3/USB3.0), 1x M.2 2280 M (PCIe x4/SATA), 1x M.2 2280 M (PCIe x4/SATA), 1x PCIe x16 Gen5 | OS: Windows, Linux | Op temp: 0簞C ~ 60簞C | Features: Support Intel簧 12/13/14th Gen. Processor; Support expansion I/O for expansion board; R680E/Q670E support standard m-ITX; H610E support thin m-ITX; 2 SATA/2 PCIe (RAID 0, 1) supported by R680E/Q670E; Power support lockable DC-Jack (4-pin ATX) and optional 8-pin ATX",
+      "text_summary": "AXMB-1130 INDUSTRIAL MOTHERBOARD | Platform: Intel Intel Core i9-13900E | I/O: 8x USB3.2 Gen2, 2x USB3.2 Gen2, 2x USB3.2 Gen1, 2x USB2.0, 2x 2.5GbE, 2x RS-232 | Expansion: 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 2280 M (PCIe), 1x M.2 2280 M (PCIe), 1x PCIe x16 Gen5 | OS: Windows, Linux | Op temp: 0°C ~ 60°C | Features: Support Intel® 12/13/14th Gen. Processor; Support expansion I/O for expansion board; R680E/Q670E support standard m-ITX; H610E support thin m-ITX; 2 SATA/2 PCIe (RAID 0, 1) supported by R680E/Q670E; Power support lockable DC-Jack (4-pin ATX) and optional 8-pin ATX",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -5578,7 +5640,7 @@
       "source_file": "Datasheet_AXMB-1150-20250620.pdf",
       "file_hash_md5": "0d79b1a23c11cf38d0b3a05e96b26de6",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "AXMB-1150"
     },
     "common": {
@@ -5606,14 +5668,14 @@
       "cpu_cores": 24,
       "cpu_p_cores": 8,
       "cpu_e_cores": 16,
-      "tdp_watt": 45.0,
-      "ai_tops": 36.0,
-      "ram_gb": 96.0,
+      "tdp_watt": 45,
+      "ai_tops": 36,
+      "ram_gb": 96,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 6400,
         "slots": null,
-        "max_capacity_gb": 96.0,
+        "max_capacity_gb": 96,
         "form_factor": null,
         "ecc_support": false
       },
@@ -5629,8 +5691,8 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": null,
-        "depth_mm": null,
+        "width_mm": 170,
+        "depth_mm": 170,
         "height_mm": null
       },
       "power_input": "DC 19~24V",
@@ -5648,7 +5710,10 @@
         {
           "size": "2230",
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         }
       ],
@@ -5687,7 +5752,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 1,
             "poe_support": false
           }
@@ -5717,11 +5782,10 @@
         "USB2",
         "USB3",
         "eDP"
-      ],
-      "ai_tops_basis": "INT8"
+      ]
     },
     "search": {
-      "text_summary": "AXMB-1150 AXMB-1150 | Platform: Intel Intel Core Ultra 9 285H | I/O: 8x USB3.2 Gen2, 2x USB3.2 Gen1, 4x USB3.2 Gen2, 2x USB2.0, 1x USB3.2 Gen2, 1x USB3.2 Gen1, 1x 1.0GbE | Expansion: 1x M.2 2280 M (PCIe x4/SATA), 1x M.2 2230 E () | OS: Windows | Op temp: 0簞C ~ 60簞C | Features: Features Intel Core Ultra 15th Processor; Support expansion I/O for expansion board; Support Two CSODIMM DDR5 6400 MHz. (Co-lay low profile); W880/Q870 support standard m-ITX; H810 support thin m-ITX; Support M.2 PCIe Gen 5 x4",
+      "text_summary": "AXMB-1150 AXMB-1150 | Platform: Intel Intel Core Ultra 9 285H | I/O: 8x USB3.2 Gen2, 2x USB3.2 Gen1, 4x USB3.2 Gen2, 2x USB2.0, 1x USB3.2 Gen2, 1x USB3.2 Gen1, 1x 1.0GbE | Expansion: 1x M.2 2280 M (PCIe x4/SATA), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0) | OS: Windows | Op temp: 0°C ~ 60°C | Features: Features Intel Core Ultra 15th Processor; Support expansion I/O for expansion board; Support Two CSODIMM DDR5 6400 MHz. (Co-lay low profile); W880/Q870 support standard m-ITX; H810 support thin m-ITX; Support M.2 PCIe Gen 5 x4",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -5744,7 +5808,7 @@
       "source_file": "AXMB-3120_20250527.pdf",
       "file_hash_md5": "b0b9d87052ccec540e9ab9c1f9b84e96",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "AXMB-3120"
     },
     "common": {
@@ -5772,14 +5836,14 @@
       "cpu_cores": 24,
       "cpu_p_cores": 8,
       "cpu_e_cores": 16,
-      "tdp_watt": 65.0,
+      "tdp_watt": 65,
       "ai_tops": null,
-      "ram_gb": 128.0,
+      "ram_gb": 128,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 4800,
         "slots": null,
-        "max_capacity_gb": 128.0,
+        "max_capacity_gb": 128,
         "form_factor": null,
         "ecc_support": true
       },
@@ -5796,8 +5860,8 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": null,
-        "depth_mm": null,
+        "width_mm": 244,
+        "depth_mm": 244,
         "height_mm": null
       },
       "power_input": null,
@@ -5826,7 +5890,8 @@
           "size": "2230",
           "key": "E",
           "interface": [
-            "USB3.0"
+            "PCIe",
+            "USB 2.0"
           ],
           "count": 1
         },
@@ -5834,8 +5899,7 @@
           "size": "2280",
           "key": "M",
           "interface": [
-            "PCIe x4",
-            "SATA"
+            "PCIe"
           ],
           "count": 1
         }
@@ -5916,7 +5980,7 @@
       ]
     },
     "search": {
-      "text_summary": "AXMB-3120 INDUSTRIAL MOTHERBOARD | Platform: Intel Intel Core i9-13900E | I/O: 1x USB3.2 Gen2 Type-C, 6x USB3.2 Gen2 Type-A, 2x USB2.0, 2x USB2.0 Type-A, 2x USB3.2 Gen1, 1x USB2.0 Type-A, 3x 2.5GbE, 4x RS-232 | Expansion: 1x M.2 2230 E (USB3.0), 1x M.2 2280 M (PCIe x4/SATA), 2x PCIe x4 Gen4, 1x PCIe x16 Gen5, 1x PCIe x2 Gen3 | OS: Windows, Linux | Op temp: 0簞C ~ 60簞C | Features: Support Intel簧 12/13/14th Gen. Core??i Processors; Support PCIe x16 (Gen.5) for GPU cards, 2 x PCIe x4 (Gen.4), PCIe x3 (Gen.3) for extension; Support 1 x USB 3.2 Gen.2 x2 (Type C), up to 20G; 8 SATA (RAID 0, 1, 5, 10, 15) supported by R680E/Q670E",
+      "text_summary": "AXMB-3120 INDUSTRIAL MOTHERBOARD | Platform: Intel Intel Core i9-13900E | I/O: 1x USB3.2 Gen2 Type-C, 6x USB3.2 Gen2 Type-A, 2x USB2.0, 2x USB2.0 Type-A, 2x USB3.2 Gen1, 1x USB2.0 Type-A, 3x 2.5GbE, 4x RS-232 | Expansion: 1x M.2 2230 E (PCIe/USB 2.0), 1x M.2 2280 M (PCIe), 2x PCIe x4 Gen4, 1x PCIe x16 Gen5, 1x PCIe x2 Gen3 | OS: Windows, Linux | Op temp: 0°C ~ 60°C | Features: Support Intel® 12/13/14th Gen. Core™ i Processors; Support PCIe x16 (Gen.5) for GPU cards, 2 x PCIe x4 (Gen.4), PCIe x3 (Gen.3) for extension; Support 1 x USB 3.2 Gen.2 x2 (Type C), up to 20G; 8 SATA (RAID 0, 1, 5, 10, 15) supported by R680E/Q670E",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -5937,7 +6001,7 @@
       "source_file": "Datasheet_AXMB-3150_20260204.pdf",
       "file_hash_md5": "bf98da1da5acb67db5cc14514ea20665",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "AXMB-3150"
     },
     "common": {
@@ -5965,14 +6029,14 @@
       "cpu_cores": 24,
       "cpu_p_cores": 8,
       "cpu_e_cores": 16,
-      "tdp_watt": 65.0,
-      "ai_tops": 36.0,
-      "ram_gb": 192.0,
+      "tdp_watt": 65,
+      "ai_tops": 36,
+      "ram_gb": 192,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 6400,
         "slots": null,
-        "max_capacity_gb": 192.0,
+        "max_capacity_gb": 192,
         "form_factor": null,
         "ecc_support": false
       },
@@ -5989,8 +6053,8 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": null,
-        "depth_mm": null,
+        "width_mm": 243.84,
+        "depth_mm": 243.84,
         "height_mm": null
       },
       "power_input": "Standard ATX power",
@@ -6012,7 +6076,10 @@
         {
           "size": "2230",
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         }
       ],
@@ -6069,11 +6136,10 @@
         "SATA",
         "USB3",
         "eDP"
-      ],
-      "ai_tops_basis": "INT8"
+      ]
     },
     "search": {
-      "text_summary": "AXMB-3150 AXMB-3150 | Platform: Intel Intel Core Ultra 9 285 | I/O: 8x USB3.2 Gen2, 1x USB3.2 Gen2, 1x 2.5GbE, 4x RS-232 | Expansion: 1x M.2 2230 E (), 2x PCIe x16 Gen5, 1x PCIe x16 Gen5 | OS: Windows, Linux | Op temp: 0簞C ~ 60簞C | Features: ATX form factor (243.84x 243.84mm)",
+      "text_summary": "AXMB-3150 AXMB-3150 | Platform: Intel Intel Core Ultra 9 285 | I/O: 8x USB3.2 Gen2, 1x USB3.2 Gen2, 1x 2.5GbE, 4x RS-232 | Expansion: 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 2x PCIe x16 Gen5, 1x PCIe x16 Gen5 | OS: Windows, Linux | Op temp: 0°C ~ 60°C | Features: ATX form factor (243.84x 243.84mm)",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -6098,7 +6164,7 @@
       "source_file": "AXMB-5120_20250820.pdf",
       "file_hash_md5": "75f8aacda056caec9c39a6f5f2904cb2",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "AXMB-5120"
     },
     "common": {
@@ -6126,14 +6192,14 @@
       "cpu_cores": 24,
       "cpu_p_cores": 8,
       "cpu_e_cores": 16,
-      "tdp_watt": 65.0,
+      "tdp_watt": 65,
       "ai_tops": null,
-      "ram_gb": 128.0,
+      "ram_gb": 128,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 4800,
         "slots": null,
-        "max_capacity_gb": 128.0,
+        "max_capacity_gb": 128,
         "form_factor": null,
         "ecc_support": true
       },
@@ -6149,8 +6215,8 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": null,
-        "depth_mm": null,
+        "width_mm": 244,
+        "depth_mm": 305,
         "height_mm": null
       },
       "power_input": "Standard ATX power",
@@ -6215,7 +6281,7 @@
       ]
     },
     "search": {
-      "text_summary": "AXMB-5120 INDUSTRIAL MOTHERBOARD | Platform: Intel Intel Core i9-13900E | I/O: 6x USB3.2 Gen2 Type-A, 1x USB3.2 Gen2 Type-C, 2x USB2.0, 3x 2.5GbE, 4x RS-232 | OS: Windows, Linux | Op temp: 0簞C ~ 60簞C | Features: Intel簧 12th/13th/14th Gen. Core??i Processors with Q670E/R680E chipset; Dual PCIe x16 expansion slots for dual GPU cards; 8 SATA (RAID 0, 1, 5, 10) supported by R680E/Q670E",
+      "text_summary": "AXMB-5120 INDUSTRIAL MOTHERBOARD | Platform: Intel Intel Core i9-13900E | I/O: 6x USB3.2 Gen2 Type-A, 1x USB3.2 Gen2 Type-C, 2x USB2.0, 3x 2.5GbE, 4x RS-232 | OS: Windows, Linux | Op temp: 0°C ~ 60°C | Features: Intel® 12th/13th/14th Gen. Core™ i Processors with Q670E/R680E chipset; Dual PCIe x16 expansion slots for dual GPU cards; 8 SATA (RAID 0, 1, 5, 10) supported by R680E/Q670E",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -6234,7 +6300,7 @@
       "source_file": "Datasheet_AXMB-D150_20251008.pdf",
       "file_hash_md5": "2519c8f2a257d07102dad9ee262a2ac5",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "AXMB-D150"
     },
     "common": {
@@ -6259,14 +6325,14 @@
       "cpu_cores": 20,
       "cpu_p_cores": 8,
       "cpu_e_cores": 12,
-      "tdp_watt": 28.0,
-      "ai_tops": 97.0,
-      "ram_gb": 64.0,
+      "tdp_watt": 28,
+      "ai_tops": 97,
+      "ram_gb": 64,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 6400,
         "slots": null,
-        "max_capacity_gb": 64.0,
+        "max_capacity_gb": 64,
         "form_factor": null,
         "ecc_support": false
       },
@@ -6282,8 +6348,8 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": null,
-        "depth_mm": null,
+        "width_mm": 170,
+        "depth_mm": 170,
         "height_mm": null
       },
       "power_input": "DC 12V",
@@ -6309,7 +6375,10 @@
         {
           "size": "2230",
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         }
       ],
@@ -6328,7 +6397,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 1,
             "poe_support": false
           }
@@ -6357,11 +6426,10 @@
         "SATA",
         "USB2",
         "USB3"
-      ],
-      "ai_tops_basis": "INT8"
+      ]
     },
     "search": {
-      "text_summary": "AXMB-D150 AXMB-D150 | Platform: Intel Intel Core Ultra 7 265H | I/O: 2x USB2.0, 4x USB3.2 Gen2, 1x 1.0GbE | Expansion: 1x M.2 3052 B (SATA), 1x M.2 2280 M (PCIe x4/SATA), 1x M.2 2230 E () | OS: Windows | Op temp: 0簞C ~ 60簞C | Features: certified components:; Innodisk 16GB (2 x 8GB) DDR5 6400 MT/s CSODIMM memory; Innodisk 4TG2-P series 512GB PCIe Gen 4 x4 M.2 SSD; Innodisk MIPI over Type-C camera, supports 8MP resolution at 30fps; ITX form factor (170 x 170mm)",
+      "text_summary": "AXMB-D150 AXMB-D150 | Platform: Intel Intel Core Ultra 7 265H | I/O: 2x USB2.0, 4x USB3.2 Gen2, 1x 1.0GbE | Expansion: 1x M.2 3052 B (SATA), 1x M.2 2280 M (PCIe x4/SATA), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0) | OS: Windows | Op temp: 0°C ~ 60°C | Features: certified components:; Innodisk 16GB (2 x 8GB) DDR5 6400 MT/s CSODIMM memory; Innodisk 4TG2-P series 512GB PCIe Gen 4 x4 M.2 SSD; Innodisk MIPI over Type-C camera, supports 8MP resolution at 30fps; ITX form factor (170 x 170mm)",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -6379,13 +6447,13 @@
   {
     "meta": {
       "part_no": "AXMB-D160",
-      "product_name": "AXMB-D160",
+      "product_name": "Intel Core Ultra Series 3 Reference Kit AXMB-D160",
       "product_line": "computing_aiot",
       "bu_owner": "AIoT",
       "source_file": "Datasheet_AXMB-D160_20260224.pdf",
       "file_hash_md5": "e8b7c4efbb5dfc9087acdf3b36ad0ee5",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "AXMB-D160"
     },
     "common": {
@@ -6407,81 +6475,91 @@
       "bu_owner": "AIoT",
       "platform_brand": "Intel",
       "processor_model": "Intel Core Ultra X7 358H",
-      "processor_series": "Arrow Lake",
+      "processor_series": "Panther Lake-H",
       "cpu_cores": 16,
       "cpu_p_cores": 6,
       "cpu_e_cores": 10,
-      "tdp_watt": 25.0,
-      "ai_tops": 180.0,
-      "ram_gb": 64.0,
+      "tdp_watt": 25,
+      "ai_tops": 180,
+      "ram_gb": 64,
       "memory_spec": {
-        "type": "DDR5",
-        "speed_mhz": 8533,
-        "slots": null,
-        "max_capacity_gb": 64.0,
-        "form_factor": null,
+        "type": "LPDDR5",
+        "speed_mhz": 7467,
+        "slots": 0,
+        "max_capacity_gb": 64,
+        "form_factor": "on-board",
         "ecc_support": false
       },
       "storage_gb": null,
       "storage_interfaces": [
-        "M.2"
+        "M.2",
+        "NVMe"
       ],
       "form_factor": "Mini-ITX",
       "os_support": [
         "Windows"
       ],
-      "sdk": [],
-      "openvino_support": null,
+      "sdk": [
+        "OpenVINO"
+      ],
+      "openvino_support": true,
       "dimensions": {
-        "width_mm": null,
-        "depth_mm": null,
+        "width_mm": 170,
+        "depth_mm": 170,
         "height_mm": null
       },
-      "power_input": "Standard ATX power",
+      "power_input": "Standard ATX power; 24-pin ATX power connector + 8 pin power connector",
       "pcie_slots": [],
       "m2_slots": [
         {
           "size": "2280",
           "key": "M",
           "interface": [
-            "PCIe x4",
-            "SATA"
+            "PCIe x4 Gen4"
           ],
           "count": 1
         },
         {
           "size": "2230",
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x4 Gen4"
+          ],
           "count": 1
         }
       ],
       "io_ports": {
         "usb": [
           {
+            "standard": "USB3.2 Gen2",
+            "count": 4,
+            "connector": "Type-A"
+          },
+          {
             "standard": "USB3.2 Gen1",
             "count": 4,
-            "connector": null
-          },
-          {
-            "standard": "USB3.2 Gen2",
-            "count": 4,
-            "connector": null
-          },
-          {
-            "standard": "USB3.2 Gen2",
-            "count": 1,
-            "connector": null
+            "connector": "Type-A"
           }
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 10,
+            "count": 1,
+            "poe_support": false
+          },
+          {
+            "speed_gbps": 2.5,
             "count": 1,
             "poe_support": false
           }
         ],
-        "serial": [],
+        "serial": [
+          {
+            "standard": "RS-232/422/485",
+            "count": 4,
+            "note": "software selectable"
+          }
+        ],
         "gpio_pins": null,
         "can_bus_count": null,
         "sim_slot_count": null,
@@ -6493,34 +6571,36 @@
       },
       "display_outputs": [
         "HDMI",
-        "DP",
         "eDP"
       ],
       "connectivity": [
-        "DP",
+        "10GbE",
+        "2.5GbE",
         "GbE",
         "HDMI",
         "M.2",
         "MIPI",
         "PCIe",
-        "SATA",
+        "RS-232",
+        "RS-422",
+        "RS-485",
         "USB3",
         "eDP"
-      ],
-      "ai_tops_basis": "INT8"
+      ]
     },
     "search": {
-      "text_summary": "AXMB-D160 AXMB-D160 | Platform: Intel Intel Core Ultra X7 358H | I/O: 4x USB3.2 Gen1, 4x USB3.2 Gen2, 1x USB3.2 Gen2, 1x 1.0GbE | Expansion: 1x M.2 2280 M (PCIe x4/SATA), 1x M.2 2230 E () | OS: Windows | Op temp: 0簞C ~ 60簞C | Features: certified components:; Innodisk 4TG2-P series 512GB PCIe Gen 4 x4 M.2 SSD; ITX form factor (170 x 170mm)",
+      "text_summary": "AXMB-D160 Intel Core Ultra Series 3 Reference Kit AXMB-D160 | Platform: Intel Intel Core Ultra X7 358H | I/O: 4x USB3.2 Gen2 Type-A, 4x USB3.2 Gen1 Type-A, 1x 10.0GbE, 1x 2.5GbE, 4x RS-232/422/485 | Expansion: 1x M.2 2280 M (PCIe x4 Gen4), 1x M.2 2230 E (PCIe x4 Gen4) | OS: Windows | Op temp: 0°C ~ 60°C | Features: Intel Core Ultra X7 Processor 358H delivering 180 TOPS for edge AI computing; 16-core hybrid CPU (4P+8E+4LPE) at up to 4.8GHz; Intel Arc B390 GPU with hardware decode/encode for HEVC, AVC, VP9, AV1; Supports 4x 4K@60Hz or 2x 8K@60Hz via 4x HDMI 2.1 and 1x eDP; 512GB PCIe Gen 4 x4 M.2 SSD pre-installed (Innodisk 4TG2-P series); Mini-ITX form factor (170 x 170mm)",
       "searchable_tags": [
         "industrial",
         "AIoT",
         "intel",
+        "OpenVINO",
         "AI-inference",
         "M.2"
       ],
       "target_applications": [
-        "AI-inference",
-        "edge-AI"
+        "manufacturing",
+        "automation"
       ]
     },
     "poc_sw_suggestions": []
@@ -6534,7 +6614,7 @@
       "source_file": "ASBC-2020.pdf",
       "file_hash_md5": "5a8f811cd7e9e69e31762d09ac02c582",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ASBC-2020"
     },
     "common": {
@@ -6557,19 +6637,19 @@
     "computing_spec": {
       "bu_owner": "AIoT",
       "platform_brand": "Intel",
-      "processor_model": "Intel簧 Celeron簧 J6412",
+      "processor_model": "Intel® Celeron® J6412",
       "processor_series": "Elkhart Lake",
       "cpu_cores": 4,
       "cpu_p_cores": null,
       "cpu_e_cores": null,
-      "tdp_watt": 12.0,
+      "tdp_watt": 12,
       "ai_tops": null,
-      "ram_gb": 8.0,
+      "ram_gb": 8,
       "memory_spec": {
         "type": "DDR4",
         "speed_mhz": 3200,
         "slots": null,
-        "max_capacity_gb": 8.0,
+        "max_capacity_gb": 8,
         "form_factor": null,
         "ecc_support": false
       },
@@ -6586,8 +6666,8 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": 72.0,
-        "depth_mm": 100.0,
+        "width_mm": 72,
+        "depth_mm": 100,
         "height_mm": 16.34
       },
       "power_input": "Single 12V",
@@ -6599,7 +6679,7 @@
           "interface": [
             "PCIe x1 Gen3",
             "SATA",
-            "USB3.0"
+            "USB 3.2"
           ],
           "count": 1
         },
@@ -6608,7 +6688,7 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         }
@@ -6675,7 +6755,7 @@
       ]
     },
     "search": {
-      "text_summary": "ASBC-2020 SBC | Platform: Intel Intel簧 Celeron簧 J6412 | I/O: 1x USB3.2 Gen2 Type-A, 1x USB2.0, 2x USB2.0, 2x 2.5GbE, 2x RS-232/422/485 | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB3.0) | OS: Windows | Op temp: 0簞C ~ 60簞C | Features: Optional onboard storage: eMMC 64G~256G / onboard PCIe SSD from 128G~512G; Expansion I/O for expansion board; Onboard LPDDR4X 3200MHz up to 8GB for more robust memory solution than DIMM slot",
+      "text_summary": "ASBC-2020 SBC | Platform: Intel Intel® Celeron® J6412 | I/O: 1x USB3.2 Gen2 Type-A, 1x USB2.0, 2x USB2.0, 2x 2.5GbE, 2x RS-232/422/485 | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB 3.2), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0) | OS: Windows | Op temp: 0°C ~ 60°C | Features: Optional onboard storage: eMMC 64G~256G / onboard PCIe SSD from 128G~512G; Expansion I/O for expansion board; Onboard LPDDR4X 3200MHz up to 8GB for more robust memory solution than DIMM slot",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -6695,7 +6775,7 @@
       "source_file": "ASBC-2021 Datasheet_250704.pdf",
       "file_hash_md5": "3104b1b3024e6ad9053ad72def85d005",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ASBC-2021"
     },
     "common": {
@@ -6717,19 +6797,19 @@
     "computing_spec": {
       "bu_owner": "AIoT",
       "platform_brand": "Intel",
-      "processor_model": "Intel Atom簧 X6425E",
+      "processor_model": "Intel Atom® X6425E",
       "processor_series": "Elkhart Lake",
       "cpu_cores": 4,
       "cpu_p_cores": null,
       "cpu_e_cores": null,
-      "tdp_watt": 12.0,
+      "tdp_watt": 12,
       "ai_tops": null,
-      "ram_gb": 8.0,
+      "ram_gb": 8,
       "memory_spec": {
         "type": "DDR4",
         "speed_mhz": 3733,
         "slots": null,
-        "max_capacity_gb": 8.0,
+        "max_capacity_gb": 8,
         "form_factor": null,
         "ecc_support": true
       },
@@ -6745,8 +6825,8 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": 72.0,
-        "depth_mm": 100.0,
+        "width_mm": 72,
+        "depth_mm": 100,
         "height_mm": 16.34
       },
       "power_input": "DC 12V",
@@ -6758,7 +6838,7 @@
           "interface": [
             "PCIe x1 Gen3",
             "SATA",
-            "USB3.0"
+            "USB 3.0"
           ],
           "count": 1
         },
@@ -6767,7 +6847,7 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         }
@@ -6782,7 +6862,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 1,
             "poe_support": false
           }
@@ -6822,7 +6902,7 @@
       ]
     },
     "search": {
-      "text_summary": "ASBC-2021 SBC | Platform: Intel Intel Atom簧 X6425E | I/O: 2x USB2.0, 1x 1.0GbE, 2x RS-232/422/485 | Expansion: 1x M.2 2242 B (PCIe x1 Gen3/SATA/USB3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB3.0) | OS: Windows | Op temp: 0簞C ~ 60簞C | Features: sensitive environments",
+      "text_summary": "ASBC-2021 SBC | Platform: Intel Intel Atom® X6425E | I/O: 2x USB2.0, 1x 1.0GbE, 2x RS-232/422/485 | Expansion: 1x M.2 2242 B (PCIe x1 Gen3/SATA/USB 3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0) | OS: Windows | Op temp: 0°C ~ 60°C | Features: sensitive environments",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -6842,7 +6922,7 @@
       "source_file": "ASBC-3020.pdf",
       "file_hash_md5": "2ab66b8127a795a5bea8a0102aa06a85",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ASBC-3020"
     },
     "common": {
@@ -6865,19 +6945,19 @@
     "computing_spec": {
       "bu_owner": "AIoT",
       "platform_brand": "Intel",
-      "processor_model": "Intel Atom簧 X6425E",
+      "processor_model": "Intel Atom® X6425E",
       "processor_series": "Elkhart Lake",
       "cpu_cores": 4,
       "cpu_p_cores": null,
       "cpu_e_cores": null,
-      "tdp_watt": 12.0,
+      "tdp_watt": 12,
       "ai_tops": null,
-      "ram_gb": 32.0,
+      "ram_gb": 32,
       "memory_spec": {
         "type": "DDR4",
         "speed_mhz": 3200,
         "slots": null,
-        "max_capacity_gb": 32.0,
+        "max_capacity_gb": 32,
         "form_factor": null,
         "ecc_support": true
       },
@@ -6894,8 +6974,8 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": 102.0,
-        "depth_mm": 146.0,
+        "width_mm": 102,
+        "depth_mm": 146,
         "height_mm": 16.34
       },
       "power_input": "Single 12V +/-10% DC",
@@ -6907,7 +6987,7 @@
           "interface": [
             "PCIe x1 Gen3",
             "SATA",
-            "USB3.0"
+            "USB 3.0"
           ],
           "count": 1
         },
@@ -6916,14 +6996,17 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         },
         {
           "size": null,
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         },
         {
@@ -6989,7 +7072,7 @@
       ]
     },
     "search": {
-      "text_summary": "ASBC-3020 SBC | Platform: Intel Intel Atom簧 X6425E | I/O: 2x USB3.2 Gen2 Type-A, 2x USB2.0, 2x 2.5GbE, 2x RS-232 | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB3.0), 1x M.2 None E (), 1x M.2 None B (SATA) | OS: Windows, Linux | Op temp: 0簞C ~ 60簞C | Features: SATA port supports pin8 power supply for SATADOM; Optional support eDP/LVDS for panel; EIO for expansion board reserved",
+      "text_summary": "ASBC-3020 SBC | Platform: Intel Intel Atom® X6425E | I/O: 2x USB3.2 Gen2 Type-A, 2x USB2.0, 2x 2.5GbE, 2x RS-232 | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB 3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 None E (PCIe x1 Gen3/USB 2.0), 1x M.2 None B (SATA) | OS: Windows, Linux | Op temp: 0°C ~ 60°C | Features: SATA port supports pin8 power supply for SATADOM; Optional support eDP/LVDS for panel; EIO for expansion board reserved",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -7009,7 +7092,7 @@
       "source_file": "ASBC-3021(NEW Ver3).pdf",
       "file_hash_md5": "b516930fec45e4cb2b06cb7b4ed7ccd4",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ASBC-3021"
     },
     "common": {
@@ -7032,19 +7115,19 @@
     "computing_spec": {
       "bu_owner": "AIoT",
       "platform_brand": "Intel",
-      "processor_model": "Intel Atom簧 X6425E",
+      "processor_model": "Intel Atom® X6425E",
       "processor_series": "Elkhart Lake",
       "cpu_cores": 4,
       "cpu_p_cores": null,
       "cpu_e_cores": null,
-      "tdp_watt": 12.0,
+      "tdp_watt": 12,
       "ai_tops": null,
-      "ram_gb": 32.0,
+      "ram_gb": 32,
       "memory_spec": {
         "type": "DDR4",
         "speed_mhz": 3200,
         "slots": null,
-        "max_capacity_gb": 32.0,
+        "max_capacity_gb": 32,
         "form_factor": null,
         "ecc_support": true
       },
@@ -7061,8 +7144,8 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": 102.0,
-        "depth_mm": 146.0,
+        "width_mm": 102,
+        "depth_mm": 146,
         "height_mm": 18.9
       },
       "power_input": "DC 9~48V",
@@ -7082,14 +7165,17 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         },
         {
           "size": null,
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         },
         {
@@ -7117,7 +7203,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 2,
             "poe_support": false
           }
@@ -7160,7 +7246,7 @@
       ]
     },
     "search": {
-      "text_summary": "ASBC-3021 SBC | Platform: Intel Intel Atom簧 X6425E | I/O: 2x USB3.2 Gen2 Type-A, 4x USB2.0, 2x 1.0GbE, 3x RS-232/422/485, 1-pin GPIO | Expansion: 1x M.2 2280 M (PCIe x2 Gen3/SATA), 1x M.2 2230 E (PCIe x1 Gen3/USB3.0), 1x M.2 None E (), 1x M.2 None M (PCIe x4/SATA) | OS: Windows, Linux | Op temp: 0簞C ~ 60簞C | Features: Triple Lan with dual PoE IEEE 802.3at support. (by module); Wide Power Voltage support: 9~48V; Multiple expansions: M.2 M Key for storage or AI Accelerator, M.2 E Key for Wi-Fi",
+      "text_summary": "ASBC-3021 SBC | Platform: Intel Intel Atom® X6425E | I/O: 2x USB3.2 Gen2 Type-A, 4x USB2.0, 2x 1.0GbE, 3x RS-232/422/485, 1-pin GPIO | Expansion: 1x M.2 2280 M (PCIe x2 Gen3/SATA), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 None E (PCIe x1 Gen3/USB 2.0), 1x M.2 None M (PCIe x4/SATA) | OS: Windows, Linux | Op temp: 0°C ~ 60°C | Features: Triple Lan with dual PoE IEEE 802.3at support. (by module); Wide Power Voltage support: 9~48V; Multiple expansions: M.2 M Key for storage or AI Accelerator, M.2 E Key for Wi-Fi",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -7180,7 +7266,7 @@
       "source_file": "ASBC-3030_250910.pdf",
       "file_hash_md5": "f0377fd25683dd4197b91b59a84e84dc",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ASBC-3030"
     },
     "common": {
@@ -7208,15 +7294,15 @@
       "cpu_cores": 4,
       "cpu_p_cores": null,
       "cpu_e_cores": null,
-      "tdp_watt": 6.0,
+      "tdp_watt": 6,
       "ai_tops": null,
-      "ram_gb": 16.0,
+      "ram_gb": 16,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 4800,
-        "slots": 5,
-        "max_capacity_gb": 16.0,
-        "form_factor": "SO-DIMM",
+        "slots": null,
+        "max_capacity_gb": 16,
+        "form_factor": null,
         "ecc_support": false
       },
       "storage_gb": null,
@@ -7232,8 +7318,8 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": 102.0,
-        "depth_mm": 146.0,
+        "width_mm": 102,
+        "depth_mm": 146,
         "height_mm": 16.34
       },
       "power_input": "DC 9~36V",
@@ -7243,7 +7329,8 @@
           "size": "3042",
           "key": "B",
           "interface": [
-            "USB3.0"
+            "PCIe x1 Gen3",
+            "USB 3.0"
           ],
           "count": 1
         },
@@ -7251,7 +7338,8 @@
           "size": "2230",
           "key": "E",
           "interface": [
-            "USB3.0"
+            "PCIe x1 Gen3",
+            "USB 2.0"
           ],
           "count": 1
         },
@@ -7259,6 +7347,7 @@
           "size": "2280",
           "key": "M",
           "interface": [
+            "PCIe x1 Gen3",
             "SATA"
           ],
           "count": 1
@@ -7284,7 +7373,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 2,
             "poe_support": false
           }
@@ -7316,6 +7405,7 @@
         "GbE",
         "HDMI",
         "M.2",
+        "PCIe",
         "RS-232",
         "RS-422",
         "RS-485",
@@ -7327,7 +7417,7 @@
       ]
     },
     "search": {
-      "text_summary": "ASBC-3030 SBC | Platform: Intel Intel Processor N200 | I/O: 2x USB3.2 Gen2 Type-A, 2x USB2.0 Type-A, 2x USB2.0, 2x 1.0GbE, 3x RS-232/422/485, 8-pin GPIO | Expansion: 1x M.2 3042 B (USB3.0), 1x M.2 2230 E (USB3.0), 1x M.2 2280 M (SATA) | OS: Windows, Linux | Op temp: 0簞C ~ 60簞C | Features: Intel簧 Alder Lake N processors offer a balance of performance and power consumption; Low TDP maintains low operational temperatures, enabling quieter operation; Supports three M.2 expansion slots",
+      "text_summary": "ASBC-3030 SBC | Platform: Intel Intel Processor N200 | I/O: 2x USB3.2 Gen2 Type-A, 2x USB2.0 Type-A, 2x USB2.0, 2x 1.0GbE, 3x RS-232/422/485, 8-pin GPIO | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/USB 3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 2280 M (PCIe x1 Gen3/SATA) | OS: Windows, Linux | Op temp: 0°C ~ 60°C | Features: Intel® Alder Lake N processors offer a balance of performance and power consumption; Low TDP maintains low operational temperatures, enabling quieter operation; Supports three M.2 expansion slots",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -7347,7 +7437,7 @@
       "source_file": "ASBC-3040_250901.pdf",
       "file_hash_md5": "9551cf3524fc3c313a84b01e3572b19e",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ASBC-3040"
     },
     "common": {
@@ -7374,15 +7464,15 @@
       "cpu_cores": 2,
       "cpu_p_cores": null,
       "cpu_e_cores": null,
-      "tdp_watt": 9.0,
+      "tdp_watt": 9,
       "ai_tops": null,
-      "ram_gb": 32.0,
+      "ram_gb": 32,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 4800,
-        "slots": 5,
-        "max_capacity_gb": 32.0,
-        "form_factor": "SO-DIMM",
+        "slots": null,
+        "max_capacity_gb": 32,
+        "form_factor": null,
         "ecc_support": true
       },
       "storage_gb": null,
@@ -7398,8 +7488,8 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": 102.0,
-        "depth_mm": 146.0,
+        "width_mm": 102,
+        "depth_mm": 146,
         "height_mm": 16.34
       },
       "power_input": "DC 9~36V",
@@ -7410,7 +7500,7 @@
           "key": "B",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 3.0"
           ],
           "count": 1
         },
@@ -7419,7 +7509,7 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         },
@@ -7453,7 +7543,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 2,
             "poe_support": false
           }
@@ -7497,7 +7587,7 @@
       ]
     },
     "search": {
-      "text_summary": "ASBC-3040 SBC | Platform: Intel Intel Atom x7213RE | I/O: 2x USB3.2 Gen2 Type-A, 2x USB2.0 Type-A, 2x USB2.0, 2x 1.0GbE, 3x RS-232/422/485, 8-pin GPIO | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/USB3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB3.0), 1x M.2 2280 M (PCIe x1 Gen3/SATA) | OS: Windows, Linux | Op temp: -40簞C ~ 85簞C | Features: Intel簧 Industrial RE processors offer a balance of performance, power consumption, and wide operating temp.; Low TDP maintains low operational temperatures, enabling quieter operation; Support M.2 B key 3042, E key 2230, and M key 2242/2280 for an extra expansion slot",
+      "text_summary": "ASBC-3040 SBC | Platform: Intel Intel Atom x7213RE | I/O: 2x USB3.2 Gen2 Type-A, 2x USB2.0 Type-A, 2x USB2.0, 2x 1.0GbE, 3x RS-232/422/485, 8-pin GPIO | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/USB 3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 2280 M (PCIe x1 Gen3/SATA) | OS: Windows, Linux | Op temp: -40°C ~ 85°C | Features: Intel® Industrial RE processors offer a balance of performance, power consumption, and wide operating temp.; Low TDP maintains low operational temperatures, enabling quieter operation; Support M.2 B key 3042, E key 2230, and M key 2242/2280 for an extra expansion slot",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -7518,7 +7608,7 @@
       "source_file": "ASBC-3120.pdf",
       "file_hash_md5": "a61c8b2698761b24bd3d2d57fb309d58",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ASBC-3120"
     },
     "common": {
@@ -7541,19 +7631,19 @@
     "computing_spec": {
       "bu_owner": "AIoT",
       "platform_brand": "Intel",
-      "processor_model": "Intel簧 Celeron簧 7305E",
+      "processor_model": "Intel® Celeron® 7305E",
       "processor_series": "Alder Lake",
-      "cpu_cores": 10,
-      "cpu_p_cores": 2,
-      "cpu_e_cores": 8,
-      "tdp_watt": 15.0,
+      "cpu_cores": 5,
+      "cpu_p_cores": 1,
+      "cpu_e_cores": 4,
+      "tdp_watt": 15,
       "ai_tops": null,
-      "ram_gb": 64.0,
+      "ram_gb": 64,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 4800,
         "slots": null,
-        "max_capacity_gb": 64.0,
+        "max_capacity_gb": 64,
         "form_factor": null,
         "ecc_support": false
       },
@@ -7570,8 +7660,8 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": 102.0,
-        "depth_mm": 146.0,
+        "width_mm": 102,
+        "depth_mm": 146,
         "height_mm": 16.34
       },
       "power_input": "Wide Voltage 9~36V",
@@ -7583,7 +7673,7 @@
           "interface": [
             "PCIe x1 Gen3",
             "SATA",
-            "USB3.0"
+            "USB 3.0"
           ],
           "count": 1
         },
@@ -7592,7 +7682,7 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         },
@@ -7623,7 +7713,10 @@
         {
           "size": null,
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         }
       ],
@@ -7691,7 +7784,7 @@
       ]
     },
     "search": {
-      "text_summary": "ASBC-3120 SBC | Platform: Intel Intel簧 Celeron簧 7305E | I/O: 1x USB3.2 Gen2 Type-C, 2x USB3.2 Gen2 Type-A, 2x USB2.0 Type-A, 3x USB3.2 Gen2 Type-A, 4x USB2.0 Type-A, 2x 2.5GbE | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB3.0), 1x M.2 2242 M (PCIe x2 Gen3), 1x M.2 2280 M (PCIe x4 Gen4), 3x M.2 None B+M (SATA), 1x M.2 None E () | OS: Windows, Linux | Op temp: 0簞C ~ 60簞C | Features: USB Type C for display supports 4K @ 60Hz (DP1.4a); Up to 4 M.2 Expansion slots; EIO for expansion board reserved",
+      "text_summary": "ASBC-3120 SBC | Platform: Intel Intel® Celeron® 7305E | I/O: 1x USB3.2 Gen2 Type-C, 2x USB3.2 Gen2 Type-A, 2x USB2.0 Type-A, 3x USB3.2 Gen2 Type-A, 4x USB2.0 Type-A, 2x 2.5GbE | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB 3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 2242 M (PCIe x2 Gen3), 1x M.2 2280 M (PCIe x4 Gen4), 3x M.2 None B+M (SATA), 1x M.2 None E (PCIe x1 Gen3/USB 2.0) | OS: Windows, Linux | Op temp: 0°C ~ 60°C | Features: USB Type C for display supports 4K @ 60Hz (DP1.4a); Up to 4 M.2 Expansion slots; EIO for expansion board reserved",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -7711,7 +7804,7 @@
       "source_file": "ASBC-3130.pdf",
       "file_hash_md5": "0c570f606239de7b9093de964610525f",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ASBC-3130"
     },
     "common": {
@@ -7734,19 +7827,19 @@
     "computing_spec": {
       "bu_owner": "AIoT",
       "platform_brand": "Intel",
-      "processor_model": "Intel簧 Celeron簧 U300E",
+      "processor_model": "Intel® Celeron® U300E",
       "processor_series": "Alder Lake-N",
       "cpu_cores": 4,
       "cpu_p_cores": null,
       "cpu_e_cores": null,
-      "tdp_watt": 15.0,
+      "tdp_watt": 15,
       "ai_tops": null,
-      "ram_gb": 96.0,
+      "ram_gb": 96,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 5200,
         "slots": null,
-        "max_capacity_gb": 96.0,
+        "max_capacity_gb": 96,
         "form_factor": null,
         "ecc_support": false
       },
@@ -7763,8 +7856,8 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": 102.0,
-        "depth_mm": 146.0,
+        "width_mm": 102,
+        "depth_mm": 146,
         "height_mm": 16.34
       },
       "power_input": "Wide Voltage 9~36V",
@@ -7776,7 +7869,7 @@
           "interface": [
             "PCIe x1 Gen3",
             "SATA",
-            "USB3.0"
+            "USB 3.0"
           ],
           "count": 1
         },
@@ -7785,7 +7878,7 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         },
@@ -7816,7 +7909,10 @@
         {
           "size": null,
           "key": "E",
-          "interface": [],
+          "interface": [
+            "PCIe x1 Gen3",
+            "USB 2.0"
+          ],
           "count": 1
         }
       ],
@@ -7884,7 +7980,7 @@
       ]
     },
     "search": {
-      "text_summary": "ASBC-3130 SBC | Platform: Intel Intel簧 Celeron簧 U300E | I/O: 1x USB3.2 Gen2 Type-C, 2x USB3.2 Gen2 Type-A, 2x USB2.0 Type-A, 3x USB3.2 Gen2 Type-A, 4x USB2.0 Type-A, 2x 2.5GbE | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB3.0), 1x M.2 2242 M (PCIe x2 Gen3), 1x M.2 2280 M (PCIe x4 Gen4), 3x M.2 None B+M (SATA), 1x M.2 None E () | OS: Windows, Linux | Op temp: 0簞C ~ 60簞C | Features: USB Type C for display supports 4K @ 60Hz (DP1.4a); Up to 4 M.2 Expansion slots; EIO for expansion board reserved",
+      "text_summary": "ASBC-3130 SBC | Platform: Intel Intel® Celeron® U300E | I/O: 1x USB3.2 Gen2 Type-C, 2x USB3.2 Gen2 Type-A, 2x USB2.0 Type-A, 3x USB3.2 Gen2 Type-A, 4x USB2.0 Type-A, 2x 2.5GbE | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB 3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 2242 M (PCIe x2 Gen3), 1x M.2 2280 M (PCIe x4 Gen4), 3x M.2 None B+M (SATA), 1x M.2 None E (PCIe x1 Gen3/USB 2.0) | OS: Windows, Linux | Op temp: 0°C ~ 60°C | Features: USB Type C for display supports 4K @ 60Hz (DP1.4a); Up to 4 M.2 Expansion slots; EIO for expansion board reserved",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -7904,7 +8000,7 @@
       "source_file": "ASBC-3140.pdf",
       "file_hash_md5": "8168c4cdf3f233df5be844343b3634ee",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ASBC-3140"
     },
     "common": {
@@ -7932,14 +8028,14 @@
       "cpu_cores": 12,
       "cpu_p_cores": 2,
       "cpu_e_cores": 10,
-      "tdp_watt": 15.0,
+      "tdp_watt": 15,
       "ai_tops": 11.5,
-      "ram_gb": 96.0,
+      "ram_gb": 96,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 5600,
         "slots": null,
-        "max_capacity_gb": 96.0,
+        "max_capacity_gb": 96,
         "form_factor": null,
         "ecc_support": false
       },
@@ -7955,8 +8051,8 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": 102.0,
-        "depth_mm": 146.0,
+        "width_mm": 102,
+        "depth_mm": 146,
         "height_mm": 16.34
       },
       "power_input": "DC 9~36V",
@@ -7968,7 +8064,7 @@
           "interface": [
             "PCIe x1 Gen2",
             "SATA",
-            "USB3.0"
+            "USB 3.0"
           ],
           "count": 1
         },
@@ -7977,7 +8073,7 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         },
@@ -8056,11 +8152,10 @@
         "USB2",
         "USB3",
         "eDP"
-      ],
-      "ai_tops_basis": "INT8"
+      ]
     },
     "search": {
-      "text_summary": "ASBC-3140 SBC | Platform: Intel Intel Core Ultra 5 155U | I/O: 4x USB3.2 Gen2 Type-A, 2x USB2.0, 2x 2.5GbE, 2x RS-232/422/485, 1-pin GPIO | Expansion: 1x M.2 3042 B (PCIe x1 Gen2/SATA/USB3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB3.0), 1x M.2 2280 M (PCIe x4 Gen4/SATA), 1x M.2 2242 M (PCIe x4 Gen4) | OS: Windows | Op temp: 0簞C ~ 60簞C | Features: NPU integrated in SoC; Up to 4 M.2 Expansion slots; Wide Power Voltage support: 9~36V",
+      "text_summary": "ASBC-3140 SBC | Platform: Intel Intel Core Ultra 5 155U | I/O: 4x USB3.2 Gen2 Type-A, 2x USB2.0, 2x 2.5GbE, 2x RS-232/422/485, 1-pin GPIO | Expansion: 1x M.2 3042 B (PCIe x1 Gen2/SATA/USB 3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 2280 M (PCIe x4 Gen4/SATA), 1x M.2 2242 M (PCIe x4 Gen4) | OS: Windows | Op temp: 0°C ~ 60°C | Features: NPU integrated in SoC; Up to 4 M.2 Expansion slots; Wide Power Voltage support: 9~36V",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -8081,7 +8176,7 @@
       "source_file": "ASBC-3150_251003.pdf",
       "file_hash_md5": "9d924436a8d76c967596eae216eab7a9",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ASBC-3150"
     },
     "common": {
@@ -8109,14 +8204,14 @@
       "cpu_cores": 14,
       "cpu_p_cores": 2,
       "cpu_e_cores": 12,
-      "tdp_watt": 15.0,
-      "ai_tops": 13.0,
-      "ram_gb": 128.0,
+      "tdp_watt": 15,
+      "ai_tops": 13,
+      "ram_gb": 128,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 6400,
         "slots": null,
-        "max_capacity_gb": 128.0,
+        "max_capacity_gb": 128,
         "form_factor": null,
         "ecc_support": false
       },
@@ -8132,8 +8227,8 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": 102.0,
-        "depth_mm": 146.0,
+        "width_mm": 102,
+        "depth_mm": 146,
         "height_mm": 16.34
       },
       "power_input": "DC 9~36V",
@@ -8145,7 +8240,7 @@
           "interface": [
             "PCIe x1 Gen3",
             "SATA",
-            "USB3.0"
+            "USB 3.0"
           ],
           "count": 1
         },
@@ -8154,7 +8249,7 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         },
@@ -8233,11 +8328,10 @@
         "USB2",
         "USB3",
         "eDP"
-      ],
-      "ai_tops_basis": "INT8"
+      ]
     },
     "search": {
-      "text_summary": "ASBC-3150 SBC | Platform: Intel Intel Core Ultra 7 255U | I/O: 4x USB3.2 Gen2 Type-A, 2x USB2.0, 2x 2.5GbE, 2x RS-232/422/485, 1-pin GPIO | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB3.0), 1x M.2 2280 M (PCIe x4 Gen4/SATA), 1x M.2 2242 M (PCIe x4 Gen4) | OS: Windows | Op temp: 0簞C ~ 60簞C | Features: NPU integrated in SoC; Up to 4 M.2 expansion slots; Wide power voltage support: 9~36V",
+      "text_summary": "ASBC-3150 SBC | Platform: Intel Intel Core Ultra 7 255U | I/O: 4x USB3.2 Gen2 Type-A, 2x USB2.0, 2x 2.5GbE, 2x RS-232/422/485, 1-pin GPIO | Expansion: 1x M.2 3042 B (PCIe x1 Gen3/SATA/USB 3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 2280 M (PCIe x4 Gen4/SATA), 1x M.2 2242 M (PCIe x4 Gen4) | OS: Windows | Op temp: 0°C ~ 60°C | Features: NPU integrated in SoC; Up to 4 M.2 expansion slots; Wide power voltage support: 9~36V",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -8258,7 +8352,7 @@
       "source_file": "ASBC-3M80_251014.pdf",
       "file_hash_md5": "aa6d49d8c4cfab83739a3d2ba634d0b6",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ASBC-3M80"
     },
     "common": {
@@ -8286,14 +8380,14 @@
       "cpu_cores": 4,
       "cpu_p_cores": null,
       "cpu_e_cores": null,
-      "tdp_watt": 5.0,
+      "tdp_watt": 5,
       "ai_tops": 2.3,
-      "ram_gb": 6.0,
+      "ram_gb": 6,
       "memory_spec": {
         "type": "LPDDR4",
         "speed_mhz": 4000,
         "slots": 0,
-        "max_capacity_gb": 6.0,
+        "max_capacity_gb": 6,
         "form_factor": "on-board",
         "ecc_support": false
       },
@@ -8310,8 +8404,8 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": null,
-        "depth_mm": null,
+        "width_mm": 102,
+        "depth_mm": 146,
         "height_mm": null
       },
       "power_input": "12, 15~30V",
@@ -8322,7 +8416,7 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         },
@@ -8330,7 +8424,7 @@
           "size": "3042",
           "key": "B",
           "interface": [
-            "USB3.0"
+            "USB 3.0"
           ],
           "count": 1
         }
@@ -8350,7 +8444,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 2,
             "poe_support": false
           }
@@ -8377,11 +8471,10 @@
         "PCIe",
         "USB2",
         "WiFi"
-      ],
-      "ai_tops_basis": "INT8"
+      ]
     },
     "search": {
-      "text_summary": "ASBC-3M80 SBC | Platform: NXP NXP i.MX 8M Plus | I/O: 2x USB2.0 Type-A, 1x USB2.0, 2x 1.0GbE, 1x CAN Bus | Expansion: 1x M.2 2230 E (PCIe x1 Gen3/USB3.0), 1x M.2 3042 B (USB3.0) | OS: Linux, Yocto | Op temp: -20簞C ~ 80簞C | Features: NXP簧 i.MX8M Plus Quad Processor, delivers up to 2.3 TOPS for AI and machine learning applications; Optimized for efficient power use, extending operational life; Serial ports and CANBus with isolation ensures robust signal quality and safety; Capable of operating in harsh environments with a wide temperature range",
+      "text_summary": "ASBC-3M80 SBC | Platform: NXP NXP i.MX 8M Plus | I/O: 2x USB2.0 Type-A, 1x USB2.0, 2x 1.0GbE, 1x CAN Bus | Expansion: 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0), 1x M.2 3042 B (USB 3.0) | OS: Linux, Yocto | Op temp: -20°C ~ 80°C | Features: NXP® i.MX8M Plus Quad Processor, delivers up to 2.3 TOPS for AI and machine learning applications; Optimized for efficient power use, extending operational life; Serial ports and CANBus with isolation ensures robust signal quality and safety; Capable of operating in harsh environments with a wide temperature range",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -8404,7 +8497,7 @@
       "source_file": "ASBC-D130 Datasheet (Ver.4).pdf",
       "file_hash_md5": "1d810f1f373b9bd61e0546411b6a22ed",
       "schema_version": "3.0",
-      "last_updated": "2026-05-29",
+      "last_updated": "2026-06-10",
       "embedding_id": "ASBC-D130"
     },
     "common": {
@@ -8432,14 +8525,14 @@
       "cpu_cores": 10,
       "cpu_p_cores": 2,
       "cpu_e_cores": 8,
-      "tdp_watt": 15.0,
+      "tdp_watt": 15,
       "ai_tops": null,
-      "ram_gb": 64.0,
+      "ram_gb": 64,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 5200,
         "slots": null,
-        "max_capacity_gb": 64.0,
+        "max_capacity_gb": 64,
         "form_factor": null,
         "ecc_support": true
       },
@@ -8455,9 +8548,9 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": 132.0,
-        "depth_mm": 176.0,
-        "height_mm": 40.0
+        "width_mm": 132,
+        "depth_mm": 176,
+        "height_mm": 40
       },
       "power_input": "DC 12~24V",
       "pcie_slots": [],
@@ -8467,7 +8560,7 @@
           "key": "B",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 3.0"
           ],
           "count": 1
         },
@@ -8476,7 +8569,7 @@
           "key": "E",
           "interface": [
             "PCIe x1 Gen3",
-            "USB3.0"
+            "USB 2.0"
           ],
           "count": 1
         }
@@ -8496,7 +8589,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 1,
             "poe_support": false
           }
@@ -8539,7 +8632,7 @@
       ]
     },
     "search": {
-      "text_summary": "ASBC-D130 SBC | Platform: Intel Intel Core i7-1365URE | I/O: 2x USB3.2 Gen2, 2x USB2.0, 1x 1.0GbE, 2x RS-232/422/485 | Expansion: 1x M.2 3052 B (PCIe x1 Gen3/USB3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB3.0) | OS: Windows | Op temp: -30簞C ~ 70簞C | Features: Internal USB Type A connector for dongle; Up to 5 M.2 Expansion slots; M.2 M Key connector (M.2-1A) for AI accelerator card",
+      "text_summary": "ASBC-D130 SBC | Platform: Intel Intel Core i7-1365URE | I/O: 2x USB3.2 Gen2, 2x USB2.0, 1x 1.0GbE, 2x RS-232/422/485 | Expansion: 1x M.2 3052 B (PCIe x1 Gen3/USB 3.0), 1x M.2 2230 E (PCIe x1 Gen3/USB 2.0) | OS: Windows | Op temp: -30°C ~ 70°C | Features: Internal USB Type A connector for dongle; Up to 5 M.2 Expansion slots; M.2 M Key connector (M.2-1A) for AI accelerator card",
       "searchable_tags": [
         "industrial",
         "AIoT",
@@ -8561,7 +8654,7 @@
       "source_file": "EV2U-LOM1-RHCF_Datasheet_2026_Q1.pdf",
       "file_hash_md5": "edcb2c413d80e6877e23943d52691600",
       "schema_version": "3.0",
-      "last_updated": "2026-06-01",
+      "last_updated": "2026-06-10",
       "embedding_id": "EV2U-LOM1-RHCF"
     },
     "common": {
@@ -8585,11 +8678,32 @@
       "resolution_px": "1920x1080",
       "fps": 30,
       "sensor_type": null,
+      "sensor_model": "onsemi AR0246",
       "sensor_size": "1/4inch",
+      "pixel_size_um": 2.0,
+      "chroma_type": "Color",
+      "shutter_type": "Rolling",
+      "lens_type": "Fixed Focus (M12)",
+      "lens_fov_deg": 96,
+      "lens_fov_d_deg": 6,
+      "lens_fov_h_deg": 88,
+      "lens_fov_v_deg": 57,
       "hdr": true,
       "low_light": false,
-      "lens_fov_deg": 96,
       "ir_filter": false,
+      "video_format": "YUV422, MJPEG",
+      "power_w": 0.6,
+      "os_support": [
+        "Windows",
+        "Linux",
+        "Android",
+        "macOS (UVC)"
+      ],
+      "dimensions": {
+        "width_mm": 41.4,
+        "depth_mm": 41.4,
+        "height_mm": 37.68
+      },
       "adapter_board_compatible": []
     },
     "search": {
@@ -8612,7 +8726,7 @@
       "source_file": "EV2U-RMR1-UMCB_Datasheet_2025_Q2.pdf",
       "file_hash_md5": "05e0fda2b5dc19bfd439e55ad3839427",
       "schema_version": "3.0",
-      "last_updated": "2026-06-01",
+      "last_updated": "2026-06-10",
       "embedding_id": "EV2U-RMR1-UMCB"
     },
     "common": {
@@ -8636,11 +8750,32 @@
       "resolution_px": "1920x1080",
       "fps": 30,
       "sensor_type": null,
+      "sensor_model": "OmniVision OV2740",
       "sensor_size": "1/6inch",
+      "pixel_size_um": 1.4,
+      "chroma_type": "Color",
+      "shutter_type": "Rolling",
+      "lens_type": "Fixed Focus (M5)",
+      "lens_fov_deg": 77,
+      "lens_fov_d_deg": 7,
+      "lens_fov_h_deg": 69,
+      "lens_fov_v_deg": 42,
       "hdr": false,
       "low_light": false,
-      "lens_fov_deg": 77,
       "ir_filter": false,
+      "video_format": "YUV422, MJPEG",
+      "power_w": 1.0,
+      "os_support": [
+        "Windows",
+        "Linux",
+        "Android",
+        "macOS (UVC)"
+      ],
+      "dimensions": {
+        "width_mm": 60.0,
+        "depth_mm": 8.0,
+        "height_mm": 3.85
+      },
       "adapter_board_compatible": []
     },
     "search": {
@@ -8662,7 +8797,7 @@
       "source_file": "EV2U-RMR2-MMC1_Datasheet_2025_Q2.pdf",
       "file_hash_md5": "8fd11c6eea559e14c7213cfe4ffab93e",
       "schema_version": "3.0",
-      "last_updated": "2026-06-01",
+      "last_updated": "2026-06-10",
       "embedding_id": "EV2U-RMR2-MMC1"
     },
     "common": {
@@ -8686,11 +8821,32 @@
       "resolution_px": "1920x1080",
       "fps": 30,
       "sensor_type": null,
+      "sensor_model": "OmniVision OV2732",
       "sensor_size": "1/6inch",
+      "pixel_size_um": 1.4,
+      "chroma_type": "Color",
+      "shutter_type": "Rolling",
+      "lens_type": "Fixed Focus (M12)",
+      "lens_fov_deg": 86,
+      "lens_fov_d_deg": 6,
+      "lens_fov_h_deg": 72,
+      "lens_fov_v_deg": 38,
       "hdr": false,
       "low_light": false,
-      "lens_fov_deg": 86,
       "ir_filter": false,
+      "video_format": "YUV422, MJPEG",
+      "power_w": 1.0,
+      "os_support": [
+        "Windows",
+        "Linux",
+        "Android",
+        "macOS (UVC)"
+      ],
+      "dimensions": {
+        "width_mm": 58.0,
+        "depth_mm": 25.0,
+        "height_mm": 27.0
+      },
       "adapter_board_compatible": []
     },
     "search": {
@@ -8712,7 +8868,7 @@
       "source_file": "EV2U-SGR1-MMC1_Datasheet_2025_Q3.pdf",
       "file_hash_md5": "a32e994c3f69d71bed72b7ea6138f2a0",
       "schema_version": "3.0",
-      "last_updated": "2026-06-01",
+      "last_updated": "2026-06-10",
       "embedding_id": "EV2U-SGR1-MMC1"
     },
     "common": {
@@ -8736,11 +8892,32 @@
       "resolution_px": "1920x1080",
       "fps": 30,
       "sensor_type": null,
+      "sensor_model": null,
       "sensor_size": "1/2.9inch",
+      "pixel_size_um": 2.8,
+      "chroma_type": "Color",
+      "shutter_type": "Rolling",
+      "lens_type": "Fixed Focus (M12)",
+      "lens_fov_deg": 121,
+      "lens_fov_d_deg": 1,
+      "lens_fov_h_deg": 102,
+      "lens_fov_v_deg": 54,
       "hdr": false,
       "low_light": true,
-      "lens_fov_deg": 121,
       "ir_filter": false,
+      "video_format": "YUV422, MJPEG",
+      "power_w": 1.0,
+      "os_support": [
+        "Windows",
+        "Linux",
+        "Android",
+        "macOS (UVC)"
+      ],
+      "dimensions": {
+        "width_mm": 32.0,
+        "depth_mm": 32.0,
+        "height_mm": 28.2
+      },
       "adapter_board_compatible": []
     },
     "search": {
@@ -8763,7 +8940,7 @@
       "source_file": "EV2U-SSM1-RLCF_Datasheet_2026_Q1.pdf",
       "file_hash_md5": "58a98604f3907752161dcac1d3b4ce21",
       "schema_version": "3.0",
-      "last_updated": "2026-06-01",
+      "last_updated": "2026-06-10",
       "embedding_id": "EV2U-SSM1-RLCF"
     },
     "common": {
@@ -8787,11 +8964,32 @@
       "resolution_px": "1920x1080",
       "fps": 30,
       "sensor_type": null,
+      "sensor_model": "Sony IMX307",
       "sensor_size": "1/2.8inch",
+      "pixel_size_um": 2.9,
+      "chroma_type": "Color",
+      "shutter_type": "Rolling",
+      "lens_type": "Fixed Focus (M12)",
+      "lens_fov_deg": 127,
+      "lens_fov_d_deg": 7,
+      "lens_fov_h_deg": 106,
+      "lens_fov_v_deg": 56,
       "hdr": false,
       "low_light": true,
-      "lens_fov_deg": 127,
       "ir_filter": false,
+      "video_format": "YUV422, MJPEG",
+      "power_w": 1.0,
+      "os_support": [
+        "Windows",
+        "Linux",
+        "Android",
+        "macOS (UVC)"
+      ],
+      "dimensions": {
+        "width_mm": 41.4,
+        "depth_mm": 41.4,
+        "height_mm": 43.7
+      },
       "adapter_board_compatible": []
     },
     "search": {
@@ -8814,7 +9012,7 @@
       "source_file": "EV8U-LSM1-RLCF_Datasheet_2025_Q2.pdf",
       "file_hash_md5": "d7558474712dd0a6e8e363425aabd723",
       "schema_version": "3.0",
-      "last_updated": "2026-06-01",
+      "last_updated": "2026-06-10",
       "embedding_id": "EV8U-LSM1-RLCF"
     },
     "common": {
@@ -8838,11 +9036,28 @@
       "resolution_px": "3840x2160",
       "fps": 30,
       "sensor_type": null,
+      "sensor_model": "Sony IMX415",
       "sensor_size": "1/2.8inch",
+      "pixel_size_um": 1.45,
+      "chroma_type": "Color",
+      "shutter_type": "Rolling",
+      "lens_type": "Fixed Focus (M12)",
+      "lens_fov_deg": 89,
+      "lens_fov_d_deg": 9,
+      "lens_fov_h_deg": 81,
+      "lens_fov_v_deg": 51,
       "hdr": false,
       "low_light": true,
-      "lens_fov_deg": 89,
       "ir_filter": false,
+      "video_format": "YUV422, MJPEG",
+      "power_w": 1.0,
+      "os_support": [
+        "Windows",
+        "Linux",
+        "Android",
+        "macOS (UVC)"
+      ],
+      "dimensions": null,
       "adapter_board_compatible": []
     },
     "search": {
@@ -8865,7 +9080,7 @@
       "source_file": "EV8U-LSN1-RSCA_Datasheet_2025_Q2.pdf",
       "file_hash_md5": "b65808b5ce2c63d2a09db52b94783c8b",
       "schema_version": "3.0",
-      "last_updated": "2026-06-01",
+      "last_updated": "2026-06-10",
       "embedding_id": "EV8U-LSN1-RSCA"
     },
     "common": {
@@ -8886,11 +9101,32 @@
       "resolution_px": "3264x2448",
       "fps": 30,
       "sensor_type": null,
+      "sensor_model": "Sony IMX179",
       "sensor_size": "1/3.2inch",
+      "pixel_size_um": 1.4,
+      "chroma_type": "Color",
+      "shutter_type": "Rolling",
+      "lens_type": "Auto Focus (M5)",
+      "lens_fov_deg": 72,
+      "lens_fov_d_deg": 2,
+      "lens_fov_h_deg": 61,
+      "lens_fov_v_deg": 47,
       "hdr": false,
       "low_light": false,
-      "lens_fov_deg": 72,
       "ir_filter": false,
+      "video_format": "YUV422, MJPEG",
+      "power_w": 2.0,
+      "os_support": [
+        "Windows",
+        "Linux",
+        "Android",
+        "macOS (UVC)"
+      ],
+      "dimensions": {
+        "width_mm": 62.0,
+        "depth_mm": 9.5,
+        "height_mm": 6.5
+      },
       "adapter_board_compatible": []
     },
     "search": {
@@ -8912,7 +9148,7 @@
       "source_file": "EV2M-CSM1-RHCF_Datasheet_2025_Q2.pdf",
       "file_hash_md5": "ca8c2de26e75fe0806ee3c63bde9e3fc",
       "schema_version": "3.0",
-      "last_updated": "2026-06-01",
+      "last_updated": "2026-06-10",
       "embedding_id": "EV2M-CSM1-RHCF"
     },
     "common": {
@@ -8933,11 +9169,27 @@
       "resolution_px": "1920x1080",
       "fps": 120,
       "sensor_type": null,
+      "sensor_model": "Sony IMX290",
       "sensor_size": "1/2.8inch",
+      "pixel_size_um": 2.9,
+      "chroma_type": "Color",
+      "shutter_type": "Rolling",
+      "lens_type": "Fixed Focus (M12)",
+      "lens_fov_deg": 106,
+      "lens_fov_d_deg": 6,
+      "lens_fov_h_deg": 92,
+      "lens_fov_v_deg": 51,
       "hdr": true,
       "low_light": true,
-      "lens_fov_deg": 106,
       "ir_filter": false,
+      "video_format": "YUV422",
+      "power_w": 1.5,
+      "os_support": [],
+      "dimensions": {
+        "width_mm": 46.0,
+        "depth_mm": 46.0,
+        "height_mm": 40.6
+      },
       "adapter_board_compatible": []
     },
     "search": {
@@ -8962,7 +9214,7 @@
       "source_file": "EV2M-OOM1-UHCA _Datasheet_2025_Q3.pdf",
       "file_hash_md5": "37b8c6192ab8626c4de0f46bff6d4406",
       "schema_version": "3.0",
-      "last_updated": "2026-06-01",
+      "last_updated": "2026-06-10",
       "embedding_id": "EV2M-OOM1-UHCA"
     },
     "common": {
@@ -8986,11 +9238,27 @@
       "resolution_px": "1920x1200",
       "fps": 60,
       "sensor_type": null,
+      "sensor_model": "onsemi AR0234",
       "sensor_size": "1/2.6inch",
+      "pixel_size_um": 3.0,
+      "chroma_type": "Color",
+      "shutter_type": "Global",
+      "lens_type": "Fixed Focus (M12)",
+      "lens_fov_deg": 104,
+      "lens_fov_d_deg": 4,
+      "lens_fov_h_deg": 86,
+      "lens_fov_v_deg": 46,
       "hdr": false,
       "low_light": false,
-      "lens_fov_deg": 104,
       "ir_filter": false,
+      "video_format": "YUV422",
+      "power_w": 1.0,
+      "os_support": [],
+      "dimensions": {
+        "width_mm": 46.0,
+        "depth_mm": 46.0,
+        "height_mm": 26.75
+      },
       "adapter_board_compatible": []
     },
     "search": {
@@ -9013,7 +9281,7 @@
       "source_file": "EV2M-ZOM1-GSCV_Datasheet_2025_Q2.pdf",
       "file_hash_md5": "0f9b92ea738f4e6b7b697b55c437e265",
       "schema_version": "3.0",
-      "last_updated": "2026-06-01",
+      "last_updated": "2026-06-10",
       "embedding_id": "EV2M-ZOM1-GSCV"
     },
     "common": {
@@ -9034,11 +9302,27 @@
       "resolution_px": "1920x1200",
       "fps": 60,
       "sensor_type": null,
+      "sensor_model": "onsemi AR0234",
       "sensor_size": "1/2.6inch",
+      "pixel_size_um": 3.0,
+      "chroma_type": "Color",
+      "shutter_type": "Global",
+      "lens_type": "Varifocal",
+      "lens_fov_deg": 128,
+      "lens_fov_d_deg": 8,
+      "lens_fov_h_deg": 103,
+      "lens_fov_v_deg": 60,
       "hdr": false,
       "low_light": false,
-      "lens_fov_deg": 128,
       "ir_filter": false,
+      "video_format": "YUV422",
+      "power_w": 2.0,
+      "os_support": [],
+      "dimensions": {
+        "width_mm": 42.0,
+        "depth_mm": 42.0,
+        "height_mm": 77.7
+      },
       "adapter_board_compatible": []
     },
     "search": {
@@ -9061,7 +9345,7 @@
       "source_file": "EV5M-CSM1-RTCF_Datasheet_2025_Q2.pdf",
       "file_hash_md5": "bea03ce5485b25b733f782a53d9934de",
       "schema_version": "3.0",
-      "last_updated": "2026-06-01",
+      "last_updated": "2026-06-10",
       "embedding_id": "EV5M-CSM1-RTCF"
     },
     "common": {
@@ -9082,11 +9366,27 @@
       "resolution_px": "2560x1920",
       "fps": 30,
       "sensor_type": null,
+      "sensor_model": "Sony IMX335",
       "sensor_size": "1/2.8inch",
+      "pixel_size_um": 2.0,
+      "chroma_type": "Color",
+      "shutter_type": "Rolling",
+      "lens_type": "Fixed Focus (M12)",
+      "lens_fov_deg": 130,
+      "lens_fov_d_deg": 0,
+      "lens_fov_h_deg": 100,
+      "lens_fov_v_deg": 73,
       "hdr": true,
       "low_light": true,
-      "lens_fov_deg": 130,
       "ir_filter": false,
+      "video_format": "YUV422",
+      "power_w": 1.6,
+      "os_support": [],
+      "dimensions": {
+        "width_mm": 46.0,
+        "depth_mm": 46.0,
+        "height_mm": 40.6
+      },
       "adapter_board_compatible": []
     },
     "search": {
@@ -9111,7 +9411,7 @@
       "source_file": "EV8M-CSM1-RTCF_Datasheet_2025_Q3.pdf",
       "file_hash_md5": "e7dd38d985d50880a00e1d48af23bfa0",
       "schema_version": "3.0",
-      "last_updated": "2026-06-01",
+      "last_updated": "2026-06-10",
       "embedding_id": "EV8M-CSM1-RTCF"
     },
     "common": {
@@ -9132,11 +9432,27 @@
       "resolution_px": "3840x2160",
       "fps": 30,
       "sensor_type": null,
+      "sensor_model": "Sony IMX415",
       "sensor_size": "1/2.8inch",
+      "pixel_size_um": 1.45,
+      "chroma_type": "Color",
+      "shutter_type": "Rolling",
+      "lens_type": "Fixed Focus (M12)",
+      "lens_fov_deg": 148,
+      "lens_fov_d_deg": 8,
+      "lens_fov_h_deg": 125,
+      "lens_fov_v_deg": 67,
       "hdr": false,
       "low_light": true,
-      "lens_fov_deg": 148,
       "ir_filter": false,
+      "video_format": "YUV422",
+      "power_w": 1.9,
+      "os_support": [],
+      "dimensions": {
+        "width_mm": 46.0,
+        "depth_mm": 46.0,
+        "height_mm": 40.6
+      },
       "adapter_board_compatible": []
     },
     "search": {
@@ -9160,7 +9476,7 @@
       "source_file": "EV8M-OOM1-RHCF_Datasheet_2026_Q1.pdf",
       "file_hash_md5": "a93971cd2004374e1ce8f5d2893e720e",
       "schema_version": "3.0",
-      "last_updated": "2026-06-01",
+      "last_updated": "2026-06-10",
       "embedding_id": "EV8M-OOM1-RHCF"
     },
     "common": {
@@ -9181,11 +9497,27 @@
       "resolution_px": "3840x2160",
       "fps": 30,
       "sensor_type": null,
+      "sensor_model": "onsemi AR0822",
       "sensor_size": "1/1.8inch",
+      "pixel_size_um": 2.0,
+      "chroma_type": "Color",
+      "shutter_type": "Rolling",
+      "lens_type": "Fixed Focus (M12)",
+      "lens_fov_deg": 107,
+      "lens_fov_d_deg": 7,
+      "lens_fov_h_deg": 100,
+      "lens_fov_v_deg": 67,
       "hdr": true,
       "low_light": false,
-      "lens_fov_deg": 107,
       "ir_filter": false,
+      "video_format": "YUV422",
+      "power_w": 1.32,
+      "os_support": [],
+      "dimensions": {
+        "width_mm": 39.0,
+        "depth_mm": 39.0,
+        "height_mm": 41.0
+      },
       "adapter_board_compatible": []
     },
     "search": {
@@ -9209,7 +9541,7 @@
       "source_file": "EVDM-OOM1-RHCF_Datasheet_2025_Q2.pdf",
       "file_hash_md5": "58d6a942f92835e94ec27eeecb9fedb6",
       "schema_version": "3.0",
-      "last_updated": "2026-06-01",
+      "last_updated": "2026-06-10",
       "embedding_id": "EVDM-OOM1-RHCF"
     },
     "common": {
@@ -9233,11 +9565,27 @@
       "resolution_px": "4192x3120",
       "fps": 25,
       "sensor_type": null,
+      "sensor_model": "onsemi AR1335",
       "sensor_size": "1/3.2inch",
+      "pixel_size_um": 1.1,
+      "chroma_type": "Color",
+      "shutter_type": "Rolling",
+      "lens_type": "Fixed Focus (M12)",
+      "lens_fov_deg": 91,
+      "lens_fov_d_deg": 1,
+      "lens_fov_h_deg": 71,
+      "lens_fov_v_deg": 52,
       "hdr": true,
       "low_light": false,
-      "lens_fov_deg": 91,
       "ir_filter": false,
+      "video_format": "YUV422",
+      "power_w": 1.0,
+      "os_support": [],
+      "dimensions": {
+        "width_mm": 39.0,
+        "depth_mm": 39.0,
+        "height_mm": 45.0
+      },
       "adapter_board_compatible": []
     },
     "search": {
@@ -9261,7 +9609,7 @@
       "source_file": "EV8C-OOM1-RHCF_Datasheet_2025_Q3.pdf",
       "file_hash_md5": "64bbf3a6ae14566994a4b11d4c300c3e",
       "schema_version": "3.0",
-      "last_updated": "2026-06-01",
+      "last_updated": "2026-06-10",
       "embedding_id": "EV8C-OOM1-RHCF"
     },
     "common": {
@@ -9285,11 +9633,27 @@
       "resolution_px": "3840x2160",
       "fps": 30,
       "sensor_type": null,
+      "sensor_model": "onsemi AR0822",
       "sensor_size": "1/1.8inch",
+      "pixel_size_um": 2.0,
+      "chroma_type": null,
+      "shutter_type": "Rolling",
+      "lens_type": "Fixed Focus (M12)",
+      "lens_fov_deg": 107,
+      "lens_fov_d_deg": 7,
+      "lens_fov_h_deg": 100,
+      "lens_fov_v_deg": 67,
       "hdr": true,
       "low_light": false,
-      "lens_fov_deg": 107,
       "ir_filter": false,
+      "video_format": "YUV422",
+      "power_w": 1.0,
+      "os_support": [],
+      "dimensions": {
+        "width_mm": 42.0,
+        "depth_mm": 42.0,
+        "height_mm": 49.0
+      },
       "adapter_board_compatible": []
     },
     "search": {
@@ -9313,7 +9677,7 @@
       "source_file": "EV2F-OOM3-RHCF_Datasheet_2025_Q4.pdf",
       "file_hash_md5": "2fec10ec38688539d1da4a5b17676906",
       "schema_version": "3.0",
-      "last_updated": "2026-06-01",
+      "last_updated": "2026-06-10",
       "embedding_id": "EV2F-OOM3-RHCF"
     },
     "common": {
@@ -9337,11 +9701,27 @@
       "resolution_px": "1920x1080",
       "fps": 30,
       "sensor_type": null,
+      "sensor_model": "onsemi AR0246",
       "sensor_size": "1/4inch",
+      "pixel_size_um": 2.0,
+      "chroma_type": "Color",
+      "shutter_type": "Rolling",
+      "lens_type": "Fixed Focus (M12)",
+      "lens_fov_deg": 72,
+      "lens_fov_d_deg": 2,
+      "lens_fov_h_deg": 64,
+      "lens_fov_v_deg": 39,
       "hdr": true,
       "low_light": false,
-      "lens_fov_deg": 72,
       "ir_filter": false,
+      "video_format": "YUV422",
+      "power_w": 1.2,
+      "os_support": [],
+      "dimensions": {
+        "width_mm": 42.0,
+        "depth_mm": 41.0,
+        "height_mm": 64.0
+      },
       "adapter_board_compatible": []
     },
     "search": {
@@ -9365,7 +9745,7 @@
       "source_file": "EVDF-OOM1-RHCF_Datasheet_2026_Q1.pdf",
       "file_hash_md5": "7e1ccd39cef8ff33640dc5f90329febd",
       "schema_version": "3.0",
-      "last_updated": "2026-06-01",
+      "last_updated": "2026-06-10",
       "embedding_id": "EVDF-OOM1-RHCF"
     },
     "common": {
@@ -9389,11 +9769,27 @@
       "resolution_px": "4192x3120",
       "fps": 25,
       "sensor_type": null,
+      "sensor_model": "onsemi AR1335",
       "sensor_size": "1/3.2inch",
+      "pixel_size_um": 1.1,
+      "chroma_type": "Color",
+      "shutter_type": "Rolling",
+      "lens_type": "Fixed Focus (M12)",
+      "lens_fov_deg": 85,
+      "lens_fov_d_deg": 5,
+      "lens_fov_h_deg": 67,
+      "lens_fov_v_deg": 48,
       "hdr": true,
       "low_light": false,
-      "lens_fov_deg": 85,
       "ir_filter": false,
+      "video_format": "YUV422",
+      "power_w": 1.7,
+      "os_support": [],
+      "dimensions": {
+        "width_mm": 42.0,
+        "depth_mm": 41.0,
+        "height_mm": 53.0
+      },
       "adapter_board_compatible": []
     },
     "search": {
@@ -9411,17 +9807,17 @@
   {
     "meta": {
       "part_no": "EB022-2M4F",
-      "product_name": "Capture Card EB022-2M4F",
+      "product_name": "EB022-2M4F MIPI CSI-2 22-pin x2 to GMSL2 IPEX FAKRA Z x4 Capture Card",
       "product_line": "camera",
       "bu_owner": null,
       "source_file": "EB022-2M4F_Datasheet_2026 May.pdf",
       "file_hash_md5": "635b22a277a2577c4b0d511cb2f4040e",
       "schema_version": "3.0",
-      "last_updated": "2026-06-01",
+      "last_updated": "2026-06-10",
       "embedding_id": "EB022-2M4F"
     },
     "common": {
-      "temp_grade": "Industrial",
+      "temp_grade": "Wide",
       "op_temp_min_c": -30,
       "op_temp_max_c": 70,
       "mtbf_hours": null,
@@ -9438,33 +9834,52 @@
       "resolution_px": null,
       "fps": null,
       "sensor_type": null,
+      "sensor_model": null,
       "sensor_size": null,
+      "pixel_size_um": null,
+      "chroma_type": null,
+      "shutter_type": null,
+      "lens_type": null,
+      "lens_fov_deg": null,
+      "lens_fov_d_deg": null,
+      "lens_fov_h_deg": null,
+      "lens_fov_v_deg": null,
       "hdr": false,
       "low_light": false,
-      "lens_fov_deg": null,
       "ir_filter": false,
+      "video_format": null,
+      "power_w": 7.0,
+      "os_support": [],
+      "dimensions": {
+        "width_mm": 73.6,
+        "depth_mm": 53.2,
+        "height_mm": 12.3
+      },
       "adapter_board_compatible": []
     },
     "search": {
-      "text_summary": "EB022-2M4F Capture Card EB022-2M4F | Interface: PCIe | Op temp: -30°C ~ 70°C | Features: Camera Interface : GMSL2 IPEX FAKRA Z x4; Host Interface : MIPI CSI-2 22-pin x2; Deserializer Chipset (Onboard) : MAXIM MAX96724",
+      "text_summary": "EB022-2M4F EB022-2M4F MIPI CSI-2 22-pin x2 to GMSL2 IPEX FAKRA Z x4 Capture Card | Interface: PCIe | Op temp: -30°C ~ 70°C | Features: Camera Interface: GMSL2 IPEX FAKRA Z x4; Host Interface: MIPI CSI-2 22-pin x2; Deserializer Chipset: MAXIM MAX96724; Power consumption approximately 7W; Operating temperature -30°C to 70°C; Compact dimensions 73.6 x 53.2 x 12.3 mm",
       "searchable_tags": [
         "camera",
         "industrial"
       ],
-      "target_applications": []
+      "target_applications": [
+        "surveillance",
+        "transportation"
+      ]
     },
     "poc_sw_suggestions": []
   },
   {
     "meta": {
       "part_no": "EB120-1S4F",
-      "product_name": "Capture Card EB120-1S4F",
+      "product_name": "EB120-1S4F SAMTEC 120-pin x1 to GMSL2 FAKRA Z x4 Capture Card",
       "product_line": "camera",
       "bu_owner": null,
       "source_file": "EB120-1S4F_Datasheet_2026_May.pdf",
       "file_hash_md5": "c83b30828aef77c7cdcb0b96ed175b58",
       "schema_version": "3.0",
-      "last_updated": "2026-06-01",
+      "last_updated": "2026-06-10",
       "embedding_id": "EB120-1S4F"
     },
     "common": {
@@ -9485,33 +9900,53 @@
       "resolution_px": null,
       "fps": null,
       "sensor_type": null,
+      "sensor_model": null,
       "sensor_size": null,
+      "pixel_size_um": null,
+      "chroma_type": null,
+      "shutter_type": null,
+      "lens_type": null,
+      "lens_fov_deg": null,
+      "lens_fov_d_deg": null,
+      "lens_fov_h_deg": null,
+      "lens_fov_v_deg": null,
       "hdr": false,
       "low_light": false,
-      "lens_fov_deg": null,
       "ir_filter": false,
+      "video_format": null,
+      "power_w": 9.38,
+      "os_support": [],
+      "dimensions": {
+        "width_mm": 91.6,
+        "depth_mm": 55.0,
+        "height_mm": 20.07
+      },
       "adapter_board_compatible": []
     },
     "search": {
-      "text_summary": "EB120-1S4F Capture Card EB120-1S4F | Interface: PCIe | Op temp: -30°C ~ 70°C | Features: Camera Interface : GMSL2TM FAKRA Z x4; Host Interface : SAMTEC 120-pin x1; Deserializer Chipset (Onboard) : MAXIM MAX9296",
+      "text_summary": "EB120-1S4F EB120-1S4F SAMTEC 120-pin x1 to GMSL2 FAKRA Z x4 Capture Card | Interface: PCIe | Op temp: -30°C ~ 70°C | Features: Camera Interface: GMSL2 FAKRA Z x4; Host Interface: SAMTEC 120-pin x1; Deserializer Chipset (Onboard): MAXIM MAX9296; Power Source: 12V DC Jack; Power Consumption: 9.38W; Operating Temperature: -30°C ~ 70°C",
       "searchable_tags": [
         "camera",
         "industrial"
       ],
-      "target_applications": []
+      "target_applications": [
+        "surveillance",
+        "transportation",
+        "automation"
+      ]
     },
     "poc_sw_suggestions": []
   },
   {
     "meta": {
       "part_no": "EB120-1S4M",
-      "product_name": "Capture Card EB120-1S4M",
+      "product_name": "EB120-1S4M SAMTEC 120-pin x1 to MIPI CSI-2 22-pin x4 Capture Card",
       "product_line": "camera",
       "bu_owner": null,
       "source_file": "EB120-1S4M_Datasheet_2026_May.pdf",
       "file_hash_md5": "65a042b6fdf05e600d39a9de33c2154a",
       "schema_version": "3.0",
-      "last_updated": "2026-06-01",
+      "last_updated": "2026-06-10",
       "embedding_id": "EB120-1S4M"
     },
     "common": {
@@ -9532,15 +9967,31 @@
       "resolution_px": null,
       "fps": null,
       "sensor_type": null,
+      "sensor_model": null,
       "sensor_size": null,
+      "pixel_size_um": null,
+      "chroma_type": null,
+      "shutter_type": null,
+      "lens_type": null,
+      "lens_fov_deg": null,
+      "lens_fov_d_deg": null,
+      "lens_fov_h_deg": null,
+      "lens_fov_v_deg": null,
       "hdr": false,
       "low_light": false,
-      "lens_fov_deg": null,
       "ir_filter": false,
+      "video_format": null,
+      "power_w": null,
+      "os_support": [],
+      "dimensions": {
+        "width_mm": 68.65,
+        "depth_mm": 41.0,
+        "height_mm": 12.47
+      },
       "adapter_board_compatible": []
     },
     "search": {
-      "text_summary": "EB120-1S4M Capture Card EB120-1S4M | Interface: PCIe | Op temp: -20°C ~ 70°C | Features: Camera Interface : MIPI CSI-2 22-pin x4; Host Interface : SAMTEC 120-pin x1",
+      "text_summary": "EB120-1S4M EB120-1S4M SAMTEC 120-pin x1 to MIPI CSI-2 22-pin x4 Capture Card | Interface: PCIe | Op temp: -20°C ~ 70°C | Features: Camera Interface: MIPI CSI-2 22-pin x4; Host Interface: SAMTEC 120-pin x1; 4 Camera I/F Ports; Compact dimensions: 68.65 x 41.00 x 12.47 mm; Operating temperature: -20°C to 70°C; 3 Years Warranty",
       "searchable_tags": [
         "camera",
         "industrial"
@@ -9646,7 +10097,7 @@
       "source_file": "EV3F-ZSM1-RXCF-41_Datasheet_2025_Q4.pdf",
       "file_hash_md5": "f2d71c3db3c4245c26886de6128a9793",
       "schema_version": "3.0",
-      "last_updated": "2026-06-01",
+      "last_updated": "2026-06-10",
       "embedding_id": "EV3F-ZSM1-RXCF-41"
     },
     "common": {
@@ -9670,11 +10121,27 @@
       "resolution_px": "1920x1536",
       "fps": 60,
       "sensor_type": null,
+      "sensor_model": "SONY ISX031",
       "sensor_size": "1/2.42inch",
+      "pixel_size_um": 3.0,
+      "chroma_type": "Color",
+      "shutter_type": "Rolling",
+      "lens_type": "Fixed Focus (M12)",
+      "lens_fov_deg": 80,
+      "lens_fov_d_deg": 0,
+      "lens_fov_h_deg": 64,
+      "lens_fov_v_deg": 41,
       "hdr": true,
       "low_light": false,
-      "lens_fov_deg": 80,
       "ir_filter": false,
+      "video_format": "YUV422",
+      "power_w": 1.2,
+      "os_support": [],
+      "dimensions": {
+        "width_mm": 25.0,
+        "depth_mm": 25.0,
+        "height_mm": 57.0
+      },
       "adapter_board_compatible": []
     },
     "search": {
@@ -14024,7 +14491,7 @@
       "host_interface": null,
       "pcie_gen": null,
       "port_count": null,
-      "speed_gbps": 25.0,
+      "speed_gbps": 25,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -14075,7 +14542,7 @@
       "host_interface": null,
       "pcie_gen": null,
       "port_count": null,
-      "speed_gbps": 25.0,
+      "speed_gbps": 25,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -14497,7 +14964,7 @@
       "host_interface": "PCIe",
       "pcie_gen": "Gen3",
       "port_count": null,
-      "speed_gbps": 10.0,
+      "speed_gbps": 10,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -14548,7 +15015,7 @@
       "host_interface": "PCIe",
       "pcie_gen": "Gen4",
       "port_count": null,
-      "speed_gbps": 10.0,
+      "speed_gbps": 10,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -14597,7 +15064,7 @@
       "host_interface": "PCIe",
       "pcie_gen": "Gen4",
       "port_count": null,
-      "speed_gbps": 10.0,
+      "speed_gbps": 10,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -14646,7 +15113,7 @@
       "host_interface": "PCIe",
       "pcie_gen": "Gen3",
       "port_count": null,
-      "speed_gbps": 10.0,
+      "speed_gbps": 10,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -14695,7 +15162,7 @@
       "host_interface": null,
       "pcie_gen": null,
       "port_count": null,
-      "speed_gbps": 10.0,
+      "speed_gbps": 10,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -14743,7 +15210,7 @@
       "host_interface": null,
       "pcie_gen": null,
       "port_count": null,
-      "speed_gbps": 10.0,
+      "speed_gbps": 10,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -14795,7 +15262,7 @@
       "host_interface": "PCIe",
       "pcie_gen": null,
       "port_count": null,
-      "speed_gbps": 1.0,
+      "speed_gbps": 1,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -14846,7 +15313,7 @@
       "host_interface": "PCIe",
       "pcie_gen": "Gen4",
       "port_count": null,
-      "speed_gbps": 10.0,
+      "speed_gbps": 10,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -14894,7 +15361,7 @@
       "host_interface": "PCIe",
       "pcie_gen": "Gen4",
       "port_count": null,
-      "speed_gbps": 10.0,
+      "speed_gbps": 10,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -14943,7 +15410,7 @@
       "host_interface": "PCIe",
       "pcie_gen": "Gen3",
       "port_count": null,
-      "speed_gbps": 25.0,
+      "speed_gbps": 25,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -15644,7 +16111,7 @@
       "host_interface": "PCIe",
       "pcie_gen": "Gen3",
       "port_count": null,
-      "speed_gbps": 10.0,
+      "speed_gbps": 10,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -15897,7 +16364,7 @@
       "host_interface": "PCIe",
       "pcie_gen": null,
       "port_count": null,
-      "speed_gbps": 1.0,
+      "speed_gbps": 1,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -16000,7 +16467,7 @@
       "host_interface": "PCIe",
       "pcie_gen": null,
       "port_count": null,
-      "speed_gbps": 1.0,
+      "speed_gbps": 1,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -16055,7 +16522,7 @@
       "host_interface": "PCIe",
       "pcie_gen": null,
       "port_count": null,
-      "speed_gbps": 1.0,
+      "speed_gbps": 1,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -16110,7 +16577,7 @@
       "host_interface": "PCIe",
       "pcie_gen": null,
       "port_count": null,
-      "speed_gbps": 1.0,
+      "speed_gbps": 1,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -16165,7 +16632,7 @@
       "host_interface": "PCIe",
       "pcie_gen": null,
       "port_count": null,
-      "speed_gbps": 1.0,
+      "speed_gbps": 1,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -16220,7 +16687,7 @@
       "host_interface": "PCIe",
       "pcie_gen": null,
       "port_count": null,
-      "speed_gbps": 1.0,
+      "speed_gbps": 1,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -16275,7 +16742,7 @@
       "host_interface": "PCIe",
       "pcie_gen": null,
       "port_count": null,
-      "speed_gbps": 1.0,
+      "speed_gbps": 1,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -16384,7 +16851,7 @@
       "host_interface": "PCIe",
       "pcie_gen": null,
       "port_count": null,
-      "speed_gbps": 1.0,
+      "speed_gbps": 1,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -16439,7 +16906,7 @@
       "host_interface": "PCIe",
       "pcie_gen": null,
       "port_count": null,
-      "speed_gbps": 1.0,
+      "speed_gbps": 1,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -16494,7 +16961,7 @@
       "host_interface": "PCIe",
       "pcie_gen": null,
       "port_count": null,
-      "speed_gbps": 1.0,
+      "speed_gbps": 1,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -16549,7 +17016,7 @@
       "host_interface": "PCIe",
       "pcie_gen": null,
       "port_count": null,
-      "speed_gbps": 1.0,
+      "speed_gbps": 1,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -16604,7 +17071,7 @@
       "host_interface": "PCIe",
       "pcie_gen": null,
       "port_count": null,
-      "speed_gbps": 1.0,
+      "speed_gbps": 1,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -16659,7 +17126,7 @@
       "host_interface": "PCIe",
       "pcie_gen": null,
       "port_count": null,
-      "speed_gbps": 1.0,
+      "speed_gbps": 1,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -16714,7 +17181,7 @@
       "host_interface": "PCIe",
       "pcie_gen": null,
       "port_count": null,
-      "speed_gbps": 1.0,
+      "speed_gbps": 1,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -16981,7 +17448,7 @@
       "host_interface": "PCIe",
       "pcie_gen": null,
       "port_count": null,
-      "speed_gbps": 1.0,
+      "speed_gbps": 1,
       "protocol": [],
       "poe_watt": 30,
       "can_fd_support": false,
@@ -17233,7 +17700,7 @@
       "host_interface": "PCIe",
       "pcie_gen": null,
       "port_count": null,
-      "speed_gbps": 1.0,
+      "speed_gbps": 1,
       "protocol": [],
       "poe_watt": 30,
       "can_fd_support": false,
@@ -19555,7 +20022,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 1,
             "poe_support": false
           }
@@ -19675,7 +20142,7 @@
         ],
         "gbe": [
           {
-            "speed_gbps": 1.0,
+            "speed_gbps": 1,
             "count": 1,
             "poe_support": false
           }
@@ -19751,7 +20218,7 @@
       "cpu_p_cores": null,
       "cpu_e_cores": null,
       "tdp_watt": null,
-      "ai_tops": 200.0,
+      "ai_tops": 200,
       "ram_gb": null,
       "memory_spec": {
         "type": "LPDDR5",
@@ -19773,8 +20240,8 @@
       "sdk": [],
       "openvino_support": null,
       "dimensions": {
-        "width_mm": 102.0,
-        "depth_mm": 146.0,
+        "width_mm": 102,
+        "depth_mm": 146,
         "height_mm": 56.99
       },
       "power_input": "DC9-36V (12V@2.6A)",
@@ -19897,7 +20364,7 @@
       "cpu_p_cores": null,
       "cpu_e_cores": null,
       "tdp_watt": null,
-      "ai_tops": 200.0,
+      "ai_tops": 200,
       "ram_gb": null,
       "memory_spec": {
         "type": null,
@@ -20341,7 +20808,7 @@
       "host_interface": "PCIe",
       "pcie_gen": null,
       "port_count": null,
-      "speed_gbps": 1.0,
+      "speed_gbps": 1,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -20394,7 +20861,7 @@
       "host_interface": "PCIe",
       "pcie_gen": null,
       "port_count": null,
-      "speed_gbps": 1.0,
+      "speed_gbps": 1,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -20447,7 +20914,7 @@
       "host_interface": "PCIe",
       "pcie_gen": null,
       "port_count": null,
-      "speed_gbps": 1.0,
+      "speed_gbps": 1,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -20498,7 +20965,7 @@
       "host_interface": "PCIe",
       "pcie_gen": "Gen4",
       "port_count": null,
-      "speed_gbps": 1.0,
+      "speed_gbps": 1,
       "protocol": [],
       "poe_watt": null,
       "can_fd_support": false,
@@ -20630,6 +21097,165 @@
         "USB"
       ],
       "target_applications": []
+    },
+    "poc_sw_suggestions": []
+  },
+  {
+    "meta": {
+      "part_no": "AXMB-E400-A00",
+      "product_name": "APEX-E400",
+      "product_line": "computing_aiot",
+      "bu_owner": "AIoT",
+      "source_file": "Datasheet_APEX-E400_20260428 (Preliminary).pdf",
+      "file_hash_md5": "166eefcc6211aaba096a563278935ac3",
+      "schema_version": "3.0",
+      "last_updated": "2026-06-10",
+      "embedding_id": "AXMB-E400-A00"
+    },
+    "common": {
+      "temp_grade": "Commercial",
+      "op_temp_min_c": 0,
+      "op_temp_max_c": 50,
+      "mtbf_hours": null,
+      "warranty_years": null,
+      "certifications": [
+        "CE",
+        "FCC"
+      ],
+      "lifecycle_status": "Active",
+      "eol_date": null,
+      "moq": 1,
+      "lead_time_weeks": null
+    },
+    "computing_spec": {
+      "bu_owner": "AIoT",
+      "platform_brand": "Intel",
+      "processor_model": "Intel Core Ultra X7 Processor 358H",
+      "processor_series": "Meteor Lake",
+      "cpu_cores": 16,
+      "cpu_p_cores": 4,
+      "cpu_e_cores": 12,
+      "tdp_watt": 25,
+      "ai_tops": 180,
+      "ram_gb": 64,
+      "memory_spec": {
+        "type": "LPDDR5",
+        "speed_mhz": 7467,
+        "slots": 0,
+        "max_capacity_gb": 64,
+        "form_factor": "on-board",
+        "ecc_support": false
+      },
+      "storage_gb": null,
+      "storage_interfaces": [
+        "M.2",
+        "NVMe"
+      ],
+      "form_factor": "Box PC",
+      "os_support": [
+        "Windows"
+      ],
+      "sdk": [
+        "OpenVINO"
+      ],
+      "openvino_support": true,
+      "dimensions": {
+        "width_mm": 215,
+        "depth_mm": 275,
+        "height_mm": 44.5
+      },
+      "power_input": "AC 100-240V",
+      "pcie_slots": [],
+      "m2_slots": [
+        {
+          "size": "2280",
+          "key": "M",
+          "interface": [
+            "PCIe x4 Gen5"
+          ],
+          "count": 1
+        },
+        {
+          "size": "2230",
+          "key": "E",
+          "interface": [
+            "PCIe x4 Gen4"
+          ],
+          "count": 1
+        }
+      ],
+      "io_ports": {
+        "usb": [
+          {
+            "standard": "USB3.2 Gen2",
+            "count": 4,
+            "connector": "Type-A"
+          },
+          {
+            "standard": "USB3.2 Gen1",
+            "count": 4,
+            "connector": "Type-A"
+          }
+        ],
+        "gbe": [
+          {
+            "speed_gbps": 10,
+            "count": 1,
+            "poe_support": false
+          },
+          {
+            "speed_gbps": 2.5,
+            "count": 1,
+            "poe_support": false
+          }
+        ],
+        "serial": [
+          {
+            "standard": "RS-232/422/485",
+            "count": 4,
+            "note": "software selectable"
+          }
+        ],
+        "gpio_pins": null,
+        "can_bus_count": null,
+        "sim_slot_count": null,
+        "audio": {
+          "line_out": null,
+          "mic_in": null,
+          "spk_out": null
+        }
+      },
+      "display_outputs": [
+        "HDMI"
+      ],
+      "connectivity": [
+        "10GbE",
+        "2.5GbE",
+        "GbE",
+        "HDMI",
+        "M.2",
+        "PCIe",
+        "RS-232",
+        "RS-422",
+        "RS-485",
+        "USB3"
+      ]
+    },
+    "search": {
+      "text_summary": "AXMB-E400-A00 APEX-E400 | Platform: Intel Intel Core Ultra X7 Processor 358H | I/O: 4x USB3.2 Gen2 Type-A, 4x USB3.2 Gen1 Type-A, 1x 10.0GbE, 1x 2.5GbE, 4x RS-232/422/485 | Expansion: 1x M.2 2280 M (PCIe x4 Gen5), 1x M.2 2230 E (PCIe x4 Gen4) | OS: Windows | Op temp: 0°C ~ 50°C | Features: Intel Core Ultra X7 Processor 358H with integrated NPU delivering up to 180 TOPS; 512GB M.2 NVMe SSD and 64GB LPDDR5x pre-installed; Intel Arc B390 GPU supporting 4x 4K@60Hz or 2x 8K@60Hz displays; 4x COM ports (RS-232/485) and 2x LAN (10GbE + 2.5GbE) for flexible connectivity; 8x USB ports (4x USB 3.2 Gen2 + 4x USB 3.2 Gen1); Compact fanless design: 275 x 215 x 44.5mm",
+      "searchable_tags": [
+        "industrial",
+        "AIoT",
+        "intel",
+        "OpenVINO",
+        "AI-inference",
+        "M.2"
+      ],
+      "target_applications": [
+        "manufacturing",
+        "medical",
+        "surveillance"
+      ]
     },
     "poc_sw_suggestions": []
   }
