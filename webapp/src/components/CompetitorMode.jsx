@@ -9,12 +9,13 @@ const CATEGORY_ORDER = [
   'Mechanical', 'Certifications', 'Features',
 ];
 
-// inputMode: 'search' | 'paste'
+// inputMode: 'search' | 'file'
 // search = Claude uses web_search to find live specs; accepts model names, part nos, or product page URLs
-// paste  = user pastes raw spec text directly; no web search performed
+// file   = user uploads a competitor spec PDF/TXT; Claude reads the document directly
 export default function CompetitorMode({ selectedInnodiskProducts = [], allProducts = [] }) {
   const [input, setInput] = useState('');
   const [inputMode, setInputMode] = useState('search');
+  const [uploadedFile, setUploadedFile] = useState(null);   // { file, base64, mediaType }
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
@@ -22,23 +23,46 @@ export default function CompetitorMode({ selectedInnodiskProducts = [], allProdu
   const hasSelected = selectedInnodiskProducts.length > 0;
   const innodiskKeys = new Set(selectedInnodiskProducts.map(p => p.meta.part_no));
 
+  // Read a File object as base64 string (strips the data-URL prefix)
+  const readFileAsBase64 = (file) => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = e => resolve(e.target.result.split(',')[1]);
+    reader.onerror = () => reject(new Error('Failed to read file.'));
+    reader.readAsDataURL(file);
+  });
+
+  const handleFileChange = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setError(null);
+    try {
+      const base64 = await readFileAsBase64(file);
+      // Detect media type: PDF, plain text, CSV
+      const mediaType = file.type || (file.name.endsWith('.pdf') ? 'application/pdf' : 'text/plain');
+      setUploadedFile({ file, base64, mediaType, filename: file.name });
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   const handleCompare = async () => {
     const apiKey = localStorage.getItem('claude_api_key');
     if (!apiKey) { setError('API key not set — open Settings first.'); return; }
-    if (!input.trim()) return;
+    if (inputMode === 'search' && !input.trim()) return;
+    if (inputMode === 'file' && !uploadedFile) { setError('Please select a spec file first.'); return; }
 
     setLoading(true);
     setError(null);
     setResult(null);
 
     try {
-      const isManualPaste = inputMode === 'paste';
+      const pdfData = inputMode === 'file' ? uploadedFile : null;
       const res = await queryCompetitorComparison(
         input.trim(),
         selectedInnodiskProducts,
         allProducts,
         apiKey,
-        isManualPaste,
+        pdfData,
       );
       setResult(res);
     } catch (err) {
@@ -95,29 +119,49 @@ export default function CompetitorMode({ selectedInnodiskProducts = [], allProdu
             🔍 Search (Model / URL)
           </button>
           <button
-            className={`mode-toggle-btn ${inputMode === 'paste' ? 'active' : ''}`}
-            onClick={() => { setInputMode('paste'); setInput(''); setError(null); }}
+            className={`mode-toggle-btn ${inputMode === 'file' ? 'active' : ''}`}
+            onClick={() => { setInputMode('file'); setInput(''); setUploadedFile(null); setError(null); }}
           >
-            📋 Paste Specs
+            📄 Upload Spec Sheet
           </button>
         </div>
 
-        <textarea
-          className="search-textarea"
-          value={input}
-          onChange={e => setInput(e.target.value)}
-          placeholder={
-            inputMode === 'paste'
-              ? 'Paste competitor product specs here…'
-              : 'Enter competitor model name(s) or product page URL, e.g.:\nMOXA DRP-A100\nhttps://www.advantech.com/products/...'
-          }
-          rows={inputMode === 'paste' ? 8 : 3}
-        />
-        {inputMode === 'search' && (
-          <p className="manual-note">🔍 Claude will search the web for live specs — accepts model names, part numbers, or product page URLs.</p>
-        )}
-        {inputMode === 'paste' && (
-          <p className="manual-note">📌 Specs are taken directly from the text above — no web search performed.</p>
+        {inputMode === 'search' ? (
+          <>
+            <textarea
+              className="search-textarea"
+              value={input}
+              onChange={e => setInput(e.target.value)}
+              placeholder={'Enter competitor model name(s) or product page URL, e.g.:\nMOXA DRP-A100\nhttps://www.advantech.com/products/...'}
+              rows={3}
+            />
+            <p className="manual-note">🔍 Claude will search the web for live specs — accepts model names, part numbers, or product page URLs.</p>
+          </>
+        ) : (
+          <>
+            <label className="file-upload-area">
+              <input
+                type="file"
+                accept=".pdf,.txt,.csv"
+                style={{ display: 'none' }}
+                onChange={handleFileChange}
+              />
+              {uploadedFile ? (
+                <div className="file-upload-selected">
+                  <span className="file-upload-icon">📄</span>
+                  <span className="file-upload-name">{uploadedFile.filename}</span>
+                  <span className="file-upload-change">Click to change</span>
+                </div>
+              ) : (
+                <div className="file-upload-placeholder">
+                  <span className="file-upload-icon">⬆️</span>
+                  <span>Click to upload competitor spec sheet</span>
+                  <span className="file-upload-hint">PDF · TXT · CSV</span>
+                </div>
+              )}
+            </label>
+            <p className="manual-note">📄 Claude reads the spec sheet directly — no web search performed.</p>
+          </>
         )}
 
         {error && <div className="search-error">{error}</div>}
@@ -125,7 +169,7 @@ export default function CompetitorMode({ selectedInnodiskProducts = [], allProdu
         <button
           className="btn btn-primary"
           onClick={handleCompare}
-          disabled={loading || !input.trim()}
+          disabled={loading || (inputMode === 'search' ? !input.trim() : !uploadedFile)}
         >
           {loading
             ? <><span className="spinner-inline" /> Comparing…</>

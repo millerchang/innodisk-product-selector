@@ -322,22 +322,22 @@ function buildInnodiskSpecSummary(product, hasEpCanBus = false) {
 /**
  * Competitor comparison: unified side-by-side table.
  *
- * Search mode  (isManualPaste=false): passes competitor model names / URL to Claude
- *   with the web_search tool enabled.  Claude searches for live specs automatically.
- * Paste mode   (isManualPaste=true):  user pasted raw spec text; no web search needed.
+ * Search mode (pdfData=null):     competitor model names / URL → Claude uses web_search for live specs.
+ * File mode   (pdfData=object):   competitor spec PDF/TXT uploaded → sent as a document content block;
+ *                                 no web search needed (specs are in the file).
  *
- * @param {string}   competitorInput  - Competitor model names / URL (search) or raw spec text (paste)
- * @param {object[]} innodiskProducts - Selected Innodisk product objects from spec_matrix (may be empty)
- * @param {object[]} allProducts      - Full catalog (for fallback auto-suggest when nothing selected)
- * @param {string}   apiKey
- * @param {boolean}  isManualPaste    - true when user pasted raw spec text instead of a model name / URL
+ * @param {string}        competitorInput  - Model names / URL for search mode; ignored in file mode
+ * @param {object[]}      innodiskProducts - Selected Innodisk product objects from spec_matrix (may be empty)
+ * @param {object[]}      allProducts      - Full catalog (for fallback auto-suggest when nothing selected)
+ * @param {string}        apiKey
+ * @param {object|null}   pdfData          - { base64, filename, mediaType } for file mode; null = search mode
  */
 export async function queryCompetitorComparison(
   competitorInput,
   innodiskProducts,
   allProducts,
   apiKey,
-  isManualPaste = false,
+  pdfData = null,
 ) {
   // ── Catalog-level context flags ─────────────────────────────────────────
   const hasEpCanBus = (allProducts || []).some(p =>
@@ -377,18 +377,20 @@ export async function queryCompetitorComparison(
   console.groupEnd();
 
   // ── Prompt ──────────────────────────────────────────────────────────────
-  const systemPrompt = isManualPaste
+  const isFileMode = pdfData != null;
+
+  const systemPrompt = isFileMode
     ? `You are a competitive intelligence assistant for Innodisk, an industrial edge computing company.
-Your job: produce a rigorous side-by-side comparison table from the pasted competitor spec data.
-For any spec fields not present in the pasted data, provide best-estimate values and prefix with "~".
+A competitor product datasheet has been provided as a document. Extract all technical specifications from it.
+For any spec fields the document does not explicitly state, provide best-estimate values and prefix with "~".
 CRITICAL: Respond with raw JSON only. Do NOT wrap in markdown code fences (\`\`\`json or \`\`\`). Do NOT include any text before or after the JSON object. The very first character of your response must be '{' and the last must be '}'.`
     : `You are a competitive intelligence assistant for Innodisk, an industrial edge computing company.
 Your job: produce a rigorous side-by-side comparison table using live web data.
 IMPORTANT: Use the web_search tool to look up official specs for each competitor product from the vendor's official website or authoritative spec pages. Always search first — do not guess from training data alone.
 After searching and gathering specs, respond with raw JSON only. Do NOT wrap in markdown code fences (\`\`\`json or \`\`\`). Do NOT include any text before or after the JSON object. The very first character of your response must be '{' and the last must be '}'.`;
 
-  const competitorSource = isManualPaste
-    ? `Competitor specs (manually pasted):\n${competitorInput}`
+  const competitorSource = isFileMode
+    ? `Competitor product datasheet: "${pdfData.filename}". Extract competitor specs from the attached document.`
     : `Search for the official specs of the following competitor product(s) and compare:\n${competitorInput}`;
 
   const innodiskSection = hasSelected
@@ -459,16 +461,36 @@ ${isCameraSession ? `  CAMERA MODULE specs:
   ${hasDinRail && !isCameraSession ? '  Include DIN-rail availability if relevant vs competitor form factors.' : ''}`;
 
   // ── Build request body ───────────────────────────────────────────────────
+  // File mode: send PDF/TXT as a native document content block so Claude reads it directly.
+  // Search mode: plain text message + web_search tool.
+  const userMessage = isFileMode
+    ? {
+        role: 'user',
+        content: [
+          {
+            type: 'document',
+            source: {
+              type: 'base64',
+              media_type: pdfData.mediaType || 'application/pdf',
+              data: pdfData.base64,
+            },
+            title: pdfData.filename,
+          },
+          { type: 'text', text: userPrompt },
+        ],
+      }
+    : { role: 'user', content: userPrompt };
+
   const requestBody = {
     model: COMPARISON_MODEL,
     max_tokens: 8192,   // increased: 3+ products × 20 rows can exceed 4096
     temperature: 0,
     system: systemPrompt,
-    messages: [{ role: 'user', content: userPrompt }],
+    messages: [userMessage],
   };
 
-  // Enable server-side web_search for model-name / URL mode (not needed for manual paste)
-  if (!isManualPaste) {
+  // Enable server-side web_search only for search mode (not needed when spec file is provided)
+  if (!isFileMode) {
     requestBody.tools = [{ type: 'web_search_20250305', name: 'web_search' }];
   }
 

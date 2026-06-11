@@ -1298,6 +1298,59 @@
   color: #D97706;
 }
 
+/* ── File upload area ── */
+.file-upload-area {
+  display: block;
+  cursor: pointer;
+  border: 2px dashed #CBD5E1;
+  border-radius: 10px;
+  padding: 24px 20px;
+  text-align: center;
+  transition: border-color 0.15s, background 0.15s;
+  background: #F8FAFC;
+}
+.file-upload-area:hover {
+  border-color: var(--color-primary);
+  background: #EFF6FF;
+}
+.file-upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: #64748B;
+  font-size: 14px;
+}
+.file-upload-icon {
+  font-size: 28px;
+  line-height: 1;
+}
+.file-upload-hint {
+  font-size: 11px;
+  color: #94A3B8;
+  letter-spacing: 0.05em;
+}
+.file-upload-selected {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #1E40AF;
+  font-size: 14px;
+  font-weight: 500;
+}
+.file-upload-name {
+  flex: 1;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.file-upload-change {
+  font-size: 11px;
+  color: #94A3B8;
+  white-space: nowrap;
+}
+
 .competitor-result {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
