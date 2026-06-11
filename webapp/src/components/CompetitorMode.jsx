@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { queryCompetitorComparison, fetchJinaUrl } from '../utils/claudeApi';
+import { queryCompetitorComparison } from '../utils/claudeApi';
 
 // Computing platform categories + Camera module categories
 // Any category Claude returns that isn't listed here gets appended at the end automatically
@@ -9,12 +9,13 @@ const CATEGORY_ORDER = [
   'Mechanical', 'Certifications', 'Features',
 ];
 
-// inputMode: 'model' | 'paste' | 'url'
+// inputMode: 'search' | 'paste'
+// search = Claude uses web_search to find live specs; accepts model names, part nos, or product page URLs
+// paste  = user pastes raw spec text directly; no web search performed
 export default function CompetitorMode({ selectedInnodiskProducts = [], allProducts = [] }) {
   const [input, setInput] = useState('');
-  const [inputMode, setInputMode] = useState('model');
+  const [inputMode, setInputMode] = useState('search');
   const [loading, setLoading] = useState(false);
-  const [fetchingUrl, setFetchingUrl] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
 
@@ -31,37 +32,19 @@ export default function CompetitorMode({ selectedInnodiskProducts = [], allProdu
     setResult(null);
 
     try {
-      let competitorInput = input.trim();
-      let isManualPaste = inputMode !== 'model';
-      let sourceLabel = null;
-
-      // URL mode: fetch page via Jina Reader before passing to Claude
-      if (inputMode === 'url') {
-        setFetchingUrl(true);
-        try {
-          const rawUrl = input.trim();
-          const pageText = await fetchJinaUrl(rawUrl);
-          competitorInput = `Source URL: ${rawUrl}\n\n${pageText}`;
-          sourceLabel = `fetched from URL: ${rawUrl}`;
-        } finally {
-          setFetchingUrl(false);
-        }
-      }
-
+      const isManualPaste = inputMode === 'paste';
       const res = await queryCompetitorComparison(
-        competitorInput,
+        input.trim(),
         selectedInnodiskProducts,
         allProducts,
         apiKey,
         isManualPaste,
-        sourceLabel,
       );
       setResult(res);
     } catch (err) {
       setError(err.message);
     } finally {
       setLoading(false);
-      setFetchingUrl(false);
     }
   };
 
@@ -106,56 +89,35 @@ export default function CompetitorMode({ selectedInnodiskProducts = [], allProdu
         {/* Mode toggle */}
         <div className="mode-toggle">
           <button
-            className={`mode-toggle-btn ${inputMode === 'model' ? 'active' : ''}`}
-            onClick={() => { setInputMode('model'); setInput(''); setError(null); }}
+            className={`mode-toggle-btn ${inputMode === 'search' ? 'active' : ''}`}
+            onClick={() => { setInputMode('search'); setInput(''); setError(null); }}
           >
-            Model Name(s)
+            🔍 Search (Model / URL)
           </button>
           <button
             className={`mode-toggle-btn ${inputMode === 'paste' ? 'active' : ''}`}
             onClick={() => { setInputMode('paste'); setInput(''); setError(null); }}
           >
-            Paste Specs
-          </button>
-          <button
-            className={`mode-toggle-btn ${inputMode === 'url' ? 'active' : ''}`}
-            onClick={() => { setInputMode('url'); setInput(''); setError(null); }}
-          >
-            🔗 URL
+            📋 Paste Specs
           </button>
         </div>
 
-        {inputMode === 'url' ? (
-          <>
-            <input
-              type="url"
-              className="search-textarea url-input"
-              value={input}
-              onChange={e => setInput(e.target.value)}
-              placeholder="https://www.moxa.com/en/products/..."
-              onKeyDown={e => e.key === 'Enter' && handleCompare()}
-            />
-            <p className="manual-note">
-              🔗 Paste the competitor product page URL — specs are fetched automatically via Jina Reader.
-            </p>
-          </>
-        ) : (
-          <>
-            <textarea
-              className="search-textarea"
-              value={input}
-              onChange={e => setInput(e.target.value)}
-              placeholder={
-                inputMode === 'paste'
-                  ? 'Paste competitor product specs here…'
-                  : 'Enter one or more competitor models, e.g.:\nMOXA DRP-A100\nArbor SB-244'
-              }
-              rows={inputMode === 'paste' ? 8 : 3}
-            />
-            {inputMode === 'paste' && (
-              <p className="manual-note">📌 Data source will be labeled "manually provided" in the output.</p>
-            )}
-          </>
+        <textarea
+          className="search-textarea"
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          placeholder={
+            inputMode === 'paste'
+              ? 'Paste competitor product specs here…'
+              : 'Enter competitor model name(s) or product page URL, e.g.:\nMOXA DRP-A100\nhttps://www.advantech.com/products/...'
+          }
+          rows={inputMode === 'paste' ? 8 : 3}
+        />
+        {inputMode === 'search' && (
+          <p className="manual-note">🔍 Claude will search the web for live specs — accepts model names, part numbers, or product page URLs.</p>
+        )}
+        {inputMode === 'paste' && (
+          <p className="manual-note">📌 Specs are taken directly from the text above — no web search performed.</p>
         )}
 
         {error && <div className="search-error">{error}</div>}
@@ -166,9 +128,7 @@ export default function CompetitorMode({ selectedInnodiskProducts = [], allProdu
           disabled={loading || !input.trim()}
         >
           {loading
-            ? fetchingUrl
-              ? <><span className="spinner-inline" /> Fetching page…</>
-              : <><span className="spinner-inline" /> Comparing…</>
+            ? <><span className="spinner-inline" /> Comparing…</>
             : '⇄ Compare →'}
         </button>
       </div>

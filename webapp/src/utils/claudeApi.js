@@ -316,41 +316,19 @@ function buildInnodiskSpecSummary(product, hasEpCanBus = false) {
   return fields.join(' | ');
 }
 
-/**
- * Fetch a competitor product page via Jina Reader API (r.jina.ai).
- * Bypasses CORS restrictions — returns the page as clean Markdown text.
- * Truncates to 10,000 chars to keep prompt size reasonable.
- *
- * @param {string} url - Full URL of the competitor product page
- * @returns {Promise<string>} Page content as Markdown text
- */
-export async function fetchJinaUrl(url) {
-  // Jina Reader: prepend r.jina.ai/ to any URL
-  const jinaEndpoint = `https://r.jina.ai/${url}`;
-  const res = await fetch(jinaEndpoint, {
-    headers: { 'Accept': 'text/markdown, text/plain, */*' },
-  });
-  if (!res.ok) {
-    throw new Error(`Jina Reader fetch failed (HTTP ${res.status}). Check the URL and try again.`);
-  }
-  const text = await res.text();
-  if (!text || text.trim().length < 50) {
-    throw new Error('Page content appears to be empty. The URL may require login or have no readable text.');
-  }
-  const MAX_CHARS = 10000;
-  return text.length > MAX_CHARS
-    ? text.slice(0, MAX_CHARS) + '\n\n...[content truncated at 10,000 chars]'
-    : text;
-}
 
 /**
  * Competitor comparison: unified side-by-side table.
  *
- * @param {string}   competitorInput  - Competitor model names (comma / newline separated) or pasted spec text
+ * Search mode  (isManualPaste=false): passes competitor model names / URL to Claude
+ *   with the web_search tool enabled.  Claude searches for live specs automatically.
+ * Paste mode   (isManualPaste=true):  user pasted raw spec text; no web search needed.
+ *
+ * @param {string}   competitorInput  - Competitor model names / URL (search) or raw spec text (paste)
  * @param {object[]} innodiskProducts - Selected Innodisk product objects from spec_matrix (may be empty)
  * @param {object[]} allProducts      - Full catalog (for fallback auto-suggest when nothing selected)
  * @param {string}   apiKey
- * @param {boolean}  isManualPaste    - true when user pasted raw spec text instead of model names
+ * @param {boolean}  isManualPaste    - true when user pasted raw spec text instead of a model name / URL
  */
 export async function queryCompetitorComparison(
   competitorInput,
@@ -358,7 +336,6 @@ export async function queryCompetitorComparison(
   allProducts,
   apiKey,
   isManualPaste = false,
-  sourceLabel = null,   // optional: e.g. 'fetched from URL: https://...'
 ) {
   // ── Catalog-level context flags ─────────────────────────────────────────
   const hasEpCanBus = (allProducts || []).some(p =>
@@ -398,14 +375,19 @@ export async function queryCompetitorComparison(
   console.groupEnd();
 
   // ── Prompt ──────────────────────────────────────────────────────────────
-  const systemPrompt = `You are a competitive intelligence assistant for Innodisk, an industrial edge computing company.
-Your job: produce a rigorous side-by-side comparison table using all available knowledge.
-For competitor products, always provide best-estimate values from your training data — never leave specs blank just because you are uncertain. Use "~" prefix for estimates.
-CRITICAL: Respond with raw JSON only. Do NOT wrap in markdown code fences (\`\`\`json or \`\`\`). Do NOT include any text before or after the JSON object. The very first character of your response must be '{' and the last must be '}'.`;
+  const systemPrompt = isManualPaste
+    ? `You are a competitive intelligence assistant for Innodisk, an industrial edge computing company.
+Your job: produce a rigorous side-by-side comparison table from the pasted competitor spec data.
+For any spec fields not present in the pasted data, provide best-estimate values and prefix with "~".
+CRITICAL: Respond with raw JSON only. Do NOT wrap in markdown code fences (\`\`\`json or \`\`\`). Do NOT include any text before or after the JSON object. The very first character of your response must be '{' and the last must be '}'.`
+    : `You are a competitive intelligence assistant for Innodisk, an industrial edge computing company.
+Your job: produce a rigorous side-by-side comparison table using live web data.
+IMPORTANT: Use the web_search tool to look up official specs for each competitor product from the vendor's official website or authoritative spec pages. Always search first — do not guess from training data alone.
+After searching and gathering specs, respond with raw JSON only. Do NOT wrap in markdown code fences (\`\`\`json or \`\`\`). Do NOT include any text before or after the JSON object. The very first character of your response must be '{' and the last must be '}'.`;
 
   const competitorSource = isManualPaste
-    ? `Competitor specs (${sourceLabel || 'manually pasted'}):\n${competitorInput}`
-    : `Competitor product(s) to analyze: ${competitorInput}`;
+    ? `Competitor specs (manually pasted):\n${competitorInput}`
+    : `Search for the official specs of the following competitor product(s) and compare:\n${competitorInput}`;
 
   const innodiskSection = hasSelected
     ? `Innodisk products selected by the user (VERIFIED specs from our database — copy field values VERBATIM):
@@ -474,31 +456,66 @@ ${isCameraSession ? `  CAMERA MODULE specs:
 - talking_points: 3–5 sales talking points (short bullets)
   ${hasDinRail && !isCameraSession ? '  Include DIN-rail availability if relevant vs competitor form factors.' : ''}`;
 
-  const response = await fetch(CLAUDE_API_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': apiKey,
-      'anthropic-version': '2023-06-01',
-      'anthropic-dangerous-direct-browser-access': 'true',
-    },
-    body: JSON.stringify({
-      model: MODEL,
-      max_tokens: 8192,   // increased: 3+ products × 20 rows can exceed 4096
-      temperature: 0,
-      system: systemPrompt,
-      messages: [{ role: 'user', content: userPrompt }],
-    }),
-  });
+  // ── Build request body ───────────────────────────────────────────────────
+  const requestBody = {
+    model: MODEL,
+    max_tokens: 8192,   // increased: 3+ products × 20 rows can exceed 4096
+    temperature: 0,
+    system: systemPrompt,
+    messages: [{ role: 'user', content: userPrompt }],
+  };
 
-  if (!response.ok) {
-    const err = await response.json().catch(() => ({}));
-    throw new Error(err.error?.message || `API error ${response.status}`);
+  // Enable server-side web_search for model-name / URL mode (not needed for manual paste)
+  if (!isManualPaste) {
+    requestBody.tools = [{ type: 'web_search_20250305', name: 'web_search' }];
   }
 
-  const data = await response.json();
-  const text = data.content[0]?.text || '';
-  console.log('[CompetitorAPI] stop_reason:', data.stop_reason, '| text length:', text.length);
+  // ── Send request + handle pause_turn continuation ────────────────────────
+  // web_search runs server-side (Anthropic infrastructure) — no client-side
+  // tool execution loop needed.  Only need to handle pause_turn (server-side
+  // loop hit its 10-iteration cap) by appending the partial assistant turn
+  // and re-sending.
+  const HEADERS = {
+    'Content-Type': 'application/json',
+    'x-api-key': apiKey,
+    'anthropic-version': '2023-06-01',
+    'anthropic-dangerous-direct-browser-access': 'true',
+  };
+
+  let data;
+  let continueCount = 0;
+  const MAX_CONTINUE = 3;
+
+  do {
+    const response = await fetch(CLAUDE_API_URL, {
+      method: 'POST',
+      headers: HEADERS,
+      body: JSON.stringify(requestBody),
+    });
+
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({}));
+      throw new Error(err.error?.message || `API error ${response.status}`);
+    }
+
+    data = await response.json();
+    console.log('[CompetitorAPI] stop_reason:', data.stop_reason, '| content blocks:', data.content?.length);
+
+    if (data.stop_reason === 'pause_turn' && continueCount < MAX_CONTINUE) {
+      // Server-side tool loop hit its cap — append partial assistant turn and retry
+      continueCount++;
+      console.log(`[CompetitorAPI] pause_turn — continuing (attempt ${continueCount}/${MAX_CONTINUE})`);
+      requestBody.messages = [
+        ...requestBody.messages,
+        { role: 'assistant', content: data.content },
+      ];
+    }
+  } while (data.stop_reason === 'pause_turn' && continueCount <= MAX_CONTINUE);
+
+  // Extract the final text block — may not be content[0] when web_search blocks precede it
+  const textBlock = data.content.find(b => b.type === 'text');
+  const text = textBlock?.text || '';
+  console.log('[CompetitorAPI] text length:', text.length);
   console.log('[CompetitorAPI] raw response (first 800):\n', text.slice(0, 800));
 
   // Strip markdown code fences if Claude wrapped the JSON (e.g. ```json ... ```)
