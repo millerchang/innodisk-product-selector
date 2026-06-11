@@ -317,6 +317,33 @@ function buildInnodiskSpecSummary(product, hasEpCanBus = false) {
 }
 
 /**
+ * Fetch a competitor product page via Jina Reader API (r.jina.ai).
+ * Bypasses CORS restrictions — returns the page as clean Markdown text.
+ * Truncates to 10,000 chars to keep prompt size reasonable.
+ *
+ * @param {string} url - Full URL of the competitor product page
+ * @returns {Promise<string>} Page content as Markdown text
+ */
+export async function fetchJinaUrl(url) {
+  // Jina Reader: prepend r.jina.ai/ to any URL
+  const jinaEndpoint = `https://r.jina.ai/${url}`;
+  const res = await fetch(jinaEndpoint, {
+    headers: { 'Accept': 'text/markdown, text/plain, */*' },
+  });
+  if (!res.ok) {
+    throw new Error(`Jina Reader fetch failed (HTTP ${res.status}). Check the URL and try again.`);
+  }
+  const text = await res.text();
+  if (!text || text.trim().length < 50) {
+    throw new Error('Page content appears to be empty. The URL may require login or have no readable text.');
+  }
+  const MAX_CHARS = 10000;
+  return text.length > MAX_CHARS
+    ? text.slice(0, MAX_CHARS) + '\n\n...[content truncated at 10,000 chars]'
+    : text;
+}
+
+/**
  * Competitor comparison: unified side-by-side table.
  *
  * @param {string}   competitorInput  - Competitor model names (comma / newline separated) or pasted spec text
@@ -331,6 +358,7 @@ export async function queryCompetitorComparison(
   allProducts,
   apiKey,
   isManualPaste = false,
+  sourceLabel = null,   // optional: e.g. 'fetched from URL: https://...'
 ) {
   // ── Catalog-level context flags ─────────────────────────────────────────
   const hasEpCanBus = (allProducts || []).some(p =>
@@ -376,7 +404,7 @@ For competitor products, always provide best-estimate values from your training 
 CRITICAL: Respond with raw JSON only. Do NOT wrap in markdown code fences (\`\`\`json or \`\`\`). Do NOT include any text before or after the JSON object. The very first character of your response must be '{' and the last must be '}'.`;
 
   const competitorSource = isManualPaste
-    ? `Competitor specs (manually pasted):\n${competitorInput}`
+    ? `Competitor specs (${sourceLabel || 'manually pasted'}):\n${competitorInput}`
     : `Competitor product(s) to analyze: ${competitorInput}`;
 
   const innodiskSection = hasSelected

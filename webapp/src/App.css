@@ -338,6 +338,14 @@
   color: var(--color-text);
 }
 
+/* URL mode: single-line input, monospace for URL readability */
+.search-textarea.url-input {
+  resize: none;
+  font-family: monospace;
+  font-size: 13px;
+  padding: 10px 14px;
+}
+
 .search-textarea:focus {
   outline: none;
   border-color: var(--color-primary);
