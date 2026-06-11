@@ -550,12 +550,17 @@ ${isCameraSession ? `  CAMERA MODULE specs:
     .replace(/\s*```\s*$/,      '')     // remove closing fence
     .trim();
 
+  // Slice off any prose before the opening brace — Claude sometimes adds a
+  // preamble sentence like "I now have comprehensive data. Let me compile…"
+  const jsonStart = stripped.indexOf('{');
+  const jsonStr = jsonStart > 0 ? stripped.slice(jsonStart) : stripped;
+
   try {
-    return JSON.parse(stripped);
+    return JSON.parse(jsonStr);
   } catch (e1) {
-    console.error('[CompetitorAPI] JSON.parse failed after fence-strip:', e1.message);
-    console.error('[CompetitorAPI] stop_reason:', data.stop_reason, '| stripped length:', stripped.length);
-    console.error('[CompetitorAPI] stripped text (first 300):', stripped.slice(0, 300));
+    console.error('[CompetitorAPI] JSON.parse failed:', e1.message);
+    console.error('[CompetitorAPI] stop_reason:', data.stop_reason, '| jsonStr length:', jsonStr.length);
+    console.error('[CompetitorAPI] jsonStr (first 300):', jsonStr.slice(0, 300));
 
     if (data.stop_reason === 'max_tokens') {
       throw new Error('Comparison response was too long (max tokens reached). Try selecting fewer products.');
