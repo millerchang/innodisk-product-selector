@@ -6,6 +6,8 @@
 
 const CLAUDE_API_URL = 'https://api.anthropic.com/v1/messages';
 const MODEL = 'claude-haiku-4-5';
+// Competitor comparison uses Sonnet: needs web_search tool + large structured JSON output
+const COMPARISON_MODEL = 'claude-sonnet-4-6';
 
 /**
  * Build a compressed one-line summary per product for the prompt.
@@ -458,7 +460,7 @@ ${isCameraSession ? `  CAMERA MODULE specs:
 
   // ── Build request body ───────────────────────────────────────────────────
   const requestBody = {
-    model: MODEL,
+    model: COMPARISON_MODEL,
     max_tokens: 8192,   // increased: 3+ products × 20 rows can exceed 4096
     temperature: 0,
     system: systemPrompt,
@@ -512,8 +514,10 @@ ${isCameraSession ? `  CAMERA MODULE specs:
     }
   } while (data.stop_reason === 'pause_turn' && continueCount <= MAX_CONTINUE);
 
-  // Extract the final text block — may not be content[0] when web_search blocks precede it
-  const textBlock = data.content.find(b => b.type === 'text');
+  // Extract the LAST text block — web_search responses have multiple text blocks:
+  // the first is Claude's preamble ("I'll search for..."), the last is the JSON result.
+  const textBlocks = data.content.filter(b => b.type === 'text');
+  const textBlock = textBlocks[textBlocks.length - 1];
   const text = textBlock?.text || '';
   console.log('[CompetitorAPI] text length:', text.length);
   console.log('[CompetitorAPI] raw response (first 800):\n', text.slice(0, 800));
