@@ -6,8 +6,9 @@
 
 const CLAUDE_API_URL = 'https://api.anthropic.com/v1/messages';
 const MODEL = 'claude-haiku-4-5';
-// Competitor comparison uses Sonnet: needs web_search tool + large structured JSON output
-const COMPARISON_MODEL = 'claude-sonnet-4-6';
+// Competitor comparison uses Haiku: higher rate limits (100k TPM vs Sonnet's 30k TPM)
+// Parsing robustness (preamble-strip + last-text-block) compensates for Haiku's verbosity
+const COMPARISON_MODEL = 'claude-haiku-4-5';
 
 /**
  * Build a compressed one-line summary per product for the prompt.
