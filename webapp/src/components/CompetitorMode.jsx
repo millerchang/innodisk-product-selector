@@ -72,11 +72,16 @@ export default function CompetitorMode({ selectedInnodiskProducts = [], allProdu
     }
   };
 
+  // Spec rows to hide from the comparison table.
+  // AI SDK: definition unclear across product lines — hidden until confirmed.
+  const HIDDEN_SPECS = new Set(['AI SDK', 'AI Sdk', 'ai_sdk', 'ai sdk']);
+
   // Group rows by category.
   // Known categories follow CATEGORY_ORDER; any extra categories Claude returns are appended.
   function groupRows(rows) {
     const grouped = {};
     for (const row of rows) {
+      if (HIDDEN_SPECS.has(row.spec)) continue;   // skip hidden specs
       const cat = row.category || 'Other';
       if (!grouped[cat]) grouped[cat] = [];
       grouped[cat].push(row);
@@ -186,9 +191,10 @@ export default function CompetitorMode({ selectedInnodiskProducts = [], allProdu
         const wins = {};
         for (const col of columns) wins[col] = 0;
         for (const row of result.rows || []) {
+          if (HIDDEN_SPECS.has(row.spec)) continue;
           if (row.best && wins[row.best] != null) wins[row.best]++;
         }
-        const totalRows = (result.rows || []).filter(r => r.best).length || 1;
+        const totalRows = (result.rows || []).filter(r => r.best && !HIDDEN_SPECS.has(r.spec)).length || 1;
 
         return (
           <div className="competitor-result">
