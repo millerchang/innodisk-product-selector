@@ -4173,10 +4173,10 @@
       "product_name": "ABOX-V140",
       "product_line": "computing_aiot",
       "bu_owner": "AIoT",
-      "source_file": "Datasheet_ABOX-V140_20260129 (Preliminary).pdf",
-      "file_hash_md5": "b6df669c88dd16b9e3e8577af1cd707b",
+      "source_file": "Datasheet_ABOX-V140_20260608.pdf",
+      "file_hash_md5": "b812c8ed2e3ec2dc3d9768141a29772d",
       "schema_version": "3.0",
-      "last_updated": "2026-06-10",
+      "last_updated": "2026-06-11",
       "embedding_id": "ABOX-V140"
     },
     "common": {
@@ -4203,14 +4203,14 @@
       "cpu_cores": 24,
       "cpu_p_cores": 8,
       "cpu_e_cores": 16,
-      "tdp_watt": 65,
+      "tdp_watt": 65.0,
       "ai_tops": null,
-      "ram_gb": 96,
+      "ram_gb": 96.0,
       "memory_spec": {
         "type": "DDR5",
         "speed_mhz": 5600,
         "slots": null,
-        "max_capacity_gb": 96,
+        "max_capacity_gb": 96.0,
         "form_factor": null,
         "ecc_support": true
       },
@@ -4227,7 +4227,7 @@
       "openvino_support": null,
       "dimensions": {
         "width_mm": 229.8,
-        "depth_mm": 300,
+        "depth_mm": 300.0,
         "height_mm": 70.5
       },
       "power_input": null,
@@ -4313,7 +4313,7 @@
       ]
     },
     "search": {
-      "text_summary": "ABOX-V140 ABOX-V140 | Platform: Intel Intel Core i9-14900E | I/O: 5x USB3.2 Gen1 Type-A, 4x RS-232, 8-pin GPIO, 2x CAN Bus | Expansion: 1x M.2 3052 B (PCIe x1 Gen3/USB 3.2), 1x M.2 2280 B (PCIe x1 Gen3/USB 2.0), 1x M.2 2230 E (PCIe x2 Gen3/USB 2.0), 2x M.2 2280 M (PCIe x4/SATA) | OS: Windows | Op temp: -40°C ~ 80°C",
+      "text_summary": "ABOX-V140 ABOX-V140 | Platform: Intel Intel Core i9-14900E | I/O: 5x USB3.2 Gen1 Type-A, 4x RS-232, 8-pin GPIO, 2x CAN Bus | Expansion: 1x M.2 3052 B (PCIe x1 Gen3/USB 3.2), 1x M.2 2280 B (PCIe x1 Gen3/USB 2.0), 1x M.2 2230 E (PCIe x2 Gen3/USB 2.0), 2x M.2 2280 M (PCIe x4/SATA) | OS: Windows | Op temp: -40°C ~ 80°C | Features: Vehicle Computer for Smarter Fleet Management; Powered by Intel® 14th Gen, available in both fan and fanless SKUs; Rich I/O: 5×LAN (4×PoE optional), 5×USB 3.2, 4×COM, 8-bit GPIO; 5 x M.2 Expansion Slots and double Micro SIM Slots; Swappable 2.5” SATA 3.0 SSD trays for easy maintenance; Support 9~48V wide-range DC inputs with ignition control",
       "searchable_tags": [
         "industrial",
         "AIoT",
