@@ -115,8 +115,9 @@ PRODUCT_CATALOG = {
 # marked "Preliminary". These get lifecycle_status "Preview" (NOT "NRND";
 # NRND means a mature part near end-of-life — the opposite of a new product).
 PRELIMINARY_PARTS = {
-    "APEX-A100", "APEX-E400", "APEX-S100", "ABOX-V140", "ARAK-4120",
+    "APEX-A100", "APEX-E400", "APEX-S100", "ARAK-4120",
     "EXEC-Q911", "EXMP-Q911",
+    # ABOX-V140 removed 2026-06-11 — promoted to Active release (20260608 datasheet)
 }
 
 # ── Rule-based classifier ────────────────────────────────────────────────────

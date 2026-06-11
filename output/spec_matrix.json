@@ -4190,7 +4190,7 @@
         "FCC",
         "UKCA"
       ],
-      "lifecycle_status": "Preview",
+      "lifecycle_status": "Active",
       "eol_date": null,
       "moq": 1,
       "lead_time_weeks": null
@@ -4318,7 +4318,6 @@
         "industrial",
         "AIoT",
         "intel",
-        "preliminary",
         "wide-temp",
         "M.2"
       ],
