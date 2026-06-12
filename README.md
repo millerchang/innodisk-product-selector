@@ -174,12 +174,14 @@ npm run build
 
 ### Competitor Comparison
 - Click **⚔ Compare with Competitors** to expand the competitor analysis section
-- Enter competitor model names → Claude fetches public specs and generates a side-by-side table with:
-  - Spec-by-spec comparison
+- Two input modes:
+  - **🔍 Search (Model / URL)** — enter competitor model names, part numbers, or product page URLs; Claude uses the `web_search` tool to fetch live specs from the vendor's official website
+  - **📄 Upload Spec Sheet** — upload a competitor PDF / TXT / CSV datasheet; Claude reads the document natively (no third-party scraping)
+- Output includes:
+  - Spec-by-spec side-by-side comparison table
   - Win/loss scoring per product
   - Innodisk advantages summary
   - Sales talking points
-- **Paste Specs mode** — for small vendors with no public spec page, paste raw spec text manually
 
 ### PM Notes
 - Each product can have a PM-maintained note shown as a yellow callout in the detail modal
